@@ -1,0 +1,281 @@
+.management-page {
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 1) 0%, rgba(245, 247, 252, 1) 45%, rgba(233, 237, 246, 1) 100%);
+  min-height: 100vh;
+  padding: 90px 30px 80px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.management-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.management-header h1 {
+  font-size: 2.5rem;
+  margin: 0 0 18px;
+  color: #0f172a;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.management-header p {
+  margin: 0 0 42px;
+  color: #4b5568;
+  line-height: 1.75;
+  text-align: center;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.management-section {
+  margin-bottom: 64px;
+}
+
+.management-section-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 36px;
+  color: #0f172a;
+  position: relative;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.management-section-title::after {
+  content: '';
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, #0f172a 0%, #b97c07 100%);
+  border-radius: 999px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -14px;
+}
+
+.management-single {
+  display: flex;
+  justify-content: center;
+}
+
+.management-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 28px;
+}
+
+.management-card {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.management-card--large {
+  max-width: 280px;
+}
+
+.management-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 72px rgba(15, 23, 42, 0.2);
+}
+
+.management-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.management-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.management-card:hover .management-image-wrapper img {
+  transform: scale(1.05);
+}
+
+.management-card-body {
+  padding: 20px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.management-card-body h3 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.05em;
+}
+
+.management-card-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.management-quote {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #374151;
+  background: rgba(185, 124, 7, 0.12);
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-style: italic;
+}
+
+.management-link {
+  align-self: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(120deg, #0f172a 0%, #1f2a44 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.management-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.2);
+}
+
+.management-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+  z-index: 1200;
+}
+
+.management-modal-content {
+  background: #ffffff;
+  border-radius: 24px;
+  max-width: 640px;
+  width: 100%;
+  box-shadow: 0 32px 80px rgba(15, 23, 42, 0.28);
+  position: relative;
+  overflow: hidden;
+}
+
+.management-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #0f172a;
+  cursor: pointer;
+}
+
+.management-modal-header {
+  display: flex;
+  gap: 20px;
+  padding: 26px 28px 0;
+  align-items: center;
+}
+
+.management-modal-header img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+}
+
+.management-modal-header h3 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+  color: #0f172a;
+}
+
+.management-modal-header p {
+  margin: 0;
+  font-size: 1rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.management-modal-body {
+  padding: 20px 28px 32px;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.management-modal-body h4 {
+  margin: 20px 0 10px;
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.management-modal-body ul {
+  padding-left: 24px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: disc;
+}
+
+@media (max-width: 768px) {
+  .management-page {
+    padding: 60px 20px 50px;
+  }
+
+  .management-header h1 {
+    font-size: 2rem;
+  }
+
+  .management-section {
+    margin-bottom: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .management-page {
+    padding: 48px 16px 40px;
+  }
+
+  .management-grid {
+    gap: 22px;
+  }
+
+  .management-card--large {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .management-modal-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .management-modal-header img {
+    width: 120px;
+    height: 150px;
+  }
+}

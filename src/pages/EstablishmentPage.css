@@ -1,0 +1,173 @@
+.establishment-page {
+  background: linear-gradient(180deg, #f4f6fb 0%, #eef1f7 100%);
+  min-height: 100vh;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  padding: 70px 0 30px;
+}
+
+.establishment-hero {
+  position: relative;
+  width: 100%;
+  min-height: 320px;
+  background: url('../../public/assets/img/hero.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.establishment-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(185, 124, 7, 0.4) 100%);
+}
+
+.establishment-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  padding: 60px 20px;
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.establishment-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.establishment-hero-content h1 {
+  margin: 0;
+  font-size: 2.8rem;
+  letter-spacing: 0.05em;
+}
+
+.establishment-hero-content p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.establishment-body {
+  max-width: 1100px;
+  margin: -60px auto 0;
+  padding: 0 24px 80px;
+}
+
+.establishment-intro {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.establishment-intro-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 32px 34px;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+  color: #1f2937;
+}
+
+.establishment-intro-card h2 {
+  margin: 0 0 16px;
+  font-size: 1.6rem;
+  color: #0f172a;
+}
+
+.establishment-intro-card p {
+  margin: 0;
+  line-height: 1.8;
+}
+
+.establishment-highlight {
+  background: linear-gradient(140deg, rgba(185, 124, 7, 0.15) 0%, rgba(185, 124, 7, 0.3) 100%);
+  border-radius: 20px;
+  padding: 28px 26px;
+  box-shadow: inset 0 0 0 1px rgba(185, 124, 7, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: #0f172a;
+}
+
+.establishment-highlight h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.establishment-responsibilities {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 36px 38px 42px;
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+}
+
+.establishment-responsibilities-header h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: #0f172a;
+}
+
+.establishment-responsibilities-header p {
+  margin: 0 0 24px;
+  color: #4b5568;
+}
+
+.establishment-responsibilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.responsibility-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.02);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  color: #1f2937;
+}
+
+.responsibility-icon {
+  font-size: 1.2rem;
+  color: #b97c07;
+  line-height: 1;
+}
+
+.responsibility-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .establishment-intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .establishment-page {
+    padding: 60px 0 50px;
+  }
+
+  .establishment-body {
+    margin-top: -70px;
+    padding: 0 18px 60px;
+  }
+
+  .establishment-intro-card,
+  .establishment-responsibilities {
+    padding: 26px 22px;
+  }
+}

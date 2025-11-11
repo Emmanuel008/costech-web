@@ -1,0 +1,106 @@
+.commission-page {
+  background: #f7f8fb;
+  min-height: 100vh;
+  padding: 80px 30px 70px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.commission-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.commission-header h1 {
+  font-size: 2.4rem;
+  margin: 0 0 16px;
+  color: #0f172a;
+}
+
+.commission-header p {
+  margin: 0 0 32px;
+  color: #4b5568;
+  line-height: 1.7;
+}
+
+.commission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.commission-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 22px 48px rgba(15, 23, 42, 0.12);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.commission-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.18);
+}
+
+.commission-image-wrapper {
+  width: 100%;
+  aspect-ratio: 3 / 4.5;
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+.commission-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.commission-card-body {
+  padding: 14px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.commission-card-body h2 {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.05em;
+}
+
+.commission-card-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .commission-page {
+    padding: 60px 20px 50px;
+  }
+
+  .commission-header h1 {
+    font-size: 2rem;
+  }
+
+  .commission-header p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .commission-page {
+    padding: 50px 16px 40px;
+  }
+
+  .commission-grid {
+    gap: 20px;
+  }
+}

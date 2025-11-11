@@ -1,0 +1,222 @@
+.welcome-section {
+  width: 100%;
+  padding: 60px 30px;
+  background-color: #ffffff;
+}
+
+.welcome-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.welcome-left {
+  flex: 0 0 300px;
+}
+
+.dg-image-container {
+  text-align: center;
+}
+
+.dg-image {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.dg-caption h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.dg-caption p {
+  font-size: 0.95rem;
+  color: #666666;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.welcome-right {
+  flex: 1;
+}
+
+.welcome-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.welcome-tab {
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333333;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  text-transform: capitalize;
+}
+
+.welcome-tab:hover {
+  color: #b97c07;
+}
+
+.welcome-tab.active {
+  color: #b97c07;
+  font-weight: 600;
+}
+
+.welcome-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #b97c07;
+}
+
+.welcome-tab-content {
+  min-height: 200px;
+}
+
+.welcome-content {
+  color: #333333;
+  line-height: 1.8;
+  font-size: 1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.welcome-content p {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.welcome-content p:last-child {
+  margin-bottom: 0;
+}
+
+.biography-content {
+  margin-top: 0;
+}
+
+.biography-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 10px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.biography-subtitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #333333;
+  margin: 0 0 25px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .welcome-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .welcome-left {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dg-image-container {
+    max-width: 250px;
+  }
+  
+  .welcome-tabs {
+    flex-wrap: wrap;
+  }
+  
+  .welcome-tab {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-section {
+    padding: 40px 20px;
+  }
+  
+  .welcome-container {
+    gap: 25px;
+  }
+  
+  .dg-image-container {
+    max-width: 200px;
+  }
+  
+  .dg-caption h3 {
+    font-size: 1rem;
+  }
+  
+  .dg-caption p {
+    font-size: 0.85rem;
+  }
+  
+  .welcome-tab {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .welcome-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-section {
+    padding: 30px 15px;
+  }
+  
+  .dg-image-container {
+    max-width: 180px;
+  }
+  
+  .welcome-tabs {
+    flex-direction: column;
+    border-bottom: none;
+  }
+  
+  .welcome-tab {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px;
+  }
+  
+  .welcome-tab.active::after {
+    display: none;
+  }
+  
+  .welcome-tab.active {
+    border-left: 3px solid #b97c07;
+    background-color: #f9f9f9;
+  }
+}
+

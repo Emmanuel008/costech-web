@@ -1,0 +1,243 @@
+/* Top Header Section */
+.top-header {
+  background-color: #ffffff;
+  padding: 0;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 15px 30px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.header-text {
+  background-color: #ffffff;
+  color: #b97c07;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  padding: 12px 25px;
+  line-height: 1.4;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  white-space: nowrap;
+}
+
+.emblem-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.costech-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Second Navbar - English Menu */
+.second-navbar {
+  background-color: rgba(185, 124, 7, 0.85);
+  padding: 0;
+  width: 100%;
+  position: fixed;
+  top: 120px;
+  left: 0;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.second-navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 12px 30px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.second-nav-item {
+  position: relative;
+}
+
+.second-nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.second-nav-link:hover {
+  color: #f0f0f0;
+}
+
+.second-nav-link--button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-chevron {
+  font-size: 10px;
+  margin-left: 4px;
+  color: #ffffff;
+}
+
+.second-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(185, 124, 7, 0.9);
+  min-width: 200px;
+  padding: 8px 0;
+  margin-top: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.dropdown-item {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 20px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .second-navbar-container {
+    gap: 20px;
+  }
+  
+  .second-nav-link {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+  
+  .header-text {
+    font-size: 20px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 968px) {
+  .header-container {
+    flex-direction: column;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+  
+  .header-center {
+    padding: 0;
+    order: 2;
+    width: 100%;
+  }
+  
+  .header-left {
+    order: 1;
+  }
+  
+  .header-right {
+    order: 3;
+  }
+  
+  .header-text {
+    white-space: normal;
+    font-size: 18px;
+    padding: 10px 15px;
+  }
+  
+  .second-navbar {
+    top: 200px;
+  }
+  
+  .second-navbar-container {
+    gap: 15px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .second-navbar {
+    top: 220px;
+  }
+  
+  .second-navbar-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  
+  .second-nav-item {
+    width: 100%;
+  }
+  
+  .second-nav-link {
+    width: 100%;
+    justify-content: center;
+    padding: 12px;
+  }
+  
+  .emblem-logo {
+    height: 60px;
+  }
+  
+  .costech-logo {
+    height: 50px;
+  }
+  
+  .header-text {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+}
+

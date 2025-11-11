@@ -1,0 +1,154 @@
+.partners-section {
+  width: 100%;
+  padding: 60px 30px 0;
+  margin-bottom: 60px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.partners-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.partners-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.partners-marquee-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 0 4px;
+  max-width: 100%;
+}
+
+.partners-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* CSS for the continuous carousel effect */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+.marquee-content {
+  display: flex;
+  animation: marquee 40s linear infinite;
+  padding-left: 2rem;
+  will-change: transform;
+}
+
+.partner-logo-container {
+  flex: 0 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-logo-img {
+  max-height: 60px;
+  max-width: 140px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Add gradient overlays for smooth fade effect */
+.partners-marquee::before,
+.partners-marquee::after {
+  content: "";
+  height: 100%;
+  position: absolute;
+  width: 10%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.partners-marquee::before {
+  background: linear-gradient(to right, #ffffff, transparent);
+  left: 0;
+  top: 0;
+}
+
+.partners-marquee::after {
+  background: linear-gradient(to left, #ffffff, transparent);
+  right: 0;
+  top: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .partners-section {
+    padding: 40px 20px;
+    margin-bottom: 50px;
+  }
+  
+  .partners-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .partner-logo-img {
+    max-height: 50px;
+    max-width: 120px;
+  }
+  
+  .marquee-content {
+    animation-duration: 25s;
+  }
+}
+
+@media (max-width: 768px) {
+  .partners-section {
+    padding: 30px 15px;
+    margin-bottom: 40px;
+  }
+  
+  .partners-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+  
+  .partner-logo-img {
+    max-height: 45px;
+    max-width: 100px;
+  }
+  
+  .marquee-content {
+    animation-duration: 20s;
+  }
+}
+
+@media (max-width: 480px) {
+  .partners-title {
+    font-size: 1.5rem;
+  }
+  
+  .partner-logo-img {
+    max-height: 35px;
+    max-width: 80px;
+  }
+  
+  .marquee-content {
+    animation-duration: 18s;
+    padding-left: 1rem;
+  }
+  
+  .partner-logo-container {
+    padding: 0 1rem;
+  }
+}
+

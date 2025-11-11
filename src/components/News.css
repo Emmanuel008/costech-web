@@ -1,0 +1,334 @@
+.news-section {
+  width: 100%;
+  padding: 60px 30px;
+  background-color: #2c2c2c;
+  min-height: 500px;
+  position: relative;
+}
+
+.news-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(44, 44, 44, 0.85);
+  z-index: 1;
+}
+
+.news-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.news-section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 40px;
+  text-align: center;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.news-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.news-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.news-card.news-card-link {
+  padding: 0;
+}
+
+.news-card-anchor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.news-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover .news-image {
+  transform: scale(1.05);
+}
+
+.news-content {
+  padding: 20px;
+  background-color: #2c2c2c;
+  color: #f4d03f;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.news-card.active .news-content {
+  background-color: #b97c07;
+  color: #000000;
+}
+
+.news-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.news-card.active .news-title {
+  color: #000000;
+}
+
+.news-date {
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.9;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.news-card.active .news-date {
+  color: #000000;
+  opacity: 0.8;
+}
+
+.news-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.news-view-more-btn {
+  display: inline-block;
+  padding: 12px 35px;
+  background-color: #b97c07;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  border: 2px solid #b97c07;
+}
+
+.news-view-more-btn:hover {
+  background-color: #a67523;
+  border-color: #a67523;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(193, 137, 45, 0.4);
+}
+
+.news-section.news-page {
+  background-color: #f7f5ef;
+  padding: 70px 30px;
+  min-height: 100vh;
+}
+
+.news-section.news-page::before {
+  display: none;
+}
+
+.news-section.news-page .news-container {
+  z-index: 1;
+}
+
+.news-page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.news-page-header h1 {
+  font-size: 2.75rem;
+  margin-bottom: 16px;
+  color: #2c2c2c;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.news-page-header p {
+  color: #5a5a5a;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.news-page-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.news-section.news-page .news-card {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.news-section.news-page .news-content {
+  background-color: #ffffff;
+  color: #2c2c2c;
+}
+
+.news-section.news-page .news-card.active .news-content {
+  background-color: #f1deba;
+  color: #1a1a1a;
+}
+
+.news-summary {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: inherit;
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.news-summary.visible {
+  opacity: 1;
+  max-height: 160px;
+}
+
+@media (max-width: 1280px) {
+  .news-page-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .news-page-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .news-section {
+    padding: 40px 20px;
+  }
+  
+  .news-section-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .news-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .news-image-container {
+    height: 180px;
+  }
+  
+  .news-button-container {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .news-section {
+    padding: 30px 15px;
+  }
+  
+  .news-section.news-page {
+    padding: 50px 20px;
+  }
+
+  .news-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .news-section-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+  
+  .news-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .news-content {
+    padding: 15px;
+  }
+  
+  .news-title {
+    font-size: 1rem;
+  }
+  
+  .news-date {
+    font-size: 0.8rem;
+  }
+  
+  .news-button-container {
+    margin-top: 25px;
+  }
+  
+  .news-view-more-btn {
+    padding: 10px 28px;
+    font-size: 0.95rem;
+  }
+
+  .news-page-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .news-page-header p {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-section-title {
+    font-size: 1.5rem;
+  }
+  
+  .news-image-container {
+    height: 160px;
+  }
+
+  .news-page-header h1 {
+    font-size: 1.8rem;
+  }
+}
+
