@@ -8,6 +8,15 @@
   left: 0;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.top-header--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .header-container {
@@ -73,6 +82,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  transition: top 0.3s ease;
+}
+
+.second-navbar--scrolled {
+  top: 0;
 }
 
 .second-navbar-container {
@@ -199,6 +213,10 @@
   .second-navbar {
     top: 200px;
   }
+
+  .second-navbar--scrolled {
+    top: 0;
+  }
   
   .second-navbar-container {
     gap: 15px;
@@ -209,6 +227,10 @@
 @media (max-width: 768px) {
   .second-navbar {
     top: 220px;
+  }
+
+  .second-navbar--scrolled {
+    top: 0;
   }
   
   .second-navbar-container {

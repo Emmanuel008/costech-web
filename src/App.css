@@ -9,16 +9,29 @@
   width: 100%;
   min-height: 0;
   padding-top: 110px;
+  transition: padding-top 0.3s ease;
+}
+
+body.navbar-scrolled .main-content {
+  padding-top: 60px;
 }
 
 @media (max-width: 968px) {
   .main-content {
     padding-top: 170px;
   }
+
+  body.navbar-scrolled .main-content {
+    padding-top: 60px;
+  }
 }
 
 @media (max-width: 768px) {
   .main-content {
     padding-top: 195px;
+  }
+
+  body.navbar-scrolled .main-content {
+    padding-top: 60px;
   }
 }

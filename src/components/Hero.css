@@ -557,13 +557,13 @@
 .hero-photo-frame:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
-}
+  }
 
 .hero-photo-overlay {
   position: absolute;
   z-index: 2;
   pointer-events: none;
-}
+  }
 
 .hero-overlay-orange {
   top: -15%;
@@ -574,7 +574,7 @@
   transform: rotate(-12deg) skewY(-3deg);
   transform-origin: center;
   border-radius: 12px;
-}
+  }
 
 .hero-overlay-green {
   bottom: -12%;
@@ -585,7 +585,7 @@
   transform: rotate(8deg) skewY(3deg);
   transform-origin: center;
   border-radius: 12px;
-}
+  }
 
 
 

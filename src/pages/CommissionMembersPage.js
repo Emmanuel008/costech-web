@@ -60,12 +60,14 @@ const CommissionMembersPage = () => {
         <div className="commission-grid">
           {members.map((member) => (
             <article key={member.name} className="commission-card">
-              <div className="commission-image-wrapper">
-                <img src={member.image} alt={member.name} loading="lazy" />
-              </div>
-              <div className="commission-card-body">
-                <h2>{member.name}</h2>
-                <p>{member.title}</p>
+              <div className="commission-card-content">
+                <div className="commission-image-wrapper">
+                  <img src={member.image} alt={member.name} loading="lazy" />
+                </div>
+                <div className="commission-card-body">
+                  <h2>{member.name}</h2>
+                  <p>{member.title}</p>
+                </div>
               </div>
             </article>
           ))}

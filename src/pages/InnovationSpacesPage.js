@@ -1,5 +1,107 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import './InnovationSpacesPage.css';
+
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisible = 7;
+
+    if (totalPages <= maxVisible) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        for (let i = 1; i <= 5; i++) {
+          pages.push(i);
+        }
+        pages.push('ellipsis');
+        pages.push(totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1);
+        pages.push('ellipsis');
+        for (let i = totalPages - 4; i <= totalPages; i++) {
+          pages.push(i);
+        }
+      } else {
+        pages.push(1);
+        pages.push('ellipsis');
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          pages.push(i);
+        }
+        pages.push('ellipsis');
+        pages.push(totalPages);
+      }
+    }
+
+    return pages;
+  };
+
+  return (
+    <div className="pagination-container">
+      <nav className="pagination-nav" aria-label="Page navigation">
+        <button
+          type="button"
+          className="pagination-button pagination-button--prev"
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          aria-label="Previous page"
+        >
+          <svg className="pagination-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fillRule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+
+        <div className="pagination-pages">
+          {getPageNumbers().map((page, index) => {
+            if (page === 'ellipsis') {
+              return (
+                <span key={`ellipsis-${index}`} className="pagination-ellipsis">
+                  ...
+                </span>
+              );
+            }
+
+            return (
+              <button
+                key={page}
+                type="button"
+                className={`pagination-button pagination-button--page ${
+                  currentPage === page ? 'pagination-button--active' : ''
+                }`}
+                onClick={() => onPageChange(page)}
+                aria-label={`Page ${page}`}
+                aria-current={currentPage === page ? 'page' : undefined}
+              >
+                {page}
+              </button>
+            );
+          })}
+        </div>
+
+        <button
+          type="button"
+          className="pagination-button pagination-button--next"
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          aria-label="Next page"
+        >
+          <svg className="pagination-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fillRule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  );
+};
 
 const spaces = [
   {
@@ -223,6 +325,8 @@ const spaces = [
 const InnovationSpacesPage = () => {
   const [query, setQuery] = useState('');
   const [selectedSpace, setSelectedSpace] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   const filteredSpaces = useMemo(() => {
     if (!query.trim()) return spaces;
@@ -235,6 +339,24 @@ const InnovationSpacesPage = () => {
         space.location.toLowerCase().includes(value)
     );
   }, [query]);
+
+  const totalPages = Math.ceil(filteredSpaces.length / itemsPerPage);
+
+  const paginatedSpaces = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredSpaces.slice(startIndex, endIndex);
+  }, [filteredSpaces, currentPage, itemsPerPage]);
+
+  // Reset to page 1 when search query changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [query]);
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <section className="innovation-page">
@@ -302,7 +424,7 @@ const InnovationSpacesPage = () => {
             No spaces matched your search. Try using a different keyword.
           </div>
         ) : (
-          filteredSpaces.map((space) => (
+          paginatedSpaces.map((space) => (
             <article key={space.id} className="innovation-card">
               <div className="innovation-card-image">
                 <img src={space.image} alt={space.name} loading="lazy" />
@@ -322,6 +444,16 @@ const InnovationSpacesPage = () => {
           ))
         )}
       </div>
+
+      {filteredSpaces.length > 0 && totalPages > 1 && (
+        <div className="innovation-pagination-wrapper">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+          />
+        </div>
+      )}
 
       {selectedSpace && (
         <div className="innovation-modal" onClick={() => setSelectedSpace(null)}>

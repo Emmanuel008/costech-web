@@ -1,0 +1,190 @@
+.conference-page {
+  background: linear-gradient(180deg, #f4f6fb 0%, #eef1f7 100%);
+  min-height: 100vh;
+  padding: 80px 0 70px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.conference-hero {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  background: url('../../public/assets/img/hero2.jpeg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conference-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(15, 23, 42, 0.78) 0%, rgba(185, 124, 7, 0.45) 100%);
+}
+
+.conference-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  text-align: center;
+  padding: 60px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.conference-hero-content h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 0.04em;
+}
+
+.conference-hero-content p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.conference-body {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+}
+
+.conference-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.conference-main-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
+}
+
+.conference-main-card h2 {
+  margin: 0 0 24px;
+  font-size: 2rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.conference-main-card p {
+  margin: 0 0 20px;
+  color: #374151;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.conference-main-card p:last-child {
+  margin-bottom: 0;
+}
+
+.conference-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #b97c07;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.conference-link:hover {
+  color: #a06d06;
+  text-decoration: underline;
+}
+
+.conference-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.conference-highlight-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 24px 55px rgba(15, 23, 42, 0.11);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.conference-highlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 65px rgba(15, 23, 42, 0.15);
+}
+
+.conference-highlight-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, rgba(185, 124, 7, 0.15) 0%, rgba(185, 124, 7, 0.25) 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b97c07;
+}
+
+.conference-highlight-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.conference-highlight-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.conference-highlight-card p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .conference-body {
+    margin-top: 40px;
+  }
+
+  .conference-main-card {
+    padding: 30px;
+  }
+
+  .conference-highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .conference-page {
+    padding: 60px 0 50px;
+  }
+
+  .conference-body {
+    padding: 0 18px;
+  }
+
+  .conference-main-card {
+    padding: 24px;
+  }
+
+  .conference-main-card h2 {
+    font-size: 1.75rem;
+  }
+
+  .conference-highlight-card {
+    padding: 24px;
+  }
+}
+

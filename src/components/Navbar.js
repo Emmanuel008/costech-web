@@ -3,6 +3,7 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [activeSecondDropdown, setActiveSecondDropdown] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleDropdownToggle = useCallback((index) => {
     setActiveSecondDropdown((prev) => (prev === index ? null : index));
@@ -17,6 +18,27 @@ const Navbar = () => {
 
     document.addEventListener('click', handleDocumentClick);
     return () => document.removeEventListener('click', handleDocumentClick);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const scrolled = scrollPosition > 50;
+      setIsScrolled(scrolled);
+      
+      // Add/remove class to body for CSS adjustments
+      if (scrolled) {
+        document.body.classList.add('navbar-scrolled');
+      } else {
+        document.body.classList.remove('navbar-scrolled');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.body.classList.remove('navbar-scrolled');
+    };
   }, []);
 
   const aboutUsDropdownItems = [
@@ -93,7 +115,7 @@ const Navbar = () => {
   return (
     <>
       {/* Top Header Section */}
-      <div className="top-header">
+      <div className={`top-header ${isScrolled ? 'top-header--hidden' : ''}`}>
         <div className="header-container">
           <div className="header-left">
             <img 
@@ -122,7 +144,7 @@ const Navbar = () => {
       </div>
 
       {/* Second Navbar - English Menu */}
-      <nav className="second-navbar">
+      <nav className={`second-navbar ${isScrolled ? 'second-navbar--scrolled' : ''}`}>
         <div className="second-navbar-container">
           {englishNavItems.map((item, index) => (
             <div key={index} className="second-nav-item">
@@ -139,9 +161,9 @@ const Navbar = () => {
                   <span className="dropdown-chevron">▼</span>
                 </button>
               ) : (
-                <a href={item.href} className="second-nav-link">
-                  {item.text}
-                </a>
+              <a href={item.href} className="second-nav-link">
+                {item.text}
+              </a>
               )}
               {item.hasDropdown && activeSecondDropdown === index && (
                 <div className="second-dropdown-menu">

@@ -1,0 +1,295 @@
+.guidelines-page {
+  background: linear-gradient(180deg, #f4f6fb 0%, #eef1f7 100%);
+  min-height: 100vh;
+  padding: 80px 0 70px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.guidelines-hero {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  background: url('../../public/assets/img/hero2.jpeg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guidelines-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(15, 23, 42, 0.78) 0%, rgba(185, 124, 7, 0.45) 100%);
+}
+
+.guidelines-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  text-align: center;
+  padding: 60px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.guidelines-hero-content h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 0.04em;
+}
+
+.guidelines-hero-content p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.guidelines-body {
+  max-width: 1200px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+}
+
+.guidelines-table-container {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
+}
+
+.guidelines-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.guidelines-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+.guidelines-table-head {
+  background: linear-gradient(135deg, rgba(185, 124, 7, 0.15) 0%, rgba(185, 124, 7, 0.25) 100%);
+  border-bottom: 2px solid rgba(185, 124, 7, 0.4);
+}
+
+.guidelines-table-row {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.guidelines-table-row:hover {
+  background-color: rgba(185, 124, 7, 0.05);
+}
+
+.guidelines-table-head-cell {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0f172a;
+  background: transparent;
+}
+
+.guidelines-table-cell {
+  padding: 14px 18px;
+  color: #374151;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.guidelines-table-cell--name {
+  font-weight: 500;
+  color: #0f172a;
+  max-width: 500px;
+  font-size: 0.875rem;
+}
+
+.guidelines-download-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background-color: #b97c07;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.guidelines-download-link:hover {
+  background-color: #a06d06;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(185, 124, 7, 0.3);
+}
+
+.guidelines-download-link:active {
+  transform: translateY(0);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.guidelines-pagination-wrapper {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pagination-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pagination-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(185, 124, 7, 0.3);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background: rgba(185, 124, 7, 0.1);
+  border-color: rgba(185, 124, 7, 0.5);
+  color: #b97c07;
+}
+
+.pagination-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-button--active {
+  background: linear-gradient(135deg, #f5c469 0%, #b97c07 100%);
+  border-color: #b97c07;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.pagination-button--active:hover {
+  background: linear-gradient(135deg, #f5c469 0%, #b97c07 100%);
+  color: #ffffff;
+}
+
+.pagination-button--prev,
+.pagination-button--next {
+  background: #ffffff;
+}
+
+.pagination-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+  .pagination-button {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 8px;
+    font-size: 0.8rem;
+  }
+
+  .pagination-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .pagination-ellipsis {
+    min-width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  .guidelines-body {
+    margin-top: 40px;
+  }
+
+  .guidelines-table-container {
+    padding: 24px;
+  }
+
+  .guidelines-table-head-cell,
+  .guidelines-table-cell {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+  }
+
+  .guidelines-table-cell--name {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .guidelines-page {
+    padding: 60px 0 50px;
+  }
+
+  .guidelines-body {
+    padding: 0 18px;
+  }
+
+  .guidelines-table-container {
+    padding: 20px;
+  }
+
+  .guidelines-table-head-cell,
+  .guidelines-table-cell {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+  }
+
+  .guidelines-download-link {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+

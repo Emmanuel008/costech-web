@@ -237,7 +237,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
-
+  
   .footer-branding {
     grid-column: 1 / -1;
   }

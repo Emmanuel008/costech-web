@@ -68,30 +68,40 @@
 
 .management-card {
   background: #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   text-align: center;
   position: relative;
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  max-width: 384px;
+  width: 100%;
 }
 
 .management-card--large {
-  max-width: 280px;
+  max-width: 384px;
 }
 
 .management-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 32px 72px rgba(15, 23, 42, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.management-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1rem 2.5rem;
 }
 
 .management-image-wrapper {
-  width: 100%;
-  aspect-ratio: 3 / 4;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 0.75rem;
   overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   background: #e5e7eb;
 }
 
@@ -100,62 +110,71 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
-}
-
-.management-card:hover .management-image-wrapper img {
-  transform: scale(1.05);
 }
 
 .management-card-body {
-  padding: 20px 22px 26px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  align-items: center;
+  gap: 0.25rem;
+  width: 100%;
 }
 
 .management-card-body h3 {
   margin: 0;
-  text-transform: uppercase;
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: #0f172a;
-  letter-spacing: 0.05em;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #111827;
+  line-height: 1.5;
 }
 
 .management-card-body p {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #6b7280;
-  font-style: italic;
 }
 
-.management-quote {
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: #374151;
-  background: rgba(185, 124, 7, 0.12);
-  border-radius: 16px;
-  padding: 12px 16px;
-  font-style: italic;
+.management-card-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  width: 100%;
 }
 
-.management-link {
-  align-self: center;
-  padding: 10px 22px;
-  border-radius: 999px;
+.management-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
   border: none;
-  background: linear-gradient(120deg, #0f172a 0%, #1f2a44 100%);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.85rem;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
+  text-align: center;
+  text-decoration: none;
 }
 
-.management-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.2);
+.management-btn--primary {
+  background-color: #b97c07;
+  color: #ffffff;
+}
+
+.management-btn--primary:hover {
+  background-color: #a06d06;
+}
+
+.management-btn--secondary {
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+.management-btn--secondary:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
 }
 
 .management-modal {
