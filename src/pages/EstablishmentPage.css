@@ -1,31 +1,44 @@
 .establishment-page {
-  background: linear-gradient(180deg, #f4f6fb 0%, #eef1f7 100%);
+  background: #f8f9fa;
   min-height: 100vh;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  padding: 70px 0 30px;
+  padding: 0;
 }
 
 .establishment-hero {
   position: relative;
   width: 100%;
-  min-height: 320px;
-  background: url('../../public/assets/img/hero.jpg') center/cover no-repeat;
+  min-height: 280px;
+  background: linear-gradient(135deg, #b97c07 0%, #8b6914 50%, #a06d06 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 50px 40px;
+  overflow: hidden;
+}
+
+.establishment-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .establishment-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(185, 124, 7, 0.4) 100%);
+  display: none;
 }
 
 .establishment-hero-content {
   position: relative;
   z-index: 1;
-  max-width: 720px;
-  padding: 60px 20px;
+  max-width: 1200px;
+  width: 100%;
   color: #ffffff;
   text-align: center;
   display: flex;
@@ -33,141 +46,500 @@
   gap: 18px;
 }
 
-.establishment-tag {
-  display: inline-block;
-  padding: 6px 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .establishment-hero-content h1 {
   margin: 0;
-  font-size: 2.8rem;
-  letter-spacing: 0.05em;
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .establishment-hero-content p {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.88);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 800px;
+  margin: 0 auto;
+  font-weight: 400;
 }
 
 .establishment-body {
-  max-width: 1100px;
-  margin: -60px auto 0;
-  padding: 0 24px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px;
 }
 
 .establishment-intro {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 24px;
-  margin-bottom: 48px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  margin-bottom: 60px;
+  align-items: stretch;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Left Side - Image */
+.establishment-intro-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f3f5;
+}
+
+.establishment-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  border: none;
+  overflow: hidden;
+}
+
+.establishment-image-container {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  transition: transform 0.5s ease;
+  position: relative;
+  filter: brightness(1) contrast(1.02);
+  overflow: hidden;
+}
+
+.establishment-image-wrapper:hover .establishment-image-container {
+  transform: scale(1.03);
+}
+
+.establishment-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  border-radius: 0;
+}
+
+/* Right Side - Content */
+.establishment-intro-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  padding: 32px;
+  background: #ffffff;
 }
 
 .establishment-intro-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 32px 34px;
-  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
   color: #1f2937;
+  transition: none;
+  position: relative;
+  overflow: visible;
+}
+
+.establishment-intro-card::before {
+  display: none;
+}
+
+.establishment-intro-card:hover {
+  box-shadow: none;
+  transform: none;
 }
 
 .establishment-intro-card h2 {
   margin: 0 0 16px;
-  font-size: 1.6rem;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #0f172a;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .establishment-intro-card p {
-  margin: 0;
-  line-height: 1.8;
+  margin: 0 0 20px;
+  line-height: 1.7;
+  font-size: 0.95rem;
+  color: #475569;
+  font-weight: 400;
 }
 
 .establishment-highlight {
-  background: linear-gradient(140deg, rgba(185, 124, 7, 0.15) 0%, rgba(185, 124, 7, 0.3) 100%);
-  border-radius: 20px;
-  padding: 28px 26px;
-  box-shadow: inset 0 0 0 1px rgba(185, 124, 7, 0.2);
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   color: #0f172a;
+  margin-top: 16px;
+  position: relative;
+  overflow: visible;
+}
+
+.establishment-highlight::before {
+  display: none;
 }
 
 .establishment-highlight h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #b97c07;
+  position: relative;
+  z-index: 1;
+}
+
+.establishment-highlight p {
+  margin: 0;
+  line-height: 1.65;
+  font-size: 0.95rem;
+  color: #475569;
+  position: relative;
+  z-index: 1;
+  font-weight: 400;
 }
 
 .establishment-responsibilities {
   background: #ffffff;
-  border-radius: 24px;
-  padding: 36px 38px 42px;
-  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+  border-radius: 12px;
+  padding: 36px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.establishment-responsibilities::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #b97c07 0%, #a06d06 100%);
+}
+
+.establishment-responsibilities-header {
+  margin-bottom: 24px;
+  text-align: left;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .establishment-responsibilities-header h2 {
-  margin: 0 0 10px;
-  font-size: 1.5rem;
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+  font-weight: 700;
   color: #0f172a;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
 }
 
 .establishment-responsibilities-header p {
-  margin: 0 0 24px;
-  color: #4b5568;
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
 .establishment-responsibilities-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
 }
 
 .responsibility-card {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   padding: 16px 18px;
-  border-radius: 16px;
-  background: rgba(15, 23, 42, 0.02);
-  border: 1px solid rgba(15, 23, 42, 0.05);
+  border-radius: 8px;
+  background: #fafbfc;
+  border: 1px solid #e5e7eb;
   color: #1f2937;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.responsibility-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: #b97c07;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.responsibility-card:hover {
+  background: #ffffff;
+  border-color: rgba(185, 124, 7, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.responsibility-card:hover::before {
+  opacity: 1;
 }
 
 .responsibility-icon {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #b97c07;
   line-height: 1;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 4px;
+  width: 20px;
+  text-align: center;
 }
 
 .responsibility-card p {
   margin: 0;
   line-height: 1.6;
+  font-size: 0.9rem;
+  color: #475569;
+  font-weight: 400;
 }
 
-@media (max-width: 900px) {
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .establishment-body {
+    padding: 60px 32px;
+  }
+  
+  .establishment-intro {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .establishment-intro-content {
+    padding: 28px;
+  }
+  
+  .establishment-intro-image {
+    min-height: 300px;
+  }
+  
+  .establishment-responsibilities {
+    padding: 32px;
+  }
+  
+  .establishment-responsibilities-header {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+  }
+  
+  .establishment-responsibilities-header h2 {
+    font-size: 1.6rem;
+  }
+  
+  .establishment-responsibilities-header p {
+    font-size: 0.9rem;
+  }
+  
+  .establishment-responsibilities-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .responsibility-card {
+    padding: 14px 16px;
+  }
+  
+  .responsibility-card p {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 968px) {
+  .establishment-hero {
+    padding: 40px 32px;
+    min-height: 250px;
+  }
+  
+  .establishment-hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .establishment-hero-content p {
+    font-size: 0.95rem;
+  }
+  
+  .establishment-hero-content {
+    gap: 16px;
+  }
+  
+  .establishment-body {
+    padding: 50px 24px;
+  }
+  
   .establishment-intro {
     grid-template-columns: 1fr;
+    margin-bottom: 50px;
+  }
+  
+  .establishment-intro-image {
+    min-height: 280px;
+    order: 1;
+  }
+  
+  .establishment-intro-content {
+    order: 2;
+    padding: 28px;
+  }
+  
+  .establishment-intro-card h2 {
+    font-size: 1.6rem;
+  }
+  
+  .establishment-intro-card p {
+    font-size: 0.9rem;
+  }
+  
+  .establishment-responsibilities {
+    padding: 28px;
+  }
+  
+  .establishment-responsibilities-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+  
+  .establishment-responsibilities-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .establishment-responsibilities-header p {
+    font-size: 0.88rem;
+  }
+  
+  .establishment-responsibilities-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .responsibility-card {
+    padding: 14px 16px;
+  }
+  
+  .responsibility-card p {
+    font-size: 0.88rem;
+  }
+  
+  .responsibility-icon {
+    font-size: 1rem;
+    width: 18px;
   }
 }
 
 @media (max-width: 640px) {
-  .establishment-page {
-    padding: 60px 0 50px;
+  .establishment-hero {
+    padding: 35px 24px;
+    min-height: 240px;
   }
-
+  
+  .establishment-hero-content h1 {
+    font-size: 1.75rem;
+  }
+  
+  .establishment-hero-content p {
+    font-size: 0.9rem;
+  }
+  
+  .establishment-hero-content {
+    gap: 14px;
+  }
+  
   .establishment-body {
-    margin-top: -70px;
-    padding: 0 18px 60px;
+    padding: 40px 20px;
   }
 
-  .establishment-intro-card,
+  .establishment-intro {
+    margin-bottom: 40px;
+  }
+  
+  .establishment-intro-image {
+    min-height: 250px;
+  }
+
+  .establishment-intro-content {
+    padding: 24px;
+  }
+  
+  .establishment-intro-card h2 {
+    font-size: 1.5rem;
+  }
+  
+  .establishment-intro-card p {
+    font-size: 0.9rem;
+  }
+  
+  .establishment-highlight {
+    padding: 18px;
+  }
+  
+  .establishment-highlight h3 {
+    font-size: 1.1rem;
+  }
+  
   .establishment-responsibilities {
-    padding: 26px 22px;
+    padding: 24px 18px;
+  }
+  
+  .establishment-responsibilities-header {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+  }
+  
+  .establishment-responsibilities-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .establishment-responsibilities-header p {
+    font-size: 0.85rem;
+  }
+  
+  .establishment-responsibilities-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .responsibility-card {
+    padding: 12px 14px;
+  }
+  
+  .responsibility-card p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  
+  .responsibility-icon {
+    font-size: 0.95rem;
+    width: 16px;
+    margin-top: 3px;
   }
 }

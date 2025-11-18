@@ -4,6 +4,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [activeSecondDropdown, setActiveSecondDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleDropdownToggle = useCallback((index) => {
     setActiveSecondDropdown((prev) => (prev === index ? null : index));
@@ -146,40 +147,58 @@ const Navbar = () => {
       {/* Second Navbar - English Menu */}
       <nav className={`second-navbar ${isScrolled ? 'second-navbar--scrolled' : ''}`}>
         <div className="second-navbar-container">
-          {englishNavItems.map((item, index) => (
-            <div key={index} className="second-nav-item">
-              {item.hasDropdown ? (
-                <button
-                  type="button"
-                  className="second-nav-link second-nav-link--button"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    handleDropdownToggle(index);
-                  }}
-                >
-                  {item.text}
-                  <span className="dropdown-chevron">▼</span>
-                </button>
-              ) : (
-              <a href={item.href} className="second-nav-link">
-                {item.text}
-              </a>
-              )}
-              {item.hasDropdown && activeSecondDropdown === index && (
-                <div className="second-dropdown-menu">
-                  {item.dropdownItems && item.dropdownItems.map((dropdownItem, dropdownIndex) => (
-                    <a
-                      key={dropdownIndex}
-                      href={dropdownItem.href}
-                      className="dropdown-item"
-                    >
-                      {dropdownItem.text}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+          <button 
+            className="mobile-menu-toggle"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`hamburger ${isMobileMenuOpen ? 'hamburger--open' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+          <div className={`second-navbar-menu ${isMobileMenuOpen ? 'second-navbar-menu--open' : ''}`}>
+            {englishNavItems.map((item, index) => (
+              <div key={index} className="second-nav-item">
+                {item.hasDropdown ? (
+                  <button
+                    type="button"
+                    className="second-nav-link second-nav-link--button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleDropdownToggle(index);
+                    }}
+                  >
+                    {item.text}
+                    <span className="dropdown-chevron">▼</span>
+                  </button>
+                ) : (
+                  <a 
+                    href={item.href} 
+                    className="second-nav-link"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.text}
+                  </a>
+                )}
+                {item.hasDropdown && activeSecondDropdown === index && (
+                  <div className="second-dropdown-menu">
+                    {item.dropdownItems && item.dropdownItems.map((dropdownItem, dropdownIndex) => (
+                      <a
+                        key={dropdownIndex}
+                        href={dropdownItem.href}
+                        className="dropdown-item"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {dropdownItem.text}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </nav>
     </>

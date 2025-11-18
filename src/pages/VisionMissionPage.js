@@ -35,12 +35,7 @@ const coreValues = [
 const VisionMissionPage = () => {
   return (
     <section className="vision-page">
-      <div
-        className="vision-hero"
-        style={{
-          backgroundImage: 'url(/assets/img/hero.jpg)',
-        }}
-      >
+      <div className="vision-hero">
         <div className="vision-hero-overlay" />
         <div className="vision-hero-content">
           <h1>Vision, Mission &amp; Core Values</h1>

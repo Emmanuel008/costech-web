@@ -1,216 +1,360 @@
 .organogram-page {
-  background: linear-gradient(180deg, #fafbfc 0%, #f1f3f6 100%);
+  background: #ffffff;
   min-height: 100vh;
-  padding: 80px 30px 70px;
+  padding: 0;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin-top: 0;
 }
 
 .organogram-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
+.organogram-header {
+  background: linear-gradient(135deg, #b97c07 0%, #8b6914 50%, #a06d06 100%);
+  padding: 50px 40px;
+  padding-top: 120px;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-top: 0;
+}
+
+.organogram-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
 .organogram-header h1 {
-  font-size: 2.5rem;
+  font-size: 2.1rem;
   margin: 0 0 16px;
-  color: #0f172a;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
 }
 
 .organogram-header p {
-  margin: 0 0 36px;
+  margin: 0;
   line-height: 1.7;
-  color: #374151;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .organogram-tree {
   position: relative;
-  background: #ffffff;
-  border-radius: 28px;
-  padding: 44px 36px 52px;
-  box-shadow: 0 40px 90px rgba(12, 18, 38, 0.15);
-  border: 1px solid rgba(12, 18, 38, 0.08);
-  overflow-x: hidden;
-  max-width: 1100px;
-  margin: 0 auto;
+  background: #fafbfc;
+  padding: 40px;
+  overflow-x: auto;
+  margin: 0;
 }
 
 .org-node {
   display: flex;
   justify-content: center;
-  gap: 48px;
-  flex-wrap: nowrap;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .org-node--center {
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 .org-node--middle {
-  margin: 34px auto 18px;
-  gap: 64px;
+  margin: 20px auto;
+  gap: 16px;
 }
 
 .org-node--bottom {
-  margin-top: 44px;
-  gap: 42px;
+  margin-top: 30px;
+  gap: 20px;
   justify-content: center;
 }
 
 .org-box {
-  padding: 16px 28px;
-  background: linear-gradient(160deg, #b97c07 0%, #d39a38 100%);
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #b97c07 0%, #a06d06 100%);
   color: #ffffff;
   font-weight: 600;
   text-align: center;
-  border-radius: 16px;
-  min-width: 230px;
-  box-shadow: 0 20px 48px rgba(185, 124, 7, 0.25);
+  border-radius: 8px;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(185, 124, 7, 0.2);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.88rem;
+  letter-spacing: 0.03em;
+  font-size: 0.8rem;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   word-wrap: break-word;
-  hyphens: auto;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.org-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 124, 7, 0.3);
 }
 
 .org-box span {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  opacity: 0.9;
+  opacity: 0.95;
+  margin-top: 4px;
 }
 
 .org-box--secondary {
-  min-width: 210px;
-  font-size: 0.82rem;
+  min-width: 180px;
+  font-size: 0.78rem;
+  background: linear-gradient(135deg, #a06d06 0%, #8b6914 100%);
+  padding: 12px 18px;
 }
 
 .org-box--director {
-  min-width: 260px;
-  background: linear-gradient(160deg, #0f172a 0%, #233040 100%);
-  color: #f3f4f6;
+  min-width: 220px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.org-box--director:hover {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.3);
 }
 
 .org-box--child {
-  background: linear-gradient(160deg, #f5c469 0%, #b97c07 100%);
-  font-size: 0.8rem;
-  min-width: 210px;
+  background: linear-gradient(135deg, #f5c469 0%, #b97c07 100%);
+  font-size: 0.76rem;
+  min-width: 180px;
+  padding: 12px 16px;
+  color: #0f172a;
+  font-weight: 600;
 }
 
 .org-line {
   margin: 0 auto;
   width: 2px;
-  background: rgba(15, 23, 42, 0.18);
+  background: rgba(185, 124, 7, 0.3);
 }
 
 .org-line.short {
-  height: 40px;
+  height: 24px;
 }
 
 .org-line.medium {
-  height: 50px;
+  height: 30px;
 }
 
 .org-line--vertical {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.25) 0%, rgba(185, 124, 7, 0.35) 100%);
+  background: linear-gradient(180deg, rgba(185, 124, 7, 0.3) 0%, rgba(185, 124, 7, 0.2) 100%);
 }
 
 .org-line--horizontal {
-  width: 88%;
+  width: 90%;
   height: 2px;
-  background: linear-gradient(90deg, rgba(15, 23, 42, 0.25) 0%, rgba(185, 124, 7, 0.35) 100%);
-  margin: 30px auto 0;
+  background: linear-gradient(90deg, rgba(185, 124, 7, 0.3) 0%, rgba(185, 124, 7, 0.2) 100%);
+  margin: 24px auto 0;
 }
 
 .org-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
   position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
 }
 
 .org-column::before {
   content: '';
   position: absolute;
-  top: -32px;
+  top: -24px;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
-  height: 32px;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.25) 0%, rgba(185, 124, 7, 0.35) 100%);
+  height: 24px;
+  background: linear-gradient(180deg, rgba(185, 124, 7, 0.3) 0%, rgba(185, 124, 7, 0.2) 100%);
 }
 
 .org-child-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 18px;
+  grid-template-columns: 1fr;
+  gap: 10px;
   width: 100%;
 }
 
-@media (max-width: 1024px) {
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .organogram-header {
+    padding: 45px 32px;
+    padding-top: 180px;
+  }
+  
   .organogram-tree {
-    padding: 38px 28px 46px;
-    max-width: 920px;
+    padding: 36px 32px;
+  }
+  
+  .org-node--bottom {
+    gap: 18px;
+  }
+  
+  .org-column {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 968px) {
+  .organogram-header {
+    padding: 40px 24px;
+    padding-top: 200px;
+  }
+  
+  .organogram-header h1 {
+    font-size: 1.9rem;
+  }
+  
+  .organogram-header p {
+    font-size: 0.9rem;
+  }
+
+  .organogram-tree {
+    padding: 32px 24px;
   }
 
   .org-node--middle {
-    gap: 52px;
+    gap: 14px;
     flex-wrap: wrap;
   }
 
   .org-node--bottom {
-    gap: 36px;
+    gap: 16px;
     flex-wrap: wrap;
+  }
+  
+  .org-column {
+    max-width: 100%;
+    min-width: 100%;
+  }
+  
+  .org-box {
+    min-width: 100%;
+  }
+  
+  .org-box--director {
+    min-width: 100%;
+  }
+  
+  .org-box--secondary {
+    min-width: 100%;
+  }
+  
+  .org-box--child {
+    min-width: 100%;
   }
 }
 
-@media (max-width: 768px) {
-  .organogram-page {
-    padding: 60px 20px 50px;
+@media (max-width: 640px) {
+  .organogram-header {
+    padding: 35px 20px;
+    padding-top: 200px;
   }
-
+  
   .organogram-header h1 {
-    font-size: 2.1rem;
+    font-size: 1.7rem;
+  }
+  
+  .organogram-header p {
+    font-size: 0.85rem;
   }
 
-  .organogram-header p {
-    font-size: 0.95rem;
+  .organogram-tree {
+    padding: 28px 20px;
+  }
+  
+  .org-node {
+    gap: 14px;
+  }
+  
+  .org-node--center {
+    margin-bottom: 16px;
+  }
+  
+  .org-node--middle {
+    margin: 16px auto;
+    gap: 12px;
+  }
+  
+  .org-node--bottom {
+    margin-top: 24px;
+    gap: 14px;
   }
 
   .org-box {
-    min-width: 200px;
-    font-size: 0.84rem;
+    min-width: 100%;
+    padding: 12px 16px;
+    font-size: 0.75rem;
+  }
+  
+  .org-box span {
+    font-size: 0.7rem;
   }
 
   .org-box--secondary {
-    min-width: 190px;
-    font-size: 0.8rem;
+    font-size: 0.73rem;
+    padding: 11px 15px;
   }
 
+  .org-box--director {
+    font-size: 0.75rem;
+    padding: 12px 16px;
+  }
+  
   .org-box--child {
-    min-width: 190px;
+    font-size: 0.72rem;
+    padding: 11px 14px;
   }
-}
-
-@media (max-width: 480px) {
-  .organogram-tree {
-    padding: 24px 18px 36px;
+  
+  .org-line.short {
+    height: 20px;
   }
-
-  .org-box {
-    min-width: 190px;
-    padding: 16px 20px;
+  
+  .org-line.medium {
+    height: 24px;
   }
-
-  .org-node--middle,
-  .org-node--bottom {
-    gap: 24px;
+  
+  .org-line--horizontal {
+    width: 95%;
+    margin: 20px auto 0;
   }
-
+  
+  .org-column {
+    gap: 12px;
+  }
+  
+  .org-column::before {
+    top: -20px;
+    height: 20px;
+  }
+  
   .org-child-grid {
-    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
-

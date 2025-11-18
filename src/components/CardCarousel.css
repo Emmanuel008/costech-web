@@ -1,0 +1,170 @@
+.card-carousel-section {
+  width: 100%;
+  padding: 40px 50px 70px 50px;
+  background-color: #ffffff;
+}
+
+.card-carousel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card-wrapper {
+  padding: 0 20px;
+  outline: none;
+  height: 320px;
+}
+
+.carousel-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 6px rgba(185, 124, 7, 0.15), 0 2px 4px rgba(185, 124, 7, 0.1);
+  border: 1px solid rgba(185, 124, 7, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 320px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.carousel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(185, 124, 7, 0.2), 0 4px 6px rgba(185, 124, 7, 0.15);
+  border-color: rgba(185, 124, 7, 0.3);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #b97c07;
+  margin: 0 0 6px 0;
+  text-align: center;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.card-subtitle {
+  font-size: 12px;
+  color: #b97c07;
+  opacity: 0.8;
+  margin: 0 0 15px 0;
+  text-align: center;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+  justify-content: center;
+}
+
+.card-chart {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.card-chart.bar-chart {
+  width: 100%;
+  height: 150px;
+  max-width: 100%;
+}
+
+.donut-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.bar-chart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.card-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  flex: 1;
+  color: #b97c07;
+  font-weight: 500;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.legend-value {
+  color: #b97c07;
+  font-weight: 600;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Slick Carousel Customization */
+.card-carousel-container .slick-dots,
+.card-carousel-container .slick-prev,
+.card-carousel-container .slick-next {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .card-carousel-section {
+    padding: 30px 40px 50px 40px;
+  }
+  
+  .card-wrapper {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-carousel-section {
+    padding: 30px 30px 50px 30px;
+  }
+
+  .carousel-card {
+    padding: 20px;
+    height: 280px;
+    width: 100%;
+  }
+
+  .card-wrapper {
+    height: 280px;
+    padding: 0 12px;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .card-chart {
+    width: 120px;
+    height: 120px;
+  }
+
+  .card-chart.bar-chart {
+    width: 100%;
+    height: 120px;
+  }
+}
+

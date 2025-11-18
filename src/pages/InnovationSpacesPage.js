@@ -360,15 +360,11 @@ const InnovationSpacesPage = () => {
 
   return (
     <section className="innovation-page">
-      <div
-        className="innovation-hero"
-        style={{ backgroundImage: 'url(/assets/img/hero.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}
-      >
-        <div className="innovation-hero-overlay" />
+      <div className="innovation-hero">
         <div className="innovation-hero-content">
           <h1>Innovation Spaces Tanzania</h1>
           <p>
-            Discover hubs, labs, and incubators powering Tanzania’s innovation ecosystem. Explore
+            Discover hubs, labs, and incubators powering Tanzania's innovation ecosystem. Explore
             their focus areas, connect with managers, and uncover collaboration opportunities across
             the country.
           </p>
@@ -383,42 +379,43 @@ const InnovationSpacesPage = () => {
         </div>
       </div>
 
-      <div className="innovation-overview">
-        <div className="innovation-overview-card">
-          <h2>Building a Connected Innovation Ecosystem</h2>
-          <p>
-            COSTECH coordinates innovation spaces across the country to accelerate inclusive,
-            sustainable growth. This catalogue highlights spaces that support startups, researchers,
-            makers, students, and community innovators in sectors ranging from ICT and agriculture to
-            creative industries and clean energy.
-          </p>
-          <p>
-            Browse the map and featured spaces to learn more about their programs, facilities, and
-            support needs. Reach out to collaborate, share resources, or spotlight new solutions
-            emerging from Tanzania.
-          </p>
+      <div className="innovation-body">
+        <div className="innovation-overview">
+          <div className="innovation-overview-card">
+            <h2>Building a Connected Innovation Ecosystem</h2>
+            <p>
+              COSTECH coordinates innovation spaces across the country to accelerate inclusive,
+              sustainable growth. This catalogue highlights spaces that support startups, researchers,
+              makers, students, and community innovators in sectors ranging from ICT and agriculture to
+              creative industries and clean energy.
+            </p>
+            <p>
+              Browse the map and featured spaces to learn more about their programs, facilities, and
+              support needs. Reach out to collaborate, share resources, or spotlight new solutions
+              emerging from Tanzania.
+            </p>
+          </div>
+
+          <div className="innovation-map-card">
+            <iframe
+              title="Innovation spaces map"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=29.0%2C-11.0%2C41.5%2C-1.0&layer=mapnik"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
 
-        <div className="innovation-map-card">
-          <iframe
-            title="Innovation spaces map"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=29.0%2C-11.0%2C41.5%2C-1.0&layer=mapnik"
-            allowFullScreen
-            loading="lazy"
-          />
-        </div>
-      </div>
-
-      <div className="innovation-search">
+        <div className="innovation-search">
         <input
           type="search"
           value={query}
           placeholder="Search spaces by name, sector, or location..."
           onChange={(event) => setQuery(event.target.value)}
         />
-      </div>
+        </div>
 
-      <div className="innovation-grid">
+        <div className="innovation-grid">
         {filteredSpaces.length === 0 ? (
           <div className="innovation-empty-state">
             No spaces matched your search. Try using a different keyword.
@@ -443,9 +440,9 @@ const InnovationSpacesPage = () => {
             </article>
           ))
         )}
-      </div>
+        </div>
 
-      {filteredSpaces.length > 0 && totalPages > 1 && (
+        {filteredSpaces.length > 0 && totalPages > 1 && (
         <div className="innovation-pagination-wrapper">
           <Pagination
             currentPage={currentPage}
@@ -453,7 +450,8 @@ const InnovationSpacesPage = () => {
             onPageChange={onPageChange}
           />
         </div>
-      )}
+        )}
+      </div>
 
       {selectedSpace && (
         <div className="innovation-modal" onClick={() => setSelectedSpace(null)}>

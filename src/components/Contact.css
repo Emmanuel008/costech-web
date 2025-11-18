@@ -149,17 +149,28 @@
   }
 }
 
+@media (max-width: 968px) {
+  .contact-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .map-wrapper {
+    height: 400px;
+  }
+}
+
 @media (max-width: 768px) {
   .contact-section {
-    padding: 220px 15px 40px;
+    padding: 200px 15px 40px;
   }
 
   .contact-content-wrapper {
-    gap: 35px;
+    gap: 30px;
   }
 
   .contact-item {
-    gap: 20px;
+    gap: 18px;
   }
 
   .contact-icon {

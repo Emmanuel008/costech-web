@@ -224,6 +224,55 @@
   }
 }
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 24px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger--open span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger--open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.second-navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 @media (max-width: 768px) {
   .second-navbar {
     top: 220px;
@@ -234,9 +283,37 @@
   }
   
   .second-navbar-container {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .second-navbar-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(185, 124, 7, 0.98);
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .second-navbar-menu--open {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 10px 0;
   }
   
   .second-nav-item {
@@ -245,8 +322,21 @@
   
   .second-nav-link {
     width: 100%;
-    justify-content: center;
-    padding: 12px;
+    justify-content: flex-start;
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .second-dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .dropdown-item {
+    padding-left: 40px;
   }
   
   .emblem-logo {
@@ -260,6 +350,30 @@
   .header-text {
     font-size: 16px;
     padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .second-navbar {
+    top: 200px;
+  }
+
+  .second-navbar--scrolled {
+    top: 0;
+  }
+
+  .header-text {
+    font-size: 14px;
+    padding: 6px 10px;
+    line-height: 1.4;
+  }
+
+  .emblem-logo {
+    height: 50px;
+  }
+  
+  .costech-logo {
+    height: 40px;
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import './ClusterInitiativePage.css';
 
 const objectives = [
@@ -17,39 +17,14 @@ const outcomes = [
   'Expanded innovation opportunities through the NFAST innovation fund window.',
 ];
 
-const useCarousel = (items, visibleItems = 4, interval = 5000) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % items.length);
-    }, interval);
-    return () => clearInterval(timer);
-  }, [items.length, interval]);
-
-  const slice = useMemo(() => {
-    const current = [];
-    for (let i = 0; i < Math.min(visibleItems, items.length); i += 1) {
-      current.push(items[(activeIndex + i) % items.length]);
-    }
-    return current;
-  }, [activeIndex, items, visibleItems]);
-
-  return { slice, activeIndex, setActiveIndex };
-};
-
 const ClusterInitiativePage = () => {
-  const objectivesCarousel = useCarousel(objectives);
-  const outcomesCarousel = useCarousel(outcomes, 3, 5000);
-
   return (
     <section className="cluster-page">
       <div className="cluster-hero">
-        <div className="cluster-hero-overlay" />
         <div className="cluster-hero-content">
           <h1>Cluster Initiative</h1>
           <p>
-            COSTECH’s Cluster Initiative empowers SMEs, researchers and government partners to build
+            COSTECH's Cluster Initiative empowers SMEs, researchers and government partners to build
             competitive, innovation-driven clusters through collaborative platforms and targeted
             funding.
           </p>
@@ -70,18 +45,32 @@ const ClusterInitiativePage = () => {
             <p>
               Although the concept is new in Tanzania, COSTECH is advancing cluster development as a
               collaborative platform for innovation. Currently, with SIDO and Swedish partner SICD,
-              COSTECH is implementing a three-year programme “Fostering Innovation for Sustainable
-              Socio-Economic Development” (2017-2020) that includes innovative clusters and an
+              COSTECH is implementing a three-year programme "Fostering Innovation for Sustainable
+              Socio-Economic Development" (2017-2020) that includes innovative clusters and an
               innovation fund component.
             </p>
           </div>
           <aside className="cluster-side-card">
-            <h3>Programme Snapshot</h3>
-            <ul>
-              <li>Programme: Fostering Innovation for Sustainable Socio-Economic Development</li>
-              <li>Duration: 2017 – 2020</li>
-              <li>Partners: COSTECH, SIDO, Swedish International Centre for Diffusion (SICD)</li>
-              <li>Focus: Innovative clusters and innovation fund components</li>
+            <div className="cluster-side-card-header">
+              <h3>Programme Snapshot</h3>
+            </div>
+            <ul className="cluster-snapshot-list">
+              <li>
+                <span className="snapshot-label">Programme:</span>
+                <span className="snapshot-value">Fostering Innovation for Sustainable Socio-Economic Development</span>
+              </li>
+              <li>
+                <span className="snapshot-label">Duration:</span>
+                <span className="snapshot-value">2017 – 2020</span>
+              </li>
+              <li>
+                <span className="snapshot-label">Partners:</span>
+                <span className="snapshot-value">COSTECH, SIDO, Swedish International Centre for Diffusion (SICD)</span>
+              </li>
+              <li>
+                <span className="snapshot-label">Focus:</span>
+                <span className="snapshot-value">Innovative clusters and innovation fund components</span>
+              </li>
             </ul>
           </aside>
         </section>
@@ -89,62 +78,56 @@ const ClusterInitiativePage = () => {
         <section className="cluster-carousel-section">
           <div className="cluster-section-header">
             <h2>Programme Objectives</h2>
-            <p>Key objectives cycle every five seconds—use the dots to navigate.</p>
+            <p>Key objectives that guide our cluster development initiatives</p>
           </div>
-          <div className="cluster-carousel cluster-carousel--objectives" role="list">
-            {objectivesCarousel.slice.map((text) => (
-              <div key={`objective-${text}`} className="cluster-carousel-card cluster-carousel-card--objective" role="listitem">
-                <span className="cluster-carousel-badge">Objective</span>
-                <p>{text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="cluster-carousel-indicators">
-            {objectives.map((_, idx) => (
-              <button
-                key={`objective-dot-${idx}`}
-                type="button"
-                className={`cluster-carousel-dot ${idx === objectivesCarousel.activeIndex ? 'active' : ''}`}
-                onClick={() => objectivesCarousel.setActiveIndex(idx)}
-                aria-label={`Show objective ${idx + 1}`}
-              />
-            ))}
+          <div className="cluster-objectives-table-wrapper">
+            <table className="cluster-objectives-table">
+              <thead>
+                <tr>
+                  <th className="table-col-number">#</th>
+                  <th className="table-col-objective">Objective</th>
+                </tr>
+              </thead>
+              <tbody>
+                {objectives.map((objective, index) => (
+                  <tr key={`objective-${index}`}>
+                    <td className="table-col-number">{index + 1}</td>
+                    <td className="table-col-objective">{objective}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section className="cluster-carousel-section">
           <div className="cluster-section-header">
             <h2>Main Outcomes</h2>
-            <p>The programme outcomes also rotate automatically every five seconds.</p>
+            <p>Expected results and achievements from the cluster initiative programme</p>
           </div>
-          <div className="cluster-carousel cluster-carousel--outcomes" role="list">
-            {outcomesCarousel.slice.map((text) => (
-              <div key={`outcome-${text}`} className="cluster-carousel-card cluster-carousel-card--outcome" role="listitem">
+          <div className="cluster-outcomes-grid" role="list">
+            {outcomes.map((text, index) => (
+              <div key={`outcome-${index}`} className="cluster-carousel-card cluster-carousel-card--outcome" role="listitem">
+                <div className="cluster-card-number">{index + 1}</div>
                 <span className="cluster-carousel-badge">Outcome</span>
                 <p>{text}</p>
               </div>
             ))}
           </div>
-          <div className="cluster-carousel-indicators">
-            {outcomes.map((_, idx) => (
-              <button
-                key={`outcome-dot-${idx}`}
-                type="button"
-                className={`cluster-carousel-dot ${idx === outcomesCarousel.activeIndex ? 'active' : ''}`}
-                onClick={() => outcomesCarousel.setActiveIndex(idx)}
-                aria-label={`Show outcome ${idx + 1}`}
-              />
-            ))}
-          </div>
         </section>
 
         <section className="cluster-guidelines">
-          <h3>Guidelines for Development of Innovative Clusters</h3>
-          <p>
-            The ultimate output is a comprehensive guideline publication that supports replication
-            and scale-up of innovative clusters across Tanzania, ensuring sustainable impact for
-            SMEs, researchers and regional economies.
-          </p>
+          <div className="cluster-guidelines-content">
+            <div className="cluster-guidelines-icon">📋</div>
+            <div className="cluster-guidelines-text">
+              <h3>Guidelines for Development of Innovative Clusters</h3>
+              <p>
+                The ultimate output is a comprehensive guideline publication that supports replication
+                and scale-up of innovative clusters across Tanzania, ensuring sustainable impact for
+                SMEs, researchers and regional economies.
+              </p>
+            </div>
+          </div>
         </section>
       </div>
     </section>

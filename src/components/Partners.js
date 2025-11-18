@@ -21,23 +21,23 @@ const Partners = () => {
   return (
     <section className="partners-section">
       <div className="partners-container">
-        <h2 className="partners-title">
-          Our Partners
-        </h2>
+        <div className="partners-header">
+          <h2 className="partners-title">Partners</h2>
+        </div>
         
         <div className="partners-marquee-wrapper">
           <div className="partners-marquee">
             <div className="marquee-content">
               {partners.map((partner, index) => (
                 <div key={`${partner.id}-${index}`} className="partner-logo-container">
-                        <img 
-                          src={partner.logo} 
+                  <img 
+                    src={partner.logo} 
                     alt={partner.alt || partner.name} 
                     className="partner-logo-img" 
                     loading="lazy"
-                        />
-                      </div>
-                    ))}
+                  />
+                </div>
+              ))}
               {partners.map((partner, index) => (
                 <div key={`${partner.id}-clone-${index}`} className="partner-logo-container">
                   <img 

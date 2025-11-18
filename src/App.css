@@ -35,3 +35,13 @@ body.navbar-scrolled .main-content {
     padding-top: 60px;
   }
 }
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-top: 180px;
+  }
+
+  body.navbar-scrolled .main-content {
+    padding-top: 60px;
+  }
+}

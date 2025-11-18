@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import WelcomeNote from './components/WelcomeNote';
+import CardCarousel from './components/CardCarousel';
 import News from './components/News';
 import SectionDivider from './components/SectionDivider';
 import LatestVideo from './components/LatestVideo';
@@ -27,6 +27,7 @@ import ResearchInnovationMagazinePage from './pages/ResearchInnovationMagazinePa
 import ConferencePage from './pages/ConferencePage';
 import ExhibitionsPage from './pages/ExhibitionsPage';
 import WorkshopsSeminarsPage from './pages/WorkshopsSeminarsPage';
+import EDCTPPage from './pages/EDCTPPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import './App.css';
@@ -35,7 +36,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <WelcomeNote />
+      <CardCarousel />
       <News />
       <SectionDivider />
       <LatestVideo />
@@ -73,6 +74,7 @@ function App() {
             <Route path="/events/conferences" element={<ConferencePage />} />
             <Route path="/events/exhibitions" element={<ExhibitionsPage />} />
             <Route path="/events/workshops-seminars" element={<WorkshopsSeminarsPage />} />
+            <Route path="/research/edctp" element={<EDCTPPage />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

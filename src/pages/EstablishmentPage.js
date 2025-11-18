@@ -29,25 +29,41 @@ const EstablishmentPage = () => {
 
       <div className="establishment-body">
         <article className="establishment-intro">
-          <div className="establishment-intro-card">
-            <h2>Our Origins</h2>
-            <p>
-              Tanzania Commission for Science and Technology (COSTECH) was established by the Act of
-              Parliament No. 7 of 1986 as the successor to the Tanzania National Scientific Research
-              Council (UTAFITI). As a parastatal organisation, COSTECH is mandated to coordinate and
-              promote research and technology development activities, serving as the chief advisor to
-              the Government on matters related to science, technology and innovation (STI) and
-              their application to socio-economic development. COSTECH operates under the ministry
-              responsible for science and technology.
-            </p>
+          {/* Left Side - Image */}
+          <div className="establishment-intro-image">
+            <div className="establishment-image-wrapper">
+              <div 
+                className="establishment-image-container"
+                style={{
+                  backgroundImage: `url('${process.env.PUBLIC_URL}/assets/img/hero.jpg')`
+                }}
+              ></div>
+              <div className="establishment-image-overlay"></div>
+            </div>
           </div>
-          <div className="establishment-highlight">
-            <h3>Mandate Highlights</h3>
-            <p>
-              Since 1986, COSTECH has been the national hub for identifying research priorities,
-              mobilising resources and ensuring innovation reaches communities, industry and policy
-              makers.
-            </p>
+          
+          {/* Right Side - Description */}
+          <div className="establishment-intro-content">
+            <div className="establishment-intro-card">
+              <h2>Our Origins</h2>
+              <p>
+                Tanzania Commission for Science and Technology (COSTECH) was established by the Act of
+                Parliament No. 7 of 1986 as the successor to the Tanzania National Scientific Research
+                Council (UTAFITI). As a parastatal organisation, COSTECH is mandated to coordinate and
+                promote research and technology development activities, serving as the chief advisor to
+                the Government on matters related to science, technology and innovation (STI) and
+                their application to socio-economic development. COSTECH operates under the ministry
+                responsible for science and technology.
+              </p>
+            </div>
+            <div className="establishment-highlight">
+              <h3>Mandate Highlights</h3>
+              <p>
+                Since 1986, COSTECH has been the national hub for identifying research priorities,
+                mobilising resources and ensuring innovation reaches communities, industry and policy
+                makers.
+              </p>
+            </div>
           </div>
         </article>
 

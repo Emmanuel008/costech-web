@@ -45,7 +45,7 @@ const BlurText = ({
     }
   }, [isVisible, animatedItems.length, onAnimationComplete]);
 
-  const getTransform = (index) => {
+  const getTransform = () => {
     if (!isVisible) {
       switch (direction) {
         case 'top':
@@ -63,12 +63,12 @@ const BlurText = ({
     return 'translate(0, 0)';
   };
 
-  const getOpacity = (index) => {
+  const getOpacity = () => {
     if (!isVisible) return 0;
     return 1;
   };
 
-  const getFilter = (index) => {
+  const getFilter = () => {
     if (!isVisible) return 'blur(3px)';
     return 'blur(0px)';
   };
@@ -84,9 +84,9 @@ const BlurText = ({
           key={index}
           style={{
             display: 'inline-block',
-            transform: getTransform(index),
-            opacity: getOpacity(index),
-            filter: getFilter(index),
+            transform: getTransform(),
+            opacity: getOpacity(),
+            filter: getFilter(),
             transition: `all 0.3s ease-out ${getTransitionDelay(index)}`,
             marginRight: animateBy === 'words' ? '0.25em' : '0',
           }}
