@@ -1,18 +1,36 @@
 .card-carousel-section {
   width: 100%;
-  padding: 40px 50px 70px 50px;
+  padding: 20px 50px 70px 50px;
   background-color: #ffffff;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .card-carousel-container {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+}
+
+.card-carousel-container .slick-slider {
+  width: 100%;
+}
+
+.card-carousel-container .slick-list {
+  margin: 0;
+  padding: 0;
+}
+
+.card-carousel-container .slick-track {
+  display: flex;
+  align-items: stretch;
 }
 
 .card-wrapper {
-  padding: 0 20px;
+  padding: 0 15px;
   outline: none;
   height: 320px;
+  box-sizing: border-box;
 }
 
 .carousel-card {
@@ -24,10 +42,12 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 320px;
   width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .carousel-card:hover {
@@ -121,10 +141,54 @@
 }
 
 /* Slick Carousel Customization */
-.card-carousel-container .slick-dots,
 .card-carousel-container .slick-prev,
 .card-carousel-container .slick-next {
   display: none !important;
+}
+
+.card-carousel-container .slick-dots {
+  position: relative;
+  bottom: 0;
+  margin-top: 30px;
+  display: none !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .card-carousel-container .slick-dots {
+    display: flex !important;
+  }
+}
+
+.card-carousel-container .slick-dots li {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+}
+
+.card-carousel-container .slick-dots li button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: rgba(185, 124, 7, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card-carousel-container .slick-dots li button:before {
+  display: none;
+}
+
+.card-carousel-container .slick-dots li.slick-active button {
+  background-color: #b97c07;
+  width: 12px;
+  height: 12px;
 }
 
 @media (max-width: 1024px) {
@@ -139,32 +203,239 @@
 
 @media (max-width: 768px) {
   .card-carousel-section {
-    padding: 30px 30px 50px 30px;
+    padding: 25px 10px 40px 10px;
   }
 
-  .carousel-card {
-    padding: 20px;
-    height: 280px;
+  .card-carousel-container {
+    padding: 0;
     width: 100%;
   }
 
   .card-wrapper {
-    height: 280px;
-    padding: 0 12px;
+    padding: 0 5px;
+    height: auto;
+    min-height: 280px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .carousel-card {
+    padding: 18px 12px;
+    height: auto;
+    min-height: 280px;
+    width: 100%;
+    max-width: calc(100% - 10px);
+    margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .card-title {
-    font-size: 14px;
+    font-size: 13px;
+    margin-bottom: 5px;
+    line-height: 1.3;
+    word-wrap: break-word;
+  }
+
+  .card-subtitle {
+    font-size: 10px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+  }
+
+  .card-content {
+    gap: 10px;
+    width: 100%;
+    overflow: hidden;
   }
 
   .card-chart {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    max-width: 130px;
+    height: 130px;
+    margin: 0 auto;
+    flex-shrink: 0;
   }
 
   .card-chart.bar-chart {
     width: 100%;
-    height: 120px;
+    max-width: 100%;
+    height: 110px;
+    overflow: hidden;
+  }
+
+  .bar-chart-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .card-legend {
+    gap: 5px;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+  }
+
+  .legend-item {
+    font-size: 10px;
+    gap: 5px;
+    width: 100%;
+  }
+
+  .legend-color {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+  }
+
+  .legend-label {
+    font-size: 10px;
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+  }
+
+  .legend-value {
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-carousel-section {
+    padding: 20px 8px 35px 8px;
+  }
+
+  .card-carousel-container {
+    padding: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-carousel-container .slick-list {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+
+  .card-carousel-container .slick-slide {
+    width: 100% !important;
+  }
+
+  .card-wrapper {
+    padding: 0 2px;
+    height: auto;
+    min-height: 250px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .carousel-card {
+    padding: 15px 10px;
+    height: auto;
+    min-height: 250px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 8px;
+  }
+
+  .card-title {
+    font-size: 12px;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  .card-subtitle {
+    font-size: 9px;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    text-align: center;
+  }
+
+  .card-content {
+    gap: 8px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .card-chart {
+    width: 100%;
+    max-width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+
+  .card-chart.bar-chart {
+    width: 100%;
+    max-width: 100%;
+    height: 100px;
+    overflow: hidden;
+  }
+
+  .bar-chart-svg {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .card-legend {
+    gap: 4px;
+    max-width: 100%;
+    width: 100%;
+    padding: 0;
+  }
+
+  .legend-item {
+    font-size: 9px;
+    gap: 4px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .legend-color {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+  }
+
+  .legend-label {
+    font-size: 9px;
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .legend-value {
+    font-size: 9px;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+
+  .card-carousel-container .slick-dots {
+    margin-top: 15px;
+    padding: 0;
+  }
+
+  .card-carousel-container .slick-dots li {
+    margin: 0 3px;
+  }
+
+  .card-carousel-container .slick-dots li button {
+    width: 7px;
+    height: 7px;
+  }
+
+  .card-carousel-container .slick-dots li.slick-active button {
+    width: 9px;
+    height: 9px;
   }
 }
 

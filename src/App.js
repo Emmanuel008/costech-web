@@ -5,9 +5,9 @@ import Hero from './components/Hero';
 import CardCarousel from './components/CardCarousel';
 import News from './components/News';
 import SectionDivider from './components/SectionDivider';
-import LatestVideo from './components/LatestVideo';
 import Partners from './components/Partners';
 import NewsPage from './pages/NewsPage';
+import PublicationVideoPage from './pages/PublicationVideoPage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import InnovationSpacesPage from './pages/InnovationSpacesPage';
 import VisionMissionPage from './pages/VisionMissionPage';
@@ -39,7 +39,6 @@ function Home() {
       <CardCarousel />
       <News />
       <SectionDivider />
-      <LatestVideo />
       <Partners />
     </>
   );
@@ -76,6 +75,8 @@ function App() {
             <Route path="/events/workshops-seminars" element={<WorkshopsSeminarsPage />} />
             <Route path="/research/edctp" element={<EDCTPPage />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/resources/news" element={<NewsPage />} />
+            <Route path="/resources/publication-video" element={<PublicationVideoPage />} />
           </Routes>
         </main>
         <Footer />

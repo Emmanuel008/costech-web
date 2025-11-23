@@ -1,6 +1,100 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Navbar.css';
 
+const MegaMenuItem = ({ item, onClose, level = 0 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (item.subItems && item.subItems.length > 0) {
+    return (
+      <div className={`mega-menu-item ${level > 0 ? 'mega-menu-item-nested' : ''}`}>
+        <div className="mega-menu-item-header">
+          {item.href ? (
+            <a href={item.href} className="mega-menu-item-link" onClick={onClose}>
+              {item.text}
+            </a>
+          ) : (
+            <span className="mega-menu-item-text">{item.text}</span>
+          )}
+          <button
+            className="mega-menu-item-toggle"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(!isOpen);
+            }}
+          >
+            {isOpen ? '−' : '+'}
+          </button>
+        </div>
+        {isOpen && (
+          <div className="mega-menu-item-submenu">
+            {item.subItems.map((subItem, subIndex) => (
+              <MegaMenuItem key={subIndex} item={subItem} onClose={onClose} level={level + 1} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={`mega-menu-item ${level > 0 ? 'mega-menu-item-nested' : ''}`}>
+      {item.href ? (
+        <a href={item.href} className="mega-menu-item-link" onClick={onClose}>
+          {item.text}
+        </a>
+      ) : (
+        <span className="mega-menu-item-text">{item.text}</span>
+      )}
+    </div>
+  );
+};
+
+const DropdownMenuItem = ({ item, onClose, level = 0 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  if (item.subItems && item.subItems.length > 0) {
+    return (
+      <div className={`dropdown-item-wrapper ${level > 0 ? 'dropdown-item-nested' : ''}`}>
+        <div className="dropdown-item-header">
+          {item.href ? (
+            <a href={item.href} className="dropdown-item" onClick={onClose}>
+              {item.text}
+            </a>
+          ) : (
+            <span className="dropdown-item-text">{item.text}</span>
+          )}
+          <button
+            className="dropdown-item-toggle"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(!isOpen);
+            }}
+          >
+            {isOpen ? '−' : '+'}
+          </button>
+        </div>
+        {isOpen && (
+          <div className="dropdown-submenu">
+            {item.subItems.map((subItem, subIndex) => (
+              <DropdownMenuItem key={subIndex} item={subItem} onClose={onClose} level={level + 1} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <a
+      href={item.href}
+      className="dropdown-item"
+      onClick={onClose}
+    >
+      {item.text}
+    </a>
+  );
+};
+
 const Navbar = () => {
   const [activeSecondDropdown, setActiveSecondDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,74 +137,171 @@ const Navbar = () => {
   }, []);
 
   const aboutUsDropdownItems = [
-    { text: 'Establishment', href: '/about/establishment' },
-    { text: 'Vision and Mission', href: '/about/vision-mission' },
-    { text: 'Organogram', href: '/about/organogram' },
-    { text: 'Commission Members', href: '/about/commission-members' },
-    { text: 'Top Management', href: '/about/top-management' },
+    { text: 'Vision, Mission, Quality Policy', href: '/about/vision-mission' },
+    { text: 'Organizational Structure', href: '/about/organogram' },
+    { text: 'Management Team', href: '/about/top-management' },
+    { text: 'Board of Commission', href: '/about/commission-members' },
+    { text: 'Contact Us', href: '/contact' },
   ];
 
-  const onlineServicesDropdownItems = [
-    { text: 'Research Clearance Portal', href: '/services/research-clearance' },
-    { text: 'National Interlinked Research Repository', href: '/services/research-repository' },
-    { text: 'E-library', href: '/services/e-library' },
-    { text: 'TanBIF', href: '/services/tanbif' },
-    { text: 'Union Catalog', href: '/services/union-catalog' },
-    { text: 'Research funding', href: '/services/research-funding' },
-    { text: 'Customer Survey Form', href: '/services/customer-survey' },
-    { text: 'HEET Project', href: '/services/heet-project' },
-    { text: 'Research and Innovation Magazine', href: '/services/magazine' },
-    { text: 'Buni Hub', href: '/services/buni-hub' },
+  const dashboardDropdownItems = [
+    { text: 'COSTECH Funded projects', href: '/dashboard/funded-projects' },
+    { text: 'Research permits statistics', href: '/dashboard/research-permits-statistics', subItems: [
+      { text: 'By Category', href: '/dashboard/research-permits-statistics/category' },
+      { text: 'By Gender', href: '/dashboard/research-permits-statistics/gender' },
+      { text: 'By Nationality', href: '/dashboard/research-permits-statistics/nationality' },
+      { text: 'By Discipline', href: '/dashboard/research-permits-statistics/discipline' },
+    ]},
+    { text: 'R&D expenditure', href: '/dashboard/rd-expenditure' },
+    { text: 'Innovation index indicators', href: '/dashboard/innovation-index' },
+    { text: 'Number of active projects', href: '/dashboard/active-projects' },
+    { text: 'Projects by Sector', href: '/dashboard/projects-by-sector' },
+    { text: 'Projects by Region', href: '/dashboard/projects-by-region' },
+    { text: 'Projects by Program', href: '/dashboard/projects-by-program' },
+    { text: 'Projects by Budget', href: '/dashboard/projects-by-budget' },
+    { text: 'Project status tracking', href: '/dashboard/project-status-tracking', subItems: [
+      { text: 'Ongoing', href: '/dashboard/project-status-tracking/ongoing' },
+      { text: 'Completed', href: '/dashboard/project-status-tracking/completed' },
+    ]},
+    { text: 'Institutions involved in STI', href: '/dashboard/institutions-sti', subItems: [
+      { text: 'HLI', href: '/dashboard/institutions-sti/hli' },
+      { text: 'R&D', href: '/dashboard/institutions-sti/rd' },
+      { text: 'TSC', href: '/dashboard/institutions-sti/tsc' },
+    ]},
+    { text: 'Graph Researcher Per Gender', href: '/dashboard/graph-researcher-gender' },
+    { text: 'Graph of Research Permits per Sector and Gender', href: '/dashboard/graph-permits-sector-gender' },
+    { text: 'Graph of COSTECH funded projects per gender, sector, Institution', href: '/dashboard/graph-funded-projects' },
+    { text: 'Graph of Total Funds supported by COSTECH per Institution', href: '/dashboard/graph-funds-institution' },
+    { text: 'Graph of Funded Projects per Program (Innovation vs Research)', href: '/dashboard/graph-projects-program' },
   ];
 
-  const researchDropdownItems = [
-    { text: 'EDCTP', href: '/research/edctp' },
-    { text: 'Research Chairs', href: '/research/chairs' },
-    { text: 'National Research Priorities', href: '/research/priorities' },
-    { text: 'Research Coordination', href: '/research/coordination' },
-    { text: 'Research Ethical Committees', href: '/research/ethical-committees' },
-    { text: 'Research Institutions Network (HERIN)', href: '/research/herin' },
+  const resourcesPublicationsItems = [
+    { text: 'Policies', href: '/resources/policies' },
+    { text: 'Acts & legal documents', href: '/resources/acts-legal' },
+    { text: 'Strategic plans', href: '/resources/strategic-plans' },
+    { text: 'Guidelines and Frameworks', href: '/resources/guidelines-frameworks' },
+    { text: 'Audited Financial Reports', href: '/resources/financial-reports' },
+    { text: 'News section', href: '/resources/news' },
+    { text: 'Publication video', href: '/resources/publication-video' },
   ];
 
-  const technologyInnovationDropdownItems = [
-    { text: 'Cluster Initiative', href: '/technology/cluster-initiative' },
-    { text: 'Funding', href: '/technology/funding' },
-    { text: 'Incubation', href: '/technology/incubation' },
-    { text: 'Innovation Spaces', href: '/technology/innovation-spaces' },
-    { text: 'Buni Hub', href: '/technology/buni-hub' },
-  ];
-
-  const conferencesEventsDropdownItems = [
-    { text: 'Conferences', href: '/events/conferences' },
-    { text: 'Exhibitions', href: '/events/exhibitions' },
-    { text: 'Workshops & Seminars', href: '/events/workshops-seminars' },
-  ];
-
-  const publicationDropdownItems = [
-    { text: 'Research/Technology Policy', href: '/publication/policy' },
-    { text: 'Strategic Plans', href: '/publication/strategic-plans' },
-    { text: 'Guidelines and Manuals', href: '/publication/guidelines' },
-    { text: 'Research & Innovation Magazine', href: '/publication/magazine' },
-    { text: 'Reports', href: '/publication/reports' },
-  ];
-
-  const mediaRoomDropdownItems = [
-    { text: 'News and Updates', href: '/media/news' },
-    { text: 'Costech Tv', href: '/media/costech-tv' },
-    { text: 'Newsletter', href: '/media/newsletter' },
-    { text: 'Gallery', href: '/media/gallery' },
+  const directoratesSectionsItems = [
+    {
+      type: 'section',
+      title: 'Directorates',
+      items: [
+        {
+          text: 'Corporate Services',
+          href: '/directorates/corporate-services',
+        },
+        {
+          text: 'Research Coordination and Promotion',
+          href: '/directorates/research-coordination',
+          subItems: [
+            {
+              text: 'Research Permit',
+              href: '/directorates/research-permit',
+              subItems: [
+                { text: 'Requirements & Guidelines', href: '/directorates/research-permit/requirements' },
+                {
+                  text: 'Permit Categories',
+                  href: '/directorates/research-permit/categories',
+                  subItems: [
+                    { text: 'Local Researchers', href: '/directorates/research-permit/categories/local' },
+                    { text: 'Foreign Researchers', href: '/directorates/research-permit/categories/foreign' },
+                    { text: 'Students', href: '/directorates/research-permit/categories/students' },
+                    { text: 'Institutions', href: '/directorates/research-permit/categories/institutions' },
+                  ],
+                },
+                { text: 'Application Process Workflow', href: '/directorates/research-permit/workflow' },
+                { text: 'Frequently Asked Questions', href: '/directorates/research-permit/faq' },
+                { text: 'Contact for Support', href: '/directorates/research-permit/contact' },
+              ],
+            },
+            { text: 'Research Promotion', href: '/directorates/research-promotion' },
+          ],
+        },
+        {
+          text: 'Centre for Development in Technology Transfer',
+          href: '/directorates/technology-transfer',
+          subItems: [
+            {
+              text: 'Innovation',
+              href: '/directorates/innovation',
+              subItems: [
+                { text: 'Technology Transfer Services', href: '/directorates/innovation/transfer-services' },
+                { text: 'Innovation Support Programs', href: '/directorates/innovation/support-programs' },
+                { text: 'Innovation Hub / Incubation', href: '/technology/incubation' },
+                { text: 'Local Tech Startups/Success Stories', href: '/directorates/innovation/startups' },
+                { text: 'Patent & IP Advisory Services', href: '/directorates/innovation/patent-ip' },
+                { text: 'Digital Transformation Initiatives', href: '/directorates/innovation/digital-transformation' },
+              ],
+            },
+            {
+              text: 'Technology Transfer and Management',
+              href: '/directorates/technology-management',
+              subItems: [
+                { text: 'Technology Acquisition and Management', href: '/directorates/technology-management/acquisition' },
+                {
+                  text: 'Knowledge Management',
+                  href: '/directorates/knowledge-management',
+                  subItems: [
+                    {
+                      text: 'Documentation and Publication',
+                      href: '/directorates/knowledge-management/documentation',
+                      subItems: [
+                        { text: 'List of Journals', href: '/directorates/knowledge-management/journals' },
+                        { text: 'List of STI Conferences and Events', href: '/directorates/knowledge-management/conferences' },
+                      ],
+                    },
+                    {
+                      text: 'Information Systems and Networking',
+                      href: '/directorates/information-systems',
+                      subItems: [
+                        { text: 'HERIN', href: '/directorates/information-systems/herin' },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'section',
+      title: 'Sections',
+      items: [
+        {
+          text: 'National Fund for Advancement of Science and Technology',
+          href: '/sections/nfast',
+          subItems: [
+            {
+              text: 'Grants',
+              href: '/sections/nfast/grants',
+              subItems: [
+                { text: 'Calls for Proposals', href: '/sections/nfast/grants/calls' },
+                { text: 'Eligibility Criteria', href: '/sections/nfast/grants/eligibility' },
+                { text: 'Application Portal', href: '/sections/nfast/grants/portal' },
+                { text: 'Guidelines & Downloads', href: '/sections/nfast/grants/guidelines' },
+                { text: 'Past Winners & Beneficiaries', href: '/sections/nfast/grants/winners' },
+              ],
+            },
+            { text: 'Loans', href: '/sections/nfast/loans' },
+          ],
+        },
+      ],
+    },
   ];
 
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
-    { text: 'Online services', hasDropdown: true, href: '/services', dropdownItems: onlineServicesDropdownItems },
-    { text: 'Research', hasDropdown: true, href: '/research', dropdownItems: researchDropdownItems },
-    { text: 'Technology & Innovation', hasDropdown: true, href: '/technology', dropdownItems: technologyInnovationDropdownItems },
-    { text: 'Conferences & Events', hasDropdown: true, href: '/events', dropdownItems: conferencesEventsDropdownItems },
-    { text: 'Publication', hasDropdown: true, href: '/publication', dropdownItems: publicationDropdownItems },
-    { text: 'Media Room', hasDropdown: true, href: '/media', dropdownItems: mediaRoomDropdownItems },
-    { text: 'Contact us', hasDropdown: false, href: '/contact' },
+    { text: 'Directorates and Sections', hasDropdown: true, href: '/directorates', dropdownItems: directoratesSectionsItems, isMegaMenu: true },
+    { text: 'NISSTI', hasDropdown: false, href: '/nissti' },
+    { text: 'Dashboard', hasDropdown: true, href: '/dashboard', dropdownItems: dashboardDropdownItems },
+    { text: 'Resources / Publications', hasDropdown: true, href: '/resources', dropdownItems: resourcesPublicationsItems },
   ];
 
   return (
@@ -183,17 +374,33 @@ const Navbar = () => {
                   </a>
                 )}
                 {item.hasDropdown && activeSecondDropdown === index && (
-                  <div className="second-dropdown-menu">
-                    {item.dropdownItems && item.dropdownItems.map((dropdownItem, dropdownIndex) => (
-                      <a
+                  <div className={`second-dropdown-menu ${item.isMegaMenu ? 'mega-menu' : ''}`}>
+                    {item.isMegaMenu ? (
+                      <div className="mega-menu-content">
+                        {item.dropdownItems && item.dropdownItems.map((section, sectionIndex) => (
+                          <div key={sectionIndex} className="mega-menu-section">
+                            <h3 className="mega-menu-section-title">{section.title}</h3>
+                            <div className="mega-menu-items">
+                              {section.items && section.items.map((menuItem, itemIndex) => (
+                                <MegaMenuItem
+                                  key={itemIndex}
+                                  item={menuItem}
+                                  onClose={() => setIsMobileMenuOpen(false)}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      item.dropdownItems && item.dropdownItems.map((dropdownItem, dropdownIndex) => (
+                        <DropdownMenuItem
                         key={dropdownIndex}
-                        href={dropdownItem.href}
-                        className="dropdown-item"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {dropdownItem.text}
-                      </a>
-                    ))}
+                          item={dropdownItem}
+                          onClose={() => setIsMobileMenuOpen(false)}
+                        />
+                      ))
+                    )}
                   </div>
                 )}
               </div>

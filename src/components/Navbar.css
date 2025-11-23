@@ -149,6 +149,109 @@
   -webkit-backdrop-filter: blur(5px);
 }
 
+.second-dropdown-menu.mega-menu {
+  min-width: 800px;
+  max-width: 1200px;
+  padding: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  right: auto;
+}
+
+.mega-menu-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.mega-menu-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mega-menu-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.mega-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mega-menu-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-menu-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mega-menu-item-link,
+.mega-menu-item-text {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 8px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  transition: color 0.3s ease;
+  flex: 1;
+}
+
+.mega-menu-item-link:hover {
+  color: #f0f0f0;
+  text-decoration: underline;
+}
+
+.mega-menu-item-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.mega-menu-item-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.mega-menu-item-submenu {
+  margin-top: 8px;
+  margin-left: 20px;
+  padding-left: 15px;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mega-menu-item-nested .mega-menu-item-link,
+.mega-menu-item-nested .mega-menu-item-text {
+  font-size: 13px;
+  padding: 6px 0;
+}
+
 .dropdown-item {
   display: block;
   color: #ffffff;
@@ -166,6 +269,60 @@
   color: #f0f0f0;
 }
 
+.dropdown-item-wrapper {
+  position: relative;
+}
+
+.dropdown-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dropdown-item-text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px 20px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  flex: 1;
+}
+
+.dropdown-item-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #ffffff;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.dropdown-item-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-submenu {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding-left: 20px;
+  margin-top: 4px;
+}
+
+.dropdown-item-nested .dropdown-item,
+.dropdown-item-nested .dropdown-item-text {
+  padding-left: 40px;
+  font-size: 13px;
+}
+
 /* Responsive design */
 @media (max-width: 1200px) {
   .second-navbar-container {
@@ -180,6 +337,15 @@
   .header-text {
     font-size: 20px;
     padding: 10px 20px;
+  }
+
+  .second-dropdown-menu.mega-menu {
+    min-width: 700px;
+    max-width: 900px;
+  }
+
+  .mega-menu-content {
+    gap: 30px;
   }
 }
 
@@ -337,6 +503,28 @@
 
   .dropdown-item {
     padding-left: 40px;
+  }
+
+  .second-dropdown-menu.mega-menu {
+    min-width: 100%;
+    max-width: 100%;
+    left: 0;
+    transform: none;
+    padding: 15px;
+  }
+
+  .mega-menu-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .mega-menu-section-title {
+    font-size: 15px;
+  }
+
+  .mega-menu-item-submenu {
+    margin-left: 15px;
+    padding-left: 10px;
   }
   
   .emblem-logo {

@@ -94,10 +94,15 @@ const Footer = () => {
             <div className="footer-column">
               <h4 className="footer-heading">Quick Links</h4>
               <ul className="footer-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/faqs">FAQs</a></li>
+                <li><a href="/careers">Careers and Opportunities</a></li>
                 <li><a href="/moest">MoEST</a></li>
-                <li><a href="/research-clearance">Research clearance portal</a></li>
+                <li><a href="/ega">eGA</a></li>
+                <li><a href="/research-clearance">Research Clearance System</a></li>
+                <li><a href="/nissti">NISSTI</a></li>
+                <li><a href="/repository">Repository</a></li>
+                <li><a href="/research-permit">Research Permit System</a></li>
+                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/terms-of-use">Terms of Use</a></li>
               </ul>
             </div>
 

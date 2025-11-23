@@ -79,7 +79,7 @@ function CardCarousel() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    pauseOnHover: false,
+    pauseOnHover: true,
     swipe: false,
     touchMove: false,
     draggable: false,
@@ -93,11 +93,14 @@ function CardCarousel() {
           arrows: false,
           swipe: false,
           touchMove: false,
-          draggable: false
+          draggable: false,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          pauseOnHover: true
         }
       },
       {
-        breakpoint: 1024,
+        breakpoint: 968,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -105,7 +108,10 @@ function CardCarousel() {
           arrows: false,
           swipe: false,
           touchMove: false,
-          draggable: false
+          draggable: false,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          pauseOnHover: true
         }
       },
       {
@@ -113,11 +119,14 @@ function CardCarousel() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false,
+          dots: true,
           arrows: false,
-          swipe: false,
-          touchMove: false,
-          draggable: false
+          swipe: true,
+          touchMove: true,
+          draggable: true,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          pauseOnHover: true
         }
       }
     ]
