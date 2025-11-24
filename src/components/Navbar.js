@@ -232,40 +232,27 @@ const Navbar = () => {
                 { text: 'Technology Transfer Services', href: '/directorates/innovation/transfer-services' },
                 { text: 'Innovation Support Programs', href: '/directorates/innovation/support-programs' },
                  { text: 'Innovation Space', href: '/technology/innovation-spaces' },
-                { text: 'Incubation', href: '/technology/incubation' },
+    { text: 'Incubation', href: '/technology/incubation' },
                 { text: 'Local Tech Startups/Success Stories', href: '/directorates/innovation/startups' },
                 { text: 'Patent & IP Advisory Services', href: '/directorates/innovation/patent-ip' },
                 { text: 'Digital Transformation Initiatives', href: '/directorates/innovation/digital-transformation' },
               ],
             },
+            
             {
               text: 'Technology Transfer and Management',
               href: '/directorates/technology-management',
               subItems: [
                 { text: 'Technology Acquisition and Management', href: '/directorates/technology-management/acquisition' },
-                {
-                  text: 'Knowledge Management',
-                  href: '/directorates/knowledge-management',
-                  subItems: [
-                    {
-                      text: 'Documentation and Publication',
-                      href: '/directorates/knowledge-management/documentation',
-                      subItems: [
-                        { text: 'List of Journals', href: '/directorates/knowledge-management/journals' },
-                        { text: 'List of STI Conferences and Events', href: '/directorates/knowledge-management/conferences' },
-                      ],
-                    },
-                    {
-                      text: 'Information Systems and Networking',
-                      href: '/directorates/information-systems',
-                      subItems: [
-                        { text: 'HERIN', href: '/directorates/information-systems/herin' },
-                      ],
-                    },
-                  ],
-                },
               ],
             },
+          ],
+        },
+        {
+          text: 'Knowledge Management',
+          href: '/directorates/knowledge-management',
+          subItems: [
+            { text: 'ICT', href: '/directorates/knowledge-management/ict' },
           ],
         },
       ],
