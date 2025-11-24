@@ -252,14 +252,15 @@ const Navbar = () => {
           text: 'Knowledge Management',
           href: '/directorates/knowledge-management',
           subItems: [
-            { text: 'ICT', href: '/directorates/knowledge-management/ict' },
+            { text: 'ISNS', href: '/directorates/knowledge-management/isns' },
+            { text: 'DPM', href: '/directorates/knowledge-management/dpm' },
           ],
         },
       ],
     },
     {
       type: 'section',
-      title: 'Sections',
+      title: 'Units',
       items: [
         {
           text: 'National Fund for Advancement of Science and Technology',
@@ -286,7 +287,7 @@ const Navbar = () => {
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
-    { text: 'Directorates and Sections', hasDropdown: true, href: '/directorates', dropdownItems: directoratesSectionsItems, isMegaMenu: true },
+    { text: 'Directorates and Units', hasDropdown: true, href: '/directorates', dropdownItems: directoratesSectionsItems, isMegaMenu: true },
     { text: 'NISSTI', hasDropdown: false, href: '/nissti' },
     { text: 'Dashboard', hasDropdown: true, href: '/dashboard', dropdownItems: dashboardDropdownItems },
     { text: 'Resources / Publications', hasDropdown: true, href: '/resources', dropdownItems: resourcesPublicationsItems },
