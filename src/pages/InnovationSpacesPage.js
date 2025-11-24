@@ -1,5 +1,16 @@
 import React, { useMemo, useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L from 'leaflet';
 import './InnovationSpacesPage.css';
+
+// Fix for default marker icon in React-Leaflet
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
@@ -110,6 +121,7 @@ const spaces = [
     sector: 'ICT',
     type: 'Incubator',
     location: 'Dodoma, Tanzania',
+    coordinates: [-6.1630, 35.7516],
     yearEstablished: '2022',
     audience: 'Early-stage startups',
     beneficiaries: 'Young founders in Dodoma & surrounding regions',
@@ -137,6 +149,7 @@ const spaces = [
     sector: 'ICT',
     type: 'Accelerator',
     location: 'Dar es Salaam, Tanzania',
+    coordinates: [-6.7924, 39.2083],
     yearEstablished: '2020',
     audience: 'Growth-stage startups',
     beneficiaries: 'Entrepreneurship & Business Development, Digital Skills & Technology',
@@ -164,6 +177,7 @@ const spaces = [
     sector: 'Agriculture',
     type: 'Research & Development Hub',
     location: 'Morogoro, Tanzania',
+    coordinates: [-6.8167, 37.6667],
     yearEstablished: '2019',
     audience: 'Youth entrepreneurs',
     beneficiaries: 'Smallholder farmers and agripreneurs nationwide',
@@ -191,6 +205,7 @@ const spaces = [
     sector: 'Education',
     type: 'Maker Space',
     location: 'Arusha, Tanzania',
+    coordinates: [-3.3869, 36.6830],
     yearEstablished: '2022',
     audience: 'Makers & Early-stage startups',
     beneficiaries: 'Students, hobbyists, early-stage hardware startups',
@@ -218,6 +233,7 @@ const spaces = [
     sector: 'Manufacturing',
     type: 'Incubator',
     location: 'Arusha, Tanzania',
+    coordinates: [-3.3869, 36.6830],
     yearEstablished: '2020',
     audience: 'Youth entrepreneurs',
     beneficiaries: 'Young manufacturing-focused entrepreneurs',
@@ -245,6 +261,7 @@ const spaces = [
     sector: 'Clean Energy',
     type: 'Maker Space',
     location: 'Mwanza, Tanzania',
+    coordinates: [-2.5164, 32.9176],
     yearEstablished: '2018',
     audience: 'Youth & community innovators',
     beneficiaries: 'Rural youth & community innovators transitioning to renewable energy',
@@ -272,6 +289,7 @@ const spaces = [
     sector: 'Creative Industries',
     type: 'Cultural Incubator',
     location: 'Mwanza, Tanzania',
+    coordinates: [-2.5164, 32.9176],
     yearEstablished: '2022',
     audience: 'Creative entrepreneurs',
     beneficiaries: 'Artists, cultural entrepreneurs, sustainable tourism actors',
@@ -299,6 +317,7 @@ const spaces = [
     sector: 'Agriculture',
     type: 'Incubator & Co-working',
     location: 'Iringa, Tanzania',
+    coordinates: [-7.7667, 35.7000],
     yearEstablished: '2023',
     audience: 'Youth & women entrepreneurs',
     beneficiaries: 'Grassroots agribusinesses, youth & women founders',
@@ -397,12 +416,36 @@ const InnovationSpacesPage = () => {
           </div>
 
           <div className="innovation-map-card">
-            <iframe
-              title="Innovation spaces map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=29.0%2C-11.0%2C41.5%2C-1.0&layer=mapnik"
-              allowFullScreen
-              loading="lazy"
-            />
+            <MapContainer
+              center={[-6.3690, 34.8888]}
+              zoom={6}
+              style={{ height: '100%', width: '100%', minHeight: '320px' }}
+              scrollWheelZoom={false}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              {spaces.map((space) => (
+                space.coordinates && (
+                  <Marker key={space.id} position={space.coordinates}>
+                    <Popup>
+                      <div style={{ textAlign: 'center' }}>
+                        <strong>{space.name}</strong>
+                        <br />
+                        <span style={{ fontSize: '0.9rem', color: '#64748b' }}>
+                          {space.location}
+                        </span>
+                        <br />
+                        <span style={{ fontSize: '0.85rem', color: '#b97c07' }}>
+                          {space.type} • {space.sector}
+                        </span>
+                      </div>
+                    </Popup>
+                  </Marker>
+                )
+              ))}
+            </MapContainer>
           </div>
         </div>
 

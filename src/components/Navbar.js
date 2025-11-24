@@ -231,7 +231,8 @@ const Navbar = () => {
               subItems: [
                 { text: 'Technology Transfer Services', href: '/directorates/innovation/transfer-services' },
                 { text: 'Innovation Support Programs', href: '/directorates/innovation/support-programs' },
-                { text: 'Innovation Hub / Incubation', href: '/technology/incubation' },
+                 { text: 'Innovation Space', href: '/technology/innovation-spaces' },
+                { text: 'Incubation', href: '/technology/incubation' },
                 { text: 'Local Tech Startups/Success Stories', href: '/directorates/innovation/startups' },
                 { text: 'Patent & IP Advisory Services', href: '/directorates/innovation/patent-ip' },
                 { text: 'Digital Transformation Initiatives', href: '/directorates/innovation/digital-transformation' },
