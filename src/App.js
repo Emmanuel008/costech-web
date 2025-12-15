@@ -28,6 +28,7 @@ import ConferencePage from './pages/ConferencePage';
 import ExhibitionsPage from './pages/ExhibitionsPage';
 import WorkshopsSeminarsPage from './pages/WorkshopsSeminarsPage';
 import EDCTPPage from './pages/EDCTPPage';
+import FAQsPage from './pages/FAQsPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import './styles/App.css';
@@ -75,6 +76,7 @@ function App() {
             <Route path="/events/workshops-seminars" element={<WorkshopsSeminarsPage />} />
             <Route path="/research/edctp" element={<EDCTPPage />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faqs" element={<FAQsPage />} />
             <Route path="/resources/news" element={<NewsPage />} />
             <Route path="/resources/publication-video" element={<PublicationVideoPage />} />
           </Routes>

@@ -296,6 +296,7 @@ const Navbar = () => {
     { text: 'Resources / Publications', hasDropdown: true, href: '/resources', dropdownItems: resourcesPublicationsItems },
     { text: 'Buni Hub', hasDropdown: false, href: 'https://bunihub.or.tz/', external: true },
     { text: 'DTBi', hasDropdown: false, href: 'https://teknohama.or.tz/', external: true },
+    { text: 'FAQs', hasDropdown: false, href: '/faqs' },
   ];
 
   return (

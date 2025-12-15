@@ -55,11 +55,11 @@ function CardCarousel() {
   ];
 
   const getPermitColor = (value) => {
-    if (value >= 130) return '#b35c00';
-    if (value >= 100) return '#c77d0a';
-    if (value >= 70) return '#d49524';
-    if (value >= 40) return '#e2b35c';
-    return '#f1d8a3';
+    if (value >= 130) return '#1e40af';
+    if (value >= 100) return '#b97c07';
+    if (value >= 70) return '#1e40af';
+    if (value >= 40) return '#b97c07';
+    return '#1e40af';
   };
 
   const cards = [
@@ -69,7 +69,7 @@ function CardCarousel() {
       chartType: 'donut',
       data: [
         { label: 'ICT', value: 45, color: '#b97c07' },
-        { label: 'Agriculture', value: 35, color: '#a06d06' },
+        { label: 'Agriculture', value: 35, color: '#1e40af' },
         { label: 'Energy', value: 20, color: '#b97c07' }
       ]
     },
@@ -84,9 +84,9 @@ function CardCarousel() {
       title: 'Research per Sub-Program',
       chartType: 'donut',
       data: [
-        { label: 'Agriculture', value: 45, color: '#b97c07' },
-        { label: 'Health', value: 35, color: '#a06d06' },
-        { label: 'Environment', value: 20, color: '#b97c07' }
+        { label: 'Agriculture', value: 45, color: '#1e40af' },
+        { label: 'Health', value: 35, color: '#b97c07' },
+        { label: 'Environment', value: 20, color: '#1e40af' }
       ]
     },
     {
@@ -95,7 +95,7 @@ function CardCarousel() {
       chartType: 'bar',
       data: [
         { label: 'Active', value: 85, color: '#b97c07' },
-        { label: 'Pending', value: 65, color: '#a06d06' },
+        { label: 'Pending', value: 65, color: '#1e40af' },
         { label: 'Completed', value: 100, color: '#b97c07' }
       ]
     },
@@ -104,9 +104,9 @@ function CardCarousel() {
       title: 'Project Status Overview',
       chartType: 'donut',
       data: [
-        { label: 'Active', value: 50, color: '#b97c07' },
-        { label: 'Pending', value: 30, color: '#a06d06' },
-        { label: 'Completed', value: 20, color: '#b97c07' }
+        { label: 'Active', value: 50, color: '#1e40af' },
+        { label: 'Pending', value: 30, color: '#b97c07' },
+        { label: 'Completed', value: 20, color: '#1e40af' }
       ]
     },
     {
@@ -115,9 +115,9 @@ function CardCarousel() {
       chartType: 'bar',
       data: [
         { label: 'District A', value: 110, color: '#b97c07' },
-        { label: 'District B', value: 75, color: '#a06d06' },
+        { label: 'District B', value: 75, color: '#1e40af' },
         { label: 'District C', value: 95, color: '#b97c07' },
-        { label: 'District D', value: 55, color: '#a06d06' }
+        { label: 'District D', value: 55, color: '#1e40af' }
       ]
     }
   ];
@@ -267,7 +267,7 @@ function CardCarousel() {
                               y1={110 - (tick / 120) * 100}
                               x2="190"
                               y2={110 - (tick / 120) * 100}
-                              stroke="rgba(185, 124, 7, 0.1)"
+                              stroke="rgba(0, 0, 0, 0.1)"
                               strokeWidth="1"
                             />
                           ))}
@@ -279,7 +279,7 @@ function CardCarousel() {
                               y={110 - (tick / 120) * 100}
                               textAnchor="end"
                               fontSize="8"
-                              fill="#b97c07"
+                              fill="#000000"
                               alignmentBaseline="middle"
                             >
                               {tick}
@@ -312,7 +312,7 @@ function CardCarousel() {
                                   y={115}
                                   textAnchor="middle"
                                   fontSize="7"
-                                  fill="#b97c07"
+                                  fill="#000000"
                                 >
                                   {item.label}
                                 </text>
@@ -321,7 +321,7 @@ function CardCarousel() {
                                   y={110 - barHeight - 3}
                                   textAnchor="middle"
                                   fontSize="8"
-                                  fill="#b97c07"
+                                  fill="#000000"
                                   fontWeight="600"
                                 >
                                   {item.value}
@@ -335,7 +335,7 @@ function CardCarousel() {
                             y1="10"
                             x2="30"
                             y2="110"
-                            stroke="#b97c07"
+                            stroke="#000000"
                             strokeWidth="1.5"
                           />
                           {/* X-axis line */}
@@ -344,7 +344,7 @@ function CardCarousel() {
                             y1="110"
                             x2="190"
                             y2="110"
-                            stroke="#b97c07"
+                            stroke="#000000"
                             strokeWidth="1.5"
                           />
                         </svg>
@@ -359,7 +359,7 @@ function CardCarousel() {
                             cy="75"
                             r="60"
                             fill="none"
-                            stroke="rgba(185, 124, 7, 0.1)"
+                            stroke="rgba(0, 0, 0, 0.1)"
                             strokeWidth="15"
                           />
                           {card.data.map((item, index) => {
