@@ -1,5 +1,5 @@
 import React from 'react';
-import './ClusterInitiativePage.css';
+import '../styles/pages/ClusterInitiativePage.css';
 
 const objectives = [
   'To develop a method for replication and scale-up of competitive and innovative clusters in the emerging knowledge society of Tanzania.',

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './IncubationPage.css';
+import '../styles/pages/IncubationPage.css';
 
 const supportFunctions = [
   'Business development support',

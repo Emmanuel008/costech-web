@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from 'flowbite-react';
-import './EDCTPPage.css';
+import '../styles/pages/EDCTPPage.css';
 
 const collaborators = [
   'Tanzania Commission for Science and Technology (COSTECH)',

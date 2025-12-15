@@ -1,5 +1,5 @@
 import React from 'react';
-import './FundingPage.css';
+import '../styles/pages/FundingPage.css';
 
 const stats = [
   { label: 'Innovation Grants Awarded', value: '120+' },

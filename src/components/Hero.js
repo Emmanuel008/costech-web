@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Hero.css';
+import '../styles/components/Hero.css';
 import BlurText from './BlurText';
 import RotatingText from './RotatingText';
 

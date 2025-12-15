@@ -1,5 +1,5 @@
 import React from 'react';
-import './OrganogramPage.css';
+import '../styles/pages/OrganogramPage.css';
 
 const OrganogramPage = () => {
   return (

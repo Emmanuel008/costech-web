@@ -1,5 +1,5 @@
 import React from 'react';
-import './VisionMissionPage.css';
+import '../styles/pages/VisionMissionPage.css';
 
 const coreValues = [
   {

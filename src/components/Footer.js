@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Footer.css';
+import '../styles/components/Footer.css';
 
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);

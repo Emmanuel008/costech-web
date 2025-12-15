@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import './ResearchTechnologyPolicyPage.css';
+import '../styles/pages/ResearchTechnologyPolicyPage.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {

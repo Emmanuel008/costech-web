@@ -1,5 +1,5 @@
 import React from 'react';
-import './CommissionMembersPage.css';
+import '../styles/pages/CommissionMembersPage.css';
 
 const members = [
   {

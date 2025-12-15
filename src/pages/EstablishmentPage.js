@@ -1,5 +1,5 @@
 import React from 'react';
-import './EstablishmentPage.css';
+import '../styles/pages/EstablishmentPage.css';
 
 const EstablishmentPage = () => {
   const responsibilities = [

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProfileBySlug, directorGeneral, directors } from '../data/managementProfiles';
-import './ManagementProfilePage.css';
+import '../styles/pages/ManagementProfilePage.css';
 
 const ManagementProfilePage = () => {
   const { slug } = useParams();

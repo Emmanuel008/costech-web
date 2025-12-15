@@ -30,7 +30,7 @@ import WorkshopsSeminarsPage from './pages/WorkshopsSeminarsPage';
 import EDCTPPage from './pages/EDCTPPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
-import './App.css';
+import './styles/App.css';
 
 function Home() {
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import './StrategicPlanPage.css';
+import '../styles/pages/StrategicPlanPage.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {

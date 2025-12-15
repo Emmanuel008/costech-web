@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { directorGeneral, directors, managers } from '../data/managementProfiles';
-import './TopManagementPage.css';
+import '../styles/pages/TopManagementPage.css';
 
 const TopManagementPage = () => {
 

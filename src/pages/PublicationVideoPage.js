@@ -1,6 +1,6 @@
 import React from 'react';
 import LatestVideo from '../components/LatestVideo';
-import './PublicationVideoPage.css';
+import '../styles/pages/PublicationVideoPage.css';
 
 const PublicationVideoPage = () => {
   return (

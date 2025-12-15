@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './News.css';
+import '../styles/components/News.css';
 import { newsItems } from '../data/newsItems';
 
 const News = () => {

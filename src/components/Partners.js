@@ -1,5 +1,5 @@
 import React from 'react';
-import './Partners.css';
+import '../styles/components/Partners.css';
 
 const Partners = () => {
   const partners = [

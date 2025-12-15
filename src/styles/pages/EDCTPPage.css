@@ -14,7 +14,7 @@
   position: relative;
   width: 100%;
   min-height: 320px;
-  background: url('../../public/assets/img/hero.jpg') center/cover no-repeat;
+  background: url('../../../public/assets/img/hero.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;

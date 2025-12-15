@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { newsItems } from '../data/newsItems';
-import './NewsDetailPage.css';
+import '../styles/pages/NewsDetailPage.css';
 
 const NewsDetailPage = () => {
   const { slug } = useParams();

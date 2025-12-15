@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './Navbar.css';
+import '../styles/components/Navbar.css';
 
 const MegaMenuItem = ({ item, onClose, level = 0 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -183,6 +183,8 @@ const Navbar = () => {
     { text: 'Audited Financial Reports', href: '/resources/financial-reports' },
     { text: 'News section', href: '/resources/news' },
     { text: 'Publication video', href: '/resources/publication-video' },
+    { text: 'Buni Hub', href: 'https://bunihub.or.tz/' },
+    { text: 'DTBi', href: 'https://teknohama.or.tz/' },
   ];
 
   const directoratesSectionsItems = [
@@ -289,8 +291,11 @@ const Navbar = () => {
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
     { text: 'Directorates and Units', hasDropdown: true, href: '/directorates', dropdownItems: directoratesSectionsItems, isMegaMenu: true },
     { text: 'NISSTI', hasDropdown: false, href: '/nissti' },
+    { text: 'HEET', hasDropdown: false, href: '/heet' },
     { text: 'Dashboard', hasDropdown: true, href: '/dashboard', dropdownItems: dashboardDropdownItems },
     { text: 'Resources / Publications', hasDropdown: true, href: '/resources', dropdownItems: resourcesPublicationsItems },
+    { text: 'Buni Hub', hasDropdown: false, href: 'https://bunihub.or.tz/', external: true },
+    { text: 'DTBi', hasDropdown: false, href: 'https://teknohama.or.tz/', external: true },
   ];
 
   return (
@@ -358,6 +363,8 @@ const Navbar = () => {
                     href={item.href} 
                     className="second-nav-link"
                     onClick={() => setIsMobileMenuOpen(false)}
+                    target={item.external ? '_blank' : undefined}
+                    rel={item.external ? 'noopener noreferrer' : undefined}
                   >
                     {item.text}
                   </a>

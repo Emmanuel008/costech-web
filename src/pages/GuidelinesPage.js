@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import './GuidelinesPage.css';
+import '../styles/pages/GuidelinesPage.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {

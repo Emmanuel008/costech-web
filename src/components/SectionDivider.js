@@ -1,5 +1,5 @@
 import React from 'react';
-import './SectionDivider.css';
+import '../styles/components/SectionDivider.css';
 
 const SectionDivider = () => {
   return (

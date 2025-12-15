@@ -1,5 +1,5 @@
 import React from 'react';
-import './LatestVideo.css';
+import '../styles/components/LatestVideo.css';
 
 const LatestVideo = () => {
   const videoItems = [

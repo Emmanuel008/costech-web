@@ -1,5 +1,5 @@
 import React from 'react';
-import './ExhibitionsPage.css';
+import '../styles/pages/ExhibitionsPage.css';
 
 const ExhibitionsPage = () => {
   return (
