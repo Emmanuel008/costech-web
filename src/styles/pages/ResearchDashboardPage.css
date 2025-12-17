@@ -1,0 +1,551 @@
+.research-dashboard-page {
+  min-height: 100vh;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #f0f9ff 100%);
+}
+
+.research-dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.research-dashboard-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.research-dashboard-header .back-link {
+  display: block;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  color: #1e40af;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.back-link:hover {
+  color: #b97c07;
+  transform: translateX(-5px);
+}
+
+.research-dashboard-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #000000;
+  margin: 0 0 10px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.research-dashboard-subtitle {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.research-reports-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.research-report-tab {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.research-report-tab:hover {
+  color: #b97c07;
+  border-color: #b97c07;
+  transform: translateY(-2px);
+}
+
+.research-report-tab.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #b97c07 0%, #9a6606 100%);
+  border-color: #b97c07;
+  box-shadow: 0 4px 12px rgba(185, 124, 7, 0.3);
+}
+
+.research-reports-content {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  min-height: 400px;
+}
+
+.research-report-section {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.research-report-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.research-report-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0 0 8px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.research-report-description {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.research-report-data {
+  margin-top: 20px;
+}
+
+.bar-chart-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #faf9f6;
+  border-radius: 12px;
+}
+
+.bar-chart-wrapper {
+  display: flex;
+  position: relative;
+  min-height: 400px;
+}
+
+.bar-chart-y-axis {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  padding-right: 15px;
+  min-width: 80px;
+  position: relative;
+}
+
+.bar-chart-y-axis-label {
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: rotate(-90deg) translateX(-50%);
+  transform-origin: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000000;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.bar-chart-y-tick {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.bar-chart-y-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000000;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-width: 30px;
+  text-align: right;
+}
+
+.bar-chart-grid-line {
+  position: absolute;
+  left: 40px;
+  right: -15px;
+  height: 1px;
+  background: #e5e5e5;
+  z-index: 0;
+}
+
+.bar-chart-bars-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  padding-left: 10px;
+  position: relative;
+  height: 300px;
+  min-height: 300px;
+}
+
+.bar-chart-bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 150px;
+}
+
+.bar-chart-bar-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  min-height: 300px;
+  height: 300px;
+}
+
+.bar-chart-bar {
+  width: 50%;
+  max-width: 80px;
+  position: relative;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 5px;
+  background-color: #1e40af;
+  min-height: 10px;
+}
+
+.bar-chart-bar:hover {
+  opacity: 0.9;
+  transform: scaleY(1.02);
+}
+
+.bar-chart-bar-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: -25px;
+  white-space: nowrap;
+}
+
+.bar-chart-x-label {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000000;
+  text-align: center;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.funded-projects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.funded-project-card {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.funded-project-card:hover {
+  border-color: #b97c07;
+  box-shadow: 0 4px 12px rgba(185, 124, 7, 0.15);
+  transform: translateY(-2px);
+}
+
+.funded-project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.funded-project-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  flex: 1;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.funded-project-status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.funded-project-status--active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.funded-project-status--completed {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.funded-project-amount {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #b97c07;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.pie-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 15px;
+}
+
+.pie-chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pie-chart {
+  width: 250px;
+  height: 250px;
+  max-width: 100%;
+}
+
+.pie-chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.pie-chart-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.pie-chart-legend-item:hover {
+  background: #f1f5f9;
+  transform: translateX(5px);
+}
+
+.pie-chart-legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.pie-chart-legend-label {
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000000;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.pie-chart-legend-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e40af;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.map-chart-container {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.map-legend {
+  margin-top: 25px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+}
+
+.map-legend h4 {
+  color: #000000;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.map-legend-items {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.map-legend-item:hover {
+  background: #f1f5f9;
+  transform: translateX(3px);
+}
+
+.map-legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.map-legend-label {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #000000;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.map-legend-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1e40af;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .research-dashboard-page {
+    padding: 80px 15px 40px;
+  }
+
+  .research-dashboard-title {
+    font-size: 2rem;
+  }
+
+  .research-dashboard-subtitle {
+    font-size: 1rem;
+  }
+
+  .research-reports-tabs {
+    gap: 10px;
+  }
+
+  .research-report-tab {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+
+  .research-reports-content {
+    padding: 25px 20px;
+  }
+
+  .research-report-title {
+    font-size: 1.75rem;
+  }
+
+  .research-report-description {
+    font-size: 1rem;
+  }
+
+  .funded-projects-list {
+    grid-template-columns: 1fr;
+  }
+
+  .pie-chart-container {
+    gap: 30px;
+  }
+
+  .pie-chart {
+    width: 250px;
+    height: 250px;
+  }
+
+  .pie-chart-legend {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .research-dashboard-title {
+    font-size: 1.75rem;
+  }
+
+  .research-report-tab {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+
+  .research-report-title {
+    font-size: 1.5rem;
+  }
+
+  .innovation-chart-label {
+    font-size: 1rem;
+  }
+
+  .funded-project-name {
+    font-size: 1rem;
+  }
+
+  .funded-project-amount {
+    font-size: 1.1rem;
+  }
+
+  .pie-chart {
+    width: 200px;
+    height: 200px;
+  }
+
+  .pie-chart-legend-item {
+    padding: 10px;
+  }
+
+  .pie-chart-legend-label,
+  .pie-chart-legend-value {
+    font-size: 1rem;
+  }
+}
+

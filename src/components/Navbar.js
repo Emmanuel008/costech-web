@@ -136,57 +136,6 @@ const Navbar = () => {
     };
   }, []);
 
-  const aboutUsDropdownItems = [
-    { text: 'Vision, Mission, Quality Policy', href: '/about/vision-mission' },
-    { text: 'Organizational Structure', href: '/about/organogram' },
-    { text: 'Management Team', href: '/about/top-management' },
-    { text: 'Board of Commission', href: '/about/commission-members' },
-    { text: 'Contact Us', href: '/contact' },
-  ];
-
-  const dashboardDropdownItems = [
-    { text: 'COSTECH Funded projects', href: '/dashboard/funded-projects' },
-    { text: 'Research permits statistics', href: '/dashboard/research-permits-statistics', subItems: [
-      { text: 'By Category', href: '/dashboard/research-permits-statistics/category' },
-      { text: 'By Gender', href: '/dashboard/research-permits-statistics/gender' },
-      { text: 'By Nationality', href: '/dashboard/research-permits-statistics/nationality' },
-      { text: 'By Discipline', href: '/dashboard/research-permits-statistics/discipline' },
-    ]},
-    { text: 'R&D expenditure', href: '/dashboard/rd-expenditure' },
-    { text: 'Innovation index indicators', href: '/dashboard/innovation-index' },
-    { text: 'Number of active projects', href: '/dashboard/active-projects' },
-    { text: 'Projects by Sector', href: '/dashboard/projects-by-sector' },
-    { text: 'Projects by Region', href: '/dashboard/projects-by-region' },
-    { text: 'Projects by Program', href: '/dashboard/projects-by-program' },
-    { text: 'Projects by Budget', href: '/dashboard/projects-by-budget' },
-    { text: 'Project status tracking', href: '/dashboard/project-status-tracking', subItems: [
-      { text: 'Ongoing', href: '/dashboard/project-status-tracking/ongoing' },
-      { text: 'Completed', href: '/dashboard/project-status-tracking/completed' },
-    ]},
-    { text: 'Institutions involved in STI', href: '/dashboard/institutions-sti', subItems: [
-      { text: 'HLI', href: '/dashboard/institutions-sti/hli' },
-      { text: 'R&D', href: '/dashboard/institutions-sti/rd' },
-      { text: 'TSC', href: '/dashboard/institutions-sti/tsc' },
-    ]},
-    { text: 'Graph Researcher Per Gender', href: '/dashboard/graph-researcher-gender' },
-    { text: 'Graph of Research Permits per Sector and Gender', href: '/dashboard/graph-permits-sector-gender' },
-    { text: 'Graph of COSTECH funded projects per gender, sector, Institution', href: '/dashboard/graph-funded-projects' },
-    { text: 'Graph of Total Funds supported by COSTECH per Institution', href: '/dashboard/graph-funds-institution' },
-    { text: 'Graph of Funded Projects per Program (Innovation vs Research)', href: '/dashboard/graph-projects-program' },
-  ];
-
-  const resourcesPublicationsItems = [
-    { text: 'Policies', href: '/resources/policies' },
-    { text: 'Acts & legal documents', href: '/resources/acts-legal' },
-    { text: 'Strategic plans', href: '/resources/strategic-plans' },
-    { text: 'Guidelines and Frameworks', href: '/resources/guidelines-frameworks' },
-    { text: 'Audited Financial Reports', href: '/resources/financial-reports' },
-    { text: 'News section', href: '/resources/news' },
-    { text: 'Publication video', href: '/resources/publication-video' },
-    { text: 'Buni Hub', href: 'https://bunihub.or.tz/' },
-    { text: 'DTBi', href: 'https://teknohama.or.tz/' },
-  ];
-
   const directoratesSectionsItems = [
     {
       type: 'section',
@@ -286,14 +235,54 @@ const Navbar = () => {
     },
   ];
 
+  const aboutUsDropdownItems = [
+    { text: 'Vision, Mission, Quality Policy', href: '/about/vision-mission' },
+    { text: 'Organizational Structure', href: '/about/organogram' },
+    { text: 'Management Team', href: '/about/top-management' },
+    { text: 'Board of Commission', href: '/about/commission-members' },
+    { text: 'Directorates and Units', href: '/directorates' },
+    { text: 'Contact Us', href: '/contact' },
+  ];
+
+  const onlineServicesItems = [
+    { text: 'STI Information portal(NISSTI)', href: '/nissti' },
+    { text: 'Innovation Space', href: '/technology/innovation-spaces' },
+    { text: 'Research Clearance Portal', href: '/research-clearance' },
+    { text: 'Union Catalog', href: '/union-catalog' },
+    { text: 'TanBIF', href: '/tanbif' },
+    { text: 'National Interlinked Research Repository', href: '/research-repository' },
+    { text: 'Research Funding', href: '/research-funding' },
+    { text: 'Customer Survey Form', href: '/customer-survey' },
+  ];
+
+  const resourcesPublicationsItems = [
+    {
+      type: 'section',
+      title: 'Resources',
+      items: [
+        { text: 'Policies', href: '/resources/policies' },
+        { text: 'Act & legal documents', href: '/resources/acts-legal' },
+        { text: 'Strategic plans', href: '/resources/strategic-plans' },
+        { text: 'Guidelines and frameworks', href: '/resources/guidelines-frameworks' },
+      ],
+    },
+    {
+      type: 'section',
+      title: 'Publications',
+      items: [
+        { text: 'News', href: '/resources/news' },
+        { text: 'Publication videos', href: '/resources/publication-video' },
+      ],
+    },
+  ];
+
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
-    { text: 'Directorates and Units', hasDropdown: true, href: '/directorates', dropdownItems: directoratesSectionsItems, isMegaMenu: true },
-    { text: 'NISSTI', hasDropdown: false, href: '/nissti' },
-    { text: 'HEET', hasDropdown: false, href: '/heet' },
-    { text: 'Dashboard', hasDropdown: true, href: '/dashboard', dropdownItems: dashboardDropdownItems },
-    { text: 'Resources / Publications', hasDropdown: true, href: '/resources', dropdownItems: resourcesPublicationsItems },
+    { text: 'Online Services', hasDropdown: true, href: '/nissti', dropdownItems: onlineServicesItems },
+    { text: 'Financial Report', hasDropdown: false, href: '/heet' },
+    { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
+    { text: 'Resources / Publications', hasDropdown: true, href: '/resources', dropdownItems: resourcesPublicationsItems, isMegaMenu: true },
     { text: 'Buni Hub', hasDropdown: false, href: 'https://bunihub.or.tz/', external: true },
     { text: 'DTBi', hasDropdown: false, href: 'https://teknohama.or.tz/', external: true },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },
@@ -390,13 +379,48 @@ const Navbar = () => {
                         ))}
                       </div>
                     ) : (
-                      item.dropdownItems && item.dropdownItems.map((dropdownItem, dropdownIndex) => (
+                      item.dropdownItems && item.dropdownItems.map((dropdownItem, dropdownIndex) => {
+                        // Handle nested mega menu items
+                        if (dropdownItem.isMegaMenu && dropdownItem.dropdownItems) {
+                          return (
+                            <div key={dropdownIndex} className="dropdown-item-wrapper">
+                              <div className="dropdown-item-header">
+                                {dropdownItem.href ? (
+                                  <a href={dropdownItem.href} className="dropdown-item" onClick={() => setIsMobileMenuOpen(false)}>
+                                    {dropdownItem.text}
+                                  </a>
+                                ) : (
+                                  <span className="dropdown-item-text">{dropdownItem.text}</span>
+                                )}
+                              </div>
+                              <div className="mega-menu-content mega-menu-content--nested">
+                                {dropdownItem.dropdownItems.map((section, sectionIndex) => (
+                                  <div key={sectionIndex} className="mega-menu-section">
+                                    <h3 className="mega-menu-section-title">{section.title}</h3>
+                                    <div className="mega-menu-items">
+                                      {section.items && section.items.map((menuItem, itemIndex) => (
+                                        <MegaMenuItem
+                                          key={itemIndex}
+                                          item={menuItem}
+                                          onClose={() => setIsMobileMenuOpen(false)}
+                                        />
+                                      ))}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        }
+                        // Regular dropdown items
+                        return (
                         <DropdownMenuItem
                         key={dropdownIndex}
                           item={dropdownItem}
                           onClose={() => setIsMobileMenuOpen(false)}
                         />
-                      ))
+                        );
+                      })
                     )}
                   </div>
                 )}

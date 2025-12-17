@@ -29,6 +29,10 @@ import ExhibitionsPage from './pages/ExhibitionsPage';
 import WorkshopsSeminarsPage from './pages/WorkshopsSeminarsPage';
 import EDCTPPage from './pages/EDCTPPage';
 import FAQsPage from './pages/FAQsPage';
+import DashboardPage from './pages/DashboardPage';
+import InnovationDashboardPage from './pages/InnovationDashboardPage';
+import ResearchDashboardPage from './pages/ResearchDashboardPage';
+import DirectoratesPage from './pages/DirectoratesPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import './styles/App.css';
@@ -77,6 +81,10 @@ function App() {
             <Route path="/research/edctp" element={<EDCTPPage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faqs" element={<FAQsPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard/innovation" element={<InnovationDashboardPage />} />
+            <Route path="/dashboard/research" element={<ResearchDashboardPage />} />
+            <Route path="/directorates" element={<DirectoratesPage />} />
             <Route path="/resources/news" element={<NewsPage />} />
             <Route path="/resources/publication-video" element={<PublicationVideoPage />} />
           </Routes>

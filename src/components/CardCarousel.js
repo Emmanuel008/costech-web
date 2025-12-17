@@ -55,11 +55,8 @@ function CardCarousel() {
   ];
 
   const getPermitColor = (value) => {
-    if (value >= 130) return '#1e40af';
-    if (value >= 100) return '#b97c07';
-    if (value >= 70) return '#1e40af';
-    if (value >= 40) return '#b97c07';
-    return '#1e40af';
+    if (value >= 70 && value <= 150) return '#1e40af'; // Blue for 150-70
+    return '#b97c07'; // Yellow/Golden for 70 and below
   };
 
   const cards = [
@@ -419,7 +416,7 @@ function CardCarousel() {
             >
               ×
             </button>
-            <h3 className="map-key-title">Permits per Region - All Regions</h3>
+            <h3 className="map-key-title">Permits per region</h3>
             <div className="map-key-wrapper">
               <div className="map-key-map-container">
                 <MapContainer
@@ -468,23 +465,22 @@ function CardCarousel() {
                 </MapContainer>
               </div>
               <div className="map-key-legend-panel">
-                <h4 className="map-key-legend-title">Region Key</h4>
+                <h4 className="map-key-legend-title">Permit Count Key</h4>
                 <div className="map-key-regions-list">
-                  {mapKeyData
-                    .sort((a, b) => b.permits - a.permits)
-                    .map((region) => {
-                      const color = getPermitColor(region.permits);
-                      return (
-                        <div key={region.name} className="map-key-region-item">
-                          <div 
-                            className="map-key-region-color" 
-                            style={{ backgroundColor: color }}
-                          ></div>
-                          <span className="map-key-region-name">{region.name}</span>
-                          <span className="map-key-region-permits">{region.permits}</span>
-                        </div>
-                      );
-                    })}
+                  <div className="map-key-region-item">
+                    <div 
+                      className="map-key-region-color" 
+                      style={{ backgroundColor: '#1e40af' }}
+                    ></div>
+                    <span className="map-key-region-name">150 - 70</span>
+                  </div>
+                  <div className="map-key-region-item">
+                    <div 
+                      className="map-key-region-color" 
+                      style={{ backgroundColor: '#b97c07' }}
+                    ></div>
+                    <span className="map-key-region-name">70 and below</span>
+                  </div>
                 </div>
               </div>
             </div>
