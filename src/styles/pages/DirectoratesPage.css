@@ -54,54 +54,63 @@
   padding: 3rem 2rem;
 }
 
-/* Tabs */
-.directorates-tabs {
-  display: flex;
-  gap: 1rem;
+/* Directorates Grid */
+.directorates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
   margin-bottom: 3rem;
-  flex-wrap: wrap;
-  border-bottom: 2px solid #e5e7eb;
-  padding-bottom: 1rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.directorates-tab {
-  padding: 1rem 2rem;
+/* For 5 items: 3 on top row, 2 on bottom row - center the bottom 2 */
+.directorates-grid .directorate-card:nth-child(4) {
+  grid-column: 1 / 2;
+}
+
+.directorates-grid .directorate-card:nth-child(5) {
+  grid-column: 2 / 3;
+}
+
+.directorate-card {
+  padding: 1.5rem 2rem;
   background: white;
   border: 2px solid #e5e7eb;
-  border-radius: 8px 8px 0 0;
-  border-bottom: none;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
-  color: #6b7280;
+  color: #374151;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-align: left;
   position: relative;
-  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.directorates-tab:hover {
+.directorate-card:hover {
   background: #f9fafb;
-  color: #1e40af;
   border-color: #d1d5db;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
-.directorates-tab.active {
+.directorate-card.active {
   background: white;
   color: #1e40af;
   border-color: #1e40af;
-  border-bottom: 2px solid white;
-  margin-bottom: -2px;
-  z-index: 1;
+  border-width: 2px;
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15);
 }
 
-.directorates-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: white;
+.directorate-card-text {
+  line-height: 1.5;
+  display: block;
 }
 
 /* Content Sections */
@@ -475,15 +484,15 @@
     padding: 2rem 1.5rem;
   }
 
-  .directorates-tabs {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+  .directorates-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 
-  .directorates-tab {
-    padding: 0.875rem 1.5rem;
+  .directorate-card {
+    padding: 1.25rem 1.5rem;
     font-size: 0.95rem;
+    min-height: 70px;
   }
 
   .directorate-message-card {
@@ -594,9 +603,15 @@
     padding: 1.5rem 1rem;
   }
 
-  .directorates-tab {
-    padding: 0.75rem 1.25rem;
+  .directorates-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .directorate-card {
+    padding: 1rem 1.25rem;
     font-size: 0.9rem;
+    min-height: 60px;
   }
 
   .directorate-message-card {

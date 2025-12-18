@@ -26,14 +26,14 @@ const DirectoratesPage = () => {
       </div>
 
       <div className="directorates-container">
-        <div className="directorates-tabs">
+        <div className="directorates-grid">
           {directorates.map((directorate, index) => (
             <button
               key={directorate.id}
-              className={`directorates-tab ${activeTab === index ? 'active' : ''}`}
+              className={`directorate-card ${activeTab === index ? 'active' : ''}`}
               onClick={() => setActiveTab(index)}
             >
-              {directorate.name}
+              <span className="directorate-card-text">{directorate.name}</span>
             </button>
           ))}
         </div>
