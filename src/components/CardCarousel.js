@@ -62,60 +62,54 @@ function CardCarousel() {
   const cards = [
     {
       id: 1,
-      title: 'Innovation per Sub-Program',
-      chartType: 'donut',
-      data: [
-        { label: 'ICT', value: 45, color: '#b97c07' },
-        { label: 'Agriculture', value: 35, color: '#1e40af' },
-        { label: 'Energy', value: 20, color: '#b97c07' }
-      ]
-    },
-    {
-      id: 2,
       title: 'Permit per Region',
       chartType: 'map',
       data: tanzaniaRegions
     },
     {
+      id: 2,
+      title: 'Innovation per Sector',
+      chartType: 'bar',
+      data: [
+        { label: 'Agriculture', value: 40, color: '#b97c07' },
+        { label: 'Technology', value: 34, color: '#1e40af' },
+        { label: 'Others', value: 26, color: '#6b7280' }
+      ]
+    },
+    {
       id: 3,
-      title: 'Research per Sub-Program',
+      title: 'Research per Sector',
       chartType: 'donut',
       data: [
-        { label: 'Agriculture', value: 45, color: '#1e40af' },
-        { label: 'Health', value: 35, color: '#b97c07' },
-        { label: 'Environment', value: 20, color: '#1e40af' }
+        { label: 'Agriculture', value: 40, color: '#b97c07' },
+        { label: 'Technology', value: 34, color: '#1e40af' },
+        { label: 'Others', value: 26, color: '#6b7280' }
       ]
     },
     {
       id: 4,
-      title: 'Projects by Status',
+      title: 'Research Permit per Sector',
       chartType: 'bar',
       data: [
-        { label: 'Active', value: 85, color: '#b97c07' },
-        { label: 'Pending', value: 65, color: '#1e40af' },
-        { label: 'Completed', value: 100, color: '#b97c07' }
+        { label: 'Agriculture', value: 40, color: '#b97c07' },
+        { label: 'Technology', value: 34, color: '#1e40af' },
+        { label: 'Others', value: 26, color: '#6b7280' }
       ]
     },
     {
       id: 5,
-      title: 'Project Status Overview',
+      title: 'Research Permit per Gender',
       chartType: 'donut',
       data: [
-        { label: 'Active', value: 50, color: '#1e40af' },
-        { label: 'Pending', value: 30, color: '#b97c07' },
-        { label: 'Completed', value: 20, color: '#1e40af' }
+        { label: 'Male', value: 60, color: '#1e40af' },
+        { label: 'Female', value: 40, color: '#b97c07' }
       ]
     },
     {
       id: 6,
-      title: 'Applications by District',
-      chartType: 'bar',
-      data: [
-        { label: 'District A', value: 110, color: '#b97c07' },
-        { label: 'District B', value: 75, color: '#1e40af' },
-        { label: 'District C', value: 95, color: '#b97c07' },
-        { label: 'District D', value: 55, color: '#1e40af' }
-      ]
+      title: 'Number of Integrated Research',
+      chartType: 'stat',
+      data: { value: '50K', label: 'Integrated Research' }
     }
   ];
 
@@ -250,6 +244,13 @@ function CardCarousel() {
                         <div className="map-click-hint">
                           <span>Click to view all regions</span>
                         </div>
+                      </div>
+                    </>
+                  ) : card.chartType === 'stat' ? (
+                    <>
+                      <div className="card-chart stat-chart">
+                        <div className="stat-value">{card.data.value}</div>
+                        <div className="stat-label">{card.data.label}</div>
                       </div>
                     </>
                   ) : card.chartType === 'bar' ? (

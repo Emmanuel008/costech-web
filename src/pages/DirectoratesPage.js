@@ -1,6 +1,33 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { directorates } from '../data/directorates';
 import '../styles/pages/DirectoratesPage.css';
+
+// Mapping of director names to their management profile slugs
+const directorSlugMap = {
+  'Eng. Samson John Mwela, ndc': 'mr-samson-mwela',
+  'Mr. Samson Mwela': 'mr-samson-mwela',
+  'Dr. Bugwesa Katale': 'dr-bugwesa-katale',
+  'Mr. Imanuel Mgonja': 'mr-imanuel-mgonja',
+  'Dr. Erasto Shemu Mlyuka': 'dr-athuman-m-ngumia', // Note: This might need updating if the actual director changes
+};
+
+// Function to convert director name to slug format
+const nameToSlug = (name) => {
+  // First check if there's a direct mapping
+  if (directorSlugMap[name]) {
+    return directorSlugMap[name];
+  }
+  
+  // Otherwise, generate slug from name
+  return name
+    .toLowerCase()
+    .replace(/\./g, '') // Remove periods
+    .replace(/,/g, '') // Remove commas
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .trim();
+};
 
 const DirectoratesPage = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -44,59 +71,36 @@ const DirectoratesPage = () => {
               key={directorate.id}
               className={`directorate-section ${activeTab === index ? 'active' : ''}`}
             >
-              {/* Director Message */}
-              <div className="directorate-message-card">
-                <div className="director-info">
-                  <h2>Message from the {directorate.director.title.split(',')[0]}</h2>
-                  <div className="director-quote">
-                    <svg
-                      className="quote-icon"
-                      width="40"
-                      height="40"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M6 17H10C11.1 17 12 16.1 12 15V11C12 9.9 11.1 9 10 9H8V7C8 5.9 8.9 5 10 5H12V1H8C5.8 1 4 2.8 4 5V15C4 16.1 4.9 17 6 17Z"
-                        fill="#b97c07"
-                        fillOpacity="0.3"
-                      />
-                      <path
-                        d="M14 17H18C19.1 17 20 16.1 20 15V11C20 9.9 19.1 9 18 9H16V7C16 5.9 16.9 5 18 5H20V1H16C13.8 1 12 2.8 12 5V15C12 16.1 12.9 17 14 17Z"
-                        fill="#1e40af"
-                        fillOpacity="0.3"
-                      />
-                    </svg>
-                    <p className="director-message">"{directorate.director.message}"</p>
+              {/* About the Directorate */}
+              <div className="directorate-section-block about-directorate">
+                <div className="section-content">
+                  <h2 className="section-title">About the {directorate.name}</h2>
+                  <div className="section-text">
+                    {directorate.about.split('\n').map((paragraph, idx) => (
+                      <p key={idx}>{paragraph}</p>
+                    ))}
                   </div>
-                  <div className="director-signature">
-                    <p className="director-name">{directorate.director.name}</p>
-                    <p className="director-title">{directorate.director.title}</p>
-                  </div>
+                  {directorate.director.name && (
+                    <div className="director-link-section">
+                      <p className="director-link-label">Director:</p>
+                      <Link
+                        to={`/about/top-management/${nameToSlug(directorate.director.name)}`}
+                        className="director-link"
+                      >
+                        {directorate.director.name}
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
 
-              {/* Combined Sections 1, 2, and 3 */}
+              {/* Combined Sections */}
               <div className="directorate-section-block combined-sections">
                 <div className="section-content">
-                  {/* About Section */}
-                  <div className="combined-section-item">
-                    <div className="section-header">
-                      <h3 className="section-number">1.</h3>
-                      <h3 className="section-title">About the {directorate.name.split('(')[0].trim()}</h3>
-                    </div>
-                    <div className="section-text">
-                      {directorate.about.split('\n').map((paragraph, idx) => (
-                        <p key={idx}>{paragraph}</p>
-                      ))}
-                    </div>
-                  </div>
-
                   {/* Core Roles */}
                   <div className="combined-section-item">
                     <div className="section-header">
-                      <h3 className="section-number">2.</h3>
+                      <h3 className="section-number">1.</h3>
                       <h3 className="section-title">Core Roles and Mandate</h3>
                     </div>
                     <p className="section-intro">
@@ -110,36 +114,86 @@ const DirectoratesPage = () => {
                   </div>
 
                   {/* Programmes */}
-                  <div className="combined-section-item">
-                    <div className="section-header">
-                      <h3 className="section-number">3.</h3>
-                      <h3 className="section-title">Programmes and Initiatives</h3>
+                  {directorate.programmes && directorate.programmes.length > 0 && (
+                    <div className="combined-section-item">
+                      <div className="section-header">
+                        <h3 className="section-number">2.</h3>
+                        <h3 className="section-title">Programmes and Initiatives</h3>
+                      </div>
+                      {directorate.programmes.map((programme, idx) => (
+                        <div key={idx} className="programme-item">
+                          <h4 className="programme-title">
+                            3.{idx + 1} {programme.title}
+                          </h4>
+                          <p className="programme-description">{programme.description}</p>
+                          <ul className="programme-items">
+                            {programme.items.map((item, itemIdx) => (
+                              <li key={itemIdx}>
+                                <span className="programme-item-label">
+                                  {String.fromCharCode(97 + itemIdx)})
+                                </span>
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
                     </div>
-                    {directorate.programmes.map((programme, idx) => (
-                      <div key={idx} className="programme-item">
-                        <h4 className="programme-title">
-                          3.{idx + 1} {programme.title}
-                        </h4>
-                        <p className="programme-description">{programme.description}</p>
-                        <ul className="programme-items">
-                          {programme.items.map((item, itemIdx) => (
-                            <li key={itemIdx}>
-                              <span className="programme-item-label">
-                                {String.fromCharCode(97 + itemIdx)})
-                              </span>
-                              {item}
-                            </li>
+                  )}
+
+                  {/* Services */}
+                  {directorate.services && directorate.services.length > 0 && (
+                    <div className="combined-section-item">
+                      <div className="section-header">
+                        <h3 className="section-number">
+                          {(() => {
+                            let num = 2;
+                            if (directorate.programmes && directorate.programmes.length > 0) num++;
+                            return num;
+                          })()}.
+                        </h3>
+                        <h3 className="section-title">Services</h3>
+                      </div>
+                      {typeof directorate.services[0] === 'string' ? (
+                        // Simple list format (e.g., DRCP)
+                        <ul className="roles-list">
+                          {directorate.services.map((service, idx) => (
+                            <li key={idx}>{service}</li>
                           ))}
                         </ul>
-                      </div>
-                    ))}
-                  </div>
+                      ) : (
+                        // Categorized format (e.g., DKM)
+                        <div className="services-categories">
+                          {directorate.services.map((serviceCategory, idx) => (
+                            <div key={idx} className="service-category">
+                              <h4 className="service-category-title">{serviceCategory.category}</h4>
+                              {serviceCategory.description && (
+                                <p className="service-category-description">{serviceCategory.description}</p>
+                              )}
+                              <ul className="service-items">
+                                {serviceCategory.items.map((item, itemIdx) => (
+                                  <li key={itemIdx}>{item}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Downloads */}
               <div className="directorate-section-block">
-                <h3 className="section-number">4.</h3>
+                <h3 className="section-number">
+                  {(() => {
+                    let sectionNum = 2;
+                    if (directorate.programmes && directorate.programmes.length > 0) sectionNum++;
+                    if (directorate.services && directorate.services.length > 0) sectionNum++;
+                    return sectionNum;
+                  })()}.
+                </h3>
                 <div className="section-content">
                   <h3 className="section-title">Downloads</h3>
                   <div className="downloads-table-wrapper">

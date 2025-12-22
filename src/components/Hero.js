@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   const heroImageStyle2 = {
-    backgroundImage: `url('${process.env.PUBLIC_URL}/assets/img/hero2.jpeg')`,
+    backgroundImage: `url('${process.env.PUBLIC_URL}/assets/img/ubunifu.jpeg')`,
   };
 
   const handleAnimationComplete = () => {};
@@ -85,14 +85,11 @@ const Hero = () => {
           <div className="hero-slide-overlay"></div>
           <div className="hero-content">
             <div className="hero-content-card">
-              <div className="hero-badge-tag">FAAS Platform</div>
               <h1 className="hero-title">
-                Foreign Awards
-            <br />
-                Assessment System
-          </h1>
+                COSTECH Yasisitiza Ulinzi wa Bunifu Kabla ya Kubiasharisha
+              </h1>
               <p className="hero-description">
-                An online platform for the evaluation of foreign awards and recognition of qualifications. Streamline your credential verification process with our comprehensive assessment system.
+                COSTECH emphasizes the protection of innovation before commercialization to ensure intellectual property rights and support sustainable development.
               </p>
               <div className="hero-cta-buttons">
                 <button className="hero-btn-primary">Learn More</button>

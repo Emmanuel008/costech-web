@@ -62,6 +62,20 @@ const VisionMissionPage = () => {
         </div>
       </div>
 
+      <section className="quality-policy-section">
+          <div className="quality-policy-header">
+            <span className="quality-policy-tag">Quality Policy</span>
+          </div>
+          <div className="quality-policy-content">
+            <p className="quality-policy-text">
+              <strong>COSTECH is committed to coordinate, promote and facilitate science, technology and innovation in the country by meeting legal and customer requirements and even exceeding customer expectations.</strong>
+            </p>
+            <p className="quality-policy-text">
+              <strong>COSTECH provides resources and continually improve its processes to meet requirements of <strong>ISO 9001:2015</strong> by ensuring staff are capable of delivering quality products and services timely and consistently to ensure that country is driven by science, technology and innovation.</strong>
+            </p>
+          </div>
+      </section>
+
       <section className="values-section">
         <div className="values-header">
           <h2>Our Core Values</h2>

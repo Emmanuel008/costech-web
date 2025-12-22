@@ -1,0 +1,134 @@
+.what-we-offer-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* Hero Section */
+.what-we-offer-hero {
+  position: relative;
+  height: 300px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.what-we-offer-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.what-we-offer-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+  max-width: 900px;
+}
+
+.what-we-offer-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.what-we-offer-hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* Container */
+.what-we-offer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* List Layout */
+.what-we-offer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.what-we-offer-item {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+  border-left: 4px solid #b97c07;
+}
+
+.what-we-offer-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border-left-color: #1e40af;
+}
+
+.what-we-offer-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
+  min-width: 2rem;
+  line-height: 1.5;
+}
+
+.what-we-offer-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+  flex: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .what-we-offer-hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .what-we-offer-container {
+    padding: 3rem 1.5rem;
+  }
+
+  .what-we-offer-item {
+    padding: 1.25rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .what-we-offer-hero {
+    height: 250px;
+  }
+
+  .what-we-offer-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .what-we-offer-number {
+    font-size: 1.25rem;
+    min-width: 1.5rem;
+  }
+
+  .what-we-offer-text {
+    font-size: 0.95rem;
+  }
+}
+

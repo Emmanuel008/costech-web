@@ -1,0 +1,256 @@
+.projects-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* Hero Section */
+.projects-hero {
+  position: relative;
+  height: 300px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.projects-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.projects-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+  max-width: 900px;
+}
+
+.projects-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.projects-hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* Container */
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* Section Styling */
+.projects-section {
+  margin-bottom: 4rem;
+}
+
+.projects-section:last-child {
+  margin-bottom: 0;
+}
+
+.projects-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.projects-section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 1rem;
+}
+
+.projects-section-header p {
+  font-size: 1.1rem;
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Ongoing Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-top: 4px solid #b97c07;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.project-card-header {
+  margin-bottom: 1.5rem;
+}
+
+.project-card-header h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0;
+}
+
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+}
+
+.project-focus-areas {
+  margin-top: 0.5rem;
+}
+
+.project-focus-areas h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin: 0 0 0.75rem 0;
+}
+
+.project-focus-areas ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-focus-areas li {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.6;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.project-focus-areas li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #b97c07;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Partnership Areas Grid */
+.partnership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+.partnership-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #1e40af;
+}
+
+.partnership-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(30, 64, 175, 0.15);
+  border-left-color: #b97c07;
+}
+
+.partnership-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0 0 1rem 0;
+}
+
+.partnership-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .projects-hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .projects-section-header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-container {
+    padding: 3rem 1.5rem;
+  }
+
+  .project-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .partnership-card {
+    padding: 1.5rem;
+  }
+
+  .projects-hero {
+    height: 250px;
+  }
+
+  .projects-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .projects-hero-content p {
+    font-size: 1rem;
+  }
+
+  .projects-section-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .partnership-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

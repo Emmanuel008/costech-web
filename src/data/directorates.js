@@ -102,41 +102,26 @@ As the principal organ, CDTT provides national leadership and technical oversigh
   },
   {
     id: 'corporate-services',
-    name: 'Corporate Services',
+    name: 'Directorate of Corporate Services (DCS)',
     slug: 'corporate-services',
     director: {
-      name: 'TBD',
-      title: 'Director, Corporate Services',
-      message: 'The Corporate Services Directorate provides essential administrative, financial, and human resource support to ensure COSTECH operates efficiently and effectively in delivering its mandate.'
+      name: 'Mr. Imanuel Mgonja',
+      title: 'Director, Directorate of Corporate Services (DCS)',
+      message: 'The Directorate of Corporate Services is a key support directorate at the Tanzania Commission for Science and Technology (COSTECH), responsible for providing strategic and operational corporate services that enable the effective delivery of COSTECH\'s mandate in science, technology, and innovation. The Directorate plays a central role in ensuring sound financial management, effective human resource administration, and coordinated planning processes across the Commission. Through its services, the Directorate strengthens institutional governance, operational efficiency, and compliance with public sector regulations and national policies.'
     },
-    about: 'The Corporate Services Directorate is responsible for providing comprehensive administrative, financial, human resources, and support services to COSTECH. This directorate ensures that all operational and strategic functions of the Commission are well-supported with the necessary resources, systems, and infrastructure.',
+    about: 'The Directorate of Corporate Services is a key support directorate at the Tanzania Commission for Science and Technology (COSTECH), responsible for providing strategic and operational corporate services that enable the effective delivery of COSTECH\'s mandate in science, technology, and innovation. The Directorate plays a central role in ensuring sound financial management, effective human resource administration, and coordinated planning processes across the Commission. Through its services, the Directorate strengthens institutional governance, operational efficiency, and compliance with public sector regulations and national policies.',
     coreRoles: [
-      'Manage financial resources and budgeting',
-      'Oversee human resources and staff development',
-      'Provide administrative and logistical support',
-      'Manage information technology and communications infrastructure',
-      'Ensure compliance with regulatory and policy requirements'
+      'To implement Human Resource and financial policies, practice and procedure that support the business strategy in line',
+      'To lead, manage and develop Commission staff, and volunteers ensure the efficient and effective operation of Corporate Services and the provision of timely & accurate information',
+      'To oversee the development of employee\'s welfare programs portrayed in a form of welfare for staff retention strategy for enhancing condition of service',
+      'To manage the Industrial relation interface to provide a constructive and conducive working environment that enshrine a sense of belongingness',
+      'To plan, coordinate and direct policies and procedures designed to provide administrative support',
+      'To plan, direct and control the financial, accounting and human resource activities of the commission and to review of human Resources and financial policies and procedure manuals and recommends amendments to the management',
+      'To coordinate preparations of Recurrent and Development Budget including that of Personal Emolument and Other Charges and prepare final accounts for audit purposes and control expenditure',
+      'To coordinate physical plans for the expansion of the Commission',
+      'To initiate and control development projects'
     ],
-    programmes: [
-      {
-        title: 'Financial Management',
-        description: 'Ensuring sound financial management and accountability:',
-        items: [
-          'Budget planning and execution',
-          'Financial reporting and auditing',
-          'Resource mobilization and management'
-        ]
-      },
-      {
-        title: 'Human Resources Development',
-        description: 'Building organizational capacity through:',
-        items: [
-          'Recruitment and talent management',
-          'Training and professional development',
-          'Performance management systems'
-        ]
-      }
-    ],
+    programmes: [],
     downloads: [
       { id: 1, name: 'Corporate Services Guidelines', file: 'corporate-services-guidelines.pdf' },
       { id: 2, name: 'Financial Management Manual', file: 'financial-management-manual.pdf' },
@@ -145,84 +130,113 @@ As the principal organ, CDTT provides national leadership and technical oversigh
   },
   {
     id: 'research-coordination',
-    name: 'Research Coordination and Promotion',
+    name: 'Directorate of Research Coordination and Promotion (DRCP)',
     slug: 'research-coordination',
     director: {
-      name: 'TBD',
-      title: 'Director, Research Coordination and Promotion',
-      message: 'The Research Coordination and Promotion Directorate coordinates and promotes research activities across Tanzania, facilitating research permits, promoting research excellence, and strengthening the national research ecosystem.'
+      name: 'Dr. Bugwesa Katale',
+      title: 'Director, Directorate of Research Coordination and Promotion (DRCP)',
+      message: 'The Directorate of Research Coordination and Promotion (DRCP), led by Dr. Bugwesa Katale, is responsible for guiding, coordinating, and promoting scientific research in Tanzania. The Directorate comprises three sections, namely Life Sciences, Physical Sciences, and Social Sciences. DRCP provides strategic leadership by working closely with research stakeholders to ensure that research activities are aligned with national development agendas.',
+      biography: 'Dr. Bugwesa Katale is the Director of the Directorate of Research Coordination and Promotion (DRCP) at COSTECH. [Biography details to be added]'
     },
-    about: 'The Research Coordination and Promotion Directorate is responsible for coordinating research activities, managing research permits, and promoting research excellence across Tanzania. This directorate plays a crucial role in facilitating both local and international research collaborations while ensuring compliance with national research regulations.',
+    about: `The Directorate of Research Coordination and Promotion (DRCP), led by Dr. Bugwesa Katale, is responsible for guiding, coordinating, and promoting scientific research in Tanzania. The Directorate comprises three sections, namely Life Sciences, Physical Sciences, and Social Sciences. DRCP provides strategic leadership by working closely with research stakeholders to ensure that research activities are aligned with national development agendas.`,
     coreRoles: [
-      'Coordinate and promote research activities',
-      'Manage research permit applications and approvals',
-      'Facilitate research collaborations and partnerships',
-      'Promote research excellence and capacity building',
-      'Maintain research databases and information systems'
+      'To formulate national research agenda',
+      'To formulate short and long-term plans and programmes for promotion and development of scientific research in the fields of Life, Physical and Social Sciences',
+      'To coordinate and promote scientific research in the fields of Life, Physical and Social Science',
+      'To coordinate and facilitate the utilization of research results for socio-economic development',
+      'To promote and coordinate cooperation in research between national and foreign research institutes',
+      'To monitor and keep up-to date inventory of scientific activities and research equipment and an up-date directory of research scientists in national universities and research institutes',
+      'To organize regular meetings of the R&D Advisory Committees on Life, Physical and Social Sciences and implement their advises and directives',
+      'To formulate and prepare research project proposals for the purpose of soliciting funds from donors and other sources',
+      'To identify potential value chain areas/niches for research'
     ],
-    programmes: [
-      {
-        title: 'Research Permit Management',
-        description: 'Streamlining research permit processes:',
-        items: [
-          'Research permit application and review',
-          'Compliance monitoring and enforcement',
-          'Research permit database management'
-        ]
-      },
-      {
-        title: 'Research Promotion',
-        description: 'Promoting research excellence through:',
-        items: [
-          'Research capacity building programs',
-          'Research dissemination and knowledge sharing',
-          'Research collaboration facilitation'
-        ]
-      }
+    services: [
+      'Issuing research permit',
+      'Issuing renewal and amendment of research permits',
+      'Registry of all research projects funded by the government',
+      'Support for research ethical clearance',
+      'Capacity building for researchers and ethical committees',
+      'Researcher registration',
+      'R&D institutions registration',
+      'Provides research regulations, frameworks, and operational guidelines',
+      'Updates national research standards in line with global trends',
+      'Enforces compliance for all research actors',
+      'Advises government on emerging research governance issues'
     ],
+    programmes: [],
     downloads: [
       { id: 1, name: 'Research Permit Guidelines', file: 'research-permit-guidelines.pdf' },
-      { id: 2, name: 'Research Application Forms', file: 'research-application-forms.pdf' },
-      { id: 3, name: 'Research Ethics Guidelines', file: 'research-ethics-guidelines.pdf' }
+      { id: 2, name: 'Ethical Clearance Guidelines', file: 'ethical-clearance-guidelines.pdf' },
+      { id: 3, name: 'National Research Framework', file: 'national-research-framework.pdf' },
+      { id: 4, name: 'R&D Committee Establishment Manual', file: 'rd-committee-establishment-manual.pdf' },
+      { id: 5, name: 'R&D Data Checklist for Institutions', file: 'rd-data-checklist-institutions.pdf' },
+      { id: 6, name: 'Sample Permit Forms and Checklists', file: 'sample-permit-forms-checklists.pdf' },
+      { id: 7, name: 'Ethics Guidelines and Policies', file: 'ethics-guidelines-policies.pdf' },
+      { id: 8, name: 'Guidelines for Establishing Institutional R&D Committees', file: 'institutional-rd-committees-guidelines.pdf' },
+      { id: 9, name: 'National R&D Calendar and Events', file: 'national-rd-calendar-events.pdf' }
     ]
   },
   {
     id: 'knowledge-management',
-    name: 'Knowledge Management',
+    name: 'Directorate of Knowledge Management (DKM)',
     slug: 'knowledge-management',
     director: {
-      name: 'TBD',
-      title: 'Director, Knowledge Management',
-      message: 'The Knowledge Management Directorate manages and disseminates scientific and technological knowledge, maintaining information systems and databases to support evidence-based decision making and knowledge sharing across Tanzania.'
+      name: 'Eng. Samson John Mwela, ndc',
+      title: 'Director, Directorate of Knowledge Management (DKM)',
+      message: 'The Directorate of Knowledge Management (DKM) is a core Directorate of the Tanzania Commission for Science and Technology (COSTECH) responsible for capturing, organizing, translating, disseminating, and enabling access to knowledge and digital services in support of science, technology, and innovation (STI) development in Tanzania. The Directorate plays a strategic role in ensuring that knowledge generated through research and innovation is preserved, transformed into usable formats, widely disseminated, and effectively supported by robust ICT infrastructure, thereby strengthening national research, education, and innovation ecosystems.',
+      biography: 'Eng. Samson John Mwela, ndc - Master in Security and Strategic Studies, MSc in Telecommunications Engineering AND MSc in Signal Processing Engineering'
     },
-    about: 'The Knowledge Management Directorate is responsible for collecting, organizing, managing, and disseminating scientific and technological knowledge. This directorate maintains critical information systems including ISNS (Information System for National Science) and DPM (Data and Policy Management) to support research, policy formulation, and knowledge sharing.',
-    coreRoles: [
-      'Manage scientific and technological information systems',
-      'Maintain national research and innovation databases',
-      'Facilitate knowledge sharing and dissemination',
-      'Support evidence-based policy formulation',
-      'Coordinate information and data management activities'
-    ],
-    programmes: [
+    about: 'The Directorate of Knowledge Management (DKM) is a core Directorate of the Tanzania Commission for Science and Technology (COSTECH) responsible for capturing, organizing, translating, disseminating, and enabling access to knowledge and digital services in support of science, technology, and innovation (STI) development in Tanzania. The Directorate plays a strategic role in ensuring that knowledge generated through research and innovation is preserved, transformed into usable formats, widely disseminated, and effectively supported by robust ICT infrastructure, thereby strengthening national research, education, and innovation ecosystems.',
+    coreRoles: [],
+    services: [
       {
-        title: 'Information System for National Science (ISNS)',
-        description: 'Managing the national science information system:',
+        category: 'ICT infrastructure and services (NISSTI, HERIN, E-government Services)',
+        description: 'The Government of Tanzania has mandated the COSTECH to coordinate and maintain a national system of scientific and technological information, the Directorate is responsible for the development, integration, and management of ICT platforms that support System for Science, Technology and Innovation (STI) coordination and service delivery. Currently, the directorate offers the following services:',
         items: [
-          'Research data collection and management',
-          'Scientific publication tracking',
-          'Research output documentation'
+          'Design, operate, and maintain the National Information System for Science, Technology and Innovation (NISSTI) as the official national platform for managing and disseminating STI data, records, and indicators',
+          'Manage and support the Higher Education Research Information Network (HERIN) to enhance connectivity, research collaboration and information exchange among higher learning and research institutions (HERIs)',
+          'Implement and integrate e-Government services to facilitate statutory functions including library system, research registration, research clearance, innovation registration, and reporting',
+          'Ensure interoperability, data integrity, and secure information sharing with relevant national institutions and regulatory bodies in fulfillment of COSTECH\'s coordination mandate',
+          'Promote the strategic use of ICT systems to support evidence-based policy formulation, planning, monitoring, and decision-making in science, technology, and innovation',
+          'Supporting digital transformation initiatives within the national STI ecosystem'
         ]
       },
       {
-        title: 'Data and Policy Management (DPM)',
-        description: 'Supporting policy through data management:',
+        category: 'Library services',
+        description: 'COSTECH is mandated to collect, disseminate, and promote access to scientific and technological information, the Directorate provides library and knowledge services that support research, innovation, and policy development. The services available are:',
         items: [
-          'Policy data collection and analysis',
-          'Policy impact assessment',
-          'Data-driven policy recommendations'
+          'Establish and manage physical and digital STI libraries and repositories',
+          'Facilitate access to scientific literature, research outputs, technical reports, and databases',
+          'Promote information literacy, research ethics, and scholarly communication related to Science Technology and innovation',
+          'Support researchers, innovators, and policymakers with authoritative STI information services',
+          'Advance open science and knowledge sharing in line with national and international best practices'
+        ]
+      },
+      {
+        category: 'Public Relations and communication',
+        description: 'The directorate is responsible for promoting public understanding and awareness of science and technology. The directorate ensures delivery of the following service',
+        items: [
+          'Develop and implement STI communication strategy to publicize COSTECH programmes, research outcomes, and innovation achievements',
+          'Disseminate STI information to the public, stakeholders, and policymakers through media, digital platforms, and outreach activities',
+          'Strengthen stakeholder engagement and partnerships in support of national STI priorities',
+          'Promote a positive public image, visibility, accessibility, and utilization of research outputs by policymakers, industry, academia, and the public',
+          'Support advocacy and awareness initiatives aligned with COSTECH\'s coordination and promotional mandate'
+        ]
+      },
+      {
+        category: 'Documentation and publication',
+        description: 'Directorate fulfills the responsibility to document, archive, and disseminate STI information and ensures systematic documentation and publication of STI activities and outputs. The following services are being offered',
+        items: [
+          'Document and archive research, innovation, and policy processes undertaken or coordinated by COSTECH',
+          'Translating research findings and innovation outputs into policy-relevant, practitioner-friendly, and public-oriented knowledge products',
+          'Produce and publish scientific reports, policy briefs, journals, guidelines, and proceedings',
+          'Maintain institutional records and digital archives to preserve organizational memory',
+          'Support monitoring, evaluation, and reporting through accurate and timely documentation',
+          'Facilitate dissemination of STI knowledge to inform policy, planning, and public discourse'
         ]
       }
     ],
+    programmes: [],
     downloads: [
       { id: 1, name: 'Knowledge Management Framework', file: 'knowledge-management-framework.pdf' },
       { id: 2, name: 'ISNS User Guide', file: 'isns-user-guide.pdf' },

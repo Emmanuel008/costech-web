@@ -136,105 +136,6 @@ const Navbar = () => {
     };
   }, []);
 
-  const directoratesSectionsItems = [
-    {
-      type: 'section',
-      title: 'Directorates',
-      items: [
-        {
-          text: 'Corporate Services',
-          href: '/directorates/corporate-services',
-        },
-        {
-          text: 'Research Coordination and Promotion',
-          href: '/directorates/research-coordination',
-          subItems: [
-            {
-              text: 'Research Permit',
-              href: '/directorates/research-permit',
-              subItems: [
-                { text: 'Requirements & Guidelines', href: '/directorates/research-permit/requirements' },
-                {
-                  text: 'Permit Categories',
-                  href: '/directorates/research-permit/categories',
-                  subItems: [
-                    { text: 'Local Researchers', href: '/directorates/research-permit/categories/local' },
-                    { text: 'Foreign Researchers', href: '/directorates/research-permit/categories/foreign' },
-                    { text: 'Students', href: '/directorates/research-permit/categories/students' },
-                    { text: 'Institutions', href: '/directorates/research-permit/categories/institutions' },
-                  ],
-                },
-                { text: 'Application Process Workflow', href: '/directorates/research-permit/workflow' },
-                { text: 'Frequently Asked Questions', href: '/directorates/research-permit/faq' },
-                { text: 'Contact for Support', href: '/directorates/research-permit/contact' },
-              ],
-            },
-            { text: 'Research Promotion', href: '/directorates/research-promotion' },
-          ],
-        },
-        {
-          text: 'Centre for Development in Technology Transfer',
-          href: '/directorates/technology-transfer',
-          subItems: [
-            {
-              text: 'Innovation',
-              href: '/directorates/innovation',
-              subItems: [
-                { text: 'Technology Transfer Services', href: '/directorates/innovation/transfer-services' },
-                { text: 'Innovation Support Programs', href: '/directorates/innovation/support-programs' },
-                 { text: 'Innovation Space', href: '/technology/innovation-spaces' },
-    { text: 'Incubation', href: '/technology/incubation' },
-                { text: 'Local Tech Startups/Success Stories', href: '/directorates/innovation/startups' },
-                { text: 'Patent & IP Advisory Services', href: '/directorates/innovation/patent-ip' },
-                { text: 'Digital Transformation Initiatives', href: '/directorates/innovation/digital-transformation' },
-              ],
-            },
-            
-            {
-              text: 'Technology Transfer and Management',
-              href: '/directorates/technology-management',
-              subItems: [
-                { text: 'Technology Acquisition and Management', href: '/directorates/technology-management/acquisition' },
-              ],
-            },
-          ],
-        },
-        {
-          text: 'Knowledge Management',
-          href: '/directorates/knowledge-management',
-          subItems: [
-            { text: 'ISNS', href: '/directorates/knowledge-management/isns' },
-            { text: 'DPM', href: '/directorates/knowledge-management/dpm' },
-          ],
-        },
-      ],
-    },
-    {
-      type: 'section',
-      title: 'Units',
-      items: [
-        {
-          text: 'National Fund for Advancement of Science and Technology',
-          href: '/sections/nfast',
-          subItems: [
-            {
-              text: 'Grants',
-              href: '/sections/nfast/grants',
-              subItems: [
-                { text: 'Calls for Proposals', href: '/sections/nfast/grants/calls' },
-                { text: 'Eligibility Criteria', href: '/sections/nfast/grants/eligibility' },
-                { text: 'Application Portal', href: '/sections/nfast/grants/portal' },
-                { text: 'Guidelines & Downloads', href: '/sections/nfast/grants/guidelines' },
-                { text: 'Past Winners & Beneficiaries', href: '/sections/nfast/grants/winners' },
-              ],
-            },
-            { text: 'Loans', href: '/sections/nfast/loans' },
-          ],
-        },
-      ],
-    },
-  ];
-
   const aboutUsDropdownItems = [
     { text: 'Vision, Mission, Quality Policy', href: '/about/vision-mission' },
     { text: 'Organizational Structure', href: '/about/organogram' },
@@ -244,45 +145,73 @@ const Navbar = () => {
     { text: 'Contact Us', href: '/contact' },
   ];
 
-  const onlineServicesItems = [
-    { text: 'STI Information portal(NISSTI)', href: '/nissti' },
-    { text: 'Innovation Space', href: '/technology/innovation-spaces' },
-    { text: 'Research Clearance Portal', href: '/research-clearance' },
-    { text: 'Union Catalog', href: '/union-catalog' },
-    { text: 'TanBIF', href: '/tanbif' },
-    { text: 'National Interlinked Research Repository', href: '/research-repository' },
-    { text: 'Research Funding', href: '/research-funding' },
-    { text: 'Customer Survey Form', href: '/customer-survey' },
-  ];
-
-  const resourcesPublicationsItems = [
+  const servicesItems = [
     {
       type: 'section',
-      title: 'Resources',
+      title: 'What We Offer',
       items: [
-        { text: 'Policies', href: '/resources/policies' },
-        { text: 'Act & legal documents', href: '/resources/acts-legal' },
-        { text: 'Strategic plans', href: '/resources/strategic-plans' },
-        { text: 'Guidelines and frameworks', href: '/resources/guidelines-frameworks' },
+        { text: 'What We Offer', href: '/what-we-offer' },
+          ],
+        },
+        {
+      type: 'section',
+      title: 'Online Services',
+      items: [
+        { text: 'STI Information portal(NISSTI)', href: '/nissti' },
+                 { text: 'Innovation Space', href: '/technology/innovation-spaces' },
+        { text: 'Research Clearance Portal', href: '/research-clearance' },
+        { text: 'Union Catalog', href: '/union-catalog' },
+        { text: 'TanBIF', href: '/tanbif' },
+        { text: 'National Interlinked Research Repository', href: '/research-repository' },
+        { text: 'Research Funding', href: '/research-funding' },
+        { text: 'Customer Survey Form', href: '/customer-survey' },
       ],
     },
+  ];
+
+  const publicationsEventsItems = [
     {
       type: 'section',
       title: 'Publications',
       items: [
-        { text: 'News', href: '/resources/news' },
-        { text: 'Publication videos', href: '/resources/publication-video' },
+        { text: 'Journals', href: '/publications/journals' },
+        { text: 'Magazine', href: '/publications/magazine' },
+        { text: 'Books', href: '/publications/books' },
+        { text: 'Acts & Legal', href: '/publications/acts-legal' },
+        { text: 'Policies', href: '/publications/policies' },
+        { text: 'Strategic Plan', href: '/publications/strategic-plan' },
+        { text: 'Guideline and Documents', href: '/publications/guidelines-documents' },
       ],
     },
+    {
+      type: 'section',
+      title: 'Events',
+      items: [
+        { text: 'Conference', href: '/events/conferences' },
+        { text: 'Exhibitions', href: '/events/exhibitions' },
+        { text: 'Community Engagements', href: '/events/community-engagements' },
+      ],
+    },
+  ];
+
+  const mediaCentreItems = [
+    { text: 'Newsletter', href: '/media/newsletter' },
+    { text: 'Press Release', href: '/media/press-release' },
+    { text: 'Public Notes', href: '/media/public-notes' },
+    { text: 'Statements', href: '/media/statements' },
+    { text: 'News Room', href: '/media/news-room' },
+    { text: 'Costech Video', href: '/media/costech-video' },
   ];
 
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
-    { text: 'Online Services', hasDropdown: true, href: '/nissti', dropdownItems: onlineServicesItems },
+    { text: 'Services', hasDropdown: true, href: '/services', dropdownItems: servicesItems, isMegaMenu: true },
     { text: 'Financial Report', hasDropdown: false, href: '/heet' },
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
-    { text: 'Resources / Publications', hasDropdown: true, href: '/resources', dropdownItems: resourcesPublicationsItems, isMegaMenu: true },
+    { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
+    { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
+    { text: 'Projects', hasDropdown: false, href: '/projects' },
     { text: 'Buni Hub', hasDropdown: false, href: 'https://bunihub.or.tz/', external: true },
     { text: 'DTBi', hasDropdown: false, href: 'https://teknohama.or.tz/', external: true },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },

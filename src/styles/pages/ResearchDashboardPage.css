@@ -1,63 +1,97 @@
 .research-dashboard-page {
   min-height: 100vh;
-  padding: 60px 20px 40px;
+  padding: 0;
   background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #f0f9ff 100%);
 }
 
 .research-dashboard-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .research-dashboard-header {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 40px;
+  padding: 80px 20px 40px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.research-dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.research-dashboard-header > * {
+  position: relative;
+  z-index: 2;
 }
 
 .research-dashboard-header .back-link {
   display: block;
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
 }
 
 .back-link {
   display: inline-block;
-  color: #1e40af;
+  color: #ffffff;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 20px;
   transition: all 0.3s ease;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .back-link:hover {
-  color: #b97c07;
+  color: #fef3c7;
   transform: translateX(-5px);
 }
 
 .research-dashboard-title {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 800;
-  color: #000000;
-  margin: 0 0 10px 0;
+  color: #ffffff;
+  margin: 0 0 15px 0;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .research-dashboard-subtitle {
-  font-size: 1rem;
-  color: #64748b;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
   line-height: 1.6;
   margin: 0;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .research-reports-tabs {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 25px;
+  margin: -30px auto 40px;
   flex-wrap: wrap;
+  max-width: 1200px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
 }
 
 .research-report-tab {
@@ -88,11 +122,13 @@
 }
 
 .research-reports-content {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: transparent;
+  border-radius: 0;
+  padding: 0 20px 40px;
+  box-shadow: none;
   min-height: 400px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .research-report-section {
@@ -458,7 +494,11 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .research-dashboard-page {
-    padding: 80px 15px 40px;
+    padding: 0;
+  }
+
+  .research-dashboard-header {
+    padding: 60px 15px 30px;
   }
 
   .research-dashboard-title {
@@ -479,7 +519,7 @@
   }
 
   .research-reports-content {
-    padding: 25px 20px;
+    padding: 0 15px 30px;
   }
 
   .research-report-title {

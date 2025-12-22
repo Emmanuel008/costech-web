@@ -1,0 +1,537 @@
+.connectivity-dashboard-page {
+  min-height: 100vh;
+  padding: 0;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #f0f9ff 100%);
+}
+
+.connectivity-dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.connectivity-dashboard-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 80px 20px 40px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.connectivity-dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.connectivity-dashboard-header > * {
+  position: relative;
+  z-index: 2;
+}
+
+.connectivity-dashboard-header .back-link {
+  display: block;
+  text-align: left;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.back-link {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.back-link:hover {
+  color: #fef3c7;
+  transform: translateX(-5px);
+}
+
+.connectivity-dashboard-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 15px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.connectivity-dashboard-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.connectivity-segments-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: -30px auto 40px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.connectivity-segment-tab {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.connectivity-segment-tab:hover {
+  color: #b97c07;
+  border-color: #b97c07;
+  transform: translateY(-2px);
+}
+
+.connectivity-segment-tab.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #b97c07 0%, #9a6606 100%);
+  border-color: #b97c07;
+  box-shadow: 0 4px 12px rgba(185, 124, 7, 0.3);
+}
+
+.connectivity-segments-content {
+  background: transparent;
+  border-radius: 0;
+  padding: 0 20px 40px;
+  box-shadow: none;
+  min-height: 400px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.connectivity-segment-section {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.connectivity-segment-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.connectivity-segment-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 10px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.connectivity-segment-description {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.connectivity-segment-data {
+  width: 100%;
+}
+
+/* Institution List Styles */
+.institution-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.institution-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.institution-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  border-color: #b97c07;
+}
+
+.institution-header {
+  margin-bottom: 15px;
+}
+
+.institution-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.institution-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.institution-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #ffffff;
+  border-radius: 6px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-weight: 500;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #b97c07;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Repository Table Styles */
+.repository-table-container {
+  width: 100%;
+}
+
+.repository-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.repository-empty-state p {
+  margin: 0;
+}
+
+.repository-table-title {
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 0;
+}
+
+.repository-table-title h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.repository-search-container {
+  margin-bottom: 20px;
+}
+
+.repository-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: all 0.3s ease;
+  height: 38px;
+  box-sizing: border-box;
+}
+
+.repository-search-input:focus {
+  outline: none;
+  border-color: #b97c07;
+  box-shadow: 0 0 0 3px rgba(185, 124, 7, 0.1);
+}
+
+.repository-table-wrapper {
+  overflow-x: visible;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+}
+
+.repository-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  table-layout: auto;
+}
+
+.repository-table thead {
+  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+}
+
+.repository-table th {
+  padding: 10px 8px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #1e40af;
+  border-bottom: 2px solid #bfdbfe;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.repository-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.repository-table th.sortable:hover {
+  background-color: rgba(30, 64, 175, 0.1);
+}
+
+.repository-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+.repository-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.repository-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.repository-table td {
+  padding: 10px 8px;
+  font-size: 0.8rem;
+  color: #374151;
+  vertical-align: top;
+  word-wrap: break-word;
+  max-width: none;
+}
+
+.repository-table td:nth-child(1) {
+  width: 3%;
+  text-align: center;
+}
+
+.repository-table td:nth-child(2) {
+  width: 10%;
+}
+
+.repository-table td:nth-child(3) {
+  width: 20%;
+  font-weight: 500;
+}
+
+.repository-table td:nth-child(4) {
+  width: 12%;
+}
+
+.repository-table td:nth-child(5) {
+  width: 10%;
+}
+
+.repository-table td:nth-child(6) {
+  width: 10%;
+}
+
+.repository-table td:nth-child(7) {
+  width: 18%;
+}
+
+.repository-table td:nth-child(8) {
+  width: 8%;
+}
+
+.repository-table td:nth-child(9) {
+  width: 9%;
+}
+
+.url-link {
+  color: #1e40af;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 0.2s ease;
+}
+
+.url-link:hover {
+  color: #b97c07;
+  text-decoration: underline;
+}
+
+.repository-table td.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.repository-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 16px 0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pagination-info {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  color: #b97c07;
+  border-color: #b97c07;
+  background: #fef3c7;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #b97c07 0%, #9a6606 100%);
+  border-color: #b97c07;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .connectivity-dashboard-page {
+    padding: 0;
+  }
+
+  .connectivity-dashboard-header {
+    padding: 60px 15px 30px;
+  }
+
+  .connectivity-dashboard-title {
+    font-size: 2rem;
+  }
+
+  .connectivity-dashboard-subtitle {
+    font-size: 1rem;
+  }
+
+  .connectivity-segments-tabs {
+    gap: 8px;
+  }
+
+  .connectivity-segment-tab {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .connectivity-segments-content {
+    padding: 20px;
+  }
+
+  .connectivity-segment-title {
+    font-size: 1.5rem;
+  }
+
+  .institution-list {
+    grid-template-columns: 1fr;
+  }
+
+  .repository-table-wrapper {
+    overflow-x: visible;
+  }
+
+  .repository-table {
+    font-size: 0.75rem;
+  }
+
+  .repository-table th {
+    padding: 8px 6px;
+    font-size: 0.7rem;
+  }
+
+  .repository-table td {
+    padding: 8px 6px;
+    font-size: 0.75rem;
+  }
+
+  .repository-pagination {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .connectivity-dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .connectivity-segment-title {
+    font-size: 1.3rem;
+  }
+
+  .institution-card,
+  .repository-card {
+    padding: 16px;
+  }
+}
+

@@ -45,6 +45,22 @@ const DashboardPage = () => {
         </svg>
       ),
       href: '/dashboard/connectivity'
+    },
+    {
+      id: 'dissemination',
+      title: 'Dissemination',
+      description: 'Disseminate scientific knowledge, research findings, and innovation outcomes to stakeholders',
+      color: 'blue',
+      icon: (
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+          <line x1="9" y1="7" x2="15" y2="7" />
+          <line x1="9" y1="11" x2="15" y2="11" />
+          <line x1="9" y1="15" x2="13" y2="15" />
+        </svg>
+      ),
+      href: '/dashboard/dissemination'
     }
   ];
 
@@ -54,7 +70,7 @@ const DashboardPage = () => {
         <div className="dashboard-header">
           <h1 className="dashboard-title">Dashboard</h1>
           <p className="dashboard-description">
-            A comprehensive platform for accessing and exploring data across innovation, research, and connectivity 
+            A comprehensive platform for accessing and exploring data across innovation, research, connectivity, and dissemination 
             initiatives that enable various stakeholders to access information and understand the processes used in 
             science, technology, and innovation development.
           </p>
