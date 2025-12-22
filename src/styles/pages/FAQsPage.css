@@ -1,8 +1,51 @@
 .faqs-page {
   background: linear-gradient(180deg, #f4f6fb 0%, #eef1f7 100%);
   min-height: 100vh;
-  padding-top: 60px;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Hero Section */
+.faqs-hero {
+  position: relative;
+  height: 300px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.faqs-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.faqs-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  padding: 0 20px;
+  max-width: 900px;
+}
+
+.faqs-hero-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.faqs-hero-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  opacity: 0.95;
 }
 
 .faqs-body {
@@ -147,10 +190,29 @@
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.7;
-  color: #475569;
+}
+
+.faqs-link {
+  color: #1e40af;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.faqs-link:hover {
+  color: #1e3a8a;
+  text-decoration: underline;
 }
 
 @media (max-width: 968px) {
+  .faqs-hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .faqs-hero-content p {
+    font-size: 1.1rem;
+  }
+
   .faqs-body {
     padding: 40px 24px 60px;
   }
@@ -179,8 +241,20 @@
 }
 
 @media (max-width: 640px) {
+  .faqs-hero {
+    height: 250px;
+  }
+
+  .faqs-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .faqs-hero-content p {
+    font-size: 1rem;
+  }
+
   .faqs-page {
-    padding-top: 100px;
+    padding-top: 0;
   }
 
   .faqs-body {

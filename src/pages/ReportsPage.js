@@ -106,30 +106,18 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 const reports = [
   {
     id: 1,
-    name: 'COSTECH Audited Financial Statement for the Year Ended 30th June 2023',
-    publishedDate: '2023-09-15',
-    downloadUrl: '#',
-  },
-  {
-    id: 2,
-    name: 'COSTECH Audited Financial Statement for the year ended 30th June 2022',
-    publishedDate: '2022-09-20',
-    downloadUrl: '#',
-  },
-  {
-    id: 3,
     name: 'COSTECH Annual Report 2022-2023',
     publishedDate: '2023-10-01',
     downloadUrl: '#',
   },
   {
-    id: 4,
+    id: 2,
     name: 'COSTECH Strategic Plan 2021/22 – 2025/2026',
     publishedDate: '2021-07-01',
     downloadUrl: '#',
   },
   {
-    id: 5,
+    id: 3,
     name: 'Research and Innovation Statistics Report 2023',
     publishedDate: '2023-11-15',
     downloadUrl: '#',

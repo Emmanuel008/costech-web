@@ -34,6 +34,7 @@ import FAQsPage from './pages/FAQsPage';
 import DashboardPage from './pages/DashboardPage';
 import InnovationDashboardPage from './pages/InnovationDashboardPage';
 import ResearchDashboardPage from './pages/ResearchDashboardPage';
+import FinancialAuditPage from './pages/FinancialAuditPage';
 import ConnectivityDashboardPage from './pages/ConnectivityDashboardPage';
 import DisseminationDashboardPage from './pages/DisseminationDashboardPage';
 import DirectoratesPage from './pages/DirectoratesPage';
@@ -84,6 +85,7 @@ function App() {
             <Route path="/publications/journals" element={<ReportsPage />} />
             <Route path="/publications/magazine" element={<ResearchInnovationMagazinePage />} />
             <Route path="/publications/books" element={<ReportsPage />} />
+            <Route path="/publications/reports" element={<ReportsPage />} />
             <Route path="/publications/acts-legal" element={<ResearchTechnologyPolicyPage />} />
             <Route path="/publications/policies" element={<ResearchTechnologyPolicyPage />} />
             <Route path="/publications/strategic-plan" element={<StrategicPlanPage />} />
@@ -114,6 +116,8 @@ function App() {
             <Route path="/media/costech-video" element={<PublicationVideoPage />} />
             {/* Projects Route */}
             <Route path="/projects" element={<ProjectsPage />} />
+            {/* Financial Audit Route */}
+            <Route path="/financial-audit" element={<FinancialAuditPage />} />
           </Routes>
         </main>
         <Footer />

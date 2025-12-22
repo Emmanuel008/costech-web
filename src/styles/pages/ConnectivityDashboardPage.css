@@ -211,11 +211,10 @@
 
 .institution-stat {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 8px 12px;
-  background: #ffffff;
-  border-radius: 6px;
+  padding: 0;
+  background: transparent;
 }
 
 .stat-label {
@@ -226,9 +225,9 @@
 }
 
 .stat-value {
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #b97c07;
+  color: #1e40af;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 

@@ -242,49 +242,6 @@ As the principal organ, CDTT provides national leadership and technical oversigh
       { id: 2, name: 'ISNS User Guide', file: 'isns-user-guide.pdf' },
       { id: 3, name: 'Data Management Policy', file: 'data-management-policy.pdf' }
     ]
-  },
-  {
-    id: 'planning-strategy',
-    name: 'Planning and Strategy',
-    slug: 'planning-strategy',
-    director: {
-      name: 'TBD',
-      title: 'Director, Planning and Strategy',
-      message: 'The Planning and Strategy Directorate provides strategic planning, monitoring, and evaluation services to ensure COSTECH achieves its strategic objectives and contributes effectively to national development goals.'
-    },
-    about: 'The Planning and Strategy Directorate is responsible for strategic planning, monitoring, evaluation, and reporting. This directorate ensures that COSTECH\'s activities are aligned with national development priorities and that the Commission\'s performance is effectively tracked and reported.',
-    coreRoles: [
-      'Develop and implement strategic plans',
-      'Monitor and evaluate organizational performance',
-      'Coordinate reporting and documentation',
-      'Facilitate strategic partnerships',
-      'Support policy development and review'
-    ],
-    programmes: [
-      {
-        title: 'Strategic Planning',
-        description: 'Developing and implementing strategic plans:',
-        items: [
-          'Strategic plan development',
-          'Annual planning and budgeting',
-          'Performance monitoring and evaluation'
-        ]
-      },
-      {
-        title: 'Monitoring and Evaluation',
-        description: 'Tracking organizational performance:',
-        items: [
-          'Performance indicators and metrics',
-          'Regular performance reviews',
-          'Impact assessment and reporting'
-        ]
-      }
-    ],
-    downloads: [
-      { id: 1, name: 'Strategic Plan 2021-2026', file: 'strategic-plan-2021-2026.pdf' },
-      { id: 2, name: 'Monitoring and Evaluation Framework', file: 'm-e-framework.pdf' },
-      { id: 3, name: 'Annual Report Template', file: 'annual-report-template.pdf' }
-    ]
   }
 ];
 

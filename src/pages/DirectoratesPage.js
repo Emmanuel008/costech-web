@@ -44,9 +44,9 @@ const DirectoratesPage = () => {
       <div className="directorates-hero">
         <div className="directorates-hero-overlay" />
         <div className="directorates-hero-content">
-          <h1>Directorates and Units</h1>
+          <h1>Directorates</h1>
           <p>
-            COSTECH operates through five directorates, each playing a crucial role in advancing
+            COSTECH operates through four directorates, each playing a crucial role in advancing
             science, technology, and innovation in Tanzania.
           </p>
         </div>

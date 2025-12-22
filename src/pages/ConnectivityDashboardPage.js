@@ -9,9 +9,9 @@ const ConnectivityDashboardPage = () => {
       title: 'Connectivity per Institution',
       description: 'View network connections and partnerships by institution type',
       data: [
-        { category: 'High Learning Institution (HLI)', count: 0 },
-        { category: 'R&D', count: 0 },
-        { category: 'Teacher College', count: 0 }
+        { category: 'Teachers Training Colleges (TTCs)', count: 25 },
+        { category: 'HLIs/TVET', count: 11 },
+        { category: 'Research Institutions', count: 2 }
       ]
     },
     repository: {
@@ -66,7 +66,6 @@ const ConnectivityDashboardPage = () => {
                           </div>
                           <div className="institution-stats">
                             <div className="institution-stat">
-                              <span className="stat-label">Count:</span>
                               <span className="stat-value">{item.count}</span>
                             </div>
                           </div>

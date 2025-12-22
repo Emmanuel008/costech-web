@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/pages/ProjectsPage.css';
 
 const ProjectsPage = () => {
+  const [activeTab, setActiveTab] = useState(0);
   const ongoingProjects = [
     {
       id: 'sida',
@@ -75,51 +76,70 @@ const ProjectsPage = () => {
       </div>
 
       <div className="projects-container">
-        {/* Ongoing Projects Section */}
-        <div className="projects-section">
-          <div className="projects-section-header">
-            <h2>Ongoing Projects</h2>
-            <p>Current projects and initiatives being implemented by COSTECH in collaboration with development partners</p>
-          </div>
-
-          <div className="projects-grid">
-            {ongoingProjects.map((project) => (
-              <div key={project.id} className="project-card">
-                <div className="project-card-header">
-                  <h3>{project.title}</h3>
-                </div>
-                <div className="project-card-body">
-                  <p className="project-description">{project.description}</p>
-                  {project.focusAreas && (
-                    <div className="project-focus-areas">
-                      <h4>Focus Areas:</h4>
-                      <ul>
-                        {project.focusAreas.map((area, index) => (
-                          <li key={index}>{area}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Tabs */}
+        <div className="projects-tabs">
+          <button
+            className={`projects-tab ${activeTab === 0 ? 'active' : ''}`}
+            onClick={() => setActiveTab(0)}
+          >
+            Ongoing Projects
+          </button>
+          <button
+            className={`projects-tab ${activeTab === 1 ? 'active' : ''}`}
+            onClick={() => setActiveTab(1)}
+          >
+            Area for Partnership
+          </button>
         </div>
 
-        {/* Partnership Areas Section */}
-        <div className="projects-section">
-          <div className="projects-section-header">
-            <h2>Areas to Partner with COSTECH</h2>
-            <p>Explore opportunities to collaborate with COSTECH in advancing science, technology, and innovation in Tanzania</p>
+        {/* Tab Content */}
+        <div className="projects-content">
+          {/* Ongoing Projects Section */}
+          <div className={`projects-section ${activeTab === 0 ? 'active' : ''}`}>
+            <div className="projects-section-header">
+              <h2>Ongoing Projects</h2>
+              <p>Current projects and initiatives being implemented by COSTECH in collaboration with development partners</p>
+            </div>
+
+            <div className="projects-grid">
+              {ongoingProjects.map((project) => (
+                <div key={project.id} className="project-card">
+                  <div className="project-card-header">
+                    <h3>{project.title}</h3>
+                  </div>
+                  <div className="project-card-body">
+                    <p className="project-description">{project.description}</p>
+                    {project.focusAreas && (
+                      <div className="project-focus-areas">
+                        <h4>Focus Areas:</h4>
+                        <ul>
+                          {project.focusAreas.map((area, index) => (
+                            <li key={index}>{area}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="partnership-grid">
-            {partnershipAreas.map((area) => (
-              <div key={area.id} className="partnership-card">
-                <h3 className="partnership-title">{area.title}</h3>
-                <p className="partnership-description">{area.description}</p>
-              </div>
-            ))}
+          {/* Partnership Areas Section */}
+          <div className={`projects-section ${activeTab === 1 ? 'active' : ''}`}>
+            <div className="projects-section-header">
+              <h2>Areas to Partner with COSTECH</h2>
+              <p>Explore opportunities to collaborate with COSTECH in advancing science, technology, and innovation in Tanzania</p>
+            </div>
+
+            <div className="partnership-grid">
+              {partnershipAreas.map((area) => (
+                <div key={area.id} className="partnership-card">
+                  <h3 className="partnership-title">{area.title}</h3>
+                  <p className="partnership-description">{area.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

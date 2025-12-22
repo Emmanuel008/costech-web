@@ -141,7 +141,7 @@ const Navbar = () => {
     { text: 'Organizational Structure', href: '/about/organogram' },
     { text: 'Management Team', href: '/about/top-management' },
     { text: 'Board of Commission', href: '/about/commission-members' },
-    { text: 'Directorates and Units', href: '/directorates' },
+    { text: 'Directorates', href: '/directorates' },
     { text: 'Contact Us', href: '/contact' },
   ];
 
@@ -177,6 +177,7 @@ const Navbar = () => {
         { text: 'Journals', href: '/publications/journals' },
         { text: 'Magazine', href: '/publications/magazine' },
         { text: 'Books', href: '/publications/books' },
+        { text: 'Reports', href: '/publications/reports' },
         { text: 'Acts & Legal', href: '/publications/acts-legal' },
         { text: 'Policies', href: '/publications/policies' },
         { text: 'Strategic Plan', href: '/publications/strategic-plan' },
@@ -207,7 +208,7 @@ const Navbar = () => {
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
     { text: 'Services', hasDropdown: true, href: '/services', dropdownItems: servicesItems, isMegaMenu: true },
-    { text: 'Financial Report', hasDropdown: false, href: '/heet' },
+    { text: 'Financial Report', hasDropdown: false, href: '/financial-audit' },
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
     { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
