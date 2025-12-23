@@ -9,7 +9,7 @@ const directorSlugMap = {
   'Mr. Samson Mwela': 'mr-samson-mwela',
   'Dr. Bugwesa Katale': 'dr-bugwesa-katale',
   'Mr. Imanuel Mgonja': 'mr-imanuel-mgonja',
-  'Dr. Erasto Shemu Mlyuka': 'dr-athuman-m-ngumia', // Note: This might need updating if the actual director changes
+  'Dr. Erasto Shemu Mlyuka': 'dr-erasto-shemu-mlyuka', // Note: This might need updating if the actual director changes
 };
 
 // Function to convert director name to slug format

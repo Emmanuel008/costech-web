@@ -204,6 +204,11 @@ const Navbar = () => {
     { text: 'Costech Video', href: '/media/costech-video' },
   ];
 
+  const projectsItems = [
+    { text: 'Ongoing Projects', href: '/projects#ongoing' },
+    { text: 'Area for Partnership', href: '/projects#partnership' },
+  ];
+
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
@@ -212,7 +217,7 @@ const Navbar = () => {
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
     { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
-    { text: 'Projects', hasDropdown: false, href: '/projects' },
+    { text: 'Projects', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
     { text: 'Buni Hub', hasDropdown: false, href: 'https://bunihub.or.tz/', external: true },
     { text: 'DTBi', hasDropdown: false, href: 'https://teknohama.or.tz/', external: true },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },
