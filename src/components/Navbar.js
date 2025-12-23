@@ -148,17 +148,17 @@ const Navbar = () => {
   const servicesItems = [
     {
       type: 'section',
-      title: 'What We Offer',
+      title: 'Services',
       items: [
         { text: 'What We Offer', href: '/what-we-offer' },
-          ],
-        },
-        {
+      ],
+    },
+    {
       type: 'section',
       title: 'Online Services',
       items: [
         { text: 'STI Information portal(NISSTI)', href: '/nissti' },
-                 { text: 'Innovation Space', href: '/technology/innovation-spaces' },
+        { text: 'Innovation Space', href: '/technology/innovation-spaces' },
         { text: 'Research Clearance Portal', href: '/research-clearance' },
         { text: 'Union Catalog', href: '/union-catalog' },
         { text: 'TanBIF', href: '/tanbif' },
@@ -212,7 +212,7 @@ const Navbar = () => {
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
-    { text: 'Services', hasDropdown: true, href: '/services', dropdownItems: servicesItems, isMegaMenu: true },
+    { text: 'What We Offer', hasDropdown: true, href: '/what-we-offer', dropdownItems: servicesItems, isMegaMenu: true },
     { text: 'Financial Report', hasDropdown: false, href: '/financial-audit' },
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
     { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },

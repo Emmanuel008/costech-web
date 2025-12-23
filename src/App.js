@@ -39,6 +39,7 @@ import ConnectivityDashboardPage from './pages/ConnectivityDashboardPage';
 import DisseminationDashboardPage from './pages/DisseminationDashboardPage';
 import DirectoratesPage from './pages/DirectoratesPage';
 import WhatWeOfferPage from './pages/WhatWeOfferPage';
+import JournalsPage from './pages/JournalsPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import './styles/App.css';
@@ -82,7 +83,7 @@ function App() {
             <Route path="/publication/strategic-plans" element={<StrategicPlanPage />} />
             <Route path="/publication/policy" element={<ResearchTechnologyPolicyPage />} />
             <Route path="/publication/magazine" element={<ResearchInnovationMagazinePage />} />
-            <Route path="/publications/journals" element={<ReportsPage />} />
+            <Route path="/publications/journals" element={<JournalsPage />} />
             <Route path="/publications/magazine" element={<ResearchInnovationMagazinePage />} />
             <Route path="/publications/books" element={<ReportsPage />} />
             <Route path="/publications/reports" element={<ReportsPage />} />

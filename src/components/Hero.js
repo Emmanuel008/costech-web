@@ -17,7 +17,7 @@ const Hero = () => {
 
   const handleAnimationComplete = () => {};
 
-  const rotatingWords = ['Innovation', 'Technology', 'Science', 'Research'];
+  const rotatingWords = ['Innovation', 'Science', 'Research'];
 
   useEffect(() => {
     const interval = setInterval(() => {

@@ -5,39 +5,39 @@ const WhatWeOfferPage = () => {
   const services = [
     {
       id: 1,
-      text: 'Advising the Government on research and technology development policies and priority areas.'
+      text: 'Advising the Government on research and technology'
     },
     {
       id: 2,
-      text: 'Mobilizing, managing and administering funds for research and innovation, including providing grants and loans through the National Fund for the Advancement of Science and Technology (NFAST).'
+      text: 'Fund for the Advancement of Science and Technology'
     },
     {
       id: 3,
-      text: 'Research permits.'
+      text: 'Research permits'
     },
     {
       id: 4,
-      text: 'Digital connectivity to facilitate STI knowledge sharing.'
+      text: 'Digital connectivity to facilitate STI knowledge sharing'
     },
     {
       id: 5,
-      text: 'Registration of technology transfer agreement.'
+      text: 'Registration of technology transfer agreement'
     },
     {
       id: 6,
-      text: 'Facilitate STI knowledge dissemination.'
+      text: 'Facilitate STI knowledge dissemination'
     },
     {
       id: 7,
-      text: 'Profiling researcher, innovators, STI information.'
+      text: 'Profiling researcher, innovators, STI information'
     },
     {
       id: 8,
-      text: 'Fostering regional and international cooperation in Science, Technology and Innovation.'
+      text: 'Fostering regional and international cooperation in Science, Technology and Innovation'
     },
     {
       id: 9,
-      text: 'Facilitate the commercialization of research results and innovations to support economic development.'
+      text: 'Facilitate the commercialization of research results and innovations to support economic development'
     }
   ];
 

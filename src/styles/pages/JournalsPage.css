@@ -1,24 +1,18 @@
-.dissemination-dashboard-page {
+.journals-page {
   min-height: 100vh;
   padding: 0;
   background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #f0f9ff 100%);
 }
 
-.dissemination-dashboard-container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.dissemination-dashboard-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 80px 20px 40px;
-  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+.journals-hero {
   position: relative;
+  padding: 120px 20px 60px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  text-align: center;
   overflow: hidden;
 }
 
-.dissemination-dashboard-header::before {
+.journals-hero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -30,39 +24,23 @@
   z-index: 1;
 }
 
-.dissemination-dashboard-header > * {
+.journals-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.journals-hero-content {
   position: relative;
   z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.dissemination-dashboard-header .back-link {
-  display: block;
-  text-align: left;
-  margin-bottom: 30px;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 20px;
-}
-
-.back-link {
-  display: inline-block;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
-  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.back-link:hover {
-  color: #fef3c7;
-  transform: translateX(-5px);
-}
-
-.dissemination-dashboard-title {
+.journals-hero-content h1 {
   font-size: 3rem;
   font-weight: 800;
   color: #ffffff;
@@ -71,124 +49,36 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.dissemination-dashboard-subtitle {
+.journals-hero-content p {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.95);
   line-height: 1.6;
   margin: 0;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.dissemination-content {
+.journals-body {
   background: transparent;
   border-radius: 0;
-  padding: 0 20px 40px;
+  padding: 40px 20px;
   box-shadow: none;
   min-height: 400px;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* Pie Chart Section */
-.journals-pie-chart-section {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 30px;
-  margin-bottom: 40px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.pie-chart-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e40af;
-  margin: 0 0 30px 0;
-  text-align: center;
-  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.pie-chart-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  padding: 15px;
-  flex-wrap: wrap;
-}
-
-.pie-chart-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pie-chart {
-  width: 500px;
-  height: 500px;
-  max-width: 100%;
-}
-
-.pie-chart-legend {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 400px;
-}
-
-.pie-chart-legend-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px;
-  background: #f8fafc;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.pie-chart-legend-item:hover {
-  background: #f1f5f9;
-  transform: translateX(5px);
-}
-
-.pie-chart-legend-color {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  flex-shrink: 0;
-}
-
-.pie-chart-legend-label {
-  flex: 1;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #000000;
-  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.pie-chart-legend-value {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #1e40af;
-  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-/* Repository Table Styles */
-.repository-table-container {
+/* Journals Table Styles */
+.journals-table-container {
   width: 100%;
 }
 
-.repository-table-title {
+.journals-table-title {
   margin-bottom: 20px;
   text-align: center;
   padding: 0;
 }
 
-.repository-table-title h3 {
+.journals-table-title h3 {
   font-size: 1.5rem;
   font-weight: 700;
   color: #1e40af;
@@ -196,11 +86,11 @@
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.repository-search-container {
+.journals-search-container {
   margin-bottom: 20px;
 }
 
-.repository-search-input {
+.journals-search-input {
   width: 100%;
   padding: 8px 12px;
   font-size: 0.95rem;
@@ -212,20 +102,20 @@
   box-sizing: border-box;
 }
 
-.repository-search-input:focus {
+.journals-search-input:focus {
   outline: none;
   border-color: #b97c07;
   box-shadow: 0 0 0 3px rgba(185, 124, 7, 0.1);
 }
 
-.repository-table-wrapper {
+.journals-table-wrapper {
   overflow-x: visible;
   border-radius: 8px;
   border: 1px solid #e2e8f0;
   width: 100%;
 }
 
-.repository-table {
+.journals-table {
   width: 100%;
   border-collapse: collapse;
   background: #ffffff;
@@ -233,11 +123,11 @@
   table-layout: auto;
 }
 
-.repository-table thead {
+.journals-table thead {
   background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
 }
 
-.repository-table th {
+.journals-table th {
   padding: 10px 8px;
   text-align: left;
   font-weight: 700;
@@ -248,31 +138,31 @@
   word-wrap: break-word;
 }
 
-.repository-table th.sortable {
+.journals-table th.sortable {
   cursor: pointer;
   user-select: none;
   position: relative;
   transition: background-color 0.2s ease;
 }
 
-.repository-table th.sortable:hover {
+.journals-table th.sortable:hover {
   background-color: rgba(30, 64, 175, 0.1);
 }
 
-.repository-table tbody tr {
+.journals-table tbody tr {
   border-bottom: 1px solid #e2e8f0;
   transition: background-color 0.2s ease;
 }
 
-.repository-table tbody tr:nth-child(even) {
+.journals-table tbody tr:nth-child(even) {
   background-color: #f8f9fa;
 }
 
-.repository-table tbody tr:hover {
+.journals-table tbody tr:hover {
   background-color: #f1f5f9;
 }
 
-.repository-table td {
+.journals-table td {
   padding: 10px 8px;
   font-size: 0.8rem;
   color: #374151;
@@ -281,45 +171,45 @@
   max-width: none;
 }
 
-.repository-table td:nth-child(1) {
+.journals-table td:nth-child(1) {
   width: 3%;
   text-align: center;
 }
 
-.repository-table td:nth-child(2) {
+.journals-table td:nth-child(2) {
   width: 10%;
 }
 
-.repository-table td:nth-child(3) {
+.journals-table td:nth-child(3) {
   width: 18%;
   font-weight: 500;
 }
 
-.repository-table td:nth-child(4) {
+.journals-table td:nth-child(4) {
   width: 12%;
 }
 
-.repository-table td:nth-child(5) {
+.journals-table td:nth-child(5) {
   width: 10%;
 }
 
-.repository-table td:nth-child(6) {
+.journals-table td:nth-child(6) {
   width: 10%;
 }
 
-.repository-table td:nth-child(7) {
+.journals-table td:nth-child(7) {
   width: 15%;
 }
 
-.repository-table td:nth-child(8) {
+.journals-table td:nth-child(8) {
   width: 8%;
 }
 
-.repository-table td:nth-child(9) {
+.journals-table td:nth-child(9) {
   width: 9%;
 }
 
-.repository-table td:nth-child(10) {
+.journals-table td:nth-child(10) {
   width: 5%;
 }
 
@@ -335,14 +225,14 @@
   text-decoration: underline;
 }
 
-.repository-table td.no-data {
+.journals-table td.no-data {
   text-align: center;
   padding: 40px;
   color: #9ca3af;
   font-style: italic;
 }
 
-.repository-pagination {
+.journals-pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -396,71 +286,52 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .dissemination-dashboard-page {
+  .journals-page {
     padding: 0;
   }
 
-  .dissemination-dashboard-header {
-    padding: 60px 15px 30px;
+  .journals-hero {
+    padding: 100px 15px 40px;
   }
 
-  .dissemination-dashboard-title {
+  .journals-hero-content h1 {
     font-size: 2rem;
   }
 
-  .dissemination-dashboard-subtitle {
+  .journals-hero-content p {
     font-size: 1rem;
   }
 
-  .dissemination-content {
-    padding: 0 15px 30px;
+  .journals-body {
+    padding: 30px 15px;
   }
 
-  .repository-table-wrapper {
+  .journals-table-wrapper {
     overflow-x: visible;
   }
 
-  .repository-table {
+  .journals-table {
     font-size: 0.75rem;
   }
 
-  .repository-table th {
+  .journals-table th {
     padding: 8px 6px;
     font-size: 0.7rem;
   }
 
-  .repository-table td {
+  .journals-table td {
     padding: 8px 6px;
     font-size: 0.75rem;
   }
 
-  .repository-pagination {
+  .journals-pagination {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .journals-pie-chart-section {
-    padding: 20px;
-    margin-bottom: 30px;
-  }
-
-  .pie-chart-container {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .pie-chart {
-    width: 350px;
-    height: 350px;
-  }
-
-  .pie-chart-legend {
-    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .dissemination-dashboard-title {
+  .journals-hero-content h1 {
     font-size: 1.5rem;
   }
 }

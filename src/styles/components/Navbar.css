@@ -150,8 +150,8 @@
 }
 
 .second-dropdown-menu.mega-menu {
-  min-width: 800px;
-  max-width: 1200px;
+  min-width: 500px;
+  max-width: 600px;
   padding: 20px;
   left: 50%;
   transform: translateX(-50%);
@@ -340,8 +340,8 @@
   }
 
   .second-dropdown-menu.mega-menu {
-    min-width: 700px;
-    max-width: 900px;
+    min-width: 450px;
+    max-width: 550px;
   }
 
   .mega-menu-content {
