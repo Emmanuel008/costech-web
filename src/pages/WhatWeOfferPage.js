@@ -5,31 +5,39 @@ const WhatWeOfferPage = () => {
   const services = [
     {
       id: 1,
-      text: 'Advising the government on the formulation of policies and priority areas for scientific research and technology development.'
+      text: 'Advising the Government on research and technology development policies and priority areas.'
     },
     {
       id: 2,
-      text: 'Coordinating, monitoring, and promoting scientific research and technology development activities across the country, involving public and private institutions.'
+      text: 'Mobilizing, managing and administering funds for research and innovation, including providing grants and loans through the National Fund for the Advancement of Science and Technology (NFAST).'
     },
     {
       id: 3,
-      text: 'Mobilizing, Managing and administering funds for research and innovation, including providing grants and loans through the National Fund for the Advancement of Science and Technology (NFAST).'
+      text: 'Research permits.'
     },
     {
       id: 4,
-      text: 'Acquiring, storing, and disseminating scientific and technological information through various means, such as STI publications, conferences, and information services.'
+      text: 'Digital connectivity to facilitate STI knowledge sharing.'
     },
     {
       id: 5,
-      text: 'Registering researchers, Innovators institutions and all research and innovation activities conducted within mainland Tanzania.'
+      text: 'Registration of technology transfer agreement.'
     },
     {
       id: 6,
-      text: 'Fostering regional and international cooperation in science and technology initiatives.'
+      text: 'Facilitate STI knowledge dissemination.'
     },
     {
       id: 7,
-      text: 'Facilitating the commercialization of research results and innovations to support economic development.'
+      text: 'Profiling researcher, innovators, STI information.'
+    },
+    {
+      id: 8,
+      text: 'Fostering regional and international cooperation in Science, Technology and Innovation.'
+    },
+    {
+      id: 9,
+      text: 'Facilitate the commercialization of research results and innovations to support economic development.'
     }
   ];
 
