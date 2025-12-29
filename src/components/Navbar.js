@@ -210,7 +210,6 @@ const Navbar = () => {
   const incubationItems = [
     { text: 'Buni Hub', href: 'https://bunihub.or.tz/', external: true },
     { text: 'DTBi', href: 'https://teknohama.or.tz/', external: true },
-    { text: 'Fellowships and Grants', href: '/fellowships-grants' },
   ];
 
   const onlineServicesItems = [
@@ -234,6 +233,7 @@ const Navbar = () => {
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
     { text: 'Projects/Programs', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
     { text: 'Incubation', hasDropdown: true, href: '#', dropdownItems: incubationItems },
+    { text: 'Fellowships and Grants', hasDropdown: false, href: '/fellowships-grants' },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },
   ];
 

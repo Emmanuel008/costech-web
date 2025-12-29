@@ -39,6 +39,8 @@ import ConnectivityDashboardPage from './pages/ConnectivityDashboardPage';
 import DisseminationDashboardPage from './pages/DisseminationDashboardPage';
 import DirectoratesPage from './pages/DirectoratesPage';
 import WhatWeOfferPage from './pages/WhatWeOfferPage';
+import FellowshipsGrantsPage from './pages/FellowshipsGrantsPage';
+import FellowshipGrantDetailPage from './pages/FellowshipGrantDetailPage';
 import JournalsPage from './pages/JournalsPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
@@ -106,6 +108,8 @@ function App() {
             <Route path="/dashboard/dissemination" element={<DisseminationDashboardPage />} />
             <Route path="/directorates" element={<DirectoratesPage />} />
             <Route path="/what-we-offer" element={<WhatWeOfferPage />} />
+            <Route path="/fellowships-grants" element={<FellowshipsGrantsPage />} />
+            <Route path="/fellowships-grants/:id" element={<FellowshipGrantDetailPage />} />
             <Route path="/resources/news" element={<NewsPage />} />
             <Route path="/resources/publication-video" element={<PublicationVideoPage />} />
             {/* Media Centre Routes */}

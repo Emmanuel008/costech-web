@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-top: 180px;
 }
 
 .faqs-hero-overlay {
@@ -243,6 +244,7 @@
 @media (max-width: 640px) {
   .faqs-hero {
     height: 250px;
+    padding-top: 280px;
   }
 
   .faqs-hero-content h1 {

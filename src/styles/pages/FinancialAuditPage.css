@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-top: 180px;
 }
 
 .financial-audit-hero-overlay {
@@ -182,6 +183,7 @@
 @media (max-width: 640px) {
   .financial-audit-hero {
     height: 250px;
+    padding-top: 280px;
   }
 
   .financial-audit-hero-content h1 {

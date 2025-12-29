@@ -12,6 +12,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-top: 180px;
 }
 
 .what-we-offer-hero-overlay {
@@ -125,6 +126,7 @@
 
   .what-we-offer-hero {
     height: 250px;
+    padding-top: 280px;
   }
 
   .what-we-offer-hero-content h1 {

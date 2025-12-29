@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   padding: 50px 40px;
-  padding-top: 120px;
+  padding-top: 180px;
   overflow: hidden;
   z-index: 1;
 }
@@ -596,7 +596,7 @@
 @media (max-width: 1200px) {
   .innovation-hero {
     padding: 45px 32px;
-    padding-top: 180px;
+    padding-top: 260px;
     min-height: 240px;
   }
   .innovation-hero-content h1 {
@@ -621,7 +621,7 @@
 @media (max-width: 968px) {
   .innovation-hero {
     padding: 40px 28px;
-    padding-top: 200px;
+    padding-top: 280px;
     min-height: 220px;
   }
   .innovation-hero-content h1 {
@@ -645,7 +645,7 @@
 @media (max-width: 640px) {
   .innovation-hero {
     padding: 35px 20px;
-    padding-top: 200px;
+    padding-top: 280px;
     min-height: 200px;
   }
   .innovation-hero-content h1 {

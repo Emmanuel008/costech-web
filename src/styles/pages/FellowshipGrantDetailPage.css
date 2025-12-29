@@ -1,0 +1,137 @@
+.fellowship-grant-detail-page {
+  min-height: 100vh;
+  background: #ffffff;
+  margin-top: -110px;
+  padding-top: 0;
+}
+
+.detail-hero {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.7) 0%, rgba(59, 130, 246, 0.7) 100%),
+              url('../../../public/assets/img/hero.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 60px 40px 40px 40px;
+  padding-top: 180px;
+  position: relative;
+  margin-top: 0;
+}
+
+.detail-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #ffffff;
+}
+
+.back-link {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-bottom: 24px;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-status {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  width: fit-content;
+}
+
+.detail-status.open {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.detail-status.closed {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.detail-header h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.detail-body {
+  padding: 40px 20px;
+}
+
+.detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.detail-content {
+  background: #ffffff;
+}
+
+.detail-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+  margin: 0;
+  white-space: pre-line;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .fellowship-grant-detail-page {
+    margin-top: -170px;
+  }
+
+  .detail-hero {
+    padding: 60px 40px 40px 40px;
+    padding-top: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .fellowship-grant-detail-page {
+    margin-top: -195px;
+  }
+
+  .detail-hero {
+    padding: 40px 20px 30px 20px;
+    padding-top: 280px;
+  }
+
+  .detail-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .detail-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .fellowship-grant-detail-page {
+    margin-top: -180px;
+  }
+
+  .detail-hero {
+    padding-top: 280px;
+  }
+}
+

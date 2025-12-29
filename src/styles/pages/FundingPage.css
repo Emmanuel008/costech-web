@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px 40px;
-  padding-top: 120px;
+  padding-top: 180px;
   overflow: hidden;
   z-index: 1;
 }
@@ -383,7 +383,7 @@
 @media (max-width: 1200px) {
   .funding-hero {
     padding: 35px 32px;
-    padding-top: 180px;
+    padding-top: 260px;
     min-height: 180px;
   }
   .funding-hero-content h1 {
@@ -404,7 +404,7 @@
 @media (max-width: 968px) {
   .funding-hero {
     padding: 30px 28px;
-    padding-top: 200px;
+    padding-top: 280px;
     min-height: 180px;
   }
   .funding-hero-content h1 {
@@ -431,7 +431,7 @@
 @media (max-width: 640px) {
   .funding-hero {
     padding: 30px 20px;
-    padding-top: 200px;
+    padding-top: 280px;
     min-height: 160px;
   }
   .funding-hero-content h1 {

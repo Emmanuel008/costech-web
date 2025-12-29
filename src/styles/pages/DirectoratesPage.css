@@ -16,6 +16,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding-top: 180px;
 }
 
 .directorates-hero-overlay {
@@ -749,6 +750,7 @@
 @media (max-width: 640px) {
   .directorates-hero {
     height: 250px;
+    padding-top: 280px;
   }
 
   .directorates-hero-content h1 {

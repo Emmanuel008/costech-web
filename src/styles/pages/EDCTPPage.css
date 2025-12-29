@@ -20,6 +20,7 @@
   justify-content: center;
   overflow: hidden;
   z-index: 0;
+  padding-top: 180px;
 }
 
 .edctp-hero-overlay {
@@ -481,6 +482,7 @@
 
   .edctp-hero {
     min-height: 280px;
+    padding-top: 280px;
   }
 
   .edctp-hero-content {

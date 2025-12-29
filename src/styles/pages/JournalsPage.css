@@ -7,6 +7,7 @@
 .journals-hero {
   position: relative;
   padding: 120px 20px 60px;
+  padding-top: 180px;
   background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
   text-align: center;
   overflow: hidden;
@@ -292,6 +293,7 @@
 
   .journals-hero {
     padding: 100px 15px 40px;
+    padding-top: 280px;
   }
 
   .journals-hero-content h1 {

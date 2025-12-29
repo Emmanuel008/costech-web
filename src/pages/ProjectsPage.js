@@ -176,14 +176,15 @@ const ProjectsPage = () => {
           <div className="projects-section fade-in" id="partnership">
             <div className="partnership-carousel-wrapper">
               <Slider
-                dots={true}
+                dots={false}
                 infinite={true}
                 speed={500}
                 slidesToShow={3}
                 slidesToScroll={1}
                 autoplay={true}
-                autoplaySpeed={4000}
+                autoplaySpeed={5000}
                 pauseOnHover={true}
+                arrows={false}
                 responsive={[
                   {
                     breakpoint: 1024,
@@ -201,16 +202,9 @@ const ProjectsPage = () => {
                   }
                 ]}
               >
-                {partnershipAreas.map((area, index) => (
+                {partnershipAreas.map((area) => (
                   <div key={area.id} className="partnership-card-wrapper">
-                    <div className="partnership-card" style={{ animationDelay: `${index * 0.1}s` }}>
-                      <div className="partnership-card-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
+                    <div className="partnership-card">
                       <h3 className="partnership-title">{area.title}</h3>
                       <p className="partnership-description">{area.description}</p>
                     </div>

@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: center;
   padding: 50px 40px;
+  padding-top: 180px;
   overflow: hidden;
 }
 
@@ -378,6 +379,7 @@
 @media (max-width: 968px) {
   .establishment-hero {
     padding: 40px 32px;
+    padding-top: 260px;
     min-height: 250px;
   }
   
