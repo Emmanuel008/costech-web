@@ -219,31 +219,31 @@
 
 /* About the Directorate Section */
 .about-directorate {
-  background: #b97c07 !important;
-  border-radius: 12px;
+  background: transparent !important;
+  border-radius: 0;
   padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 10px 30px rgba(185, 124, 7, 0.2);
+  box-shadow: none;
 }
 
 .about-directorate .section-title {
   font-size: 1.8rem;
   font-weight: 700;
-  color: white;
+  color: #1e40af;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 3px solid #e5e7eb;
 }
 
 .about-directorate .section-text {
   font-size: 1rem;
   line-height: 1.8;
-  color: white;
+  color: #374151;
   margin-bottom: 1.5rem;
 }
 
 .about-directorate .section-text p {
-  color: white;
+  color: #374151;
   margin-bottom: 1rem;
 }
 
@@ -254,7 +254,7 @@
 .director-link-section {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #e5e7eb;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -264,7 +264,7 @@
 .director-link-label {
   font-size: 1rem;
   font-weight: 600;
-  color: white;
+  color: #374151;
   margin: 0;
 }
 
@@ -302,6 +302,15 @@
 .combined-sections {
   display: block;
   padding: 2rem;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.directorate-section-block.downloads-section {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .combined-sections .section-content {
@@ -376,38 +385,27 @@
 
 /* Roles List */
 .roles-list {
-  list-style: none;
-  padding: 0;
+  list-style: disc;
+  padding-left: 1.5rem;
   margin: 0;
-  counter-reset: role-counter;
 }
 
 .roles-list li {
-  counter-increment: role-counter;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 0;
   margin-bottom: 0.5rem;
-  background: #f8f9fa;
-  border-left: 4px solid #b97c07;
-  border-radius: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   position: relative;
-  padding-left: 3rem;
   line-height: 1.6;
   color: #374151;
-  transition: all 0.3s ease;
-}
-
-.roles-list li::before {
-  content: counter(role-counter, lower-alpha) ')';
-  position: absolute;
-  left: 1.5rem;
-  font-weight: 700;
-  color: #b97c07;
+  transition: none;
 }
 
 .roles-list li:hover {
-  background: #f1f5f9;
-  transform: translateX(4px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: transparent;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Service Categories (for DKM) */

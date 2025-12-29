@@ -46,7 +46,7 @@ const WhatWeOfferPage = () => {
       <div className="what-we-offer-hero">
         <div className="what-we-offer-hero-overlay" />
         <div className="what-we-offer-hero-content">
-          <h1>What We Offer</h1>
+          <h1>Our Services</h1>
         </div>
       </div>
 

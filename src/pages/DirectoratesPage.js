@@ -100,7 +100,6 @@ const DirectoratesPage = () => {
                   {/* Core Roles */}
                   <div className="combined-section-item">
                     <div className="section-header">
-                      <h3 className="section-number">1.</h3>
                       <h3 className="section-title">Core Roles and Mandate</h3>
                     </div>
                     <p className="section-intro">
@@ -117,21 +116,17 @@ const DirectoratesPage = () => {
                   {directorate.programmes && directorate.programmes.length > 0 && (
                     <div className="combined-section-item">
                       <div className="section-header">
-                        <h3 className="section-number">2.</h3>
                         <h3 className="section-title">Programmes and Initiatives</h3>
                       </div>
                       {directorate.programmes.map((programme, idx) => (
                         <div key={idx} className="programme-item">
                           <h4 className="programme-title">
-                            3.{idx + 1} {programme.title}
+                            {programme.title}
                           </h4>
                           <p className="programme-description">{programme.description}</p>
                           <ul className="programme-items">
                             {programme.items.map((item, itemIdx) => (
                               <li key={itemIdx}>
-                                <span className="programme-item-label">
-                                  {String.fromCharCode(97 + itemIdx)})
-                                </span>
                                 {item}
                               </li>
                             ))}
@@ -145,13 +140,6 @@ const DirectoratesPage = () => {
                   {directorate.services && directorate.services.length > 0 && (
                     <div className="combined-section-item">
                       <div className="section-header">
-                        <h3 className="section-number">
-                          {(() => {
-                            let num = 2;
-                            if (directorate.programmes && directorate.programmes.length > 0) num++;
-                            return num;
-                          })()}.
-                        </h3>
                         <h3 className="section-title">Services</h3>
                       </div>
                       {typeof directorate.services[0] === 'string' ? (
@@ -185,15 +173,7 @@ const DirectoratesPage = () => {
               </div>
 
               {/* Downloads */}
-              <div className="directorate-section-block">
-                <h3 className="section-number">
-                  {(() => {
-                    let sectionNum = 2;
-                    if (directorate.programmes && directorate.programmes.length > 0) sectionNum++;
-                    if (directorate.services && directorate.services.length > 0) sectionNum++;
-                    return sectionNum;
-                  })()}.
-                </h3>
+              <div className="directorate-section-block downloads-section">
                 <div className="section-content">
                   <h3 className="section-title">Downloads</h3>
                   <div className="downloads-table-wrapper">

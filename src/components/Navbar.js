@@ -150,7 +150,7 @@ const Navbar = () => {
       type: 'section',
       title: 'Services',
       items: [
-        { text: 'What We Offer', href: '/what-we-offer' },
+        { text: 'Our Services', href: '/what-we-offer' },
       ],
     },
     {
@@ -212,7 +212,7 @@ const Navbar = () => {
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
-    { text: 'What We Offer', hasDropdown: true, href: '/what-we-offer', dropdownItems: servicesItems, isMegaMenu: true },
+    { text: 'Our Services', hasDropdown: true, href: '/what-we-offer', dropdownItems: servicesItems, isMegaMenu: true },
     { text: 'Financial Report', hasDropdown: false, href: '/financial-audit' },
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
     { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
