@@ -9,7 +9,13 @@ const MegaMenuItem = ({ item, onClose, level = 0 }) => {
       <div className={`mega-menu-item ${level > 0 ? 'mega-menu-item-nested' : ''}`}>
         <div className="mega-menu-item-header">
           {item.href ? (
-            <a href={item.href} className="mega-menu-item-link" onClick={onClose}>
+            <a 
+              href={item.href} 
+              className="mega-menu-item-link" 
+              onClick={onClose}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+            >
               {item.text}
             </a>
           ) : (
@@ -39,7 +45,13 @@ const MegaMenuItem = ({ item, onClose, level = 0 }) => {
   return (
     <div className={`mega-menu-item ${level > 0 ? 'mega-menu-item-nested' : ''}`}>
       {item.href ? (
-        <a href={item.href} className="mega-menu-item-link" onClick={onClose}>
+        <a 
+          href={item.href} 
+          className="mega-menu-item-link" 
+          onClick={onClose}
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+        >
           {item.text}
         </a>
       ) : (
@@ -57,7 +69,13 @@ const DropdownMenuItem = ({ item, onClose, level = 0 }) => {
       <div className={`dropdown-item-wrapper ${level > 0 ? 'dropdown-item-nested' : ''}`}>
         <div className="dropdown-item-header">
           {item.href ? (
-            <a href={item.href} className="dropdown-item" onClick={onClose}>
+            <a 
+              href={item.href} 
+              className="dropdown-item" 
+              onClick={onClose}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+            >
               {item.text}
             </a>
           ) : (
@@ -89,6 +107,8 @@ const DropdownMenuItem = ({ item, onClose, level = 0 }) => {
       href={item.href}
       className="dropdown-item"
       onClick={onClose}
+      target={item.external ? '_blank' : undefined}
+      rel={item.external ? 'noopener noreferrer' : undefined}
     >
       {item.text}
     </a>
@@ -142,32 +162,10 @@ const Navbar = () => {
     { text: 'Management Team', href: '/about/top-management' },
     { text: 'Board of Commission', href: '/about/commission-members' },
     { text: 'Directorates', href: '/directorates' },
+    { text: 'Our Services', href: '/what-we-offer' },
     { text: 'Contact Us', href: '/contact' },
   ];
 
-  const servicesItems = [
-    {
-      type: 'section',
-      title: 'Services',
-      items: [
-        { text: 'Our Services', href: '/what-we-offer' },
-      ],
-    },
-    {
-      type: 'section',
-      title: 'Online Services',
-      items: [
-        { text: 'STI Information portal(NISSTI)', href: '/nissti' },
-        { text: 'Innovation Space', href: '/technology/innovation-spaces' },
-        { text: 'Research Clearance Portal', href: '/research-clearance' },
-        { text: 'Union Catalog', href: '/union-catalog' },
-        { text: 'TanBIF', href: '/tanbif' },
-        { text: 'National Interlinked Research Repository', href: '/research-repository' },
-        { text: 'Research Funding', href: '/research-funding' },
-        { text: 'Customer Survey Form', href: '/customer-survey' },
-      ],
-    },
-  ];
 
   const publicationsEventsItems = [
     {
@@ -209,17 +207,33 @@ const Navbar = () => {
     { text: 'Area for Partnership', href: '/projects#partnership' },
   ];
 
+  const incubationItems = [
+    { text: 'Buni Hub', href: 'https://bunihub.or.tz/', external: true },
+    { text: 'DTBi', href: 'https://teknohama.or.tz/', external: true },
+    { text: 'Fellowships and Grants', href: '/fellowships-grants' },
+  ];
+
+  const onlineServicesItems = [
+    { text: 'STI Information portal(NISSTI)', href: '/nissti' },
+    { text: 'Innovation Space', href: '/technology/innovation-spaces' },
+    { text: 'Research Clearance Portal', href: '/research-clearance' },
+    { text: 'Union Catalog', href: '/union-catalog' },
+    { text: 'TanBIF', href: '/tanbif' },
+    { text: 'National Interlinked Research Repository', href: '/research-repository' },
+    { text: 'Research Funding', href: '/research-funding' },
+    { text: 'Customer Survey Form', href: '/customer-survey' },
+  ];
+
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
-    { text: 'Our Services', hasDropdown: true, href: '/what-we-offer', dropdownItems: servicesItems, isMegaMenu: true },
+    { text: 'Online Services', hasDropdown: true, href: '#', dropdownItems: onlineServicesItems },
     { text: 'Financial Report', hasDropdown: false, href: '/financial-audit' },
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
     { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
-    { text: 'Projects', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
-    { text: 'Buni Hub', hasDropdown: false, href: 'https://bunihub.or.tz/', external: true },
-    { text: 'DTBi', hasDropdown: false, href: 'https://teknohama.or.tz/', external: true },
+    { text: 'Projects/Programs', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
+    { text: 'Incubation', hasDropdown: true, href: '#', dropdownItems: incubationItems },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },
   ];
 

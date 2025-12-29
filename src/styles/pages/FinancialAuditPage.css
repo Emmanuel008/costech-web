@@ -118,25 +118,34 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: #f1f5f9;
-  color: #475569;
+  background: transparent !important;
+  color: #b97c07;
   padding: 0;
   box-sizing: border-box;
 }
 
 .action-btn:hover {
-  background: #e2e8f0;
+  background: transparent !important;
   transform: scale(1.05);
 }
 
+.preview-btn {
+  background: transparent !important;
+}
+
 .preview-btn:hover {
-  background: #dbeafe;
+  background: transparent !important;
   color: #1e40af;
 }
 
+.download-btn {
+  background: transparent !important;
+  color: #b97c07 !important;
+}
+
 .download-btn:hover {
-  background: #dcfce7;
-  color: #16a34a;
+  background: transparent !important;
+  color: #a06d06;
 }
 
 .action-btn svg {
