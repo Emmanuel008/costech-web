@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/pages/FellowshipsGrantsPage.css';
 
 const FellowshipsGrantsPage = () => {
@@ -8,27 +7,67 @@ const FellowshipsGrantsPage = () => {
   const programs = [
     {
       id: 1,
-      category: 'Fellowship/Professional Development Program',
       status: 'open',
-      statusText: 'Open until February 2, 2026',
-      title: 'Air Force Science & Technology Fellowship Program',
-      description: 'The Air Force Science & Technology Fellowship Program (AF STFP) provides nationally competitive fellowship awards for postdoctoral and senior scientists. Selected individuals have the unique opportunity to conduct independent research of their own choosing that supports the mission of the Air Force Research Laboratory.'
+      statusText: 'Open',
+      title: 'Horizon Europe - Funding Programmes and Open Calls',
+      description: 'Horizon Europe is the EU\'s key funding programme for research and innovation. It tackles climate change, helps to achieve the UN\'s Sustainable Development Goals and boosts the EU\'s competitiveness and growth.',
+      url: 'https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en'
     },
     {
       id: 2,
-      category: 'Fellowship/Professional Development Program',
-      status: 'closed',
-      statusText: 'Closed',
-      title: 'Arab-American Frontiers of Science, Engineering, and Medicine',
-      description: 'Based on the success of NAS\'s Kavli Frontiers of Science Program and NAE\'s Frontiers of Engineering, the Arab-American Frontiers of Science, Engineering, and Medicine program will initiate a series of symposia to bring together outstanding young scientists, engineers, and medical professionals from the United States and the 22 countries of the Arab League.'
+      status: 'open',
+      statusText: 'Open',
+      title: 'ICGEB Fellowship Programme',
+      description: 'The ICGEB Fellowship Programme offers long-term fellowships for research in Life Sciences at ICGEB Component laboratories in Trieste (Italy), New Delhi (India) and Cape Town (South Africa).',
+      url: 'https://www.icgeb.org/fellowship/?utm_source=brevo&utm_campaign=nome-campagna&utm_medium=email'
     },
     {
       id: 3,
-      category: 'Fellowship/Professional Development Program',
-      status: 'closed',
-      statusText: 'Closed',
-      title: 'Army Research Laboratory Distinguished Postdoctoral Fellowships',
-      description: 'Army Research Laboratory (ARL) Distinguished Postdoctoral Fellowships provide early career researchers the opportunity to pursue independent research of their own choosing that supports the mission of ARL. Fellows work alongside ARL scientists and engineers to address critical Army challenges.'
+      status: 'open',
+      statusText: 'Open',
+      title: 'ICGEB Grants Programme',
+      description: 'The ICGEB Grants Programme supports research projects in basic science, human healthcare, industrial and agricultural biotechnology and bioenergy. Grants are awarded to researchers in ICGEB Member States.',
+      url: 'https://www.icgeb.org/grants/?utm_source=brevo&utm_campaign=nome-campagna&utm_medium=email'
+    },
+    {
+      id: 4,
+      status: 'open',
+      statusText: 'Open',
+      title: 'ICGEB Meetings and Courses',
+      description: 'ICGEB organizes scientific meetings, courses and workshops to promote scientific exchange and capacity building in biotechnology and related fields.',
+      url: 'https://www.icgeb.org/meeting-and-courses/'
+    },
+    {
+      id: 5,
+      status: 'open',
+      statusText: 'Open',
+      title: 'ICGEB Call for Proposal - Meetings and Courses',
+      description: 'ICGEB offers support for organizing scientific meetings, courses and workshops. Apply to host events that contribute to scientific knowledge exchange and capacity building.',
+      url: 'https://www.icgeb.org/meeting-and-courses/call-for-proposal-meeting-and-courses/'
+    },
+    {
+      id: 6,
+      status: 'open',
+      statusText: 'Open',
+      title: 'EDCTP Calls for Proposals',
+      description: 'The European & Developing Countries Clinical Trials Partnership (EDCTP) funds collaborative research projects that accelerate the development of new or improved interventions against poverty-related diseases in sub-Saharan Africa.',
+      url: 'https://www.edctp.org/funding/calls-for-proposals-2/'
+    },
+    {
+      id: 7,
+      status: 'open',
+      statusText: 'Open',
+      title: 'SGCI Africa Funding Opportunities',
+      description: 'The Science Granting Councils Initiative in Sub-Saharan Africa (SGCI) provides funding opportunities to support research and innovation across African countries.',
+      url: 'https://sgciafrica.org/funding/'
+    },
+    {
+      id: 8,
+      status: 'open',
+      statusText: 'Open',
+      title: 'Wellcome Research Funding',
+      description: 'Wellcome supports discovery research into life, health and wellbeing, and we\'re taking on three worldwide health challenges: mental health, infectious disease and climate and health.',
+      url: 'https://wellcome.org/research-funding'
     }
   ];
 
@@ -36,7 +75,7 @@ const FellowshipsGrantsPage = () => {
     <section className="fellowships-grants-page">
       <div className="fellowships-grants-hero">
         <div className="fellowships-grants-hero-content">
-          <h1>FELLOWSHIP AND GRANTS</h1>
+          <h1>FUNDING OPPORTUNITIES</h1>
           <p>
             The Academies offer several fellowships, grants, and awards in science, engineering, and medicine. 
             Information on eligibility guidelines and application deadlines is available on specific programs' websites.
@@ -76,9 +115,9 @@ const FellowshipsGrantsPage = () => {
                   {program.statusText}
                 </span>
               </div>
-              <Link to={`/fellowships-grants/${program.id}`} className="program-title-link">
+              <a href={program.url} target="_blank" rel="noopener noreferrer" className="program-title-link">
                 <h3 className="program-title">{program.title}</h3>
-              </Link>
+              </a>
               <p className="program-description">{program.description}</p>
             </div>
           ))}

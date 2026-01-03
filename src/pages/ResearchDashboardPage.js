@@ -17,17 +17,20 @@ const ResearchDashboardPage = () => {
 
   const reports = {
     sectors: {
-      title: 'Research per Sectors',
-      description: 'View research distribution across different sectors',
+      title: 'Research Granted Permit per Sector',
+      description: 'Research permit distribution by UNESCO-defined research sectors',
       data: [
-        { sector: 'Agriculture', percentage: 45, color: '#b97c07' },
-        { sector: 'ICT', percentage: 20, color: '#1e40af' },
-        { sector: 'Other', percentage: 35, color: '#000000' }
+        { sector: 'Natural Sciences', percentage: 28, color: '#b97c07' },
+        { sector: 'Engineering and Technology', percentage: 22, color: '#1e40af' },
+        { sector: 'Medical and Health Sciences', percentage: 18, color: '#10b981' },
+        { sector: 'Agricultural Sciences', percentage: 15, color: '#f59e0b' },
+        { sector: 'Social Sciences', percentage: 10, color: '#8b5cf6' },
+        { sector: 'Humanities', percentage: 7, color: '#ec4899' }
       ]
     },
     region: {
-      title: 'Permit per Region',
-      description: 'Explore research permit distribution by location',
+      title: 'Research Granted Permit per Region',
+      description: 'Research permit distribution across all regions in Tanzania',
       chartType: 'map',
       data: [
         { name: 'Arusha', permits: 85, coordinates: [-3.3869, 36.6830] },
@@ -65,40 +68,21 @@ const ResearchDashboardPage = () => {
       ]
     },
     gender: {
-      title: 'Research per Gender',
-      description: 'Research participation by gender distribution',
+      title: 'Research Granted Permit per Gender',
+      description: 'Research permit distribution by gender (Male and Female)',
       data: [
-        { gender: 'Male', percentage: 60 },
-        { gender: 'Female', percentage: 40 }
+        { gender: 'Male', percentage: 65 },
+        { gender: 'Female', percentage: 35 }
       ]
     },
-    funded: {
-      title: 'Funded Projects',
-      description: 'Overview of funded research projects',
+    nationality: {
+      title: 'Research Permit per Nationality',
+      description: 'Research permit distribution by nationality (Tanzania & non-Tanzania)',
       data: [
-        { project: 'Tech Startup Incubator', amount: 500000, status: 'Active' },
-        { project: 'Digital Innovation Hub', amount: 750000, status: 'Active' },
-        { project: 'Agricultural Tech Solutions', amount: 400000, status: 'Completed' },
-        { project: 'Renewable Energy Initiative', amount: 600000, status: 'Active' },
-        { project: 'Healthcare Innovation Program', amount: 350000, status: 'Active' }
-      ]
-    },
-    status: {
-      title: 'Research Project by Status',
-      description: 'Distribution of research projects by completion status',
-      data: [
-        { status: 'Completed', percentage: 60, color: '#b97c07' },
-        { status: 'Ongoing', percentage: 40, color: '#1e40af' }
+        { nationality: 'Tanzania', percentage: 72, color: '#b97c07' },
+        { nationality: 'Non-Tanzania', percentage: 28, color: '#1e40af' }
       ]
     }
-  };
-
-  const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-TZ', {
-      style: 'currency',
-      currency: 'TZS',
-      minimumFractionDigits: 0
-    }).format(amount);
   };
 
   const getPermitColor = (value) => {
@@ -142,23 +126,7 @@ const ResearchDashboardPage = () => {
                 </div>
 
                 <div className="research-report-data">
-                  {key === 'funded' ? (
-                    <div className="funded-projects-list">
-                      {report.data.map((item, index) => (
-                        <div key={index} className="funded-project-card">
-                          <div className="funded-project-header">
-                            <h3 className="funded-project-name">{item.project}</h3>
-                            <span className={`funded-project-status funded-project-status--${item.status.toLowerCase()}`}>
-                              {item.status}
-                            </span>
-                          </div>
-                          <div className="funded-project-amount">
-                            {formatCurrency(item.amount)}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : key === 'sectors' || key === 'status' ? (
+                  {key === 'sectors' || key === 'nationality' ? (
                     <div className="pie-chart-container">
                       <div className="pie-chart-wrapper">
                         <svg className="pie-chart" viewBox="0 0 200 200">
@@ -206,7 +174,7 @@ const ResearchDashboardPage = () => {
                               style={{ backgroundColor: item.color }}
                             ></div>
                             <span className="pie-chart-legend-label">
-                              {key === 'sectors' ? item.sector : item.status}
+                              {key === 'sectors' ? item.sector : key === 'nationality' ? item.nationality : item.status}
                             </span>
                             <span className="pie-chart-legend-value">{item.percentage}%</span>
                           </div>

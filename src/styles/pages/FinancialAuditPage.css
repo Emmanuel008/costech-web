@@ -7,7 +7,7 @@
 /* Hero Section */
 .financial-audit-hero {
   position: relative;
-  height: 300px;
+  height: 120px;
   background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
   display: flex;
   align-items: center;
@@ -37,15 +37,15 @@
 }
 
 .financial-audit-hero-content h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .financial-audit-hero-content p {
-  font-size: 1.2rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.5;
   opacity: 0.95;
 }
 
@@ -182,7 +182,7 @@
 
 @media (max-width: 640px) {
   .financial-audit-hero {
-    height: 250px;
+    height: 100px;
     padding-top: 280px;
   }
 

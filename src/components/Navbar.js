@@ -172,6 +172,7 @@ const Navbar = () => {
       type: 'section',
       title: 'Publications',
       items: [
+        { text: 'Financial Report', href: '/financial-audit' },
         { text: 'Journals', href: '/publications/journals' },
         { text: 'Magazine', href: '/publications/magazine' },
         { text: 'Books', href: '/publications/books' },
@@ -227,13 +228,12 @@ const Navbar = () => {
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
     { text: 'Online Services', hasDropdown: true, href: '#', dropdownItems: onlineServicesItems },
-    { text: 'Financial Report', hasDropdown: false, href: '/financial-audit' },
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
     { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
     { text: 'Projects/Programs', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
     { text: 'Incubation', hasDropdown: true, href: '#', dropdownItems: incubationItems },
-    { text: 'Fellowships and Grants', hasDropdown: false, href: '/fellowships-grants' },
+      { text: 'Funding Opportunities', hasDropdown: false, href: '/fellowships-grants' },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },
   ];
 
