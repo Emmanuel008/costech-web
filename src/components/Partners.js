@@ -15,7 +15,12 @@ const Partners = () => {
     { id: 10, logo: '/assets/img/sida.png', name: 'SIDA', alt: 'SIDA' },
     { id: 11, logo: '/assets/img/uncdf.jpeg', name: 'UNCDF', alt: 'UNCDF' },
     { id: 12, logo: '/assets/img/undp.jpeg', name: 'UNDP', alt: 'UNDP' },
-    { id: 13, logo: '/assets/img/wfp.jpeg', name: 'WFP', alt: 'WFP' }
+    { id: 13, logo: '/assets/img/wfp.jpeg', name: 'WFP', alt: 'WFP' },
+    { id: 14, logo: '/assets/img/global%20research%20.jpeg', name: 'Global Research', alt: 'Global Research' },
+    { id: 15, logo: '/assets/img/sgci.png', name: 'SGCI', alt: 'Science Granting Councils Initiative' },
+    { id: 16, logo: '/assets/img/edctp.jpeg', name: 'EDCTP', alt: 'European & Developing Countries Clinical Trials Partnership' },
+    { id: 17, logo: '/assets/img/biotech.jpeg', name: 'Biotech', alt: 'Biotech' },
+    { id: 18, logo: '/assets/img/isc.png', name: 'ISC', alt: 'International Science Council' }
   ];
 
   return (
@@ -35,6 +40,9 @@ const Partners = () => {
                     alt={partner.alt || partner.name} 
                     className="partner-logo-img" 
                     loading="lazy"
+                    onError={(e) => {
+                      console.error(`Failed to load image: ${partner.logo}`);
+                    }}
                   />
                 </div>
               ))}
@@ -45,6 +53,9 @@ const Partners = () => {
                     alt={partner.alt || partner.name} 
                     className="partner-logo-img" 
                     loading="lazy"
+                    onError={(e) => {
+                      console.error(`Failed to load image: ${partner.logo}`);
+                    }}
                   />
                 </div>
               ))}

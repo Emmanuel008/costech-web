@@ -36,7 +36,6 @@ const Hero = () => {
       <div className="hero-carousel">
         {/* Slide 1 */}
         <div className={`hero-slide ${currentSlide === 0 ? 'active' : ''}`} style={heroImageStyle}>
-          <div className="hero-slide-overlay"></div>
       <div className="hero-content">
             <div className="hero-content-card">
               <div className="hero-badge-tag">COSTECH</div>
@@ -82,7 +81,6 @@ const Hero = () => {
 
         {/* Slide 2 */}
         <div className={`hero-slide ${currentSlide === 1 ? 'active' : ''}`} style={heroImageStyle2}>
-          <div className="hero-slide-overlay"></div>
           <div className="hero-content">
             <div className="hero-content-card">
               <h1 className="hero-title">

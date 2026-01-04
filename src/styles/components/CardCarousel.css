@@ -313,6 +313,18 @@
 @media (max-width: 768px) {
   .card-carousel-container .slick-dots {
     display: flex !important;
+    margin-top: 20px;
+    gap: 8px;
+  }
+
+  .card-carousel-container .slick-dots li button {
+    width: 8px;
+    height: 8px;
+  }
+
+  .card-carousel-container .slick-dots li.slick-active button {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -355,7 +367,7 @@
 
 @media (max-width: 768px) {
   .card-carousel-section {
-    padding: 25px 10px 40px 10px;
+    padding: 20px 12px 35px 12px;
   }
 
   .card-carousel-container {
@@ -364,54 +376,64 @@
   }
 
   .card-wrapper {
-    padding: 0 5px;
+    padding: 0 8px;
     height: auto;
-    min-height: 280px;
+    min-height: 260px;
     width: 100%;
     max-width: 100%;
   }
 
   .card-wrapper.map-card-wrapper {
-    min-height: 280px;
+    min-height: 260px;
   }
 
   .carousel-card {
-    padding: 18px 12px;
+    padding: 20px 16px;
     height: auto;
-    min-height: 280px;
+    min-height: 260px;
     width: 100%;
-    max-width: calc(100% - 10px);
+    max-width: calc(100% - 16px);
     margin: 0 auto;
     box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(185, 124, 7, 0.15), 0 3px 6px rgba(185, 124, 7, 0.1);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .carousel-card:active {
+    transform: scale(0.98);
   }
 
   .carousel-card.map-card {
-    min-height: 280px;
+    min-height: 260px;
   }
 
   .card-title {
-    font-size: 13px;
-    margin-bottom: 5px;
-    line-height: 1.3;
+    font-size: 14px;
+    margin-bottom: 6px;
+    line-height: 1.4;
     word-wrap: break-word;
+    font-weight: 700;
   }
 
   .card-subtitle {
-    font-size: 10px;
-    margin-bottom: 10px;
+    font-size: 11px;
+    margin-bottom: 12px;
     word-wrap: break-word;
   }
 
   .card-content {
-    gap: 10px;
+    gap: 12px;
     width: 100%;
     overflow: hidden;
+    flex: 1;
+    justify-content: center;
   }
 
   .card-chart {
     width: 100%;
-    max-width: 130px;
-    height: 130px;
+    max-width: 140px;
+    height: 140px;
     margin: 0 auto;
     flex-shrink: 0;
   }
@@ -419,20 +441,30 @@
   .card-chart.bar-chart {
     width: 100%;
     max-width: 100%;
-    height: 110px;
+    height: 120px;
     overflow: hidden;
   }
 
   .card-chart.stat-chart {
-    padding: 15px 0;
+    padding: 20px 0;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .stat-value {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
   .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.3;
+    padding: 0 8px;
+    text-align: center;
   }
 
   .card-chart.map-chart {
@@ -505,7 +537,7 @@
 
 @media (max-width: 480px) {
   .card-carousel-section {
-    padding: 20px 8px 35px 8px;
+    padding: 18px 10px 30px 10px;
   }
 
   .card-carousel-container {
@@ -525,58 +557,67 @@
   }
 
   .card-wrapper {
-    padding: 0 2px;
+    padding: 0 6px;
     height: auto;
-    min-height: 250px;
+    min-height: 240px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
   }
 
   .card-wrapper.map-card-wrapper {
-    min-height: 250px;
+    min-height: 240px;
   }
 
   .carousel-card {
-    padding: 15px 10px;
+    padding: 18px 14px;
     height: auto;
-    min-height: 250px;
+    min-height: 240px;
     width: 100%;
-    max-width: 100%;
+    max-width: calc(100% - 12px);
     box-sizing: border-box;
-    margin: 0;
-    border-radius: 8px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(185, 124, 7, 0.15), 0 3px 6px rgba(185, 124, 7, 0.1);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .carousel-card:active {
+    transform: scale(0.98);
   }
 
   .carousel-card.map-card {
-    min-height: 250px;
+    min-height: 240px;
   }
 
   .card-title {
-    font-size: 12px;
-    margin-bottom: 4px;
-    line-height: 1.3;
+    font-size: 13px;
+    margin-bottom: 6px;
+    line-height: 1.4;
     word-wrap: break-word;
     text-align: center;
+    font-weight: 700;
   }
 
   .card-subtitle {
-    font-size: 9px;
-    margin-bottom: 8px;
+    font-size: 10px;
+    margin-bottom: 10px;
     word-wrap: break-word;
     text-align: center;
   }
 
   .card-content {
-    gap: 8px;
+    gap: 10px;
     width: 100%;
     overflow: hidden;
+    flex: 1;
+    justify-content: center;
   }
 
   .card-chart {
     width: 100%;
-    max-width: 110px;
-    height: 110px;
+    max-width: 120px;
+    height: 120px;
     margin: 0 auto;
     flex-shrink: 0;
   }
@@ -584,20 +625,30 @@
   .card-chart.bar-chart {
     width: 100%;
     max-width: 100%;
-    height: 100px;
+    height: 110px;
     overflow: hidden;
   }
 
   .card-chart.stat-chart {
-    padding: 12px 0;
+    padding: 18px 0;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .stat-value {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
   .stat-label {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.3;
+    padding: 0 6px;
+    text-align: center;
   }
 
   .card-chart.map-chart {
@@ -672,22 +723,29 @@
   }
 
   .card-carousel-container .slick-dots {
-    margin-top: 15px;
+    margin-top: 20px;
     padding: 0;
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
   }
 
   .card-carousel-container .slick-dots li {
-    margin: 0 3px;
+    margin: 0;
   }
 
   .card-carousel-container .slick-dots li button {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(185, 124, 7, 0.3);
+    transition: all 0.3s ease;
   }
 
   .card-carousel-container .slick-dots li.slick-active button {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
+    background-color: #b97c07;
   }
 }
 

@@ -95,7 +95,12 @@ const Footer = () => {
               <h4 className="footer-heading">Quick Links</h4>
               <ul className="footer-links">
                 <li><a href="/careers">Careers and Opportunities</a></li>
-                <li><a href="/moest">MoEST</a></li>
+                <li><a href="https://nimr.or.tz/" target="_blank" rel="noopener noreferrer">NIMR</a></li>
+                <li><a href="https://www.tawiri.or.tz/" target="_blank" rel="noopener noreferrer">TAWIRI</a></li>
+                <li><a href="https://www.tari.go.tz/" target="_blank" rel="noopener noreferrer">TARI</a></li>
+                <li><a href="https://www.tafiri.go.tz/" target="_blank" rel="noopener noreferrer">TAFIRI</a></li>
+                <li><a href="https://www.moe.go.tz/" target="_blank" rel="noopener noreferrer">MoEST</a></li>
+                <li><a href="https://www.udsm.ac.tz/" target="_blank" rel="noopener noreferrer">UDSM</a></li>
                 <li><a href="/ega">eGA</a></li>
                 <li><a href="/research-clearance">Research Clearance System</a></li>
                 <li><a href="/nissti">NISSTI</a></li>

@@ -12,28 +12,83 @@ export const directorates = [
     
 As the principal organ, CDTT provides national leadership and technical oversight in identifying technological needs, promoting endogenous and emerging technologies, managing technology transfer processes, and strengthening linkages between research, industry, government, and innovation ecosystems, in line with the Tanzania Development Vision 2050 (DIRA 2050).`,
     coreRoles: [
-      'Technology Leadership & Policy Advisory: Provide national leadership in technology development, innovation, and transfer by assessing priority technological needs and advising the Government on relevant policies, strategies, and implementation mechanisms.',
-      'Technology Transfer, Localisation & Commercialisation: Promote the development, unpackaging, localization, commercialization, and scaling of indigenous and imported technologies, including the management and compliance of Technology Transfer Agreements (TTAs).',
-      'Knowledge Infrastructure & Partnerships: Establish and maintain a National Technology and Innovation Database while strengthening national, regional, and international partnerships in technology, research, and innovation ecosystems.',
-      'Capacity Building & Institutional Strengthening: Build human and institutional capacity in technology management, innovation systems, and technology transfer to support sustainable socio-economic development.'
+      'Serve as the principal technical organ for technology development, innovation, and technology transfer',
+      'Identify and assess national technological needs across priority economic sectors',
+      'Advise Government on technology development policies, strategies, and implementation mechanisms',
+      'Promote development, commercialisation, and scaling of endogenous and indigenous technologies',
+      'Manage Technology Transfer Agreements (TTAs), including registration, monitoring, and compliance',
+      'Lead unpackaging of imported technologies to support localisation and value addition',
+      'Establish and maintain a National Technology and Innovation Database',
+      'Strengthen national, regional, and international technology and research partnerships',
+      'Build institutional and human capacity in technology management, innovation, and technology transfer'
     ],
-    programmes: [],
+    programmes: [
+      {
+        title: '3.1 Buni Innovation Hub Programmes',
+        description: 'CDTT hosts and coordinates Buni Innovation Hub, which supports innovators and startups through:',
+        items: [
+          'Business incubation and acceleration',
+          'Innovation capacity building and mentorship',
+          'Access to markets, investors, and technology networks',
+          'Youth, women, and technology-driven entrepreneurship programmes'
+        ]
+      },
+      {
+        title: '3.2 Innovative Cluster Programmes',
+        description: 'CDTT implements Innovative Cluster Programmes aligned with DIRA 2050 priority sectors, bringing together innovators, researchers, industry, regulators, and development partners to:',
+        items: [
+          'Develop sector-based innovation solutions',
+          'Strengthen technology value chains',
+          'Accelerate technology adoption, scaling, and commercialisation'
+        ]
+      },
+      {
+        title: '3.3 National Technology and Innovation Database',
+        description: 'As the principal organ, CDTT establishes and manages the National Technology and Innovation Database, which:',
+        items: [
+          'Captures imported and locally developed technologies and innovations',
+          'Registers and tracks Technology Transfer Agreements',
+          'Maps national technological resources, expertise, and infrastructure',
+          'Supports evidence-based decision-making, planning, and policy formulation'
+        ]
+      },
+      {
+        title: '3.4 Technology Stations (Piloting)',
+        description: 'CDTT pilots Technology Stations to:',
+        items: [
+          'Support applied research, testing, and validation of technologies',
+          'Demonstrate, adapt, and localise technologies for industry use',
+          'Strengthen linkages between research outputs and productive sectors'
+        ]
+      },
+      {
+        title: '3.5 Spin-Off Company Formation and Support',
+        description: 'CDTT provides technical guidance and national oversight in the formation of spin-off companies from higher learning and R&D institutions, in accordance with the National Guidelines for the Establishment of Spin-Off Companies. Specifically, CDTT:',
+        items: [
+          'Guides the selection of technologies suitable for incubation and spin-off formation',
+          'Supports institutions to establish approval mechanisms for assigning or licensing intellectual property (IP) to faculty members forming spin-off companies',
+          'Provides technical guidance on IP ownership and management arrangements',
+          'Guides the development of business plans and business models for spin-off companies',
+          'Facilitates linkages between spin-offs, incubators, investors, and markets'
+        ]
+      },
+      {
+        title: '3.6 Technology Transfer Agreements Registration and Unpackaging',
+        description: 'CDTT leads the registration, monitoring, and unpackaging of Technology Transfer Agreements, including:',
+        items: [
+          'Technical, economic, and legal assessment of imported technologies',
+          'Evaluation of suitability, costs, and localisation potential',
+          'Strengthening national technology absorption and negotiation capacity'
+        ]
+      }
+    ],
     downloads: [
-      { id: 1, name: 'Cluster Guideline For Technology And Innovation Assessment (TIA)', file: 'cluster-guideline-tia.pdf' },
-      { id: 2, name: 'Cluster Research & Innovation Model (Crim) Guidelines', file: 'cluster-research-innovation-model.pdf' },
-      { id: 3, name: 'Guideline For Establishment Of Spin-Off Company', file: 'spin-off-company-guideline.pdf' },
-      { id: 4, name: 'Research and Innovation Grant Manual', file: 'research-innovation-grant-manual.pdf' },
-      { id: 5, name: 'Guideline on Export of Cluster products', file: 'cluster-export-guideline.pdf' },
-      { id: 6, name: 'Guidelines To Identify And Support Innovations In Tanzania', file: 'innovation-support-guidelines.pdf' },
-      { id: 7, name: 'Guideline For Intellectual Property Issues Between and Within Clusters', file: 'ip-cluster-guideline.pdf' },
-      { id: 8, name: 'National Innovation Framework', file: 'national-innovation-framework.pdf' },
-      { id: 9, name: 'National Data Sharing Framework For Science, Technology and Innovation', file: 'data-sharing-framework.pdf' },
-      { id: 10, name: 'National Framework for Linkages Between Higher Learning Institutions, Research and Development Institutions and Industry', file: 'linkages-framework.pdf' },
-      { id: 11, name: 'National Guideline To Identify And Promote Inventions, Innovations And Traditional Knowledge Practices', file: 'inventions-innovations-guideline.pdf' },
-      { id: 12, name: 'National Guidelines For Artificial Intelligence In Education', file: 'ai-education-guidelines.pdf' },
-      { id: 13, name: 'National Guidelines For Establishment And Development of Technology and Innovation Centres', file: 'technology-innovation-centres-guidelines.pdf' },
-      { id: 14, name: 'Procedure for supporting walk in innovators CDTT', file: 'walk-in-innovators-procedure.pdf' },
-      { id: 15, name: 'ST Policy 1996', file: 'st-policy-1996.pdf' }
+      { id: 1, name: 'National Innovation Framework', file: 'national-innovation-framework.pdf' },
+      { id: 2, name: 'National Framework and Tools for Technology Transfer and Management', file: 'national-framework-technology-transfer-management.pdf' },
+      { id: 3, name: 'National Guidelines for the Establishment of Spin-Off Companies', file: 'national-guidelines-spin-off-companies.pdf' },
+      { id: 4, name: 'Technology Assessment and Unpackaging Guidelines', file: 'technology-assessment-unpackaging-guidelines.pdf' },
+      { id: 5, name: 'Innovation Cluster and Technology Station Reports', file: 'innovation-cluster-technology-station-reports.pdf' },
+      { id: 6, name: 'Policy briefs and analytical reports', file: 'policy-briefs-analytical-reports.pdf' }
     ]
   },
   {
