@@ -121,7 +121,7 @@ function CardCarousel() {
     slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 2000,
     pauseOnHover: true,
     swipe: false,
     touchMove: false,
@@ -138,7 +138,7 @@ function CardCarousel() {
           touchMove: false,
           draggable: false,
           autoplay: true,
-          autoplaySpeed: 5000,
+          autoplaySpeed: 2000,
           pauseOnHover: true
         }
       },
@@ -153,7 +153,7 @@ function CardCarousel() {
           touchMove: false,
           draggable: false,
           autoplay: true,
-          autoplaySpeed: 5000,
+          autoplaySpeed: 2000,
           pauseOnHover: true
         }
       },
@@ -168,7 +168,7 @@ function CardCarousel() {
           touchMove: true,
           draggable: true,
           autoplay: true,
-          autoplaySpeed: 5000,
+          autoplaySpeed: 2000,
           pauseOnHover: true
         }
       }
@@ -179,9 +179,9 @@ function CardCarousel() {
     <section className="card-carousel-section" id="stats">
       <div className="card-carousel-container">
         <Slider {...settings}>
-          {cards.map((card) => (
-            <div key={card.id} className={`card-wrapper ${card.chartType === 'map' ? 'map-card-wrapper' : ''}`}>
-              <div className={`carousel-card ${card.chartType === 'map' ? 'map-card' : ''}`}>
+            {cards.map((card) => (
+              <div key={card.id} className={`card-wrapper ${card.chartType === 'map' ? 'map-card-wrapper' : ''}`}>
+                <div className={`carousel-card ${card.chartType === 'map' ? 'map-card' : ''}`}>
                 <h3 className="card-title">{card.title}</h3>
                 {card.subtitle && (
                   <p className="card-subtitle">{card.subtitle}</p>

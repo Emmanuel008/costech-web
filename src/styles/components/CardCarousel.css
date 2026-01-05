@@ -365,39 +365,61 @@
   }
 }
 
+/* Mobile Grid Layout (like News section) */
+.cards-grid-mobile {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 @media (max-width: 768px) {
   .card-carousel-section {
-    padding: 20px 12px 35px 12px;
+    padding: 30px 12px;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .card-carousel-container {
     padding: 0;
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .cards-grid-mobile {
+    gap: 16px;
+    margin-top: 0;
   }
 
   .card-wrapper {
-    padding: 0 8px;
+    padding: 0;
     height: auto;
-    min-height: 260px;
-    width: 100%;
+    min-height: auto;
+    width: 100% !important;
     max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
   }
 
   .card-wrapper.map-card-wrapper {
-    min-height: 260px;
+    min-height: auto;
   }
 
   .carousel-card {
     padding: 20px 16px;
     height: auto;
-    min-height: 260px;
+    min-height: auto;
     width: 100%;
-    max-width: calc(100% - 16px);
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(185, 124, 7, 0.15), 0 3px 6px rgba(185, 124, 7, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(185, 124, 7, 0.15), 0 2px 6px rgba(185, 124, 7, 0.1);
     -webkit-tap-highlight-color: transparent;
+    display: flex;
+    flex-direction: column;
   }
 
   .carousel-card:active {
@@ -405,44 +427,56 @@
   }
 
   .carousel-card.map-card {
-    min-height: 260px;
+    min-height: 300px;
   }
 
   .card-title {
-    font-size: 14px;
-    margin-bottom: 6px;
+    font-size: 16px;
+    margin-bottom: 10px;
     line-height: 1.4;
     word-wrap: break-word;
     font-weight: 700;
+    text-align: center;
+    color: #b97c07;
+    padding: 0 4px;
   }
 
   .card-subtitle {
     font-size: 11px;
     margin-bottom: 12px;
     word-wrap: break-word;
+    text-align: center;
+    color: #b97c07;
+    opacity: 0.8;
   }
 
   .card-content {
-    gap: 12px;
+    gap: 14px;
     width: 100%;
     overflow: hidden;
     flex: 1;
     justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
   .card-chart {
     width: 100%;
-    max-width: 140px;
-    height: 140px;
+    max-width: 180px;
+    height: 180px;
     margin: 0 auto;
     flex-shrink: 0;
+    box-sizing: border-box;
   }
 
   .card-chart.bar-chart {
     width: 100%;
     max-width: 100%;
-    height: 120px;
+    height: 160px;
     overflow: hidden;
+    padding: 0 4px;
   }
 
   .card-chart.stat-chart {
@@ -450,21 +484,29 @@
     gap: 12px;
     width: 100%;
     max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .stat-value {
-    font-size: 2.75rem;
+    font-size: 3.5rem;
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.02em;
+    color: #1e40af;
   }
 
   .stat-label {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
-    line-height: 1.3;
-    padding: 0 8px;
+    line-height: 1.4;
+    padding: 0 12px;
     text-align: center;
+    word-wrap: break-word;
+    color: #b97c07;
   }
 
   .card-chart.map-chart {
@@ -472,20 +514,27 @@
     height: 100%;
     max-width: 100%;
     flex: 1;
-    border-radius: 6px;
+    border-radius: 8px;
+    min-height: 220px;
   }
 
   .card-chart.map-chart .leaflet-container {
-    border-radius: 6px;
+    border-radius: 8px;
+  }
+
+  .map-click-hint {
+    font-size: 10px;
+    padding: 5px 10px;
+    bottom: 8px;
   }
 
   .map-regions-list {
-    max-height: 120px;
-    gap: 3px;
+    max-height: 130px;
+    gap: 4px;
   }
 
   .map-region-item {
-    padding: 2px 4px;
+    padding: 3px 5px;
     font-size: 9px;
   }
 
@@ -504,21 +553,23 @@
   }
 
   .card-legend {
-    gap: 5px;
+    gap: 8px;
     max-width: 100%;
     width: 100%;
-    padding: 0;
+    padding: 0 4px;
+    margin-top: 10px;
   }
 
   .legend-item {
-    font-size: 10px;
-    gap: 5px;
+    font-size: 11px;
+    gap: 8px;
     width: 100%;
+    padding: 4px 0;
   }
 
   .legend-color {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     flex-shrink: 0;
   }
 
@@ -535,51 +586,103 @@
   }
 }
 
+@media (max-width: 640px) {
+  .card-carousel-section {
+    padding: 18px 12px 30px 12px;
+  }
+
+  .card-wrapper {
+    padding: 0 6px;
+    min-height: 280px;
+  }
+
+  .card-wrapper.map-card-wrapper {
+    min-height: 300px;
+  }
+
+  .carousel-card {
+    padding: 18px 14px;
+    min-height: 280px;
+  }
+
+  .carousel-card.map-card {
+    min-height: 300px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .card-chart {
+    max-width: 160px;
+    height: 160px;
+  }
+
+  .card-chart.bar-chart {
+    height: 150px;
+  }
+
+  .stat-value {
+    font-size: 3rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    padding: 0 8px;
+  }
+
+  .card-chart.map-chart {
+    min-height: 200px;
+  }
+}
+
 @media (max-width: 480px) {
   .card-carousel-section {
-    padding: 18px 10px 30px 10px;
+    padding: 25px 8px;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .card-carousel-container {
     padding: 0;
     width: 100%;
     max-width: 100%;
+    overflow: hidden;
   }
 
-  .card-carousel-container .slick-list {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
-
-  .card-carousel-container .slick-slide {
-    width: 100% !important;
+  .cards-grid-mobile {
+    gap: 14px;
+    margin-top: 0;
   }
 
   .card-wrapper {
-    padding: 0 6px;
+    padding: 0;
     height: auto;
-    min-height: 240px;
-    width: 100%;
+    min-height: auto;
+    width: 100% !important;
     max-width: 100%;
     box-sizing: border-box;
+    display: flex;
   }
 
   .card-wrapper.map-card-wrapper {
-    min-height: 240px;
+    min-height: auto;
   }
 
   .carousel-card {
     padding: 18px 14px;
     height: auto;
-    min-height: 240px;
+    min-height: auto;
     width: 100%;
-    max-width: calc(100% - 12px);
+    max-width: 100%;
     box-sizing: border-box;
-    margin: 0 auto;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(185, 124, 7, 0.15), 0 3px 6px rgba(185, 124, 7, 0.1);
+    margin: 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(185, 124, 7, 0.15), 0 2px 6px rgba(185, 124, 7, 0.1);
     -webkit-tap-highlight-color: transparent;
+    display: flex;
+    flex-direction: column;
   }
 
   .carousel-card:active {
@@ -587,16 +690,18 @@
   }
 
   .carousel-card.map-card {
-    min-height: 240px;
+    min-height: 280px;
   }
 
   .card-title {
-    font-size: 13px;
-    margin-bottom: 6px;
-    line-height: 1.4;
+    font-size: 15px;
+    margin-bottom: 8px;
+    line-height: 1.35;
     word-wrap: break-word;
     text-align: center;
     font-weight: 700;
+    color: #b97c07;
+    padding: 0 2px;
   }
 
   .card-subtitle {
@@ -604,29 +709,37 @@
     margin-bottom: 10px;
     word-wrap: break-word;
     text-align: center;
+    color: #b97c07;
+    opacity: 0.8;
   }
 
   .card-content {
-    gap: 10px;
+    gap: 12px;
     width: 100%;
     overflow: hidden;
     flex: 1;
     justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
   .card-chart {
     width: 100%;
-    max-width: 120px;
-    height: 120px;
+    max-width: 150px;
+    height: 150px;
     margin: 0 auto;
     flex-shrink: 0;
+    box-sizing: border-box;
   }
 
   .card-chart.bar-chart {
     width: 100%;
     max-width: 100%;
-    height: 110px;
+    height: 140px;
     overflow: hidden;
+    padding: 0 2px;
   }
 
   .card-chart.stat-chart {
@@ -634,21 +747,29 @@
     gap: 10px;
     width: 100%;
     max-width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .stat-value {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 800;
     line-height: 1;
     letter-spacing: -0.02em;
+    color: #1e40af;
   }
 
   .stat-label {
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 600;
-    line-height: 1.3;
-    padding: 0 6px;
+    line-height: 1.4;
+    padding: 0 8px;
     text-align: center;
+    word-wrap: break-word;
+    color: #b97c07;
   }
 
   .card-chart.map-chart {
@@ -656,20 +777,27 @@
     height: 100%;
     max-width: 100%;
     flex: 1;
-    border-radius: 4px;
+    border-radius: 8px;
+    min-height: 190px;
   }
 
   .card-chart.map-chart .leaflet-container {
-    border-radius: 4px;
+    border-radius: 8px;
+  }
+
+  .map-click-hint {
+    font-size: 9px;
+    padding: 4px 8px;
+    bottom: 6px;
   }
 
   .map-regions-list {
-    max-height: 100px;
-    gap: 2px;
+    max-height: 110px;
+    gap: 3px;
   }
 
   .map-region-item {
-    padding: 2px 3px;
+    padding: 2px 4px;
     font-size: 8px;
   }
 
@@ -688,22 +816,24 @@
   }
 
   .card-legend {
-    gap: 4px;
+    gap: 6px;
     max-width: 100%;
     width: 100%;
-    padding: 0;
+    padding: 0 2px;
+    margin-top: 8px;
   }
 
   .legend-item {
-    font-size: 9px;
-    gap: 4px;
+    font-size: 10px;
+    gap: 6px;
     width: 100%;
     justify-content: space-between;
+    padding: 3px 0;
   }
 
   .legend-color {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
     flex-shrink: 0;
   }
 
@@ -746,6 +876,73 @@
     width: 10px;
     height: 10px;
     background-color: #b97c07;
+  }
+}
+
+@media (max-width: 375px) {
+  .card-carousel-section {
+    padding: 14px 8px 24px 8px;
+  }
+
+  .card-wrapper {
+    padding: 0 3px;
+    min-height: 260px;
+  }
+
+  .card-wrapper.map-card-wrapper {
+    min-height: 280px;
+  }
+
+  .carousel-card {
+    padding: 16px 10px;
+    min-height: 260px;
+  }
+
+  .carousel-card.map-card {
+    min-height: 280px;
+  }
+
+  .card-title {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .card-chart {
+    max-width: 140px;
+    height: 140px;
+  }
+
+  .card-chart.bar-chart {
+    height: 130px;
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.88rem;
+    padding: 0 6px;
+  }
+
+  .card-chart.map-chart {
+    min-height: 180px;
+  }
+
+  .card-legend {
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  .legend-item {
+    font-size: 9px;
+    gap: 5px;
+    padding: 2px 0;
+  }
+
+  .legend-color {
+    width: 8px;
+    height: 8px;
   }
 }
 

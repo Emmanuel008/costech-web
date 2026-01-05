@@ -146,7 +146,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <div className="footer-copyright">
-            <p>© Copyright 2025 COSTECH. All Rights Reserved</p>
+            <p>© Copyright {new Date().getFullYear()} COSTECH. All Rights Reserved</p>
           </div>
         </div>
       </footer>
