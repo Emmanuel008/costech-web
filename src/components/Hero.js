@@ -7,6 +7,15 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const totalSlides = 2;
 
+  // Preload images
+  useEffect(() => {
+    const image1 = new Image();
+    const image2 = new Image();
+
+    image1.src = `${process.env.PUBLIC_URL}/assets/img/hero.jpg`;
+    image2.src = `${process.env.PUBLIC_URL}/assets/img/ubunifu.jpeg`;
+  }, []);
+
   const heroImageStyle = {
     backgroundImage: `url('${process.env.PUBLIC_URL}/assets/img/hero.jpg')`,
   };

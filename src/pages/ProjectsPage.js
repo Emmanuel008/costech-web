@@ -106,7 +106,6 @@ const ProjectsPage = () => {
   return (
     <section className="projects-page">
       <div className="projects-hero">
-        <div className="projects-hero-overlay" />
         <div className="projects-hero-content">
           {activeSection === 'ongoing' ? (
             <>

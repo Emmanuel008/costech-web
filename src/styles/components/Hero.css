@@ -2,18 +2,20 @@
   position: relative;
   width: 100%;
   max-width: 100vw;
-  min-height: 600px;
-  height: 600px;
+  min-height: 90vh;
+  height: 90vh;
   overflow: hidden;
   margin-top: 0;
   box-sizing: border-box;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background-color: transparent;
 }
 
 .hero-carousel {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 90vh;
+  background-color: transparent;
 }
 
 .hero-slide {
@@ -21,11 +23,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 600px;
+  height: 90vh;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
-  background-color: #1e3a8a;
+  background-color: transparent !important;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -34,8 +36,20 @@
   justify-content: center;
   padding: 0;
   box-sizing: border-box;
-  transform: scale(1.05);
+  transform: scale(1);
   z-index: 0;
+  overflow: hidden;
+}
+
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.25) 0%, rgba(30, 58, 138, 0.2) 50%, rgba(30, 58, 138, 0.25) 100%);
+  z-index: 1;
 }
 
 .hero-slide.active {
@@ -46,7 +60,6 @@
   transform: scale(1);
   transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out, transform 0.8s ease-in-out;
 }
-
 
 .hero-slide-overlay {
   display: none;
@@ -282,16 +295,16 @@
 
 @media (max-width: 968px) {
   .hero {
-    min-height: 500px;
-    height: 500px;
+    min-height: 80vh;
+    height: 80vh;
   }
   
   .hero-carousel {
-    height: 500px;
+    height: 80vh;
   }
   
   .hero-slide {
-    height: 500px;
+    height: 80vh;
   }
   
   .hero-content {
@@ -313,16 +326,16 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 450px;
-    height: 450px;
+    min-height: 70vh;
+    height: 70vh;
   }
   
   .hero-carousel {
-    height: 450px;
+    height: 70vh;
   }
   
   .hero-slide {
-    height: 450px;
+    height: 70vh;
   }
   
   .hero-content {
@@ -361,16 +374,16 @@
 
 @media (max-width: 480px) {
   .hero {
-    min-height: 400px;
-    height: 400px;
+    min-height: 60vh;
+    height: 60vh;
   }
   
   .hero-carousel {
-    height: 400px;
+    height: 60vh;
   }
   
   .hero-slide {
-    height: 400px;
+    height: 60vh;
   }
   
   .hero-content {
