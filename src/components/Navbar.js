@@ -204,7 +204,8 @@ const Navbar = () => {
   ];
 
   const projectsItems = [
-    { text: 'Ongoing Projects', href: '/projects#ongoing' },
+    { text: 'Ongoing Program', href: '/projects#ongoing' },
+    { text: 'COSTECH Funded Projects', href: 'https://costech.or.tz/project-grants', external: true },
     { text: 'Area for Partnership', href: '/projects#partnership' },
   ];
 

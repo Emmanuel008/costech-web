@@ -57,34 +57,49 @@ const ProjectsPage = () => {
 
   const partnershipAreas = [
     {
-      id: 'research',
-      title: 'Research Collaboration',
-      description: 'Partner with COSTECH to support cutting-edge research in priority areas including agriculture, health, energy, ICT, and environmental sciences. We facilitate collaborative research projects that address national challenges and contribute to sustainable development.'
+      id: 'research-innovation',
+      title: 'Research & Innovation Development',
+      description: 'Strengthening national research capacity and infrastructure, joint research programs aligned with national development priorities, support for applied research and problem-driven innovation, research commercialization and technology transfer.'
     },
     {
-      id: 'innovation',
-      title: 'Innovation Support',
-      description: 'Join us in fostering innovation ecosystems by supporting technology development, innovation hubs, startup incubation, and commercialization of research results. Help bridge the gap between research and market-ready solutions.'
+      id: 'sti-policy',
+      title: 'Science, Technology & Innovation (STI) Policy Support',
+      description: 'Evidence-based policy development, STI monitoring, evaluation, and impact assessment, data systems for research and innovation management, alignment with national and regional STI framework.'
     },
     {
-      id: 'capacity',
-      title: 'Capacity Building',
-      description: 'Support capacity building initiatives for researchers, innovators, and institutions. Partner with us to provide training, mentorship, and resources that strengthen Tanzania\'s scientific and technological capabilities.'
+      id: 'human-capital',
+      title: 'Human Capital & Skills Development',
+      description: 'Training of researchers, innovators, and technicians, capacity building in emerging technologies, research ethics, integrity, and responsible innovation, mentorship programs for early-career scientists and innovators.'
     },
     {
-      id: 'funding',
-      title: 'Funding and Grants',
-      description: 'Contribute to research and innovation funding through the National Fund for the Advancement of Science and Technology (NFAST). Support grants, loans, and financial mechanisms that enable researchers and innovators to bring their ideas to life.'
+      id: 'tech-transfer',
+      title: 'Technology Transfer & Commercialization',
+      description: 'Intellectual property (IP) management and protection, patent development and licensing, market readiness and scaling of innovations, public–private partnerships for technology deployment.'
     },
     {
-      id: 'infrastructure',
-      title: 'Infrastructure Development',
-      description: 'Partner in developing and upgrading research infrastructure, laboratories, innovation spaces, and technology facilities that support scientific research and innovation activities across Tanzania.'
+      id: 'digital-transformation',
+      title: 'Digital Transformation & Emerging Technologies',
+      description: 'Artificial intelligence, data science, and digital innovation, biotechnology and life sciences, renewable energy and green technologies, space science, remote sensing, and geospatial technologies.'
     },
     {
-      id: 'policy',
-      title: 'Policy Development',
-      description: 'Collaborate on developing science, technology, and innovation policies, frameworks, and strategic plans that guide national development priorities and create an enabling environment for STI growth.'
+      id: 'research-ethics',
+      title: 'Research Ethics, Biosafety & Regulatory Support',
+      description: 'Ethical review systems and compliance, responsible research and innovation (RRI), biosafety protocols and regulatory frameworks.'
+    },
+    {
+      id: 'national-development',
+      title: 'National Development & Societal Challenges',
+      description: 'Health, agriculture, and food security innovations, climate change adaptation and mitigation, environmental conservation and sustainability, water, energy, and urban development solutions.'
+    },
+    {
+      id: 'international-collaboration',
+      title: 'International & Regional Collaboration',
+      description: 'Joint programs with regional and global partners, research mobility and exchange programs, participation in international funding mechanisms, South–South and North–South cooperation.'
+    },
+    {
+      id: 'science-communication',
+      title: 'Science Communication & Public Engagement',
+      description: 'Public awareness of science and innovation, science education and outreach initiatives, evidence-informed decision-making, knowledge dissemination and uptake.'
     }
   ];
 

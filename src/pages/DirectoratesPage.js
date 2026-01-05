@@ -100,10 +100,10 @@ const DirectoratesPage = () => {
                   {/* Core Roles */}
                   <div className="combined-section-item">
                     <div className="section-header">
-                      <h3 className="section-title">Core Roles and Mandate</h3>
+                      <h3 className="section-title">Services Offered</h3>
                     </div>
                     <p className="section-intro">
-                      {directorate.name} performs the following core roles on behalf of COSTECH:
+                      {directorate.name} offers the following services:
                     </p>
                     <ol className="roles-list">
                       {directorate.coreRoles.map((role, idx) => (
