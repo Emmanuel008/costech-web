@@ -8,6 +8,8 @@ const NewsPage = () => {
   const [allNews, setAllNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12; // Number of items to show per page
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -63,6 +65,32 @@ const NewsPage = () => {
     fetchNews();
   }, []);
 
+  // Calculate pagination
+  const totalPages = Math.ceil(allNews.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentNews = allNews.slice(startIndex, endIndex);
+
+  // Handle page navigation
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Reset to page 1 when news data changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [allNews.length]);
+
   return (
     <section className="news-section news-page">
       <div className="news-container">
@@ -83,34 +111,69 @@ const NewsPage = () => {
             <p>Unable to load news. Please try again later.</p>
           </div>
         ) : (
-          <div className="news-page-grid">
-            {allNews.map((item) => (
-              <article key={item.id} className="news-card news-card-link">
-                <Link to={`/news/${item.slug}`} className="news-card-anchor">
-                  <div className="news-image-container">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="news-image"
-                      loading="lazy"
-                      onError={(e) => {
-                        e.target.src = '/assets/img/miradi.jpg';
-                      }}
-                    />
-                  </div>
-                  <div className="news-content">
-                    <h3 className="news-title">{item.title}</h3>
-                    <p className="news-date">{item.date}</p>
-                    {item.summary && (
-                      <p className="news-summary visible">
-                        {item.summary}
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
+          <>
+            <div className="news-page-grid">
+              {currentNews.map((item) => (
+                <article key={item.id} className="news-card news-card-link">
+                  <Link to={`/news/${item.slug}`} className="news-card-anchor">
+                    <div className="news-image-container">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="news-image"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.target.src = '/assets/img/miradi.jpg';
+                        }}
+                      />
+                    </div>
+                    <div className="news-content">
+                      <h3 className="news-title">{item.title}</h3>
+                      <p className="news-date">{item.date}</p>
+                      {item.summary && (
+                        <p className="news-summary visible">
+                          {item.summary}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                </article>
+              ))}
+            </div>
+            
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="news-pagination">
+                <button
+                  className="news-pagination-btn"
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 1}
+                  aria-label="Previous page"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                  Previous
+                </button>
+                
+                <span className="news-pagination-info">
+                  Page {currentPage} of {totalPages}
+                </span>
+                
+                <button
+                  className="news-pagination-btn"
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  aria-label="Next page"
+                >
+                  Next
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>
