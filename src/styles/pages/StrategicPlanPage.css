@@ -290,3 +290,36 @@
     height: 36px;
   }
 }
+
+.strategic-plan-loading,
+.strategic-plan-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.strategic-plan-loading {
+  color: #b97c07;
+}
+
+.strategic-plan-loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+.strategic-plan-error {
+  color: #dc2626;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}

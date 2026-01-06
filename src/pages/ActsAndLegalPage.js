@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import '../styles/pages/StrategicPlanPage.css';
-import { getStrategicPlans } from '../services/api';
+import '../styles/pages/ActsAndLegalPage.css';
+import { getActsAndLegal } from '../services/api';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
@@ -105,29 +105,23 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 };
 
 // Fallback static data
-const fallbackStrategicPlans = [
+const fallbackActsAndLegal = [
   {
     id: 1,
-    name: 'COSTECH Strategic Plan 2021/22 – 2025/2026',
-    publishedDate: '2021-07-01',
+    name: 'Science and Technology Act',
+    publishedDate: '2021-01-15',
     downloadUrl: '#',
   },
   {
     id: 2,
-    name: 'COSTECH Strategic Plan 2016/17 – 2020/2021',
-    publishedDate: '2016-07-01',
-    downloadUrl: '#',
-  },
-  {
-    id: 3,
-    name: 'COSTECH Strategic Plan 2011/12 – 2015/2016',
-    publishedDate: '2011-07-01',
+    name: 'Research and Innovation Legal Framework',
+    publishedDate: '2020-06-20',
     downloadUrl: '#',
   },
 ];
 
 /**
- * Format date from API (format: "06/01/2026" or "6/01/2026") or standard date string
+ * Format date from API (format: "06/01/2026") or standard date string
  * @param {string} dateString - Date string from API or standard format
  * @returns {string} - Formatted date
  */
@@ -139,7 +133,7 @@ const formatDate = (dateString) => {
   try {
     let date;
     
-    // Check if date is in "DD/MM/YYYY" or "D/MM/YYYY" format (from API)
+    // Check if date is in "DD/MM/YYYY" format (from API)
     if (dateString.includes('/') && dateString.split('/').length === 3) {
       const [day, month, year] = dateString.split('/');
       date = new Date(`${year}-${month}-${day}`);
@@ -161,46 +155,46 @@ const formatDate = (dateString) => {
   }
 };
 
-const StrategicPlanPage = () => {
-  const [strategicPlans, setStrategicPlans] = useState([]);
+const ActsAndLegalPage = () => {
+  const [actsAndLegal, setActsAndLegal] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   useEffect(() => {
-    const fetchStrategicPlans = async () => {
+    const fetchActsAndLegal = async () => {
       try {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 StrategicPlanPage: Starting to fetch strategic plans from API...');
+        console.log('🔄 ActsAndLegalPage: Starting to fetch acts and legal documents from API...');
         
-        // Fetch strategic plans from API
-        const apiStrategicPlans = await getStrategicPlans();
+        // Fetch acts and legal documents from API
+        const apiActsAndLegal = await getActsAndLegal();
         
-        console.log('📊 StrategicPlanPage: Received strategic plans from API:', apiStrategicPlans);
+        console.log('📊 ActsAndLegalPage: Received acts and legal documents from API:', apiActsAndLegal);
         
-        if (apiStrategicPlans && apiStrategicPlans.length > 0) {
-          console.log(`✅ StrategicPlanPage: Using ${apiStrategicPlans.length} strategic plans from API`);
+        if (apiActsAndLegal && apiActsAndLegal.length > 0) {
+          console.log(`✅ ActsAndLegalPage: Using ${apiActsAndLegal.length} acts and legal documents from API`);
           
           // Map API data to component structure
-          const mappedPlans = apiStrategicPlans.map((item) => ({
+          const mappedActsAndLegal = apiActsAndLegal.map((item) => ({
             id: item.id,
-            name: item.title || 'Strategic Plan',
+            name: item.title || 'Act and Legal Document',
             publishedDate: item.date || new Date().toISOString().split('T')[0],
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 StrategicPlanPage: Mapped strategic plans:', mappedPlans);
-          setStrategicPlans(mappedPlans);
+          console.log('📝 ActsAndLegalPage: Mapped acts and legal documents:', mappedActsAndLegal);
+          setActsAndLegal(mappedActsAndLegal);
         } else {
-          console.warn('⚠️ StrategicPlanPage: API returned empty array, using static data');
+          console.warn('⚠️ ActsAndLegalPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
-          setStrategicPlans(fallbackStrategicPlans);
+          setActsAndLegal(fallbackActsAndLegal);
         }
       } catch (err) {
-        console.error('❌ StrategicPlanPage: Error fetching strategic plans:', err);
+        console.error('❌ ActsAndLegalPage: Error fetching acts and legal documents:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -209,85 +203,85 @@ const StrategicPlanPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ StrategicPlanPage: Falling back to static data due to error');
-        setStrategicPlans(fallbackStrategicPlans);
+        console.warn('⚠️ ActsAndLegalPage: Falling back to static data due to error');
+        setActsAndLegal(fallbackActsAndLegal);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchStrategicPlans();
+    fetchActsAndLegal();
   }, []);
 
-  const totalPages = Math.ceil(strategicPlans.length / itemsPerPage);
+  const totalPages = Math.ceil(actsAndLegal.length / itemsPerPage);
 
-  const paginatedPlans = useMemo(() => {
+  const paginatedActsAndLegal = useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return strategicPlans.slice(startIndex, endIndex);
-  }, [currentPage, itemsPerPage, strategicPlans]);
+    return actsAndLegal.slice(startIndex, endIndex);
+  }, [currentPage, itemsPerPage, actsAndLegal]);
 
   const onPageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleDownload = (e, plan) => {
-    if (plan.downloadUrl && plan.downloadUrl !== '#') {
+  const handleDownload = (e, document) => {
+    if (document.downloadUrl && document.downloadUrl !== '#') {
       e.preventDefault();
-      window.open(plan.downloadUrl, '_blank');
+      window.open(document.downloadUrl, '_blank');
     }
   };
 
   return (
-    <section className="strategic-plan-page">
-      <div className="strategic-plan-hero">
-        <div className="strategic-plan-hero-overlay" />
-        <div className="strategic-plan-hero-content">
-          <h1>Strategic Plan</h1>
+    <section className="acts-legal-page">
+      <div className="acts-legal-hero">
+        <div className="acts-legal-hero-overlay" />
+        <div className="acts-legal-hero-content">
+          <h1>Acts & Legal</h1>
           <p>
-            Access COSTECH&apos;s strategic plans that outline our vision, mission, goals, and
-            strategic objectives for advancing science, technology and innovation in Tanzania.
+            Access official acts, legal frameworks, and regulatory documents that govern science,
+            technology, and innovation in Tanzania.
           </p>
         </div>
       </div>
 
-      <div className="strategic-plan-body">
+      <div className="acts-legal-body">
         {loading ? (
-          <div className="strategic-plan-loading">
-            <p>Loading strategic plans...</p>
+          <div className="acts-legal-loading">
+            <p>Loading acts and legal documents...</p>
           </div>
-        ) : error && strategicPlans.length === 0 ? (
-          <div className="strategic-plan-error">
-            <p>Unable to load strategic plans. Please try again later.</p>
+        ) : error && actsAndLegal.length === 0 ? (
+          <div className="acts-legal-error">
+            <p>Unable to load acts and legal documents. Please try again later.</p>
           </div>
         ) : (
           <>
-            <div className="strategic-plan-table-container">
-              <div className="strategic-plan-table-wrapper">
-                <table className="strategic-plan-table">
-                  <thead className="strategic-plan-table-head">
-                    <tr className="strategic-plan-table-row">
-                      <th className="strategic-plan-table-head-cell">Name of the Strategic Plan</th>
-                      <th className="strategic-plan-table-head-cell">Published Date</th>
-                      <th className="strategic-plan-table-head-cell">
+            <div className="acts-legal-table-container">
+              <div className="acts-legal-table-wrapper">
+                <table className="acts-legal-table">
+                  <thead className="acts-legal-table-head">
+                    <tr className="acts-legal-table-row">
+                      <th className="acts-legal-table-head-cell">Name of the Document</th>
+                      <th className="acts-legal-table-head-cell">Published Date</th>
+                      <th className="acts-legal-table-head-cell">
                         <span className="sr-only">Download</span>
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="strategic-plan-table-body">
-                    {paginatedPlans.map((plan) => (
-                      <tr key={plan.id} className="strategic-plan-table-row">
-                        <td className="strategic-plan-table-cell strategic-plan-table-cell--name">
-                          {plan.name}
+                  <tbody className="acts-legal-table-body">
+                    {paginatedActsAndLegal.map((document) => (
+                      <tr key={document.id} className="acts-legal-table-row">
+                        <td className="acts-legal-table-cell acts-legal-table-cell--name">
+                          {document.name}
                         </td>
-                        <td className="strategic-plan-table-cell">{formatDate(plan.publishedDate)}</td>
-                        <td className="strategic-plan-table-cell">
+                        <td className="acts-legal-table-cell">{formatDate(document.publishedDate)}</td>
+                        <td className="acts-legal-table-cell">
                           <a
-                            href={plan.downloadUrl}
-                            className="strategic-plan-download-link"
-                            onClick={(e) => handleDownload(e, plan)}
-                            aria-label={`Download ${plan.name}`}
+                            href={document.downloadUrl}
+                            className="acts-legal-download-link"
+                            onClick={(e) => handleDownload(e, document)}
+                            aria-label={`Download ${document.name}`}
                           >
                             Download
                           </a>
@@ -300,7 +294,7 @@ const StrategicPlanPage = () => {
             </div>
 
             {totalPages > 1 && (
-              <div className="strategic-plan-pagination-wrapper">
+              <div className="acts-legal-pagination-wrapper">
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}
@@ -315,5 +309,5 @@ const StrategicPlanPage = () => {
   );
 };
 
-export default StrategicPlanPage;
+export default ActsAndLegalPage;
 

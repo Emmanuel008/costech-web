@@ -676,3 +676,43 @@
   }
 }
 
+/* Loading, Error, and Empty States */
+.projects-loading,
+.projects-error,
+.projects-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #64748b;
+}
+
+.projects-loading {
+  font-size: 1.125rem;
+}
+
+.projects-loading::after {
+  content: '...';
+  animation: ellipsis 1.5s infinite;
+}
+
+@keyframes ellipsis {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+.projects-error {
+  color: #ef4444;
+  font-size: 1.125rem;
+}
+
+.projects-empty {
+  color: #94a3b8;
+  font-size: 1.125rem;
+}
+

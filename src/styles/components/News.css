@@ -697,3 +697,39 @@
   }
 }
 
+.news-loading,
+.news-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  position: relative;
+  z-index: 2;
+}
+
+.news-loading {
+  color: #f4d03f;
+}
+
+.news-error {
+  color: #ff6b6b;
+}
+
+.news-loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+

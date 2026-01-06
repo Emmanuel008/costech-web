@@ -290,3 +290,36 @@
     height: 36px;
   }
 }
+
+.research-policy-loading,
+.research-policy-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.research-policy-loading {
+  color: #b97c07;
+}
+
+.research-policy-loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+.research-policy-error {
+  color: #dc2626;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}

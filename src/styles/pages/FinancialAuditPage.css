@@ -216,3 +216,44 @@
   }
 }
 
+.statement-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #64748b;
+  margin: 12px 0 0 0;
+  font-style: italic;
+}
+
+.financial-loading,
+.financial-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.financial-loading {
+  color: #1e40af;
+}
+
+.financial-loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+.financial-error {
+  color: #dc2626;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+

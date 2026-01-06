@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import '../styles/pages/ResearchTechnologyPolicyPage.css';
+import { getPolicies } from '../services/api';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
@@ -103,7 +104,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
-const policies = [
+// Fallback static data
+const fallbackPolicies = [
   {
     id: 1,
     name: 'National Science, Technology and Innovation Policy 2021',
@@ -130,18 +132,98 @@ const policies = [
   },
 ];
 
+/**
+ * Format date from API (format: "06/01/2026") or standard date string
+ * @param {string} dateString - Date string from API or standard format
+ * @returns {string} - Formatted date
+ */
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  if (!dateString) {
+    return 'Date not available';
+  }
+
+  try {
+    let date;
+    
+    // Check if date is in "DD/MM/YYYY" format (from API)
+    if (dateString.includes('/') && dateString.split('/').length === 3) {
+      const [day, month, year] = dateString.split('/');
+      date = new Date(`${year}-${month}-${day}`);
+    } else {
+      date = new Date(dateString);
+    }
+
+    if (isNaN(date.getTime())) {
+      return dateString; // Return original if parsing fails
+    }
+
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  } catch (error) {
+    return dateString; // Return original if error
+  }
 };
 
 const ResearchTechnologyPolicyPage = () => {
+  const [policies, setPolicies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const fetchPolicies = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        console.log('🔄 ResearchTechnologyPolicyPage: Starting to fetch policies from API...');
+        
+        // Fetch policies from API
+        const apiPolicies = await getPolicies();
+        
+        console.log('📊 ResearchTechnologyPolicyPage: Received policies from API:', apiPolicies);
+        
+        if (apiPolicies && apiPolicies.length > 0) {
+          console.log(`✅ ResearchTechnologyPolicyPage: Using ${apiPolicies.length} policies from API`);
+          
+          // Map API data to component structure
+          const mappedPolicies = apiPolicies.map((item) => ({
+            id: item.id,
+            name: item.title || 'Policy',
+            publishedDate: item.date || new Date().toISOString().split('T')[0],
+            downloadUrl: item.document || '#',
+          }));
+          
+          console.log('📝 ResearchTechnologyPolicyPage: Mapped policies:', mappedPolicies);
+          setPolicies(mappedPolicies);
+        } else {
+          console.warn('⚠️ ResearchTechnologyPolicyPage: API returned empty array, using static data');
+          // Fallback to static data if API returns empty
+          setPolicies(fallbackPolicies);
+        }
+      } catch (err) {
+        console.error('❌ ResearchTechnologyPolicyPage: Error fetching policies:', err);
+        console.error('Error details:', {
+          message: err.message,
+          response: err.response?.data,
+          status: err.response?.status,
+          stack: err.stack
+        });
+        setError(err.message);
+        // Fallback to static data on error
+        console.warn('⚠️ ResearchTechnologyPolicyPage: Falling back to static data due to error');
+        setPolicies(fallbackPolicies);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPolicies();
+  }, []);
 
   const totalPages = Math.ceil(policies.length / itemsPerPage);
 
@@ -149,11 +231,18 @@ const ResearchTechnologyPolicyPage = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return policies.slice(startIndex, endIndex);
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, policies]);
 
   const onPageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDownload = (e, policy) => {
+    if (policy.downloadUrl && policy.downloadUrl !== '#') {
+      e.preventDefault();
+      window.open(policy.downloadUrl, '_blank');
+    }
   };
 
   return (
@@ -170,50 +259,62 @@ const ResearchTechnologyPolicyPage = () => {
       </div>
 
       <div className="research-policy-body">
-        <div className="research-policy-table-container">
-          <div className="research-policy-table-wrapper">
-            <table className="research-policy-table">
-              <thead className="research-policy-table-head">
-                <tr className="research-policy-table-row">
-                  <th className="research-policy-table-head-cell">Name of the Policy</th>
-                  <th className="research-policy-table-head-cell">Published Date</th>
-                  <th className="research-policy-table-head-cell">
-                    <span className="sr-only">Download</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="research-policy-table-body">
-                {paginatedPolicies.map((policy) => (
-                  <tr key={policy.id} className="research-policy-table-row">
-                    <td className="research-policy-table-cell research-policy-table-cell--name">
-                      {policy.name}
-                    </td>
-                    <td className="research-policy-table-cell">{formatDate(policy.publishedDate)}</td>
-                    <td className="research-policy-table-cell">
-                      <a
-                        href={policy.downloadUrl}
-                        className="research-policy-download-link"
-                        download
-                        aria-label={`Download ${policy.name}`}
-                      >
-                        Download
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {loading ? (
+          <div className="research-policy-loading">
+            <p>Loading policies...</p>
           </div>
-        </div>
+        ) : error && policies.length === 0 ? (
+          <div className="research-policy-error">
+            <p>Unable to load policies. Please try again later.</p>
+          </div>
+        ) : (
+          <>
+            <div className="research-policy-table-container">
+              <div className="research-policy-table-wrapper">
+                <table className="research-policy-table">
+                  <thead className="research-policy-table-head">
+                    <tr className="research-policy-table-row">
+                      <th className="research-policy-table-head-cell">Name of the Policy</th>
+                      <th className="research-policy-table-head-cell">Published Date</th>
+                      <th className="research-policy-table-head-cell">
+                        <span className="sr-only">Download</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="research-policy-table-body">
+                    {paginatedPolicies.map((policy) => (
+                      <tr key={policy.id} className="research-policy-table-row">
+                        <td className="research-policy-table-cell research-policy-table-cell--name">
+                          {policy.name}
+                        </td>
+                        <td className="research-policy-table-cell">{formatDate(policy.publishedDate)}</td>
+                        <td className="research-policy-table-cell">
+                          <a
+                            href={policy.downloadUrl}
+                            className="research-policy-download-link"
+                            onClick={(e) => handleDownload(e, policy)}
+                            aria-label={`Download ${policy.name}`}
+                          >
+                            Download
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-        {totalPages > 1 && (
-          <div className="research-policy-pagination-wrapper">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={onPageChange}
-            />
-          </div>
+            {totalPages > 1 && (
+              <div className="research-policy-pagination-wrapper">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={onPageChange}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

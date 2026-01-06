@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/components/Navbar.css';
+import { getOnlineServices } from '../services/api';
 
 const MegaMenuItem = ({ item, onClose, level = 0 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -115,6 +116,18 @@ const DropdownMenuItem = ({ item, onClose, level = 0 }) => {
   );
 };
 
+// Fallback static online services
+const fallbackOnlineServicesItems = [
+  { text: 'STI Information portal(NISSTI)', href: '/nissti' },
+  { text: 'Innovation Space', href: '/technology/innovation-spaces' },
+  { text: 'Research Clearance Portal', href: '/research-clearance' },
+  { text: 'Union Catalog', href: '/union-catalog' },
+  { text: 'TanBIF', href: '/tanbif' },
+  { text: 'National Interlinked Research Repository', href: '/research-repository' },
+  { text: 'Research Funding', href: '/research-funding' },
+  { text: 'Customer Survey Form', href: '/customer-survey' },
+];
+
 const Navbar = () => {
   const [activeSecondDropdown, setActiveSecondDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -214,16 +227,57 @@ const Navbar = () => {
     { text: 'DTBi', href: 'https://teknohama.or.tz/', external: true },
   ];
 
-  const onlineServicesItems = [
-    { text: 'STI Information portal(NISSTI)', href: '/nissti' },
-    { text: 'Innovation Space', href: '/technology/innovation-spaces' },
-    { text: 'Research Clearance Portal', href: '/research-clearance' },
-    { text: 'Union Catalog', href: '/union-catalog' },
-    { text: 'TanBIF', href: '/tanbif' },
-    { text: 'National Interlinked Research Repository', href: '/research-repository' },
-    { text: 'Research Funding', href: '/research-funding' },
-    { text: 'Customer Survey Form', href: '/customer-survey' },
-  ];
+  const [onlineServicesItems, setOnlineServicesItems] = useState(fallbackOnlineServicesItems);
+
+  // Fetch online services from API
+  useEffect(() => {
+    const fetchOnlineServices = async () => {
+      try {
+        console.log('🔄 Navbar: Starting to fetch online services from API...');
+        
+        // Fetch online services from API
+        const apiServices = await getOnlineServices();
+        
+        console.log('📊 Navbar: Received online services from API:', apiServices);
+        
+        if (apiServices && apiServices.length > 0) {
+          console.log(`✅ Navbar: Using ${apiServices.length} online services from API`);
+          
+          // Map API response to component structure
+          const mappedServices = apiServices.map((service) => {
+            // Handle URL - could be in url, link, website, or external_url field
+            const url = service.url || service.link || service.website || service.external_url || service.href || '#';
+            
+            // Check if URL is external (starts with http:// or https://)
+            const isExternal = url.startsWith('http://') || url.startsWith('https://');
+            
+            return {
+              text: service.title || service.name || service.text || 'Untitled Service',
+              href: url,
+              external: isExternal
+            };
+          });
+          
+          setOnlineServicesItems(mappedServices);
+        } else {
+          console.warn('⚠️ Navbar: API returned empty array, using fallback');
+          setOnlineServicesItems(fallbackOnlineServicesItems);
+        }
+      } catch (err) {
+        console.error('❌ Navbar: Error fetching online services:', err);
+        console.error('Error details:', {
+          message: err.message,
+          response: err.response?.data,
+          status: err.response?.status,
+          stack: err.stack
+        });
+        // Use fallback on error
+        setOnlineServicesItems(fallbackOnlineServicesItems);
+      }
+    };
+
+    fetchOnlineServices();
+  }, []);
 
   const englishNavItems = [
     { text: 'Home', hasDropdown: false, href: '/' },

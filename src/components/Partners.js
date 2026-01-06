@@ -76,12 +76,12 @@ const Partners = () => {
               <div key={partner.id} className="partner-card-wrapper">
                 <div className="partner-card">
                   <div className="partner-card-inner">
-                    <img 
+                  <img 
                       src={partner.logo.replace(/ /g, '%20')} 
-                      alt={partner.alt || partner.name} 
-                      className="partner-logo-img" 
-                      loading="lazy"
-                      onError={(e) => {
+                    alt={partner.alt || partner.name} 
+                    className="partner-logo-img" 
+                    loading="lazy"
+                    onError={(e) => {
                         const attemptedPath = e.target.src;
                         console.error(`Failed to load image for ${partner.name}:`, {
                           originalPath: partner.logo,
@@ -90,12 +90,12 @@ const Partners = () => {
                         });
                         e.target.style.opacity = '0.3';
                         e.target.alt = `Failed to load: ${partner.name}`;
-                      }}
-                    />
-                  </div>
+                    }}
+                  />
                 </div>
-              </div>
-            ))}
+                </div>
+                </div>
+              ))}
           </Slider>
         </div>
       </div>

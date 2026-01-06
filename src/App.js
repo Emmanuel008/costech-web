@@ -24,6 +24,8 @@ import GuidelinesPage from './pages/GuidelinesPage';
 import StrategicPlanPage from './pages/StrategicPlanPage';
 import ResearchTechnologyPolicyPage from './pages/ResearchTechnologyPolicyPage';
 import ResearchInnovationMagazinePage from './pages/ResearchInnovationMagazinePage';
+import BooksPage from './pages/BooksPage';
+import ActsAndLegalPage from './pages/ActsAndLegalPage';
 import ConferencePage from './pages/ConferencePage';
 import ExhibitionsPage from './pages/ExhibitionsPage';
 import WorkshopsSeminarsPage from './pages/WorkshopsSeminarsPage';
@@ -87,9 +89,9 @@ function App() {
             <Route path="/publication/magazine" element={<ResearchInnovationMagazinePage />} />
             <Route path="/publications/journals" element={<JournalsPage />} />
             <Route path="/publications/magazine" element={<ResearchInnovationMagazinePage />} />
-            <Route path="/publications/books" element={<ReportsPage />} />
+            <Route path="/publications/books" element={<BooksPage />} />
             <Route path="/publications/reports" element={<ReportsPage />} />
-            <Route path="/publications/acts-legal" element={<ResearchTechnologyPolicyPage />} />
+            <Route path="/publications/acts-legal" element={<ActsAndLegalPage />} />
             <Route path="/publications/policies" element={<ResearchTechnologyPolicyPage />} />
             <Route path="/publications/strategic-plan" element={<StrategicPlanPage />} />
             <Route path="/publications/guidelines-documents" element={<GuidelinesPage />} />

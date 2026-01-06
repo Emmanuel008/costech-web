@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import '../styles/pages/ResearchInnovationMagazinePage.css';
+import { getMagazines } from '../services/api';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
@@ -103,7 +104,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
-const magazines = [
+// Fallback static data
+const fallbackMagazines = [
   {
     id: 1,
     name: 'Research and Innovation Magazine - Volume 15, Issue 3 (2024)',
@@ -142,18 +144,98 @@ const magazines = [
   },
 ];
 
+/**
+ * Format date from API (format: "05/01/2026") or standard date string
+ * @param {string} dateString - Date string from API or standard format
+ * @returns {string} - Formatted date
+ */
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  if (!dateString) {
+    return 'Date not available';
+  }
+
+  try {
+    let date;
+    
+    // Check if date is in "DD/MM/YYYY" format (from API)
+    if (dateString.includes('/') && dateString.split('/').length === 3) {
+      const [day, month, year] = dateString.split('/');
+      date = new Date(`${year}-${month}-${day}`);
+    } else {
+      date = new Date(dateString);
+    }
+
+    if (isNaN(date.getTime())) {
+      return dateString; // Return original if parsing fails
+    }
+
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  } catch (error) {
+    return dateString; // Return original if error
+  }
 };
 
 const ResearchInnovationMagazinePage = () => {
+  const [magazines, setMagazines] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const fetchMagazines = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        console.log('🔄 ResearchInnovationMagazinePage: Starting to fetch magazines from API...');
+        
+        // Fetch magazines from API
+        const apiMagazines = await getMagazines();
+        
+        console.log('📊 ResearchInnovationMagazinePage: Received magazines from API:', apiMagazines);
+        
+        if (apiMagazines && apiMagazines.length > 0) {
+          console.log(`✅ ResearchInnovationMagazinePage: Using ${apiMagazines.length} magazines from API`);
+          
+          // Map API data to component structure
+          const mappedMagazines = apiMagazines.map((item) => ({
+            id: item.id,
+            name: item.title || 'Research and Innovation Magazine',
+            publishedDate: item.date || new Date().toISOString().split('T')[0],
+            downloadUrl: item.document || '#',
+          }));
+          
+          console.log('📝 ResearchInnovationMagazinePage: Mapped magazines:', mappedMagazines);
+          setMagazines(mappedMagazines);
+        } else {
+          console.warn('⚠️ ResearchInnovationMagazinePage: API returned empty array, using static data');
+          // Fallback to static data if API returns empty
+          setMagazines(fallbackMagazines);
+        }
+      } catch (err) {
+        console.error('❌ ResearchInnovationMagazinePage: Error fetching magazines:', err);
+        console.error('Error details:', {
+          message: err.message,
+          response: err.response?.data,
+          status: err.response?.status,
+          stack: err.stack
+        });
+        setError(err.message);
+        // Fallback to static data on error
+        console.warn('⚠️ ResearchInnovationMagazinePage: Falling back to static data due to error');
+        setMagazines(fallbackMagazines);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMagazines();
+  }, []);
 
   const totalPages = Math.ceil(magazines.length / itemsPerPage);
 
@@ -161,11 +243,18 @@ const ResearchInnovationMagazinePage = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return magazines.slice(startIndex, endIndex);
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, magazines]);
 
   const onPageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDownload = (e, magazine) => {
+    if (magazine.downloadUrl && magazine.downloadUrl !== '#') {
+      e.preventDefault();
+      window.open(magazine.downloadUrl, '_blank');
+    }
   };
 
   return (
@@ -182,50 +271,62 @@ const ResearchInnovationMagazinePage = () => {
       </div>
 
       <div className="magazine-body">
-        <div className="magazine-table-container">
-          <div className="magazine-table-wrapper">
-            <table className="magazine-table">
-              <thead className="magazine-table-head">
-                <tr className="magazine-table-row">
-                  <th className="magazine-table-head-cell">Name of the Magazine</th>
-                  <th className="magazine-table-head-cell">Published Date</th>
-                  <th className="magazine-table-head-cell">
-                    <span className="sr-only">Download</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="magazine-table-body">
-                {paginatedMagazines.map((magazine) => (
-                  <tr key={magazine.id} className="magazine-table-row">
-                    <td className="magazine-table-cell magazine-table-cell--name">
-                      {magazine.name}
-                    </td>
-                    <td className="magazine-table-cell">{formatDate(magazine.publishedDate)}</td>
-                    <td className="magazine-table-cell">
-                      <a
-                        href={magazine.downloadUrl}
-                        className="magazine-download-link"
-                        download
-                        aria-label={`Download ${magazine.name}`}
-                      >
-                        Download
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {loading ? (
+          <div className="magazine-loading">
+            <p>Loading magazines...</p>
           </div>
-        </div>
+        ) : error && magazines.length === 0 ? (
+          <div className="magazine-error">
+            <p>Unable to load magazines. Please try again later.</p>
+          </div>
+        ) : (
+          <>
+            <div className="magazine-table-container">
+              <div className="magazine-table-wrapper">
+                <table className="magazine-table">
+                  <thead className="magazine-table-head">
+                    <tr className="magazine-table-row">
+                      <th className="magazine-table-head-cell">Name of the Magazine</th>
+                      <th className="magazine-table-head-cell">Published Date</th>
+                      <th className="magazine-table-head-cell">
+                        <span className="sr-only">Download</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="magazine-table-body">
+                    {paginatedMagazines.map((magazine) => (
+                      <tr key={magazine.id} className="magazine-table-row">
+                        <td className="magazine-table-cell magazine-table-cell--name">
+                          {magazine.name}
+                        </td>
+                        <td className="magazine-table-cell">{formatDate(magazine.publishedDate)}</td>
+                        <td className="magazine-table-cell">
+                          <a
+                            href={magazine.downloadUrl}
+                            className="magazine-download-link"
+                            onClick={(e) => handleDownload(e, magazine)}
+                            aria-label={`Download ${magazine.name}`}
+                          >
+                            Download
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-        {totalPages > 1 && (
-          <div className="magazine-pagination-wrapper">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={onPageChange}
-            />
-          </div>
+            {totalPages > 1 && (
+              <div className="magazine-pagination-wrapper">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={onPageChange}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

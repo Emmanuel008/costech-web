@@ -414,3 +414,43 @@
   }
 }
 
+/* Loading, Error, and Empty States */
+.fellowships-loading,
+.fellowships-error,
+.fellowships-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #64748b;
+}
+
+.fellowships-loading {
+  font-size: 1.125rem;
+}
+
+.fellowships-loading::after {
+  content: '...';
+  animation: ellipsis 1.5s infinite;
+}
+
+@keyframes ellipsis {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+.fellowships-error {
+  color: #ef4444;
+  font-size: 1.125rem;
+}
+
+.fellowships-empty {
+  color: #94a3b8;
+  font-size: 1.125rem;
+}
+

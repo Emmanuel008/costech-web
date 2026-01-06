@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import '../styles/pages/GuidelinesPage.css';
+import { getGuidelineDocuments } from '../services/api';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const getPageNumbers = () => {
@@ -103,7 +104,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   );
 };
 
-const guidelines = [
+// Fallback static data
+const fallbackGuidelines = [
   {
     id: 1,
     name: 'COSTECH Research Grant Application Guidelines 2024',
@@ -142,18 +144,98 @@ const guidelines = [
   },
 ];
 
+/**
+ * Format date from API (format: "06/01/2026") or standard date string
+ * @param {string} dateString - Date string from API or standard format
+ * @returns {string} - Formatted date
+ */
 const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  if (!dateString) {
+    return 'Date not available';
+  }
+
+  try {
+    let date;
+    
+    // Check if date is in "DD/MM/YYYY" format (from API)
+    if (dateString.includes('/') && dateString.split('/').length === 3) {
+      const [day, month, year] = dateString.split('/');
+      date = new Date(`${year}-${month}-${day}`);
+    } else {
+      date = new Date(dateString);
+    }
+
+    if (isNaN(date.getTime())) {
+      return dateString; // Return original if parsing fails
+    }
+
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  } catch (error) {
+    return dateString; // Return original if error
+  }
 };
 
 const GuidelinesPage = () => {
+  const [guidelines, setGuidelines] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const fetchGuidelines = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        console.log('🔄 GuidelinesPage: Starting to fetch guideline documents from API...');
+        
+        // Fetch guideline documents from API
+        const apiGuidelines = await getGuidelineDocuments();
+        
+        console.log('📊 GuidelinesPage: Received guideline documents from API:', apiGuidelines);
+        
+        if (apiGuidelines && apiGuidelines.length > 0) {
+          console.log(`✅ GuidelinesPage: Using ${apiGuidelines.length} guideline documents from API`);
+          
+          // Map API data to component structure
+          const mappedGuidelines = apiGuidelines.map((item) => ({
+            id: item.id,
+            name: item.title || 'Guideline Document',
+            publishedDate: item.date || new Date().toISOString().split('T')[0],
+            downloadUrl: item.document || '#',
+          }));
+          
+          console.log('📝 GuidelinesPage: Mapped guideline documents:', mappedGuidelines);
+          setGuidelines(mappedGuidelines);
+        } else {
+          console.warn('⚠️ GuidelinesPage: API returned empty array, using static data');
+          // Fallback to static data if API returns empty
+          setGuidelines(fallbackGuidelines);
+        }
+      } catch (err) {
+        console.error('❌ GuidelinesPage: Error fetching guideline documents:', err);
+        console.error('Error details:', {
+          message: err.message,
+          response: err.response?.data,
+          status: err.response?.status,
+          stack: err.stack
+        });
+        setError(err.message);
+        // Fallback to static data on error
+        console.warn('⚠️ GuidelinesPage: Falling back to static data due to error');
+        setGuidelines(fallbackGuidelines);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGuidelines();
+  }, []);
 
   const totalPages = Math.ceil(guidelines.length / itemsPerPage);
 
@@ -161,11 +243,18 @@ const GuidelinesPage = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return guidelines.slice(startIndex, endIndex);
-  }, [currentPage, itemsPerPage]);
+  }, [currentPage, itemsPerPage, guidelines]);
 
   const onPageChange = (page) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleDownload = (e, guideline) => {
+    if (guideline.downloadUrl && guideline.downloadUrl !== '#') {
+      e.preventDefault();
+      window.open(guideline.downloadUrl, '_blank');
+    }
   };
 
   return (
@@ -183,50 +272,62 @@ const GuidelinesPage = () => {
       </div>
 
       <div className="guidelines-body">
-        <div className="guidelines-table-container">
-          <div className="guidelines-table-wrapper">
-            <table className="guidelines-table">
-              <thead className="guidelines-table-head">
-                <tr className="guidelines-table-row">
-                  <th className="guidelines-table-head-cell">Name of the Guideline</th>
-                  <th className="guidelines-table-head-cell">Published Date</th>
-                  <th className="guidelines-table-head-cell">
-                    <span className="sr-only">Download</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="guidelines-table-body">
-                {paginatedGuidelines.map((guideline) => (
-                  <tr key={guideline.id} className="guidelines-table-row">
-                    <td className="guidelines-table-cell guidelines-table-cell--name">
-                      {guideline.name}
-                    </td>
-                    <td className="guidelines-table-cell">{formatDate(guideline.publishedDate)}</td>
-                    <td className="guidelines-table-cell">
-                      <a
-                        href={guideline.downloadUrl}
-                        className="guidelines-download-link"
-                        download
-                        aria-label={`Download ${guideline.name}`}
-                      >
-                        Download
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        {loading ? (
+          <div className="guidelines-loading">
+            <p>Loading guideline documents...</p>
           </div>
-        </div>
+        ) : error && guidelines.length === 0 ? (
+          <div className="guidelines-error">
+            <p>Unable to load guideline documents. Please try again later.</p>
+          </div>
+        ) : (
+          <>
+            <div className="guidelines-table-container">
+              <div className="guidelines-table-wrapper">
+                <table className="guidelines-table">
+                  <thead className="guidelines-table-head">
+                    <tr className="guidelines-table-row">
+                      <th className="guidelines-table-head-cell">Name of the Guideline</th>
+                      <th className="guidelines-table-head-cell">Published Date</th>
+                      <th className="guidelines-table-head-cell">
+                        <span className="sr-only">Download</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="guidelines-table-body">
+                    {paginatedGuidelines.map((guideline) => (
+                      <tr key={guideline.id} className="guidelines-table-row">
+                        <td className="guidelines-table-cell guidelines-table-cell--name">
+                          {guideline.name}
+                        </td>
+                        <td className="guidelines-table-cell">{formatDate(guideline.publishedDate)}</td>
+                        <td className="guidelines-table-cell">
+                          <a
+                            href={guideline.downloadUrl}
+                            className="guidelines-download-link"
+                            onClick={(e) => handleDownload(e, guideline)}
+                            aria-label={`Download ${guideline.name}`}
+                          >
+                            Download
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
-        {totalPages > 1 && (
-          <div className="guidelines-pagination-wrapper">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={onPageChange}
-            />
-          </div>
+            {totalPages > 1 && (
+              <div className="guidelines-pagination-wrapper">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={onPageChange}
+                />
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

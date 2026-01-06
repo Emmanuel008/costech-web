@@ -293,3 +293,36 @@
   }
 }
 
+.reports-loading,
+.reports-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.reports-loading {
+  color: #b97c07;
+}
+
+.reports-loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+.reports-error {
+  color: #dc2626;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+

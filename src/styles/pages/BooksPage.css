@@ -1,11 +1,11 @@
-.magazine-page {
+.books-page {
   background: linear-gradient(180deg, #f4f6fb 0%, #eef1f7 100%);
   min-height: 100vh;
   padding: 80px 0 70px;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.magazine-hero {
+.books-hero {
   position: relative;
   width: 100%;
   min-height: 300px;
@@ -15,13 +15,13 @@
   justify-content: center;
 }
 
-.magazine-hero-overlay {
+.books-hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(130deg, rgba(15, 23, 42, 0.78) 0%, rgba(185, 124, 7, 0.45) 100%);
 }
 
-.magazine-hero-content {
+.books-hero-content {
   position: relative;
   z-index: 1;
   max-width: 680px;
@@ -33,58 +33,58 @@
   gap: 16px;
 }
 
-.magazine-hero-content h1 {
+.books-hero-content h1 {
   margin: 0;
   font-size: 2.6rem;
   letter-spacing: 0.04em;
 }
 
-.magazine-hero-content p {
+.books-hero-content p {
   margin: 0;
   font-size: 1.05rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.88);
 }
 
-.magazine-body {
+.books-body {
   max-width: 1200px;
   margin: 40px auto 0;
   padding: 0 24px;
 }
 
-.magazine-table-container {
+.books-table-container {
   background: #ffffff;
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
 }
 
-.magazine-table-wrapper {
+.books-table-wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-.magazine-table {
+.books-table {
   width: 100%;
   border-collapse: collapse;
   min-width: 600px;
 }
 
-.magazine-table-head {
+.books-table-head {
   background: linear-gradient(135deg, rgba(185, 124, 7, 0.15) 0%, rgba(185, 124, 7, 0.25) 100%);
   border-bottom: 2px solid rgba(185, 124, 7, 0.4);
 }
 
-.magazine-table-row {
+.books-table-row {
   border-bottom: 1px solid rgba(15, 23, 42, 0.1);
   transition: background-color 0.2s ease;
 }
 
-.magazine-table-row:hover {
+.books-table-row:hover {
   background-color: rgba(185, 124, 7, 0.05);
 }
 
-.magazine-table-head-cell {
+.books-table-head-cell {
   padding: 14px 18px;
   text-align: left;
   font-weight: 700;
@@ -95,21 +95,21 @@
   background: transparent;
 }
 
-.magazine-table-cell {
+.books-table-cell {
   padding: 14px 18px;
   color: #374151;
   font-size: 0.85rem;
   line-height: 1.5;
 }
 
-.magazine-table-cell--name {
+.books-table-cell--name {
   font-weight: 500;
   color: #0f172a;
   max-width: 500px;
   font-size: 0.875rem;
 }
 
-.magazine-download-link {
+.books-download-link {
   display: inline-flex;
   align-items: center;
   padding: 8px 16px;
@@ -122,13 +122,13 @@
   transition: all 0.2s ease;
 }
 
-.magazine-download-link:hover {
+.books-download-link:hover {
   background-color: #a06d06;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(185, 124, 7, 0.3);
 }
 
-.magazine-download-link:active {
+.books-download-link:active {
   transform: translateY(0);
 }
 
@@ -144,7 +144,7 @@
   border-width: 0;
 }
 
-.magazine-pagination-wrapper {
+.books-pagination-wrapper {
   margin-top: 32px;
   display: flex;
   justify-content: center;
@@ -230,45 +230,45 @@
 }
 
 @media (max-width: 900px) {
-  .magazine-body {
+  .books-body {
     margin-top: 40px;
   }
 
-  .magazine-table-container {
+  .books-table-container {
     padding: 24px;
   }
 
-  .magazine-table-head-cell,
-  .magazine-table-cell {
+  .books-table-head-cell,
+  .books-table-cell {
     padding: 14px 16px;
     font-size: 0.9rem;
   }
 
-  .magazine-table-cell--name {
+  .books-table-cell--name {
     max-width: 300px;
   }
 }
 
 @media (max-width: 640px) {
-  .magazine-page {
+  .books-page {
     padding: 60px 0 50px;
   }
 
-  .magazine-body {
+  .books-body {
     padding: 0 18px;
   }
 
-  .magazine-table-container {
+  .books-table-container {
     padding: 20px;
   }
 
-  .magazine-table-head-cell,
-  .magazine-table-cell {
+  .books-table-head-cell,
+  .books-table-cell {
     padding: 12px 14px;
     font-size: 0.85rem;
   }
 
-  .magazine-download-link {
+  .books-download-link {
     padding: 6px 12px;
     font-size: 0.8rem;
   }
@@ -291,24 +291,24 @@
   }
 }
 
-.magazine-loading,
-.magazine-error {
+.books-loading,
+.books-error {
   text-align: center;
   padding: 60px 20px;
   font-size: 1.1rem;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-.magazine-loading {
+.books-loading {
   color: #b97c07;
 }
 
-.magazine-loading::after {
+.books-loading::after {
   content: '...';
   animation: dots 1.5s steps(4, end) infinite;
 }
 
-.magazine-error {
+.books-error {
   color: #dc2626;
 }
 
@@ -323,3 +323,4 @@
     content: '...';
   }
 }
+

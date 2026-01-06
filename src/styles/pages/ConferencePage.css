@@ -188,3 +188,153 @@
   }
 }
 
+.conference-list-section {
+  margin-top: 48px;
+}
+
+.conference-list-title {
+  margin: 0 0 32px;
+  font-size: 2rem;
+  color: #0f172a;
+  font-weight: 600;
+  text-align: center;
+}
+
+.conference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.conference-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 55px rgba(15, 23, 42, 0.11);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.conference-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 65px rgba(15, 23, 42, 0.15);
+}
+
+.conference-image-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+.conference-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.conference-card:hover .conference-image {
+  transform: scale(1.05);
+}
+
+.conference-card-content {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.conference-card-title {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  color: #0f172a;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.conference-card-description {
+  margin: 0 0 16px;
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  flex: 1;
+}
+
+.conference-card-date {
+  margin: 0;
+  color: #b97c07;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.conference-loading,
+.conference-error,
+.conference-empty {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.conference-loading {
+  color: #b97c07;
+}
+
+.conference-loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+.conference-error {
+  color: #dc2626;
+}
+
+.conference-empty {
+  color: #6b7280;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+@media (max-width: 900px) {
+  .conference-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .conference-list-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .conference-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .conference-list-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  .conference-card-content {
+    padding: 20px;
+  }
+
+  .conference-image-container {
+    height: 200px;
+  }
+}
+
