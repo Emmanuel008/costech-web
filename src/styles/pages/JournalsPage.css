@@ -6,8 +6,8 @@
 
 .journals-hero {
   position: relative;
-  padding: 120px 20px 60px;
-  padding-top: 180px;
+  padding: 60px 20px 40px;
+  padding-top: 120px;
   background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
   text-align: center;
   overflow: hidden;
@@ -135,8 +135,13 @@
   font-size: 0.8rem;
   color: #1e40af;
   border-bottom: 2px solid #bfdbfe;
+  border-right: 1px solid #e2e8f0;
   white-space: normal;
   word-wrap: break-word;
+}
+
+.journals-table th:last-child {
+  border-right: none;
 }
 
 .journals-table th.sortable {
@@ -148,6 +153,11 @@
 
 .journals-table th.sortable:hover {
   background-color: rgba(30, 64, 175, 0.1);
+}
+
+.journals-table th:first-child {
+  text-align: center;
+  width: 3%;
 }
 
 .journals-table tbody tr {
@@ -170,15 +180,21 @@
   vertical-align: top;
   word-wrap: break-word;
   max-width: none;
+  border-right: 1px solid #e2e8f0;
+}
+
+.journals-table td:last-child {
+  border-right: none;
 }
 
 .journals-table td:nth-child(1) {
   width: 3%;
   text-align: center;
+  font-weight: 600;
 }
 
 .journals-table td:nth-child(2) {
-  width: 10%;
+  width: 8%;
 }
 
 .journals-table td:nth-child(3) {
@@ -212,6 +228,10 @@
 
 .journals-table td:nth-child(10) {
   width: 5%;
+}
+
+.journals-table td:nth-child(11) {
+  width: 3%;
 }
 
 .url-link {
@@ -292,8 +312,8 @@
   }
 
   .journals-hero {
-    padding: 100px 15px 40px;
-    padding-top: 280px;
+    padding: 50px 15px 30px;
+    padding-top: 140px;
   }
 
   .journals-hero-content h1 {

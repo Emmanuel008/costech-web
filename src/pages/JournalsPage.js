@@ -10,10 +10,11 @@ const JournalsPage = () => {
 
   // Repository data - Tanzania Journals categorized by University
   const repositoryData = [
+    // UNIVERSITY OF DAR ES SALAAM
     {
       id: 1,
-      issn: 'P0856-0056/E1821-889X',
-      title: 'THE AFRICAN REVIEW: A Journal of African Politics, Development and International Affairs',
+      issn: 'P0856-0056 / E1821-889X',
+      title: 'THE AFRICAN REVIEW : A Journal of African Politics, Development and International Affairs',
       publisher: 'UDSM & BRILL',
       mode: 'Print/Online',
       frequency: 'Biannual',
@@ -25,7 +26,7 @@ const JournalsPage = () => {
     },
     {
       id: 2,
-      issn: '2546-213X/0856-2253',
+      issn: '2546-213X/  0856-2253',
       title: 'Business Management Review',
       publisher: 'UDSM & Elsevier through Digital Commons',
       mode: 'Online',
@@ -64,7 +65,7 @@ const JournalsPage = () => {
     },
     {
       id: 5,
-      issn: '0856-1818/E2953-2515',
+      issn: '0856-1818 /  E2953 - 2515',
       title: 'University of Dar es Salaam Library Journal',
       publisher: 'UDSM',
       mode: 'Online',
@@ -81,7 +82,7 @@ const JournalsPage = () => {
       title: 'Mulika Journal',
       publisher: 'UDSM',
       mode: 'Print/Online',
-      frequency: 'Annually',
+      frequency: 'Annualy',
       subject: 'Social Science',
       url: 'http://journals.udsm.ac.tz/index.php/mj/index',
       language: 'Kiswahili',
@@ -90,7 +91,7 @@ const JournalsPage = () => {
     },
     {
       id: 7,
-      issn: 'P 085609X/E2683-6408',
+      issn: 'P 085609X / E 2683-6408',
       title: 'Utafiti Journal',
       publisher: 'UDSM & BRILL',
       mode: 'Print/Online',
@@ -108,14 +109,66 @@ const JournalsPage = () => {
       publisher: 'UDSM',
       mode: 'Print',
       frequency: 'Biannual',
-      subject: 'Law',
-      url: '',
+      subject: 'Social Science',
+      url: 'http://journals.udsm.ac.tz/index.php/nlj/index',
       language: 'English',
       indexed: '',
       university: 'UDSM'
     },
     {
       id: 9,
+      issn: '1821-7567 /         E 2591 - 6947',
+      title: 'Operations Research Society of Eastern Africa (ORSEA) Journal',
+      publisher: 'UDSM',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Natural Sciences',
+      url: 'http://journals.udsm.ac.tz/index.php/orsea/index',
+      language: 'Engliush',
+      indexed: '',
+      university: 'UDSM'
+    },
+    {
+      id: 10,
+      issn: 'P0856-3373/ E2507-7740',
+      title: 'Tanzania Economic Review [TER]',
+      publisher: 'UDSM & Elsevier through Digital Commons',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'http://journals.udsm.ac.tz/index.php/ter/index',
+      language: 'English',
+      indexed: 'EBSCO, RePEc, EcoPapers,  IDEAS and AJOL',
+      university: 'UDSM'
+    },
+    {
+      id: 11,
+      issn: '2591-6831',
+      title: 'Tanzania Journal of Development Studies',
+      publisher: 'UDSM',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'http://journals.udsm.ac.tz/index.php/tjds/index',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'UDSM'
+    },
+    {
+      id: 12,
+      issn: '1821-536X',
+      title: 'Tanzania Journal of Engineering and Technology (TJET)',
+      publisher: 'UDSM',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Engineering and Technology',
+      url: 'http://journals.udsm.ac.tz/index.php/tjet/index',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'UDSM'
+    },
+    {
+      id: 13,
       issn: '0856-0226',
       title: 'Tanzania Journal of Population Studies and Development',
       publisher: 'UDSM',
@@ -128,137 +181,281 @@ const JournalsPage = () => {
       university: 'UDSM'
     },
     {
-      id: 10,
-      issn: '1821-4110',
+      id: 14,
+      issn: '0856-1761',
+      title: 'Tanzania Journal of Science',
+      publisher: 'UDSM & Elsevier through Digital Commons',
+      mode: 'Online',
+      frequency: 'Quarterly',
+      subject: 'Natural Sciences',
+      url: 'http://journals.udsm.ac.tz/index.php/tjs',
+      language: 'English',
+      indexed: 'African Journals OnLine (AJOL); CAB International or CABI (Centre for Agriculture and Bioscience International, UK); CAB Direct; CAB Abstracts; CAB Global Health; Google Scholar; Journals for Free (J4F) database',
+      university: 'UDSM'
+    },
+    {
+      id: 15,
+      issn: '1821-9632 E 2591-6963',
+      title: 'Tanzania Journal of Sociology (TJS)',
+      publisher: 'UDSM & Elsevier through Digital Commons',
+      mode: 'Online',
+      frequency: 'Annualy',
+      subject: 'Social Science',
+      url: 'http://journals.udsm.ac.tz/index.php/tjsociology/index',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'UDSM'
+    },
+    {
+      id: 16,
+      issn: '0856-6518',
+      title: 'Tanzania Zamani: Journal of Historical Research and Writings',
+      publisher: 'University of Dar es Salaam',
+      mode: 'Print/Online',
+      frequency: 'Bi-annually',
+      subject: 'Social Science',
+      url: 'http://journals.udsm.ac.tz/index.php/tz/index',
+      language: 'English',
+      indexed: 'EBSCO',
+      university: 'UDSM'
+    },
+    {
+      id: 17,
+      issn: '2507-7775',
+      title: 'Sanaa Journal of African Art, Media and Culture',
+      publisher: 'University of Dar es Salaam',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'http://sanaajournal.ac.tz/',
+      language: 'English',
+      indexed: '',
+      university: 'UDSM'
+    },
+    {
+      id: 18,
+      issn: 'P0856-552X/  E2546-22`10',
+      title: 'Kioo cha Lugha',
+      publisher: 'UDSM',
+      mode: 'Online/Print',
+      frequency: 'Annualy',
+      subject: 'Social Science',
+      url: 'http://journals.udsm.ac.tz/index.php/kcl',
+      language: 'Kiswahili',
+      indexed: 'AJOL',
+      university: 'UDSM'
+    },
+    {
+      id: 19,
+      issn: 'E2467-4745 / P1821-7427',
+      title: 'Journal of Humanities and Social Science',
+      publisher: 'UDSM & Elsevier through Digital Commons',
+      mode: 'Online & Print',
+      frequency: 'Biannual',
+      subject: 'Social Science and Humanities',
+      url: 'http://jehs.duce.ac.tz/index.php/jehs/index/',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'DUCE'
+    },
+    {
+      id: 20,
+      issn: 'P2453-6040/   E3057-3114',
+      title: 'Mkwawa Journal of Education and Development (MJED)',
+      publisher: 'Mkwawa University College of Education',
+      mode: 'Print/Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'https://mjed.muce.ac.tz/',
+      language: 'English',
+      indexed: '',
+      university: 'MUCE'
+    },
+    {
+      id: 21,
+      issn: 'P 0856-048 / E 2546-2229',
+      title: 'Kiswahili',
+      publisher: 'UDSM',
+      mode: 'Print/Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'http://www.ajol.infksh/indexo/index.php/',
+      language: 'Kiswahili',
+      indexed: '',
+      university: 'UDSM'
+    },
+    {
+      id: 22,
+      issn: '0012-8678',
+      title: 'The Eastern African Law Review : A Journal of Law and Development',
+      publisher: 'University of Dar es Salaam',
+      mode: 'Print/Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'https://www.sol.udsm.ac.tz/index.php/2018-05-12-17-29-30/the-eastern-africa-law-review-vol-42-2-published-2018-full-text',
+      language: 'English',
+      indexed: '',
+      university: 'UDSM'
+    },
+    {
+      id: 23,
+      issn: '2961-6484 /         E 3108-8546',
+      title: 'Zamani',
+      publisher: 'UDSM & Elsevier through Digital Commons',
+      mode: 'Print/Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'doi.org/10.56279/ZJAHS1',
+      language: 'English',
+      indexed: 'Google Scholar, ScienceOpen, JSTOR and EBSCO',
+      university: 'UDSM'
+    },
+    {
+      id: 24,
+      issn: '0856-4027 /        E 2665-0746',
       title: 'Papers in Education and Development',
       publisher: 'UDSM & BRILL',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: 'http://journals.udsm.ac.tz/index.php/ped/index',
+      url: 'https://brill.com/view/journals/ped/ped-overview.xml',
       language: 'English',
-      indexed: '',
+      indexed: 'AJOL',
       university: 'UDSM'
     },
     {
-      id: 11,
-      issn: '',
+      id: 25,
+      issn: '0856-0854',
       title: 'Umma Journal of Contemporary Literature and Creative Arts',
       publisher: 'UDSM',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: '',
+      url: 'https://journals.udsm.ac.tz/index.php/umma',
       language: 'English',
       indexed: '',
       university: 'UDSM'
     },
     {
-      id: 12,
+      id: 26,
       issn: '',
+      title: 'Studies in the African Past : The Journal of African Perspective',
+      publisher: 'UDSM',
+      mode: 'Print/Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'https://journals.udsm.ac.tz/index.php/sap/index',
+      language: 'English',
+      indexed: '',
+      university: 'UDSM'
+    },
+    {
+      id: 27,
+      issn: '2953 - 2590 / E 2953 - 2582',
       title: 'The Journal of ICT Systems (JICTS)',
       publisher: 'UDSM',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Engineering and Technology',
-      url: '',
+      url: 'https://jicts.udsm.ac.tz/index.php/udsm',
       language: 'English',
       indexed: '',
       university: 'UDSM'
     },
+    // THE OPEN UNIVERSITY OF TANZANIA
     {
-      id: 13,
-      issn: '',
+      id: 28,
+      issn: 'P1821-9985 / E1821-9993',
       title: 'Pan African Journal of Business Management (PAJBM)',
-      publisher: 'UDSM',
+      publisher: 'OUT',
       mode: 'Print/Online',
       frequency: 'Biannual',
-      subject: 'Business and Management',
-      url: '',
+      subject: 'Social Science',
+      url: 'https://journals.out.ac.tz/index.php/pajbm/index',
       language: 'English',
-      indexed: '',
-      university: 'UDSM'
+      indexed: 'AJOL',
+      university: 'OUT'
     },
     {
-      id: 14,
-      issn: '1821-4110',
+      id: 29,
+      issn: '2453-5958',
       title: 'African Journal of Economic Review',
       publisher: 'OUT',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: 'https://journals.out.ac.tz/index.php/ajer',
+      url: 'https://journals.out.ac.tz/index.php/ajer/index',
       language: 'English',
-      indexed: 'AJOL',
+      indexed: 'Repec, EconPapers, AgEcon Search, EBSCO and AJOL',
       university: 'OUT'
     },
     {
-      id: 15,
-      issn: '1821-4110',
-      title: 'Tanzania Journal of Science and Technology',
+      id: 30,
+      issn: '2507-783X',
+      title: 'Tanzania Journal of Science and Technology and',
       publisher: 'OUT',
       mode: 'Print/Online',
       frequency: 'Annually',
       subject: 'Engineering and Technology',
-      url: 'https://journals.out.ac.tz/index.php/tjst',
+      url: 'https://journals.out.ac.tz/index.php/tjst/index',
       language: 'English',
       indexed: '',
       university: 'OUT'
     },
     {
-      id: 16,
-      issn: '1821-4110',
+      id: 31,
+      issn: '0856-6739',
       title: 'Huria Journal',
       publisher: 'OUT',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: 'https://journals.out.ac.tz/index.php/huria',
+      url: 'https://journals.out.ac.tz/index.php/HURIA',
       language: 'English',
       indexed: 'AJOL',
       university: 'OUT'
     },
     {
-      id: 17,
-      issn: '1821-4110',
+      id: 32,
+      issn: '1821-5548',
       title: 'The Journal of Issues and Practice in Education (JIPE)',
       publisher: 'OUT',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: 'https://journals.out.ac.tz/index.php/jipe',
+      url: 'https://journals.out.ac.tz/index.php/JIPE/index',
       language: 'English',
-      indexed: '',
+      indexed: 'AJOL',
       university: 'OUT'
     },
     {
-      id: 18,
-      issn: '1821-4110',
+      id: 33,
+      issn: '2683-6483',
       title: 'African Journal of Law and Practice (AJLP)',
       publisher: 'OUT',
       mode: 'Print/Online',
       frequency: 'Quarterly',
       subject: 'Law',
-      url: 'https://journals.out.ac.tz/index.php/ajlp',
+      url: 'https://journals.out.ac.tz/index.php/law/index',
       language: 'English',
       indexed: '',
       university: 'OUT'
     },
     {
-      id: 19,
-      issn: '1821-4110',
+      id: 34,
+      issn: '1821-9373',
       title: 'The African Resources and Development Journal (ARDJ)',
       publisher: 'OUT',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: 'https://journals.out.ac.tz/index.php/ardj',
+      url: 'https://journals.out.ac.tz/index.php/ARDJ/index',
       language: 'English',
       indexed: '',
       university: 'OUT'
     },
     {
-      id: 20,
+      id: 35,
       issn: '',
       title: 'Contemporary Journal of Linguistics and Literary Studies (CJLLS)',
       publisher: 'OUT',
@@ -270,8 +467,9 @@ const JournalsPage = () => {
       indexed: '',
       university: 'OUT'
     },
+    // ARDHI UNIVERSITY
     {
-      id: 21,
+      id: 36,
       issn: '0856-0501',
       title: 'Journal of Building and Land Development (JBLD)',
       publisher: 'ARU',
@@ -284,7 +482,7 @@ const JournalsPage = () => {
       university: 'ARU'
     },
     {
-      id: 22,
+      id: 37,
       issn: '',
       title: 'Journal of Human Settlements and Environmental Management (JHSEM)',
       publisher: 'ARU',
@@ -297,7 +495,7 @@ const JournalsPage = () => {
       university: 'ARU'
     },
     {
-      id: 23,
+      id: 38,
       issn: '3088-5418',
       title: 'The Journal of Business and Socioeconomics Development (JBSED)',
       publisher: 'ARU',
@@ -310,7 +508,7 @@ const JournalsPage = () => {
       university: 'ARU'
     },
     {
-      id: 24,
+      id: 39,
       issn: 'E2507-7716 P0856-0501',
       title: 'Journal of Land Administration in Eastern Africa (JLAEA)',
       publisher: 'ARU',
@@ -322,8 +520,9 @@ const JournalsPage = () => {
       indexed: '',
       university: 'ARU'
     },
+    // SOKOINE UNIVERSITY OF AGRICULTURE
     {
-      id: 25,
+      id: 40,
       issn: '0856-1451 / E 2714-206X',
       title: 'Tanzania Veterinary Journal',
       publisher: 'SUA',
@@ -336,8 +535,8 @@ const JournalsPage = () => {
       university: 'SUA'
     },
     {
-      id: 26,
-      issn: '1821-9144 / E 0856-664X',
+      id: 41,
+      issn: '1821-9144 /         E 0856-664X',
       title: 'Tanzania Journal of Agricultural Science (TAJAS)',
       publisher: 'SUA',
       mode: 'Print/Online',
@@ -349,7 +548,7 @@ const JournalsPage = () => {
       university: 'SUA'
     },
     {
-      id: 27,
+      id: 42,
       issn: '',
       title: 'The East African Journal of Social Science and Humanities (EAJSSH)',
       publisher: 'SUA',
@@ -362,8 +561,8 @@ const JournalsPage = () => {
       university: 'SUA'
     },
     {
-      id: 28,
-      issn: '0856-4094',
+      id: 43,
+      issn: '0856-4094,',
       title: 'Journal of Continuing Education and Extension',
       publisher: 'SUA',
       mode: 'Print',
@@ -375,8 +574,8 @@ const JournalsPage = () => {
       university: 'SUA'
     },
     {
-      id: 29,
-      issn: '2408-8137',
+      id: 44,
+      issn: '2408 – 8137',
       title: 'Tanzania Journal of Forestry and Nature Conservation',
       publisher: 'SUA',
       mode: 'Print',
@@ -387,13 +586,14 @@ const JournalsPage = () => {
       indexed: 'AJOL',
       university: 'SUA'
     },
+    // UNIVERSITY OF DODOMA
     {
-      id: 30,
+      id: 45,
       issn: 'E 2773-6504 / 2773-6512',
       title: 'Journal of African Law and Contemporary Legal Issues (JALCLI)',
       publisher: 'UDOM',
       mode: 'Online & Print',
-      frequency: 'Annually',
+      frequency: 'Annualy',
       subject: 'Social Science',
       url: 'https://journals.udom.ac.tz/index.php/jalcli',
       language: 'English',
@@ -401,7 +601,7 @@ const JournalsPage = () => {
       university: 'UDOM'
     },
     {
-      id: 31,
+      id: 46,
       issn: 'E 2714-1969 / 2714-1969',
       title: 'Nuru ya Kiswahili',
       publisher: 'UDOM',
@@ -414,7 +614,7 @@ const JournalsPage = () => {
       university: 'UDOM'
     },
     {
-      id: 32,
+      id: 47,
       issn: 'E 2799-2047 / 2799-2055',
       title: 'African Business Management Journal (ABMJ)',
       publisher: 'UDOM',
@@ -427,8 +627,8 @@ const JournalsPage = () => {
       university: 'UDOM'
     },
     {
-      id: 33,
-      issn: 'E 2773-6539/2773-6520',
+      id: 48,
+      issn: 'E 2773-6539 / 2773-6520',
       title: 'The Journal of African Economic Perspectives (JAEP)',
       publisher: 'UDOM',
       mode: 'Online & Print',
@@ -440,8 +640,8 @@ const JournalsPage = () => {
       university: 'UDOM'
     },
     {
-      id: 34,
-      issn: 'E 2773-6695/ 2773-6687',
+      id: 49,
+      issn: 'E 2773-6695/   2773-6687',
       title: 'The Journal of Management and Policy Issues in Education (JMPIE)',
       publisher: 'UDOM',
       mode: 'Online & Print',
@@ -453,8 +653,8 @@ const JournalsPage = () => {
       university: 'UDOM'
     },
     {
-      id: 35,
-      issn: 'E 2738-9170/2738-9162',
+      id: 50,
+      issn: 'E 2738-9170 / 2738-9162',
       title: 'Journal of African Politics (JAP)',
       publisher: 'UDOM',
       mode: 'Online & Print',
@@ -465,22 +665,23 @@ const JournalsPage = () => {
       indexed: 'CROSSREF, SHOLARONE, OPEN ACCESS',
       university: 'UDOM'
     },
+    // MZUMBE UNIVERSITY
     {
-      id: 36,
-      issn: 'P0856-1435/ E2619-8665',
+      id: 51,
+      issn: 'P0856-1435/    E2619-8665',
       title: 'Uongozi Journal of Management and Development Dynamics',
       publisher: 'Mzumbe University',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: '',
+      url: 'http://41.59.85.82/index.php/jpl',
       language: 'English',
       indexed: 'INDEX COPERNICUS, CROSSREF, AJOL',
       university: 'Mzumbe'
     },
     {
-      id: 37,
-      issn: 'E 2820-2619/2820-2627',
+      id: 52,
+      issn: 'E 2820-2619 / 2820-2627',
       title: 'Journal of Contemporary African Legal Studies (JCALS)',
       publisher: 'Mzumbe University',
       mode: 'Online & Print',
@@ -492,21 +693,21 @@ const JournalsPage = () => {
       university: 'Mzumbe'
     },
     {
-      id: 38,
-      issn: 'E 2619-8940/2619-8940',
+      id: 53,
+      issn: 'E 2619-8940 / 2619-8940',
       title: 'The Journal of Policy and Leadership (JPL)',
       publisher: 'Mzumbe University',
       mode: 'Print & Online',
       frequency: 'Biannual',
       subject: 'Social Science',
-      url: 'http://41.59.85.82/index.php/jpl',
+      url: '',
       language: 'English',
       indexed: '',
       university: 'Mzumbe'
     },
     {
-      id: 39,
-      issn: 'E 2953-2663/2591-6769',
+      id: 54,
+      issn: 'E 2953-2663 / 2591-6769',
       title: 'East African Journal of Applied Health Monitoring and Evaluation',
       publisher: 'Mzumbe University',
       mode: 'Print & Online',
@@ -517,9 +718,10 @@ const JournalsPage = () => {
       indexed: 'AJOL, Google Scholar',
       university: 'Mzumbe'
     },
+    // MUHIMBILI UNIVERSITY OF HEALTH AND ALLIED SCIENCES
     {
-      id: 40,
-      issn: '0856-8960',
+      id: 55,
+      issn: '0856 -8960',
       title: 'East African Journal of Public Health',
       publisher: 'MUHAS',
       mode: 'Online',
@@ -531,7 +733,7 @@ const JournalsPage = () => {
       university: 'MUHAS'
     },
     {
-      id: 41,
+      id: 56,
       issn: '0856-0714',
       title: 'Tanzania Medical Journal',
       publisher: 'MUHAS',
@@ -544,7 +746,7 @@ const JournalsPage = () => {
       university: 'MUHAS'
     },
     {
-      id: 42,
+      id: 57,
       issn: '0856-0625',
       title: 'Tanzania Dental Journal',
       publisher: 'Muhimbili University of Health and Allied Sciences',
@@ -556,8 +758,9 @@ const JournalsPage = () => {
       indexed: 'AJOL',
       university: 'MUHAS'
     },
+    // TANZANIA MEDICAL STUDENTS ASSOCIATION
     {
-      id: 43,
+      id: 58,
       issn: '0856-7212',
       title: 'Dar es Salaam Medical Students\' Journal',
       publisher: 'Tanzania Medical Students\' Association (TAMSA)',
@@ -566,64 +769,190 @@ const JournalsPage = () => {
       subject: 'Medical and Health Sciences',
       url: 'https://www.ajol.info/index.php/dmsj/index',
       language: 'English',
-      indexed: 'AJOL',
+      indexed: '',
       university: 'TAMSA'
     },
+    // MOSHI CO-OPERATIVE UNIVERSITY
     {
-      id: 44,
-      issn: '2799-2144 / E 2779-2152',
-      title: 'Journal of Applied Marketing Science (JOAMS)',
-      publisher: 'TMSA',
-      mode: 'Online & Print',
-      frequency: 'Biannual',
-      subject: 'Social Science',
-      url: 'https://joams.tmsa.or.tz/',
-      language: 'English',
-      indexed: 'AJOL',
-      university: 'TMSA'
-    },
-    {
-      id: 45,
-      issn: 'E 2773-675X / 2773-6725',
-      title: 'Tanzania Journal of Community Development (TAJOCODE)',
-      publisher: 'CODEPATA',
-      mode: 'Online & Print',
-      frequency: 'Biannual',
-      subject: 'Social Science',
-      url: 'https://www.ajol.info/index.php/tajocode',
-      language: 'English',
-      indexed: 'AJOL',
-      university: 'CODEPATA'
-    },
-    {
-      id: 46,
-      issn: 'E 2683-6416 / 0856-860X',
-      title: 'The Western Indian Ocean Journal of Marine Science (WIOJMS)',
-      publisher: 'WIOMSA',
-      mode: 'Online & Print',
-      frequency: 'Biannual',
-      subject: 'Natural Sciences',
-      url: 'https://www.ajol.info/index.php/wiojms',
-      language: 'English',
-      indexed: 'AJOL',
-      university: 'WIOMSA'
-    },
-    {
-      id: 47,
+      id: 59,
       issn: '',
-      title: 'Teku Journal of Interdisciplinary Studies (TJIS)',
-      publisher: 'TEKU',
-      mode: 'Online',
+      title: 'The Journal of Co-operative and Business Studies (JCBS)',
+      publisher: 'MoCU',
+      mode: 'Online & Print',
       frequency: 'Biannual',
-      subject: 'Multidisciplinary',
+      subject: 'Co-operative and Business Studies',
+      url: 'https://journals.mocu.ac.tz/index.php/jcbs/index',
+      language: 'English',
+      indexed: 'Google Scholar',
+      university: 'MoCU'
+    },
+    {
+      id: 60,
+      issn: '',
+      title: 'East African Journal of Social and Applied Sciences (EAJ-SAS)',
+      publisher: 'MoCU',
+      mode: 'Online & Print',
+      frequency: 'Biannual',
+      subject: 'Social and Applied Sciences',
+      url: 'https://journals.mocu.ac.tz/index.php/eaj-sas/index',
+      language: 'English',
+      indexed: '',
+      university: 'MoCU'
+    },
+    // TUMAINI UNIVERSITY DAR ES SALAAM COLLEGE (TUDARCo)
+    {
+      id: 61,
+      issn: '2820 - 266X',
+      title: 'TUDARCO Journal of Humanities and Education',
+      publisher: 'TUDARCo',
+      mode: 'Online & Print',
+      frequency: 'Biannual',
+      subject: 'Social Science and Humanities',
       url: '',
       language: 'English',
       indexed: '',
-      university: 'TEKU'
+      university: 'TUDARCo'
+    },
+    // KAMPALA INTERNATIONAL UNIVERSITY
+    {
+      id: 62,
+      issn: '3057-3149',
+      title: 'Tanzanian Journal of Multidisciplinary Studies',
+      publisher: 'KIU',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Multidisciplinary',
+      url: 'https://journal.kiut.ac.tz/index.php/tzjms/index',
+      language: 'English',
+      indexed: '',
+      university: 'KIU'
+    },
+    // COLLEGE OF BUSINESS EDUCATION
+    {
+      id: 63,
+      issn: 'E 2665-0681 /   2546-2180',
+      title: 'Business Education Journal (BEJ)',
+      publisher: 'CBE',
+      mode: 'Online & Print',
+      frequency: 'Biannual',
+      subject: 'Business',
+      url: 'https://bej.cbe.ac.tz/index.php/bej',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'CBE'
+    },
+    // ST. AUGUSTINE UNIVERSITY OF TANZANIA
+    {
+      id: 64,
+      issn: '1821 - 6544',
+      title: 'African Communication Research',
+      publisher: 'SAUT',
+      mode: '',
+      frequency: 'Annually',
+      subject: 'Social Science',
+      url: '',
+      language: 'English',
+      indexed: '',
+      university: 'SAUT'
     },
     {
-      id: 48,
-      issn: '1821-9349 / E2961-6239',
+      id: 65,
+      issn: '2507-7783',
+      title: 'Journal of Sociology and Development',
+      publisher: 'St. Augustine University of Tanzania',
+      mode: 'Print',
+      frequency: '',
+      subject: 'Social Science',
+      url: '',
+      language: 'English',
+      indexed: '',
+      university: 'SAUT'
+    },
+    {
+      id: 66,
+      issn: '1821-7435',
+      title: 'St. Augustine University LAW JOURNAL',
+      publisher: 'SAUT',
+      mode: '',
+      frequency: 'Biannual',
+      subject: 'Law',
+      url: '',
+      language: 'English',
+      indexed: '',
+      university: 'SAUT'
+    },
+    // TANZANIA INSTITUTE OF ACCOUNTANCY (TIA)
+    {
+      id: 67,
+      issn: '',
+      title: 'The African Journal of Accounting and Social Science (AJASSS)',
+      publisher: 'TIA',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'https://journal.tia.ac.tz/index.php/ajass/',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'TIA'
+    },
+    // NATIONAL INSTITUTE OF MEDICAL RESEARCH (NIMR)
+    {
+      id: 68,
+      issn: 'E1821-9241 /1821-6404',
+      title: 'Tanzania Journal of Health Research',
+      publisher: 'NIMR',
+      mode: 'Online',
+      frequency: 'Quarterly',
+      subject: 'Medical and Health Sciences',
+      url: 'https://www.ajol.info/index.php/thrb',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'NIMR'
+    },
+    // INSTITUTE OF FINANCE MANAGEMENT (IFM)
+    {
+      id: 69,
+      issn: '3057-3076 /               E 2591-6904',
+      title: 'The Journal of Finance and Business Studies (JFBS)',
+      publisher: 'IFM',
+      mode: 'Online & Print',
+      frequency: 'Biannual',
+      subject: 'Business',
+      url: 'https://journals.ifm.ac.tz/',
+      language: 'English',
+      indexed: '',
+      university: 'IFM'
+    },
+    {
+      id: 70,
+      issn: '2591- 6890',
+      title: 'The Journal of Innovation and Social Science Research (JISSR)',
+      publisher: 'IFM',
+      mode: 'Online',
+      frequency: 'Biannual',
+      subject: 'Social Science',
+      url: 'https://journals.ifm.ac.tz/',
+      language: 'English',
+      indexed: '',
+      university: 'IFM'
+    },
+    {
+      id: 71,
+      issn: '0856-6372',
+      title: 'The African Journal of Finance and Management (AJFM)',
+      publisher: 'IFM',
+      mode: 'Online & Print',
+      frequency: 'Biannual',
+      subject: 'Finance Management',
+      url: 'https://journals.ifm.ac.tz/',
+      language: 'English',
+      indexed: 'AJOL',
+      university: 'IFM'
+    },
+    // NATIONAL INSTITUTE OF TRANSPORT (NIT)
+    {
+      id: 72,
+      issn: '1821-9349  /    E2961-6239',
       title: 'Journal of Logistics, Management and Engineering Sciences (JLMES)',
       publisher: 'NIT',
       mode: 'Online & Print',
@@ -632,11 +961,12 @@ const JournalsPage = () => {
       url: 'https://jlmes.nit.ac.tz/Site',
       language: 'English',
       indexed: '',
-      university: 'IRDP'
+      university: 'NIT'
     },
+    // INSTITUTE OF RURAL DEVELOPMENT AND PLANNING
     {
-      id: 49,
-      issn: '0856-3460 / E 2507-7848',
+      id: 73,
+      issn: '0856 - 3460 /             E 2507 -7848',
       title: 'The Rural Planning Journal (RPJ)',
       publisher: 'IRDP',
       mode: 'Online & Print',
@@ -647,8 +977,9 @@ const JournalsPage = () => {
       indexed: 'CROSSREF & AJOL',
       university: 'IRDP'
     },
+    // INSTITUTE OF ACCOUNTANCY ARUSHA
     {
-      id: 50,
+      id: 74,
       issn: 'E 2953-254X / 2714-1993',
       title: 'The Journal of Informatics (TJI)',
       publisher: 'IAA',
@@ -661,7 +992,7 @@ const JournalsPage = () => {
       university: 'IAA'
     },
     {
-      id: 51,
+      id: 75,
       issn: '',
       title: 'The Journal of Humanities and Social Science Review and Practice (JHSSRP)',
       publisher: 'IAA',
@@ -674,7 +1005,7 @@ const JournalsPage = () => {
       university: 'IAA'
     },
     {
-      id: 52,
+      id: 76,
       issn: '',
       title: 'The Journal of Governance and Security Studies (JGSS)',
       publisher: 'IAA',
@@ -687,7 +1018,7 @@ const JournalsPage = () => {
       university: 'IAA'
     },
     {
-      id: 53,
+      id: 77,
       issn: '',
       title: 'The Accountancy and Business Review',
       publisher: 'IAA',
@@ -699,12 +1030,13 @@ const JournalsPage = () => {
       indexed: '',
       university: 'IAA'
     },
+    // INSTITUTE OF TAX ADMINISTRATION
     {
-      id: 54,
-      issn: '2665-0517 / 2665-0507',
+      id: 78,
+      issn: '2665 - 0517 /             E 2665 - 0507',
       title: 'The African Journal of Customs and Fiscal Studies (AJCFS)',
       publisher: 'ITA',
-      mode: 'Online',
+      mode: '',
       frequency: 'Biannual',
       subject: 'Business and Management',
       url: 'https://journal.ita.ac.tz/index.php/tra/index',
@@ -712,9 +1044,10 @@ const JournalsPage = () => {
       indexed: '',
       university: 'ITA'
     },
+    // MBEYA UNIVERSITY OF SCIENCE AND TECHNOLOGY
     {
-      id: 55,
-      issn: '2683-6475 / E 2683-6467',
+      id: 79,
+      issn: '2683-6475/                E 2683-6467',
       title: 'Journal of Research and Development (MJRD)',
       publisher: 'MUST',
       mode: 'Online',
@@ -725,9 +1058,10 @@ const JournalsPage = () => {
       indexed: 'DOAJ, AJOL, CABI, AGRIS and EBSCO',
       university: 'MUST'
     },
+    // MWENGE CATHOLIC UNIVERSITY
     {
-      id: 56,
-      issn: '1821-8369',
+      id: 80,
+      issn: '1821 – 8369',
       title: 'Mwenge Journal of Academic Studies (MJAS)',
       publisher: 'MWECAU',
       mode: 'Online',
@@ -738,9 +1072,10 @@ const JournalsPage = () => {
       indexed: '',
       university: 'MWECAU'
     },
+    // ST. JOHNS UNIVERSITY OF TANZANIA
     {
-      id: 57,
-      issn: '2683-6440 / E 2683-6432',
+      id: 81,
+      issn: '2683 - 6440/ E 2683 - 6432',
       title: 'Jarida la Mnyampala',
       publisher: 'SJUT',
       mode: 'Online & Print',
@@ -751,21 +1086,23 @@ const JournalsPage = () => {
       indexed: 'AJOL',
       university: 'SJUT'
     },
+    // DAR ES SALAAM MARITIME INSTITUTE
     {
-      id: 58,
+      id: 82,
       issn: '',
       title: 'Journal of Maritime Science and Technology',
       publisher: 'DMI',
       mode: 'Online',
       frequency: 'Annually',
       subject: 'Natural Sciences',
-      url: 'https://journal.dmi.ac.tz/index.php/1DMI1/index',
+      url: 'ournal.dmi.ac.tz/index.php/1DMI1/index',
       language: 'English',
       indexed: '',
       university: 'DMI'
     },
+    // INSTITUTE OF JUDICIARY ADMINISTRATION
     {
-      id: 59,
+      id: 83,
       issn: '2467-4680',
       title: 'Institute of Judiciary and Administration Lushoto Journal',
       publisher: 'IJA',
@@ -777,8 +1114,9 @@ const JournalsPage = () => {
       indexed: '',
       university: 'IJA'
     },
+    // INSTITUTE OF ADULT EDUCATION
     {
-      id: 60,
+      id: 84,
       issn: '0856-1109',
       title: 'Journal of Adult Education Tanzania',
       publisher: 'IAE',
@@ -790,8 +1128,9 @@ const JournalsPage = () => {
       indexed: 'AJOL',
       university: 'IAE'
     },
+    // LAW SCHOOL OF TANZANIA
     {
-      id: 61,
+      id: 85,
       issn: '2467-4672',
       title: 'LST Law Review Journal',
       publisher: 'Law School of Tanzania',
@@ -803,9 +1142,10 @@ const JournalsPage = () => {
       indexed: '',
       university: 'LST'
     },
+    // CENTRE FOR FOREIGN RELATIONS
     {
-      id: 62,
-      issn: '2773-6598 / E 2773-658X',
+      id: 86,
+      issn: '2773 – 6598 / E 2773 – 658X',
       title: 'International Diplomatic Review Journal',
       publisher: 'CFR',
       mode: 'Online & Print',
@@ -816,9 +1156,10 @@ const JournalsPage = () => {
       indexed: 'AJOL',
       university: 'CFR'
     },
+    // RUAHA CATHOLIC UNIVERSITY
     {
-      id: 63,
-      issn: 'P2507-7945 / E2507-79945',
+      id: 87,
+      issn: 'P2507-7945/      E2507-79945',
       title: 'Ruaha Journal of Business Economics and Management Science (RJBEMS)',
       publisher: 'RUCU',
       mode: 'Online',
@@ -830,7 +1171,7 @@ const JournalsPage = () => {
       university: 'RUCU'
     },
     {
-      id: 64,
+      id: 88,
       issn: '2820-2724',
       title: 'Ruaha Catholic University Journal of Education and Development (RUCUJED)',
       publisher: 'RUCU',
@@ -843,7 +1184,7 @@ const JournalsPage = () => {
       university: 'RUCU'
     },
     {
-      id: 65,
+      id: 89,
       issn: '2799-2187',
       title: 'Jarida la Fahari ya Kiswahili (JAFAKI)',
       publisher: 'RUCU',
@@ -856,10 +1197,10 @@ const JournalsPage = () => {
       university: 'RUCU'
     },
     {
-      id: 66,
+      id: 90,
       issn: '2453-6016',
       title: 'Ruaha Journal of Arts and Social Science (RUJASS)',
-      publisher: 'RUCU',
+      publisher: 'Ruaha Catholic University',
       mode: 'Print/Online',
       frequency: 'Biannual',
       subject: 'Social Science',
@@ -869,20 +1210,21 @@ const JournalsPage = () => {
       university: 'RUCU'
     },
     {
-      id: 67,
+      id: 91,
       issn: '2507-7939',
       title: 'Ruaha Law Review (RLR)',
-      publisher: 'RUCU',
+      publisher: 'Ruaha Catholic University',
       mode: 'Online',
-      frequency: 'Annually',
+      frequency: 'Annualy',
       subject: 'Social Science',
       url: '',
       language: 'English',
       indexed: '',
       university: 'RUCU'
     },
+    // LAW REFORM COMMISSION OF TANZANIA
     {
-      id: 68,
+      id: 92,
       issn: '0789-6580',
       title: 'The Law Reformer Journal',
       publisher: 'Law Reform Commission of Tanzania',
@@ -894,64 +1236,69 @@ const JournalsPage = () => {
       indexed: '',
       university: 'LRCT'
     },
+    // CHAMA CHA LUGHA NA FASIHI YA KISWAHILI TANZANIA
     {
-      id: 69,
+      id: 93,
       issn: '2665-0789 / E 2591-7013',
       title: 'Jarida la Chama cha Lugha na Fasihi ya Kiswahili Tanzania',
       publisher: 'CHALUFAKITA',
       mode: 'Online & Print',
-      frequency: 'Annually',
+      frequency: 'Annualy',
       subject: 'Social Science',
       url: 'https://www.ajol.info/index.php/jclfkt',
       language: 'Kiswahili',
       indexed: 'AJOL',
       university: 'CHALUFAKITA'
     },
+    // TANZANIA MARKETING SCIENCE ASSOCIATION
     {
-      id: 70,
-      issn: '2799-2144 / E 2779-2152',
+      id: 94,
+      issn: '2799-2144/ E 2779-2152',
       title: 'Journal of Applied Marketing Science (JOAMS)',
       publisher: 'TMSA',
       mode: 'Online & Print',
-      frequency: 'Biannual',
+      frequency: '',
       subject: 'Social Science',
       url: 'https://joams.tmsa.or.tz/',
       language: 'English',
       indexed: 'AJOL',
       university: 'TMSA'
     },
+    // COMMUNITY DEVELOPMENT PROFESSIONAL ASSOCIATION OF TANZANIA
     {
-      id: 71,
+      id: 95,
       issn: 'E 2773-675X / 2773-6725',
       title: 'Tanzania Journal of Community Development (TAJOCODE)',
       publisher: 'CODEPATA',
       mode: 'Online & Print',
-      frequency: 'Biannual',
+      frequency: '',
       subject: 'Social Science',
       url: 'https://www.ajol.info/index.php/tajocode',
       language: 'English',
       indexed: 'AJOL',
       university: 'CODEPATA'
     },
+    // WESTERN INDIAN OCEAN MARINE SCIENCE ASSOCIATION
     {
-      id: 72,
+      id: 96,
       issn: 'E 2683-6416 / 0856-860X',
       title: 'The Western Indian Ocean Journal of Marine Science (WIOJMS)',
       publisher: 'WIOMSA',
       mode: 'Online & Print',
-      frequency: 'Biannual',
+      frequency: '',
       subject: 'Natural Sciences',
       url: 'https://www.ajol.info/index.php/wiojms',
       language: 'English',
-      indexed: 'AJOL',
+      indexed: '',
       university: 'WIOMSA'
     },
+    // TEOFILO KISANJI UNIVERSITY
     {
-      id: 73,
+      id: 97,
       issn: '',
-      title: 'Teku Journal of Interdisciplinary Studies (TJIS)',
+      title: 'Teku Journal of Interdisciplinary Studies(TJIS)',
       publisher: 'TEKU',
-      mode: 'Online',
+      mode: '',
       frequency: 'Biannual',
       subject: 'Multidisciplinary',
       url: '',
@@ -1031,69 +1378,68 @@ const JournalsPage = () => {
             <table className="journals-table">
               <thead>
                 <tr>
-                  <th onClick={() => handleSort('id')} className="sortable">
-                    # {sortColumn === 'id' && (sortDirection === 'asc' ? '↑' : '↓')}
-                  </th>
-                  <th onClick={() => handleSort('issn')} className="sortable">
+                  <th>S/N</th>
+                  <th className="sortable" onClick={() => handleSort('issn')}>
                     ISSN {sortColumn === 'issn' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('title')} className="sortable">
-                    TITLE OF PUBLICATION {sortColumn === 'title' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('title')}>
+                    Title {sortColumn === 'title' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('publisher')} className="sortable">
-                    PUBLISHER/ INSTITUTION {sortColumn === 'publisher' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('publisher')}>
+                    Publisher {sortColumn === 'publisher' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('mode')} className="sortable">
-                    MODE OF PUBLICATIONS {sortColumn === 'mode' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('mode')}>
+                    Mode {sortColumn === 'mode' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('frequency')} className="sortable">
-                    PUBLICATION FREQUENCY {sortColumn === 'frequency' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('frequency')}>
+                    Frequency {sortColumn === 'frequency' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('url')} className="sortable">
-                    URL LINK {sortColumn === 'url' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('subject')}>
+                    Subject {sortColumn === 'subject' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('language')} className="sortable">
-                    LANGUAGE OF PUBLICATIONS {sortColumn === 'language' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('url')}>
+                    URL {sortColumn === 'url' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('indexed')} className="sortable">
-                    INDEXED DATABASE {sortColumn === 'indexed' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('language')}>
+                    Language {sortColumn === 'language' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th onClick={() => handleSort('university')} className="sortable">
-                    UNIVERSITY {sortColumn === 'university' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('indexed')}>
+                    Indexed {sortColumn === 'indexed' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th className="sortable" onClick={() => handleSort('university')}>
+                    University {sortColumn === 'university' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {paginatedData.length > 0 ? (
                   paginatedData.map((item, index) => (
-                    <tr key={item.id || index}>
+                    <tr key={item.id}>
                       <td>{startIndex + index + 1}</td>
                       <td>{item.issn || '-'}</td>
-                      <td>{item.title || '-'}</td>
-                      <td>{item.publisher || '-'}</td>
+                      <td>{item.title}</td>
+                      <td>{item.publisher}</td>
                       <td>{item.mode || '-'}</td>
                       <td>{item.frequency || '-'}</td>
+                      <td>{item.subject}</td>
                       <td>
                         {item.url ? (
-                          <a 
-                            href={item.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="url-link"
-                          >
-                            {item.url}
+                          <a href={item.url} target="_blank" rel="noopener noreferrer" className="journal-link">
+                            {item.url.length > 40 ? item.url.substring(0, 40) + '...' : item.url}
                           </a>
-                        ) : '-'}
+                        ) : (
+                          '-'
+                        )}
                       </td>
                       <td>{item.language || '-'}</td>
                       <td>{item.indexed || '-'}</td>
-                      <td>{item.university || '-'}</td>
+                      <td>{item.university}</td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="10" className="no-data">
-                      No journal records found
+                    <td colSpan="11" className="no-data">
+                      No journals found matching your search criteria.
                     </td>
                   </tr>
                 )}
@@ -1138,4 +1484,3 @@ const JournalsPage = () => {
 };
 
 export default JournalsPage;
-
