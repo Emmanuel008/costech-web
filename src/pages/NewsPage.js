@@ -28,15 +28,25 @@ const NewsPage = () => {
           console.log(`✅ NewsPage: Using ${apiNews.length} items from API`);
           
           // Map API data to component structure (show all items, not just 4)
-          const mappedNews = apiNews.map((item) => ({
-            id: item.id,
-            slug: generateSlug(item.title),
-            image: item.image || '/assets/img/miradi.jpg',
-            title: item.title,
-            date: formatDate(item.created_at || item.date),
-            summary: item.content ? item.content.substring(0, 150) + '...' : null,
-            content: item.content ? [item.content] : [],
-          }));
+          const mappedNews = apiNews.map((item) => {
+            // Handle image URL - if relative, prepend base URL
+            let imageUrl = item.image || '/assets/img/miradi.jpg';
+            if (item.image && !item.image.startsWith('http') && !item.image.startsWith('/')) {
+              imageUrl = `https://costech.kingdomsolutions.co.tz/${item.image}`;
+            } else if (item.image && item.image.startsWith('http')) {
+              imageUrl = item.image;
+            }
+            
+            return {
+              id: item.id,
+              slug: generateSlug(item.title),
+              image: imageUrl,
+              title: item.title || 'Untitled News',
+              date: formatDate(item.created_at || item.date || item.createdAt || null),
+              summary: item.content ? (typeof item.content === 'string' ? item.content.substring(0, 150) + '...' : null) : null,
+              content: item.content ? (Array.isArray(item.content) ? item.content : [item.content]) : [],
+            };
+          });
           
           console.log('📝 NewsPage: Mapped news items:', mappedNews);
           setAllNews(mappedNews);

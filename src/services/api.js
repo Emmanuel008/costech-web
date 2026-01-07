@@ -132,6 +132,70 @@ export const getNewsList = async () => {
 };
 
 /**
+ * Fetch single news item by ID from API
+ * @param {number|string} id - News item ID
+ * @returns {Promise<Object>} - News item with full details
+ */
+export const getNewsById = async (id) => {
+  try {
+    console.log(`🔵 Starting to fetch news item ${id} from API...`);
+    
+    // Get authentication token
+    const token = await getAuthToken();
+    console.log('✅ Authentication successful, token received');
+
+    // Make authenticated request - try different possible endpoints
+    let response;
+    try {
+      // Try endpoint with ID
+      response = await apiClient.get(`/news/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (err) {
+      // If that fails, try alternative endpoint
+      try {
+        response = await apiClient.get(`/news/detail/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      } catch (err2) {
+        // If both fail, try with query parameter
+        response = await apiClient.get(`/news/ilist?id=${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
+    }
+
+    console.log('📥 News Detail API Response received:', response.data);
+
+    if (response.data && response.data.status === 'OK') {
+      const newsItem = response.data.returnData || response.data.data || response.data;
+      console.log('✅ Successfully fetched news item from API');
+      return newsItem;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return null;
+  } catch (error) {
+    console.error('❌ Error fetching news item:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
  * Generate slug from title
  * @param {string} title - News title
  * @returns {string} - URL-friendly slug

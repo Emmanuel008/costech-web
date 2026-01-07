@@ -74,6 +74,56 @@
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.news-detail-html-content {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #3a3a3a;
+  margin-bottom: 18px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.news-detail-html-content p {
+  margin-bottom: 18px;
+}
+
+.news-detail-html-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.news-detail-html-content h1,
+.news-detail-html-content h2,
+.news-detail-html-content h3,
+.news-detail-html-content h4,
+.news-detail-html-content h5,
+.news-detail-html-content h6 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.news-detail-html-content ul,
+.news-detail-html-content ol {
+  margin: 18px 0;
+  padding-left: 30px;
+}
+
+.news-detail-html-content li {
+  margin-bottom: 8px;
+}
+
+.news-detail-html-content a {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+.news-detail-html-content a:hover {
+  color: #3b82f6;
+}
+
 .news-detail-sidebar {
   position: sticky;
   top: 140px;

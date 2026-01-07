@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { newsItems } from '../data/newsItems';
 import '../styles/pages/NewsDetailPage.css';
-import { getNewsList, generateSlug, formatDate } from '../services/api';
+import { getNewsList, getNewsById, generateSlug, formatDate } from '../services/api';
 
 const NewsDetailPage = () => {
   const { slug } = useParams();
@@ -19,45 +19,121 @@ const NewsDetailPage = () => {
         
         console.log('🔄 NewsDetailPage: Starting to fetch news from API...');
         
-        // Fetch news from API
+        // First, fetch all news to find the item and get related news
         const apiNews = await getNewsList();
         
         console.log('📊 NewsDetailPage: Received news from API:', apiNews);
         
         if (apiNews && apiNews.length > 0) {
-          console.log(`✅ NewsDetailPage: Using ${apiNews.length} items from API`);
-          
-          // Map API data to component structure
+            // Map API data to component structure for finding the item
           const mappedNews = apiNews.map((item) => {
-            // Handle content - could be string or array
-            let contentArray = [];
-            if (item.content) {
-              if (Array.isArray(item.content)) {
-                contentArray = item.content;
-              } else if (typeof item.content === 'string') {
-                // Split by newlines or paragraphs if needed
-                // For now, treat as single paragraph
-                contentArray = [item.content];
-              }
+            // Handle image URL - if relative, prepend base URL
+            let imageUrl = item.image || '/assets/img/miradi.jpg';
+            if (item.image && !item.image.startsWith('http') && !item.image.startsWith('/')) {
+              imageUrl = `https://costech.kingdomsolutions.co.tz/${item.image}`;
+            } else if (item.image && item.image.startsWith('http')) {
+              imageUrl = item.image;
             }
+            
+            // Check for content in various possible fields
+            const content = item.content || item.description || item.body || item.text || item.article || null;
             
             return {
               id: item.id,
               slug: generateSlug(item.title),
-              image: item.image || '/assets/img/miradi.jpg',
-              title: item.title,
-              date: formatDate(item.created_at || item.date),
-              summary: item.content ? (typeof item.content === 'string' ? item.content.substring(0, 150) + '...' : null) : null,
-              content: contentArray,
+              image: imageUrl,
+              title: item.title || 'Untitled News',
+              date: formatDate(item.created_at || item.date || item.createdAt || null),
+              summary: content ? (typeof content === 'string' ? content.substring(0, 150) + '...' : null) : null,
+              content: content ? (Array.isArray(content) ? content : [content]) : [],
             };
           });
           
-          // Find the current news item by slug
+          // Find the current news item by slug or ID
           const foundItem = mappedNews.find((item) => item.slug === slug || String(item.id) === slug);
           
           if (foundItem) {
-            console.log('✅ NewsDetailPage: Found news item:', foundItem);
-            setNewsItem(foundItem);
+            console.log('✅ NewsDetailPage: Found news item, fetching full details...');
+            
+            // Try to fetch full details with content by ID
+            try {
+              console.log(`🔍 NewsDetailPage: Attempting to fetch full details for news ID: ${foundItem.id}`);
+              const fullDetails = await getNewsById(foundItem.id);
+              
+              console.log('📄 NewsDetailPage: Full details response:', fullDetails);
+              
+              if (fullDetails) {
+                // Check for content in various possible fields (try multiple field names)
+                const fullContent = fullDetails.content || 
+                                   fullDetails.description || 
+                                   fullDetails.body || 
+                                   fullDetails.text || 
+                                   fullDetails.article ||
+                                   fullDetails.details ||
+                                   fullDetails.full_content ||
+                                   fullDetails.fullContent ||
+                                   null;
+                
+                console.log('📝 NewsDetailPage: Extracted content:', fullContent ? (typeof fullContent === 'string' ? fullContent.substring(0, 100) + '...' : 'Array/Other') : 'null');
+                
+                if (fullContent) {
+                  // Use the full details with content
+                  let contentArray = [];
+                  if (Array.isArray(fullContent)) {
+                    contentArray = fullContent;
+                  } else if (typeof fullContent === 'string') {
+                    // Split by double newlines to create paragraphs, but preserve HTML if present
+                    if (fullContent.includes('<p>') || fullContent.includes('<div>')) {
+                      // If it's HTML, keep as single item
+                      contentArray = [fullContent];
+                    } else {
+                      // Split by double newlines to create paragraphs
+                      contentArray = fullContent.split(/\n\n+/).filter(p => p.trim().length > 0);
+                      if (contentArray.length === 0) {
+                        contentArray = [fullContent];
+                      }
+                    }
+                  }
+                  
+                  // Handle image URL for full details
+                  let imageUrl = fullDetails.image || foundItem.image || '/assets/img/miradi.jpg';
+                  if (fullDetails.image && !fullDetails.image.startsWith('http') && !fullDetails.image.startsWith('/')) {
+                    imageUrl = `https://costech.kingdomsolutions.co.tz/${fullDetails.image}`;
+                  } else if (fullDetails.image && fullDetails.image.startsWith('http')) {
+                    imageUrl = fullDetails.image;
+                  }
+                  
+                  const newsItemWithContent = {
+                    ...foundItem,
+                    content: contentArray.length > 0 ? contentArray : foundItem.content,
+                    image: imageUrl,
+                    title: fullDetails.title || foundItem.title,
+                    date: formatDate(fullDetails.created_at || fullDetails.date || fullDetails.createdAt || foundItem.date),
+                  };
+                  
+                  console.log('✅ NewsDetailPage: Using full details with content, content length:', contentArray.length);
+                  setNewsItem(newsItemWithContent);
+                } else {
+                  // Check if content exists in the list item
+                  if (foundItem.content && foundItem.content.length > 0) {
+                    console.log('✅ NewsDetailPage: Using content from list item');
+                    setNewsItem(foundItem);
+                  } else {
+                    console.log('⚠️ NewsDetailPage: No content found in detail or list item');
+                    setNewsItem(foundItem);
+                  }
+                }
+              } else {
+                // Use the item from list if detail endpoint returns null
+                console.log('⚠️ NewsDetailPage: Detail endpoint returned null, using list item');
+                setNewsItem(foundItem);
+              }
+            } catch (detailErr) {
+              console.warn('⚠️ NewsDetailPage: Could not fetch detail, using list item:', detailErr);
+              console.warn('Error details:', detailErr.message);
+              // Use the item from list if detail fetch fails
+              setNewsItem(foundItem);
+            }
             
             // Get related news (exclude current item)
             const related = mappedNews
@@ -182,23 +258,41 @@ const NewsDetailPage = () => {
             </div>
             <h1 className="news-detail-title">{newsItem.title}</h1>
             {newsItem.image && (
-              <div className="news-detail-hero">
-                <img
-                  src={newsItem.image}
-                  alt={newsItem.title}
-                  className="news-detail-image"
-                  loading="lazy"
+            <div className="news-detail-hero">
+              <img
+                src={newsItem.image}
+                alt={newsItem.title}
+                className="news-detail-image"
+                loading="lazy"
                   onError={(e) => {
                     e.target.src = '/assets/img/miradi.jpg';
                   }}
-                />
-              </div>
+              />
+            </div>
             )}
             <div className="news-detail-content">
               {newsItem.content && newsItem.content.length > 0 ? (
-                newsItem.content.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))
+                newsItem.content.map((paragraph, index) => {
+                  // Handle both string paragraphs and HTML content
+                  if (typeof paragraph === 'string') {
+                    // Check if content contains HTML tags
+                    if (paragraph.includes('<') && paragraph.includes('>')) {
+                      // Render HTML content
+                      return (
+                        <div 
+                          key={index} 
+                          dangerouslySetInnerHTML={{ __html: paragraph }}
+                          className="news-detail-html-content"
+                        />
+                      );
+                    } else {
+                      // Render plain text as paragraph
+                      return <p key={index}>{paragraph}</p>;
+                    }
+                  } else {
+                    return <p key={index}>{String(paragraph)}</p>;
+                  }
+                })
               ) : (
                 <p>No content available for this news item.</p>
               )}
