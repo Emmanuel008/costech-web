@@ -1,324 +1,348 @@
 .exhibitions-page {
-  background: linear-gradient(180deg, #f4f6fb 0%, #eef1f7 100%);
   min-height: 100vh;
-  padding: 80px 0 70px;
-  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  padding: 0;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #f0f9ff 100%);
 }
 
 .exhibitions-hero {
   position: relative;
-  width: 100%;
-  min-height: 300px;
-  background: url('../../../public/assets/img/hero2.jpeg') center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 60px 20px 40px;
+  padding-top: 120px;
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.exhibitions-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover;
+  opacity: 0.15;
+  z-index: 1;
 }
 
 .exhibitions-hero-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(130deg, rgba(15, 23, 42, 0.78) 0%, rgba(185, 124, 7, 0.45) 100%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 }
 
 .exhibitions-hero-content {
   position: relative;
-  z-index: 1;
-  max-width: 680px;
-  text-align: center;
-  padding: 60px 20px;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .exhibitions-hero-content h1 {
-  margin: 0;
-  font-size: 2.6rem;
-  letter-spacing: 0.04em;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 15px 0;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .exhibitions-hero-content p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.88);
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .exhibitions-body {
-  max-width: 1200px;
-  margin: 40px auto 0;
-  padding: 0 24px;
+  background: transparent;
+  border-radius: 0;
+  padding: 40px 20px;
+  box-shadow: none;
+  min-height: 400px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.exhibitions-content {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+/* Exhibitions Table Styles */
+.exhibitions-table-container {
+  width: 100%;
 }
 
-.exhibitions-main-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
-}
-
-.exhibitions-main-card h2 {
-  margin: 0 0 24px;
-  font-size: 2rem;
-  color: #0f172a;
-  font-weight: 600;
-}
-
-.exhibitions-main-card p {
-  margin: 0 0 20px;
-  color: #374151;
-  line-height: 1.75;
-  font-size: 1rem;
-}
-
-.exhibitions-main-card p:last-of-type {
-  margin-bottom: 24px;
-}
-
-.exhibitions-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-top: 24px;
-}
-
-.exhibitions-list-item {
-  display: flex;
-  gap: 20px;
-  padding: 24px;
-  background: linear-gradient(140deg, rgba(185, 124, 7, 0.08) 0%, rgba(185, 124, 7, 0.15) 100%);
-  border-radius: 16px;
-  border: 1px solid rgba(185, 124, 7, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.exhibitions-list-item:hover {
-  transform: translateX(4px);
-  box-shadow: 0 12px 30px rgba(185, 124, 7, 0.2);
-}
-
-.exhibitions-list-icon {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(185, 124, 7, 0.2) 0%, rgba(185, 124, 7, 0.3) 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #b97c07;
-}
-
-.exhibitions-list-icon svg {
-  width: 28px;
-  height: 28px;
-}
-
-.exhibitions-list-item h3 {
-  margin: 0 0 8px;
-  font-size: 1.2rem;
-  color: #0f172a;
-  font-weight: 600;
-}
-
-.exhibitions-list-item p {
-  margin: 0;
-  color: #6b7280;
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-@media (max-width: 900px) {
-  .exhibitions-body {
-    margin-top: 40px;
-  }
-
-  .exhibitions-main-card {
-    padding: 30px;
-  }
-}
-
-@media (max-width: 640px) {
-  .exhibitions-page {
-    padding: 60px 0 50px;
-  }
-
-  .exhibitions-body {
-    padding: 0 18px;
-  }
-
-  .exhibitions-main-card {
-    padding: 24px;
-  }
-
-  .exhibitions-main-card h2 {
-    font-size: 1.75rem;
-  }
-
-  .exhibitions-list-item {
-    flex-direction: column;
-    gap: 16px;
-    padding: 20px;
-  }
-
-  .exhibitions-list-icon {
-    width: 48px;
-    height: 48px;
-  }
-
-  .exhibitions-list-icon svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.exhibitions-list-section {
-  margin-top: 48px;
-}
-
-.exhibitions-list-title {
-  margin: 0 0 32px;
-  font-size: 2rem;
-  color: #0f172a;
-  font-weight: 600;
+.exhibitions-table-title {
+  margin-bottom: 20px;
   text-align: center;
+  padding: 0;
 }
 
-.exhibitions-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-.exhibition-card {
-  background: #ffffff;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 24px 55px rgba(15, 23, 42, 0.11);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.exhibition-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 28px 65px rgba(15, 23, 42, 0.15);
-}
-
-.exhibition-image-container {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  background: #f3f4f6;
-}
-
-.exhibition-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.exhibition-card:hover .exhibition-image {
-  transform: scale(1.05);
-}
-
-.exhibition-card-content {
-  padding: 24px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.exhibition-card-title {
-  margin: 0 0 12px;
-  font-size: 1.25rem;
-  color: #0f172a;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.exhibition-card-date {
+.exhibitions-table-title h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e40af;
   margin: 0;
-  color: #b97c07;
-  font-size: 0.875rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.exhibitions-search-container {
+  margin-bottom: 20px;
+}
+
+.exhibitions-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  transition: all 0.3s ease;
+  height: 38px;
+  box-sizing: border-box;
+}
+
+.exhibitions-search-input:focus {
+  outline: none;
+  border-color: #b97c07;
+  box-shadow: 0 0 0 3px rgba(185, 124, 7, 0.1);
+}
+
+.exhibitions-table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  width: 100%;
+}
+
+.exhibitions-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  table-layout: auto;
+  min-width: 1000px;
+}
+
+.exhibitions-table thead {
+  background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+}
+
+.exhibitions-table th {
+  padding: 10px 8px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #1e40af;
+  border-bottom: 2px solid #bfdbfe;
+  border-right: 1px solid #e2e8f0;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.exhibitions-table th:last-child {
+  border-right: none;
+}
+
+.exhibitions-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.exhibitions-table th.sortable:hover {
+  background-color: rgba(30, 64, 175, 0.1);
+}
+
+.exhibitions-table th:first-child {
+  text-align: center;
+  width: 5%;
+}
+
+.exhibitions-table tbody tr {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+.exhibitions-table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.exhibitions-table tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+.exhibitions-table td {
+  padding: 10px 8px;
+  font-size: 0.8rem;
+  color: #374151;
+  vertical-align: top;
+  word-wrap: break-word;
+  max-width: none;
+  border-right: 1px solid #e2e8f0;
+}
+
+.exhibitions-table td:last-child {
+  border-right: none;
+}
+
+.exhibitions-table td:nth-child(1) {
+  width: 4%;
+  text-align: center;
+  font-weight: 600;
+}
+
+.exhibitions-table td:nth-child(2) {
+  width: 20%;
   font-weight: 500;
 }
 
-.exhibitions-loading,
-.exhibitions-error,
-.exhibitions-empty {
-  text-align: center;
-  padding: 60px 20px;
-  font-size: 1.1rem;
-  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+.exhibitions-table td:nth-child(3) {
+  width: 9%;
 }
 
-.exhibitions-loading {
+.exhibitions-table td:nth-child(4) {
+  width: 13%;
+}
+
+.exhibitions-table td:nth-child(5) {
+  width: 16%;
+}
+
+.exhibitions-table td:nth-child(6) {
+  width: 12%;
+}
+
+.exhibitions-table td:nth-child(7) {
+  width: 10%;
+}
+
+.exhibitions-table td:nth-child(8) {
+  width: 16%;
+}
+
+.exhibition-link {
+  color: #1e40af;
+  text-decoration: none;
+  word-break: break-all;
+  transition: color 0.2s ease;
+}
+
+.exhibition-link:hover {
   color: #b97c07;
+  text-decoration: underline;
 }
 
-.exhibitions-loading::after {
-  content: '...';
-  animation: dots 1.5s steps(4, end) infinite;
+.exhibitions-table td.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #9ca3af;
+  font-style: italic;
 }
 
-.exhibitions-error {
-  color: #dc2626;
+.exhibitions-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 16px 0;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.exhibitions-empty {
-  color: #6b7280;
+.pagination-info {
+  font-size: 0.9rem;
+  color: #64748b;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-@keyframes dots {
-  0%, 20% {
-    content: '.';
+.pagination-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pagination-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  color: #b97c07;
+  border-color: #b97c07;
+  background: #fef3c7;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #b97c07 0%, #9a6606 100%);
+  border-color: #b97c07;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .exhibitions-page {
+    padding: 0;
   }
-  40% {
-    content: '..';
+
+  .exhibitions-hero {
+    padding: 50px 15px 30px;
+    padding-top: 140px;
   }
-  60%, 100% {
-    content: '...';
+
+  .exhibitions-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .exhibitions-hero-content p {
+    font-size: 1rem;
+  }
+
+  .exhibitions-body {
+    padding: 30px 15px;
+  }
+
+  .exhibitions-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .exhibitions-table {
+    font-size: 0.75rem;
+  }
+
+  .exhibitions-table th {
+    padding: 8px 6px;
+    font-size: 0.7rem;
+  }
+
+  .exhibitions-table td {
+    padding: 8px 6px;
+    font-size: 0.75rem;
+  }
+
+  .exhibitions-pagination {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
-@media (max-width: 900px) {
-  .exhibitions-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
-
-  .exhibitions-list-title {
-    font-size: 1.75rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .exhibitions-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .exhibitions-list-title {
+@media (max-width: 480px) {
+  .exhibitions-hero-content h1 {
     font-size: 1.5rem;
-    margin-bottom: 24px;
-  }
-
-  .exhibition-card-content {
-    padding: 20px;
-  }
-
-  .exhibition-image-container {
-    height: 200px;
   }
 }
-

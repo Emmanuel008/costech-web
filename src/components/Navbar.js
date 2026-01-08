@@ -217,6 +217,7 @@ const Navbar = () => {
   ];
 
   const projectsItems = [
+    { text: 'HEET', href: 'https://heet.costech.or.tz/', external: true },
     { text: 'Ongoing Program', href: '/projects#ongoing' },
     { text: 'COSTECH Funded Projects', href: 'https://costech.or.tz/project-grants', external: true },
     { text: 'Area for Partnership', href: '/projects#partnership' },
@@ -284,9 +285,9 @@ const Navbar = () => {
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
     { text: 'Online Services', hasDropdown: true, href: '#', dropdownItems: onlineServicesItems },
     { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
-    { text: 'Publications / Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
+    { text: 'Publication & Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
-    { text: 'Projects/Programs', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
+    { text: 'Projects & Program', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
     { text: 'Incubation', hasDropdown: true, href: '#', dropdownItems: incubationItems },
       { text: 'Funding Opportunities', hasDropdown: false, href: '/fellowships-grants' },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },

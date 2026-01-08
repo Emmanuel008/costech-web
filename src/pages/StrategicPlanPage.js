@@ -151,11 +151,11 @@ const formatDate = (dateString) => {
       return dateString; // Return original if parsing fails
     }
 
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    });
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
   } catch (error) {
     return dateString; // Return original if error
   }
@@ -263,50 +263,50 @@ const StrategicPlanPage = () => {
           </div>
         ) : (
           <>
-            <div className="strategic-plan-table-container">
-              <div className="strategic-plan-table-wrapper">
-                <table className="strategic-plan-table">
-                  <thead className="strategic-plan-table-head">
-                    <tr className="strategic-plan-table-row">
-                      <th className="strategic-plan-table-head-cell">Name of the Strategic Plan</th>
-                      <th className="strategic-plan-table-head-cell">Published Date</th>
-                      <th className="strategic-plan-table-head-cell">
-                        <span className="sr-only">Download</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="strategic-plan-table-body">
-                    {paginatedPlans.map((plan) => (
-                      <tr key={plan.id} className="strategic-plan-table-row">
-                        <td className="strategic-plan-table-cell strategic-plan-table-cell--name">
-                          {plan.name}
-                        </td>
-                        <td className="strategic-plan-table-cell">{formatDate(plan.publishedDate)}</td>
-                        <td className="strategic-plan-table-cell">
-                          <a
-                            href={plan.downloadUrl}
-                            className="strategic-plan-download-link"
+        <div className="strategic-plan-table-container">
+          <div className="strategic-plan-table-wrapper">
+            <table className="strategic-plan-table">
+              <thead className="strategic-plan-table-head">
+                <tr className="strategic-plan-table-row">
+                  <th className="strategic-plan-table-head-cell">Name of the Strategic Plan</th>
+                  <th className="strategic-plan-table-head-cell">Published Date</th>
+                  <th className="strategic-plan-table-head-cell">
+                    <span className="sr-only">Download</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="strategic-plan-table-body">
+                {paginatedPlans.map((plan) => (
+                  <tr key={plan.id} className="strategic-plan-table-row">
+                    <td className="strategic-plan-table-cell strategic-plan-table-cell--name">
+                      {plan.name}
+                    </td>
+                    <td className="strategic-plan-table-cell">{formatDate(plan.publishedDate)}</td>
+                    <td className="strategic-plan-table-cell">
+                      <a
+                        href={plan.downloadUrl}
+                        className="strategic-plan-download-link"
                             onClick={(e) => handleDownload(e, plan)}
-                            aria-label={`Download ${plan.name}`}
-                          >
-                            Download
-                          </a>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                        aria-label={`Download ${plan.name}`}
+                      >
+                        Download
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-            {totalPages > 1 && (
-              <div className="strategic-plan-pagination-wrapper">
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={onPageChange}
-                />
-              </div>
+        {totalPages > 1 && (
+          <div className="strategic-plan-pagination-wrapper">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+            />
+          </div>
             )}
           </>
         )}
