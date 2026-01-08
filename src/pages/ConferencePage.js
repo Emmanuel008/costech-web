@@ -21,16 +21,6 @@ const ConferencePage = () => {
       link: 'https://stice.costech.or.tz'
     },
     {
-      id: 2,
-      name: 'Research & Innovation Week (UDSM)',
-      abbreviation: '-',
-      host: 'Univ. of Dar es Salaam',
-      theme: 'Research excellence & innovation (multidisciplinary)',
-      dates: 'May/Jun 2026 (projected)',
-      location: 'Dar es Salaam',
-      link: 'https://www.udsm.ac.tz'
-    },
-    {
       id: 3,
       name: 'Tanzania Society of Animal Production Annual Scientific Conference',
       abbreviation: 'TSAP Conf',
@@ -99,10 +89,6 @@ const ConferencePage = () => {
 
       <div className="conference-body">
         <div className="conference-table-container">
-          <div className="conference-table-title">
-            <h3>A: Conference</h3>
-          </div>
-
           <div className="conference-search-container">
             <input
               type="text"

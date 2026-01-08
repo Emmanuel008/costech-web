@@ -843,5 +843,48 @@ export const getOnlineServices = async () => {
   }
 };
 
+/**
+ * Fetch hero items list from API
+ * @returns {Promise<Array>} - Array of hero items
+ */
+export const getHero = async () => {
+  try {
+    console.log('🔵 Starting to fetch hero items from API...');
+    
+    // Get authentication token
+    const token = await getAuthToken();
+    console.log('✅ Authentication successful, token received');
+
+    // Make authenticated request
+    const response = await apiClient.get('/hero/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('📥 Hero API Response received:', response.data);
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData) {
+      const heroItems = response.data.returnData.list_of_item || [];
+      console.log(`✅ Successfully fetched ${heroItems.length} hero items from API`);
+      return heroItems;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching hero items:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
 export default apiClient;
 

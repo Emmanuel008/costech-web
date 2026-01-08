@@ -129,10 +129,6 @@ const ExhibitionsPage = () => {
 
       <div className="exhibitions-body">
         <div className="exhibitions-table-container">
-          <div className="exhibitions-table-title">
-            <h3>B: Exhibitions</h3>
-          </div>
-          
           <div className="exhibitions-search-container">
             <input
               type="text"

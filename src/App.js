@@ -115,12 +115,11 @@ function App() {
             <Route path="/resources/news" element={<NewsPage />} />
             <Route path="/resources/publication-video" element={<PublicationVideoPage />} />
             {/* Media Centre Routes */}
-            <Route path="/media/newsletter" element={<NewsPage />} />
+            <Route path="/media/news-updates" element={<NewsPage />} />
             <Route path="/media/press-release" element={<NewsPage />} />
-            <Route path="/media/public-notes" element={<NewsPage />} />
             <Route path="/media/statements" element={<NewsPage />} />
-            <Route path="/media/news-room" element={<NewsPage />} />
-            <Route path="/media/costech-video" element={<PublicationVideoPage />} />
+            <Route path="/media/newsletter" element={<NewsPage />} />
+            <Route path="/media/costech-videos" element={<PublicationVideoPage />} />
             {/* Projects Route */}
             <Route path="/projects" element={<ProjectsPage />} />
             {/* Financial Audit Route */}
