@@ -5,37 +5,223 @@
 }
 
 .publication-video-hero {
-  background: linear-gradient(135deg, #b97c07 0%, #a06d06 100%);
-  padding: 180px 30px 60px;
-  text-align: center;
-  color: #ffffff;
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.publication-video-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(15, 23, 42, 0.78) 0%, rgba(185, 124, 7, 0.45) 100%);
 }
 
 .publication-video-hero-content {
-  max-width: 1200px;
-  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  text-align: center;
+  padding: 60px 20px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .publication-video-hero-content h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 0 0 20px 0;
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 0.04em;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .publication-video-hero-content p {
-  font-size: 1.1rem;
-  line-height: 1.8;
   margin: 0;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.88);
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-@media (max-width: 968px) {
+.publication-video-body {
+  width: 100%;
+  padding: 60px 30px;
+  background-color: #2c2c2c;
+  position: relative;
+}
+
+/* Carousel Styles */
+.publication-video-carousel-wrapper {
+  margin: 0 -10px;
+  padding: 0 10px 20px 10px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.publication-video-carousel-wrapper .slick-slider {
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: visible;
+}
+
+.publication-video-carousel-wrapper .slick-list {
+  margin: 0 -30px;
+  padding: 20px 0;
+  overflow: visible;
+}
+
+.publication-video-carousel-wrapper .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.publication-video-carousel-wrapper .slick-slide {
+  padding: 0 30px;
+  height: auto;
+}
+
+.publication-video-carousel-wrapper .slick-slide > div {
+  height: 100%;
+  display: flex;
+}
+
+.publication-video-card-wrapper {
+  height: 100%;
+  padding: 0;
+  display: flex;
+}
+
+.publication-video-card {
+  background-color: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.publication-video-card:hover {
+  transform: translateY(-5px);
+}
+
+.publication-video-image-container {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  position: relative;
+  border-radius: 4px;
+}
+
+.publication-video-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.publication-video-card:hover .publication-video-image {
+  transform: scale(1.05);
+}
+
+.play-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.play-button-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.play-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.play-button-overlay:hover .play-button {
+  transform: scale(1.1);
+}
+
+.publication-video-content {
+  padding: 20px 0;
+}
+
+.publication-video-title {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f4d03f;
+  margin: 0;
+  text-align: left;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 500;
+}
+
+.publication-video-loading,
+.publication-video-error {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: #f4d03f;
+}
+
+.publication-video-loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+.publication-video-error {
+  color: #dc2626;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+/* Carousel Navigation Styles - Hidden */
+.publication-video-carousel-wrapper .slick-prev,
+.publication-video-carousel-wrapper .slick-next {
+  display: none !important;
+}
+
+.publication-video-carousel-wrapper .slick-dots {
+  display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .publication-video-hero {
-    padding: 200px 20px 50px;
+    min-height: 250px;
+    padding: 40px 20px;
   }
 
   .publication-video-hero-content h1 {
@@ -43,21 +229,34 @@
   }
 
   .publication-video-hero-content p {
-    font-size: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .publication-video-body {
+    padding: 30px 15px;
+  }
+  
+  .publication-video-image-container {
+    height: 220px;
+  }
+  
+  .publication-video-title {
+    font-size: 0.95rem;
   }
 }
 
-@media (max-width: 768px) {
-  .publication-video-hero {
-    padding: 220px 15px 40px;
+@media (max-width: 480px) {
+  .publication-video-image-container {
+    height: 200px;
   }
-
-  .publication-video-hero-content h1 {
-    font-size: 1.75rem;
+  
+  .publication-video-title {
+    font-size: 0.9rem;
   }
-
-  .publication-video-hero-content p {
-    font-size: 0.95rem;
+  
+  .play-button svg {
+    width: 50px;
+    height: 50px;
   }
 }
 

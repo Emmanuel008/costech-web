@@ -44,6 +44,9 @@ import WhatWeOfferPage from './pages/WhatWeOfferPage';
 import FellowshipsGrantsPage from './pages/FellowshipsGrantsPage';
 import FellowshipGrantDetailPage from './pages/FellowshipGrantDetailPage';
 import JournalsPage from './pages/JournalsPage';
+import NewsletterPage from './pages/NewsletterPage';
+import StatementPage from './pages/StatementPage';
+import PressReleasePage from './pages/PressReleasePage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import './styles/App.css';
@@ -116,9 +119,9 @@ function App() {
             <Route path="/resources/publication-video" element={<PublicationVideoPage />} />
             {/* Media Centre Routes */}
             <Route path="/media/news-updates" element={<NewsPage />} />
-            <Route path="/media/press-release" element={<NewsPage />} />
-            <Route path="/media/statements" element={<NewsPage />} />
-            <Route path="/media/newsletter" element={<NewsPage />} />
+            <Route path="/media/press-release" element={<PressReleasePage />} />
+            <Route path="/media/statements" element={<StatementPage />} />
+            <Route path="/media/newsletter" element={<NewsletterPage />} />
             <Route path="/media/costech-videos" element={<PublicationVideoPage />} />
             {/* Projects Route */}
             <Route path="/projects" element={<ProjectsPage />} />

@@ -371,6 +371,178 @@ export const getBooks = async () => {
 };
 
 /**
+ * Fetch newsletters list from API
+ * @returns {Promise<Array>} - Array of newsletter items
+ */
+export const getNewsletters = async () => {
+  try {
+    console.log('🔵 Starting to fetch newsletters from API...');
+    
+    // Get authentication token
+    const token = await getAuthToken();
+    console.log('✅ Authentication successful, token received');
+
+    // Make authenticated request
+    const response = await apiClient.get('/newsLetter/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('📥 Newsletters API Response received:', response.data);
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData) {
+      const newsletters = response.data.returnData.list_of_item || [];
+      console.log(`✅ Successfully fetched ${newsletters.length} newsletters from API`);
+      return newsletters;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching newsletters:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch statements list from API
+ * @returns {Promise<Array>} - Array of statement items
+ */
+export const getStatements = async () => {
+  try {
+    console.log('🔵 Starting to fetch statements from API...');
+    
+    // Get authentication token
+    const token = await getAuthToken();
+    console.log('✅ Authentication successful, token received');
+
+    // Make authenticated request
+    const response = await apiClient.get('/statement/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('📥 Statements API Response received:', response.data);
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData) {
+      const statements = response.data.returnData.list_of_item || [];
+      console.log(`✅ Successfully fetched ${statements.length} statements from API`);
+      return statements;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching statements:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch press releases list from API
+ * @returns {Promise<Array>} - Array of press release items
+ */
+export const getPressReleases = async () => {
+  try {
+    console.log('🔵 Starting to fetch press releases from API...');
+    
+    // Get authentication token
+    const token = await getAuthToken();
+    console.log('✅ Authentication successful, token received');
+
+    // Make authenticated request
+    const response = await apiClient.get('/pressRelease/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('📥 Press Releases API Response received:', response.data);
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData) {
+      const pressReleases = response.data.returnData.list_of_item || [];
+      console.log(`✅ Successfully fetched ${pressReleases.length} press releases from API`);
+      return pressReleases;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching press releases:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch COSTECH videos list from API
+ * @returns {Promise<Array>} - Array of video items
+ */
+export const getCostechVideos = async () => {
+  try {
+    console.log('🔵 Starting to fetch COSTECH videos from API...');
+    
+    // Get authentication token
+    const token = await getAuthToken();
+    console.log('✅ Authentication successful, token received');
+
+    // Make authenticated request
+    const response = await apiClient.get('/costechVideo/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('📥 COSTECH Videos API Response received:', response.data);
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData) {
+      const videos = response.data.returnData.list_of_item || [];
+      console.log(`✅ Successfully fetched ${videos.length} COSTECH videos from API`);
+      return videos;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching COSTECH videos:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
  * Fetch reports list from API
  * @returns {Promise<Array>} - Array of report items
  */
