@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import '../styles/pages/ResearchDashboardPage.css';
+import {
+  getResearchPerGender,
+  getResearchTotalFundsPerFunder,
+  getResearchTotalFundsPerProgram,
+  getResearchPerStatus,
+} from '../services/api';
 
 // Fix for default marker icon in React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -13,81 +19,96 @@ L.Icon.Default.mergeOptions({
 });
 
 const ResearchDashboardPage = () => {
-  const [activeReport, setActiveReport] = useState('sectors');
+  const [activeReport, setActiveReport] = useState('gender');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [stats, setStats] = useState({
+    gender: null,
+    funder: null,
+    program: null,
+    status: null,
+  });
 
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const [genderData, funderData, programData, statusData] = await Promise.all([
+          getResearchPerGender(),
+          getResearchTotalFundsPerFunder(),
+          getResearchTotalFundsPerProgram(),
+          getResearchPerStatus(),
+        ]);
+
+        setStats({
+          gender: genderData,
+          funder: funderData,
+          program: programData,
+          status: statusData,
+        });
+      } catch (err) {
+        console.error('Error fetching research statistics:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
+
+  // Transform API data to chart format
   const reports = {
-    sectors: {
-      title: 'Research Granted Permit per Sector',
-      description: 'Research permit distribution by UNESCO-defined research sectors',
-      data: [
-        { sector: 'Natural Sciences', percentage: 28, color: '#b97c07' },
-        { sector: 'Engineering and Technology', percentage: 22, color: '#1e40af' },
-        { sector: 'Medical and Health Sciences', percentage: 18, color: '#10b981' },
-        { sector: 'Agricultural Sciences', percentage: 15, color: '#f59e0b' },
-        { sector: 'Social Sciences', percentage: 10, color: '#8b5cf6' },
-        { sector: 'Humanities', percentage: 7, color: '#ec4899' }
-      ]
-    },
-    region: {
-      title: 'Research Granted Permit per Region',
-      description: 'Research permit distribution across all regions in Tanzania',
-      chartType: 'map',
-      data: [
-        { name: 'Arusha', permits: 85, coordinates: [-3.3869, 36.6830] },
-        { name: 'Dar es Salaam', permits: 150, coordinates: [-6.7924, 39.2083] },
-        { name: 'Dodoma', permits: 65, coordinates: [-6.1630, 35.7516] },
-        { name: 'Geita', permits: 45, coordinates: [-2.8667, 32.1667] },
-        { name: 'Iringa', permits: 70, coordinates: [-7.7667, 35.7000] },
-        { name: 'Kagera', permits: 55, coordinates: [-1.3333, 31.8000] },
-        { name: 'Katavi', permits: 40, coordinates: [-6.3333, 31.1333] },
-        { name: 'Kigoma', permits: 50, coordinates: [-4.8769, 29.6267] },
-        { name: 'Kilimanjaro', permits: 95, coordinates: [-3.0667, 37.3500] },
-        { name: 'Lindi', permits: 60, coordinates: [-9.9967, 39.7167] },
-        { name: 'Manyara', permits: 55, coordinates: [-4.3167, 36.6833] },
-        { name: 'Mara', permits: 65, coordinates: [-1.5000, 33.8000] },
-        { name: 'Mbeya', permits: 80, coordinates: [-8.9000, 33.4500] },
-        { name: 'Morogoro', permits: 75, coordinates: [-6.8167, 37.6667] },
-        { name: 'Mtwara', permits: 55, coordinates: [-10.2667, 40.1833] },
-        { name: 'Mwanza', permits: 70, coordinates: [-2.5164, 32.9176] },
-        { name: 'Njombe', permits: 50, coordinates: [-9.3333, 34.7667] },
-        { name: 'Pemba North', permits: 35, coordinates: [-5.0333, 39.7667] },
-        { name: 'Pemba South', permits: 30, coordinates: [-5.3167, 39.7000] },
-        { name: 'Pwani', permits: 65, coordinates: [-7.7667, 39.1833] },
-        { name: 'Rukwa', permits: 45, coordinates: [-8.0167, 31.6167] },
-        { name: 'Ruvuma', permits: 60, coordinates: [-10.6833, 35.6500] },
-        { name: 'Shinyanga', permits: 60, coordinates: [-3.6667, 33.4167] },
-        { name: 'Simiyu', permits: 50, coordinates: [-2.6333, 33.9833] },
-        { name: 'Singida', permits: 55, coordinates: [-4.8167, 34.7500] },
-        { name: 'Songwe', permits: 45, coordinates: [-9.3333, 33.9833] },
-        { name: 'Tabora', permits: 60, coordinates: [-5.0167, 32.8000] },
-        { name: 'Tanga', permits: 75, coordinates: [-5.0667, 39.1000] },
-        { name: 'Unguja North', permits: 40, coordinates: [-5.8333, 39.3000] },
-        { name: 'Unguja South', permits: 35, coordinates: [-6.1667, 39.3500] },
-        { name: 'Zanzibar North', permits: 30, coordinates: [-5.9000, 39.3167] },
-        { name: 'Zanzibar South and Central', permits: 35, coordinates: [-6.2000, 39.3667] }
-      ]
-    },
     gender: {
-      title: 'Research Granted Permit per Gender',
-      description: 'Research permit distribution by gender (Male and Female)',
-      data: [
-        { gender: 'Male', percentage: 65 },
-        { gender: 'Female', percentage: 35 }
-      ]
+      title: 'Research per Gender',
+      description: 'Research distribution by gender',
+      data: stats.gender
+        ? [
+            { gender: 'Male', count: stats.gender.male || 0 },
+            { gender: 'Female', count: stats.gender.female || 0 },
+          ]
+        : [],
     },
-    nationality: {
-      title: 'Research Permit per Nationality',
-      description: 'Research permit distribution by nationality (Tanzania & non-Tanzania)',
-      data: [
-        { nationality: 'Tanzania', percentage: 72, color: '#b97c07' },
-        { nationality: 'Non-Tanzania', percentage: 28, color: '#1e40af' }
-      ]
-    }
+    funder: {
+      title: 'Total Funds per Funder',
+      description: 'Total funding distribution by funder',
+      data: stats.funder
+        ? Object.entries(stats.funder).map(([funder, amount]) => ({
+            funder,
+            amount: parseFloat(amount) || 0,
+          }))
+        : [],
+    },
+    program: {
+      title: 'Total Funds per Program',
+      description: 'Total funding distribution by program',
+      data: stats.program
+        ? Object.entries(stats.program).map(([program, amount]) => ({
+            program,
+            amount: parseFloat(amount) || 0,
+          }))
+        : [],
+    },
+    status: {
+      title: 'Research per Status',
+      description: 'Distribution of research projects by completion status',
+      data: stats.status
+        ? Object.entries(stats.status).map(([status, count]) => ({
+            status,
+            count: parseInt(count) || 0,
+          }))
+        : [],
+    },
   };
 
-  const getPermitColor = (value) => {
-    if (value >= 70 && value <= 150) return '#1e40af'; // Blue for 150-70
-    return '#b97c07'; // Yellow/Golden for 70 and below
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-TZ', {
+      style: 'currency',
+      currency: 'TZS',
+      minimumFractionDigits: 0
+    }).format(amount);
   };
 
   return (
@@ -126,14 +147,40 @@ const ResearchDashboardPage = () => {
                 </div>
 
                 <div className="research-report-data">
-                  {key === 'sectors' || key === 'nationality' ? (
+                  {loading ? (
+                    <div className="loading-message">Loading statistics...</div>
+                  ) : error ? (
+                    <div className="error-message">Error loading statistics: {error}</div>
+                  ) : report.data.length === 0 ? (
+                    <div className="no-data-message">No data available</div>
+                  ) : key === 'funder' || key === 'program' ? (
+                    <div className="funded-projects-list">
+                      {report.data.map((item, index) => (
+                        <div key={index} className="funded-project-card">
+                          <div className="funded-project-header">
+                            <h3 className="funded-project-name">{item.funder || item.program}</h3>
+                          </div>
+                          <div className="funded-project-amount">
+                            {formatCurrency(item.amount)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : key === 'status' || key === 'gender' ? (
                     <div className="pie-chart-container">
                       <div className="pie-chart-wrapper">
                         <svg className="pie-chart" viewBox="0 0 200 200">
                           {(() => {
+                            const total = report.data.reduce((sum, item) => sum + item.count, 0);
+                            if (total === 0) return null;
+                            
+                            const colors = key === 'gender' 
+                              ? ['#b97c07', '#1e40af'] // Male: golden, Female: blue
+                              : ['#b97c07', '#1e40af', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
                             let currentAngle = -90;
                             return report.data.map((item, index) => {
-                              const angle = (item.percentage / 100) * 360;
+                              const percentage = (item.count / total) * 100;
+                              const angle = (percentage / 100) * 360;
                               const startAngle = currentAngle;
                               const endAngle = currentAngle + angle;
                               currentAngle += angle;
@@ -157,7 +204,7 @@ const ResearchDashboardPage = () => {
                                 <path
                                   key={index}
                                   d={pathData}
-                                  fill={item.color}
+                                  fill={colors[index % colors.length]}
                                   stroke="#ffffff"
                                   strokeWidth="2"
                                 />
@@ -167,81 +214,45 @@ const ResearchDashboardPage = () => {
                         </svg>
                       </div>
                       <div className="pie-chart-legend">
-                        {report.data.map((item, index) => (
+                        {(() => {
+                          const total = report.data.reduce((sum, item) => sum + item.count, 0);
+                          const colors = key === 'gender' 
+                              ? ['#b97c07', '#1e40af'] // Male: golden, Female: blue
+                              : ['#b97c07', '#1e40af', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+                          return report.data.map((item, index) => {
+                            const percentage = total > 0 ? ((item.count / total) * 100).toFixed(1) : 0;
+                            const label = key === 'gender' ? item.gender : item.status;
+                            return (
                           <div key={index} className="pie-chart-legend-item">
                             <div
                               className="pie-chart-legend-color"
-                              style={{ backgroundColor: item.color }}
+                                  style={{ backgroundColor: colors[index % colors.length] }}
                             ></div>
-                            <span className="pie-chart-legend-label">
-                              {key === 'sectors' ? item.sector : key === 'nationality' ? item.nationality : item.status}
-                            </span>
-                            <span className="pie-chart-legend-value">{item.percentage}%</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  ) : key === 'region' && report.chartType === 'map' ? (
-                    <div className="map-chart-container">
-                      <MapContainer
-                        center={[-6.1630, 35.7516]}
-                        zoom={6}
-                        style={{ height: '500px', width: '100%', borderRadius: '12px' }}
-                        scrollWheelZoom={true}
-                      >
-                        <TileLayer
-                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                        {report.data.map((region, index) => (
-                          <CircleMarker
-                            key={index}
-                            center={region.coordinates}
-                            radius={Math.max(8, Math.min(20, region.permits / 5))}
-                            fillColor={getPermitColor(region.permits)}
-                            color="#ffffff"
-                            weight={2}
-                            fillOpacity={0.7}
-                          >
-                            <Tooltip>
-                              <div style={{ textAlign: 'center' }}>
-                                <strong>{region.name}</strong>
-                                <br />
-                                Permits: {region.permits}
+                                <span className="pie-chart-legend-label">{label}</span>
+                                <span className="pie-chart-legend-value">{item.count} ({percentage}%)</span>
                               </div>
-                            </Tooltip>
-                          </CircleMarker>
-                        ))}
-                      </MapContainer>
-                      <div className="map-legend">
-                        <h4 style={{ marginBottom: '15px', fontSize: '1.1rem', fontWeight: 600 }}>Permit Count Key</h4>
-                        <div className="map-legend-items">
-                          <div className="map-legend-item">
-                            <div
-                              className="map-legend-color"
-                              style={{ backgroundColor: '#1e40af' }}
-                            ></div>
-                            <span className="map-legend-label">150 - 70</span>
-                          </div>
-                          <div className="map-legend-item">
-                            <div
-                              className="map-legend-color"
-                              style={{ backgroundColor: '#b97c07' }}
-                            ></div>
-                            <span className="map-legend-label">70 and below</span>
-                          </div>
-                        </div>
+                            );
+                          });
+                        })()}
                       </div>
                     </div>
                   ) : (
                     <div className="bar-chart-container">
                       <div className="bar-chart-wrapper">
                         <div className="bar-chart-y-axis">
-                          <div className="bar-chart-y-axis-label">Percentage</div>
+                          <div className="bar-chart-y-axis-label">Count</div>
                           {(() => {
-                            const yAxisValues = key === 'gender' 
-                              ? [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-                              : [0, 10, 20, 30, 40, 50, 60, 70, 80];
+                            const maxCount = Math.max(...report.data.map(item => item.count), 1);
+                            const step = Math.max(1, Math.ceil(maxCount / 10));
+                            const yAxisValues = [];
+                            // Always start from 0
+                            for (let i = 0; i <= maxCount; i += step) {
+                              yAxisValues.push(i);
+                            }
+                            // Ensure maxCount is included if not already
+                            if (yAxisValues[yAxisValues.length - 1] < maxCount) {
+                              yAxisValues.push(maxCount);
+                            }
                             return yAxisValues.map((value) => (
                               <div key={value} className="bar-chart-y-tick">
                                 <span className="bar-chart-y-label">{value}</span>
@@ -251,18 +262,17 @@ const ResearchDashboardPage = () => {
                           })()}
                         </div>
                         <div className="bar-chart-bars-container">
-                          {report.data.map((item, index) => {
+                          {(() => {
+                            const maxCount = Math.max(...report.data.map(item => item.count), 1);
+                            const total = report.data.reduce((sum, item) => sum + item.count, 0);
+                            return report.data.map((item, index) => {
                             const label = item.gender;
-                            // For gender chart: Male = primary color, Female = blue
-                            let barColor;
-                            if (key === 'gender') {
-                              barColor = label === 'Male' ? '#b97c07' : '#1e40af';
-                            }
-                            // Calculate height based on max value of 100 for percentage
-                            const maxValue = 100;
-                            // Calculate pixel height based on container height (300px)
-                            const containerHeight = 300;
-                            const barHeightPx = (item.percentage / maxValue) * containerHeight;
+                              const barColor = label === 'Male' 
+                                ? 'linear-gradient(180deg, #d4a017 0%, #b97c07 100%)' 
+                                : 'linear-gradient(180deg, #60a5fa 0%, #1e40af 100%)';
+                              const containerHeight = 320;
+                              const barHeightPx = (item.count / maxCount) * containerHeight;
+                              const percentage = total > 0 ? ((item.count / total) * 100).toFixed(1) : 0;
                             return (
                               <div key={index} className="bar-chart-bar-item">
                                 <div className="bar-chart-bar-wrapper">
@@ -270,16 +280,17 @@ const ResearchDashboardPage = () => {
                                     className="bar-chart-bar"
                                     style={{
                                       height: `${barHeightPx}px`,
-                                      backgroundColor: barColor
+                                        background: barColor
                                     }}
                                   >
-                                    <span className="bar-chart-bar-value">{item.percentage}%</span>
-                                  </div>
+                                      <span className="bar-chart-bar-value">{item.count} ({percentage}%)</span>
+                                    </div>
                                 </div>
                                 <div className="bar-chart-x-label">{label}</div>
                               </div>
                             );
-                          })}
+                            });
+                          })()}
                         </div>
                       </div>
                     </div>

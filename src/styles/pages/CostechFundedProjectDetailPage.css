@@ -1,0 +1,328 @@
+.costech-funded-project-detail-page {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+  padding-top: 80px;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.detail-hero {
+  position: relative;
+  width: 100%;
+  min-height: 150px;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(15, 23, 42, 0.78) 0%, rgba(185, 124, 7, 0.45) 100%);
+}
+
+.detail-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px 40px;
+  color: #ffffff;
+}
+
+.back-link {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-bottom: 24px;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.detail-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.detail-grantee-name {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0.95;
+}
+
+.detail-body {
+  padding: 40px 20px 60px;
+}
+
+.detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.detail-loading,
+.detail-error {
+  text-align: center;
+  padding: 60px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.detail-loading p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.detail-error h1 {
+  font-size: 2rem;
+  color: #1e40af;
+  margin: 0 0 16px;
+}
+
+.detail-error p {
+  font-size: 1rem;
+  color: #64748b;
+  margin: 0 0 24px;
+}
+
+.detail-content {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.detail-section {
+  margin-bottom: 32px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section h2 {
+  margin: 0 0 20px;
+  font-size: 1.5rem;
+  color: #1e40af;
+  font-weight: 700;
+  border-bottom: 2px solid #bfdbfe;
+  padding-bottom: 12px;
+}
+
+.detail-section p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #374151;
+  white-space: pre-line;
+}
+
+.detail-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.detail-table-body {
+  background: #ffffff;
+}
+
+.detail-table-row {
+  border-bottom: 1px solid #e2e8f0;
+  transition: background-color 0.2s ease;
+}
+
+.detail-table-row:last-child {
+  border-bottom: none;
+}
+
+.detail-table-row:hover {
+  background-color: #f8f9fa;
+}
+
+.detail-table-row:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.detail-table-row:nth-child(even):hover {
+  background-color: #f1f5f9;
+}
+
+.detail-table-label {
+  padding: 14px 20px;
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: 30%;
+  vertical-align: top;
+  border-right: 1px solid #e2e8f0;
+  background-color: #f8f9fa;
+}
+
+.detail-table-value {
+  padding: 14px 20px;
+  font-size: 1rem;
+  color: #0f172a;
+  font-weight: 500;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-pill--on-going,
+.status-pill--ongoing {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-pill--pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.status-pill--completed,
+.status-pill--complete {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.status-pill--yes {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-pill--no {
+  background-color: #fee2e2;
+  color: #991b1b;
+  position: relative;
+  padding-left: 28px;
+}
+
+.status-pill--no::before {
+  content: '×';
+  position: absolute;
+  left: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.status-pill--default {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .detail-hero-content {
+    padding: 50px 30px;
+  }
+
+  .detail-header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .costech-funded-project-detail-page {
+    padding-top: 80px;
+  }
+
+  .detail-hero {
+    min-height: 140px;
+  }
+
+  .detail-hero-content {
+    padding: 20px 20px;
+  }
+
+  .detail-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .detail-grantee-name {
+    font-size: 0.95rem;
+  }
+
+  .detail-body {
+    padding: 30px 16px 40px;
+  }
+
+  .detail-content {
+    padding: 24px;
+  }
+
+  .detail-section h2 {
+    font-size: 1.25rem;
+  }
+
+  .detail-table-label {
+    width: 35%;
+    padding: 12px 16px;
+    font-size: 0.8rem;
+  }
+
+  .detail-table-value {
+    padding: 12px 16px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .detail-content {
+    padding: 20px;
+  }
+
+  .detail-section {
+    margin-bottom: 24px;
+  }
+
+  .detail-section h2 {
+    font-size: 1.125rem;
+    margin-bottom: 16px;
+  }
+}
+

@@ -51,7 +51,7 @@ export const directors = [
     slug: 'dr-erasto-shemu-mlyuka',
     name: 'Dr. Erasto Shemu Mlyuka',
     title: 'Director, Centre for Development and Transfer of Technology',
-    image: '/assets/img/mlyuka.jpg',
+    image: '/assets/img/erasto.jpeg',
     bio: 'The Centre for Development and Transfer of Technology (CDTT) develops and transfers technologies for use in Tanzania and beyond. It oversees Innovation Foresight and Emerging Technologies, Technology Acquisition and Development, and Technology Management and Transfer, and manages the Buni Innovation Hub and Dar es Salaam Digital Business Incubator (DTBi).',
     responsibilities: [
       'To maintain an inventory of innovations, inventions and adaptations and follow up on TASTA/MAKISATU awards',

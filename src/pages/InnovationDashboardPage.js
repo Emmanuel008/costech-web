@@ -1,58 +1,95 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/pages/InnovationDashboardPage.css';
+import {
+  getInnovationPerGender,
+  getInnovationTotalFundsPerFunder,
+  getInnovationTotalFundsPerProgram,
+  getInnovationPerStatus,
+} from '../services/api';
 
 const InnovationDashboardPage = () => {
-  const [activeReport, setActiveReport] = useState('sectors');
+  const [activeReport, setActiveReport] = useState('gender');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [stats, setStats] = useState({
+    gender: null,
+    funder: null,
+    program: null,
+    status: null,
+  });
 
+  useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const [genderData, funderData, programData, statusData] = await Promise.all([
+          getInnovationPerGender(),
+          getInnovationTotalFundsPerFunder(),
+          getInnovationTotalFundsPerProgram(),
+          getInnovationPerStatus(),
+        ]);
+
+        setStats({
+          gender: genderData,
+          funder: funderData,
+          program: programData,
+          status: statusData,
+        });
+      } catch (err) {
+        console.error('Error fetching innovation statistics:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatistics();
+  }, []);
+
+  // Transform API data to chart format
   const reports = {
-    sectors: {
-      title: 'Innovation per Sectors',
-      description: 'View innovation distribution across different sectors',
-      data: [
-        { sector: 'Agriculture', percentage: 45, color: '#b97c07' },
-        { sector: 'ICT', percentage: 20, color: '#1e40af' },
-        { sector: 'Other', percentage: 35, color: '#000000' }
-      ]
-    },
-    region: {
-      title: 'Innovation per Region',
-      description: 'Explore innovation activities by region',
-      data: [
-        { region: 'Dar es Salaam', count: 52, percentage: 40 },
-        { region: 'Arusha', count: 28, percentage: 22 },
-        { region: 'Dodoma', count: 20, percentage: 15 },
-        { region: 'Mwanza', count: 15, percentage: 12 },
-        { region: 'Mbeya', count: 10, percentage: 8 },
-        { region: 'Others', count: 3, percentage: 3 }
-      ]
-    },
     gender: {
       title: 'Innovation per Gender',
       description: 'Innovation participation by gender distribution',
-      data: [
-        { gender: 'Male', percentage: 60 },
-        { gender: 'Female', percentage: 40 }
-      ]
+      data: stats.gender
+        ? [
+            { gender: 'Male', count: stats.gender.male || 0 },
+            { gender: 'Female', count: stats.gender.female || 0 },
+          ]
+        : [],
     },
-    funded: {
-      title: 'Funded Projects',
-      description: 'Overview of funded innovation projects',
-      data: [
-        { project: 'Tech Startup Incubator', amount: 500000, status: 'Active' },
-        { project: 'Digital Innovation Hub', amount: 750000, status: 'Active' },
-        { project: 'Agricultural Tech Solutions', amount: 400000, status: 'Completed' },
-        { project: 'Renewable Energy Initiative', amount: 600000, status: 'Active' },
-        { project: 'Healthcare Innovation Program', amount: 350000, status: 'Active' }
-      ]
+    funder: {
+      title: 'Total Funds per Funder',
+      description: 'Total funding distribution by funder',
+      data: stats.funder
+        ? Object.entries(stats.funder).map(([funder, amount]) => ({
+            funder,
+            amount: parseFloat(amount) || 0,
+          }))
+        : [],
+    },
+    program: {
+      title: 'Total Funds per Program',
+      description: 'Total funding distribution by program',
+      data: stats.program
+        ? Object.entries(stats.program).map(([program, amount]) => ({
+            program,
+            amount: parseFloat(amount) || 0,
+          }))
+        : [],
     },
     status: {
       title: 'Innovation Project by Status',
       description: 'Distribution of innovation projects by completion status',
-      data: [
-        { status: 'Completed', percentage: 60, color: '#b97c07' },
-        { status: 'Ongoing', percentage: 40, color: '#1e40af' }
-      ]
-    }
+      data: stats.status
+        ? Object.entries(stats.status).map(([status, count]) => ({
+            status,
+            count: parseInt(count) || 0,
+          }))
+        : [],
+    },
   };
 
   const formatCurrency = (amount) => {
@@ -99,15 +136,18 @@ const InnovationDashboardPage = () => {
                 </div>
 
                 <div className="innovation-report-data">
-                  {key === 'funded' ? (
+                  {loading ? (
+                    <div className="loading-message">Loading statistics...</div>
+                  ) : error ? (
+                    <div className="error-message">Error loading statistics: {error}</div>
+                  ) : report.data.length === 0 ? (
+                    <div className="no-data-message">No data available</div>
+                  ) : key === 'funder' || key === 'program' ? (
                     <div className="funded-projects-list">
                       {report.data.map((item, index) => (
                         <div key={index} className="funded-project-card">
                           <div className="funded-project-header">
-                            <h3 className="funded-project-name">{item.project}</h3>
-                            <span className={`funded-project-status funded-project-status--${item.status.toLowerCase()}`}>
-                              {item.status}
-                            </span>
+                            <h3 className="funded-project-name">{item.funder || item.program}</h3>
                           </div>
                           <div className="funded-project-amount">
                             {formatCurrency(item.amount)}
@@ -115,14 +155,21 @@ const InnovationDashboardPage = () => {
                         </div>
                       ))}
                     </div>
-                  ) : key === 'sectors' || key === 'status' ? (
+                  ) : key === 'status' || key === 'gender' ? (
                     <div className="pie-chart-container">
                       <div className="pie-chart-wrapper">
                         <svg className="pie-chart" viewBox="0 0 200 200">
                           {(() => {
+                            const total = report.data.reduce((sum, item) => sum + item.count, 0);
+                            if (total === 0) return null;
+                            
+                            const colors = key === 'gender' 
+                              ? ['#b97c07', '#1e40af'] // Male: golden, Female: blue
+                              : ['#b97c07', '#1e40af', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
                             let currentAngle = -90;
                             return report.data.map((item, index) => {
-                              const angle = (item.percentage / 100) * 360;
+                              const percentage = (item.count / total) * 100;
+                              const angle = (percentage / 100) * 360;
                               const startAngle = currentAngle;
                               const endAngle = currentAngle + angle;
                               currentAngle += angle;
@@ -146,7 +193,7 @@ const InnovationDashboardPage = () => {
                                 <path
                                   key={index}
                                   d={pathData}
-                                  fill={item.color}
+                                  fill={colors[index % colors.length]}
                                   stroke="#ffffff"
                                   strokeWidth="2"
                                 />
@@ -156,29 +203,45 @@ const InnovationDashboardPage = () => {
                         </svg>
                       </div>
                       <div className="pie-chart-legend">
-                        {report.data.map((item, index) => (
-                          <div key={index} className="pie-chart-legend-item">
-                            <div
-                              className="pie-chart-legend-color"
-                              style={{ backgroundColor: item.color }}
-                            ></div>
-                            <span className="pie-chart-legend-label">
-                              {key === 'sectors' ? item.sector : item.status}
-                            </span>
-                            <span className="pie-chart-legend-value">{item.percentage}%</span>
-                          </div>
-                        ))}
+                        {(() => {
+                          const total = report.data.reduce((sum, item) => sum + item.count, 0);
+                          const colors = key === 'gender' 
+                              ? ['#b97c07', '#1e40af'] // Male: golden, Female: blue
+                              : ['#b97c07', '#1e40af', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+                          return report.data.map((item, index) => {
+                            const percentage = total > 0 ? ((item.count / total) * 100).toFixed(1) : 0;
+                            const label = key === 'gender' ? item.gender : item.status;
+                            return (
+                              <div key={index} className="pie-chart-legend-item">
+                                <div
+                                  className="pie-chart-legend-color"
+                                  style={{ backgroundColor: colors[index % colors.length] }}
+                                ></div>
+                                <span className="pie-chart-legend-label">{label}</span>
+                                <span className="pie-chart-legend-value">{item.count} ({percentage}%)</span>
+                              </div>
+                            );
+                          });
+                        })()}
                       </div>
                     </div>
                   ) : (
                     <div className="bar-chart-container">
                       <div className="bar-chart-wrapper">
                         <div className="bar-chart-y-axis">
-                          <div className="bar-chart-y-axis-label">Percentage</div>
+                          <div className="bar-chart-y-axis-label">Count</div>
                           {(() => {
-                            const yAxisValues = key === 'gender' 
-                              ? [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-                              : [0, 10, 20, 30, 40, 50, 60, 70, 80];
+                            const maxCount = Math.max(...report.data.map(item => item.count), 1);
+                            const step = Math.max(1, Math.ceil(maxCount / 10));
+                            const yAxisValues = [];
+                            // Always start from 0
+                            for (let i = 0; i <= maxCount; i += step) {
+                              yAxisValues.push(i);
+                            }
+                            // Ensure maxCount is included if not already
+                            if (yAxisValues[yAxisValues.length - 1] < maxCount) {
+                              yAxisValues.push(maxCount);
+                            }
                             return yAxisValues.map((value) => (
                               <div key={value} className="bar-chart-y-tick">
                                 <span className="bar-chart-y-label">{value}</span>
@@ -188,38 +251,35 @@ const InnovationDashboardPage = () => {
                           })()}
                         </div>
                         <div className="bar-chart-bars-container">
-                          {report.data.map((item, index) => {
-                            const label = key === 'region' ? item.region : item.gender;
-                            // For gender chart: Male = primary color, Female = blue
-                            // For region chart: alternate colors
-                            let barColor;
-                            if (key === 'gender') {
-                              barColor = label === 'Male' ? '#b97c07' : '#1e40af';
-                            } else {
-                              barColor = index % 2 === 0 ? '#b97c07' : '#1e40af';
-                            }
-                            // Calculate height based on max value of 100 for percentage
-                            const maxValue = key === 'gender' ? 100 : 80;
-                            // Calculate pixel height based on container height (300px)
-                            const containerHeight = 300;
-                            const barHeightPx = (item.percentage / maxValue) * containerHeight;
-                            return (
-                              <div key={index} className="bar-chart-bar-item">
-                                <div className="bar-chart-bar-wrapper">
-                                  <div
-                                    className="bar-chart-bar"
-                                    style={{
-                                      height: `${barHeightPx}px`,
-                                      backgroundColor: barColor
-                                    }}
-                                  >
-                                    <span className="bar-chart-bar-value">{item.percentage}%</span>
+                          {(() => {
+                            const maxCount = Math.max(...report.data.map(item => item.count), 1);
+                            const total = report.data.reduce((sum, item) => sum + item.count, 0);
+                            return report.data.map((item, index) => {
+                              const label = item.gender;
+                              const barColor = label === 'Male' 
+                                ? 'linear-gradient(180deg, #d4a017 0%, #b97c07 100%)' 
+                                : 'linear-gradient(180deg, #60a5fa 0%, #1e40af 100%)';
+                              const containerHeight = 320;
+                              const barHeightPx = (item.count / maxCount) * containerHeight;
+                              const percentage = total > 0 ? ((item.count / total) * 100).toFixed(1) : 0;
+                              return (
+                                <div key={index} className="bar-chart-bar-item">
+                                  <div className="bar-chart-bar-wrapper">
+                                    <div
+                                      className="bar-chart-bar"
+                                      style={{
+                                        height: `${barHeightPx}px`,
+                                        background: barColor
+                                      }}
+                                    >
+                                      <span className="bar-chart-bar-value">{item.count} ({percentage}%)</span>
+                                    </div>
                                   </div>
+                                  <div className="bar-chart-x-label">{label}</div>
                                 </div>
-                                <div className="bar-chart-x-label">{label}</div>
-                              </div>
-                            );
-                          })}
+                              );
+                            });
+                          })()}
                         </div>
                       </div>
                     </div>

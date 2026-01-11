@@ -190,7 +190,7 @@ const PublicationVideoPage = () => {
             </Slider>
           </div>
         )}
-      </div>
+    </div>
     </section>
   );
 };

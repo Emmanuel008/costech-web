@@ -3,6 +3,9 @@ import axios from 'axios';
 // Base URL for the API
 const API_BASE_URL = 'https://costech.kingdomsolutions.co.tz/api';
 
+// Base URL for the new projects API
+const PROJECTS_API_BASE_URL = 'http://102.208.184.49/api/v1/nfast';
+
 // Create axios instance with default config
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -1046,6 +1049,482 @@ export const getHero = async () => {
     return [];
   } catch (error) {
     console.error('❌ Error fetching hero items:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch COSTECH funded projects list from API with filters
+ * @param {Object} filters - Filter parameters (page_no, page_size, program_id, gender_id, status_id, funder_id)
+ * @returns {Promise<Object>} - Object with projects array and pagination info
+ */
+export const getCostechFundedProjects = async (filters = {}) => {
+  try {
+    console.log('🔵 Starting to fetch COSTECH funded projects from API...', filters);
+    
+    const payload = {
+      page_no: filters.page_no || 1,
+      page_size: filters.page_size || 10,
+      ...(filters.program_id && { program_id: filters.program_id }),
+      ...(filters.gender_id && { gender_id: filters.gender_id }),
+      ...(filters.status_id && { status_id: filters.status_id }),
+      ...(filters.funder_id && { funder_id: filters.funder_id }),
+    };
+
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/project/list`, payload, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 COSTECH Funded Projects API Response received:', response.data);
+
+    // Handle paginated response structure
+    if (response.data && response.data.data && Array.isArray(response.data.data)) {
+      const projects = response.data.data;
+      const meta = response.data.meta || {};
+      console.log(`✅ Successfully fetched ${projects.length} projects from API`);
+      return {
+        projects,
+        pagination: {
+          current_page: meta.page || filters.page_no || 1,
+          total: meta.total || projects.length,
+          page_size: meta.page_size || filters.page_size || 10,
+          total_pages: meta.pages || Math.ceil((meta.total || projects.length) / (meta.page_size || filters.page_size || 10)),
+        },
+      };
+    }
+    
+    // Fallback: handle direct array response
+    if (response.data && Array.isArray(response.data)) {
+      console.log(`✅ Successfully fetched ${response.data.length} projects from API`);
+      return {
+        projects: response.data,
+        pagination: {
+          current_page: 1,
+          total: response.data.length,
+          page_size: filters.page_size || 10,
+          total_pages: 1,
+        },
+      };
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return { projects: [], pagination: { current_page: 1, total: 0, page_size: 10, total_pages: 0 } };
+  } catch (error) {
+    console.error('❌ Error fetching COSTECH funded projects:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch funders list from API
+ * @returns {Promise<Array>} - Array of funder items
+ */
+export const getFunders = async () => {
+  try {
+    console.log('🔵 Starting to fetch funders from API...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/funder/list`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Funders API Response received:', response.data);
+
+    if (response.data && response.data.data && Array.isArray(response.data.data)) {
+      const funders = response.data.data;
+      console.log(`✅ Successfully fetched ${funders.length} funders from API`);
+      return funders;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching funders:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch programs list from API
+ * @returns {Promise<Array>} - Array of program items
+ */
+export const getPrograms = async () => {
+  try {
+    console.log('🔵 Starting to fetch programs from API...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/program/list`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Programs API Response received:', response.data);
+
+    if (response.data && response.data.data && Array.isArray(response.data.data)) {
+      const programs = response.data.data;
+      console.log(`✅ Successfully fetched ${programs.length} programs from API`);
+      return programs;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching programs:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch project statuses list from API
+ * @returns {Promise<Array>} - Array of status items
+ */
+export const getProjectStatuses = async () => {
+  try {
+    console.log('🔵 Starting to fetch project statuses from API...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/project-status/list`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Project Statuses API Response received:', response.data);
+
+    if (response.data && response.data.data && Array.isArray(response.data.data)) {
+      const statuses = response.data.data;
+      console.log(`✅ Successfully fetched ${statuses.length} statuses from API`);
+      return statuses;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching project statuses:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch genders list from API
+ * @returns {Promise<Array>} - Array of gender items
+ */
+export const getGenders = async () => {
+  try {
+    console.log('🔵 Starting to fetch genders from API...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/gender/list`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Genders API Response received:', response.data);
+
+    if (response.data && response.data.data && Array.isArray(response.data.data)) {
+      const genders = response.data.data;
+      console.log(`✅ Successfully fetched ${genders.length} genders from API`);
+      return genders;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching genders:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch innovation statistics per gender
+ * @returns {Promise<Object>} - Object with gender statistics
+ */
+export const getInnovationPerGender = async () => {
+  try {
+    console.log('🔵 Starting to fetch innovation per gender statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-per-gender`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Innovation Per Gender API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched innovation per gender statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching innovation per gender:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch innovation total funds per funder
+ * @returns {Promise<Object>} - Object with funder statistics
+ */
+export const getInnovationTotalFundsPerFunder = async () => {
+  try {
+    console.log('🔵 Starting to fetch innovation total funds per funder statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-total-funds-per-funder`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Innovation Total Funds Per Funder API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched innovation total funds per funder statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching innovation total funds per funder:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch innovation total funds per program
+ * @returns {Promise<Object>} - Object with program statistics
+ */
+export const getInnovationTotalFundsPerProgram = async () => {
+  try {
+    console.log('🔵 Starting to fetch innovation total funds per program statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-total-funds-per-program`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Innovation Total Funds Per Program API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched innovation total funds per program statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching innovation total funds per program:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch innovation per status
+ * @returns {Promise<Object>} - Object with status statistics
+ */
+export const getInnovationPerStatus = async () => {
+  try {
+    console.log('🔵 Starting to fetch innovation per status statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-per-status`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Innovation Per Status API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched innovation per status statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching innovation per status:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch research statistics per gender
+ * @returns {Promise<Object>} - Object with gender statistics
+ */
+export const getResearchPerGender = async () => {
+  try {
+    console.log('🔵 Starting to fetch research per gender statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-per-gender`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Research Per Gender API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched research per gender statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching research per gender:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch research total funds per funder
+ * @returns {Promise<Object>} - Object with funder statistics
+ */
+export const getResearchTotalFundsPerFunder = async () => {
+  try {
+    console.log('🔵 Starting to fetch research total funds per funder statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-total-funds-per-funder`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Research Total Funds Per Funder API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched research total funds per funder statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching research total funds per funder:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch research total funds per program
+ * @returns {Promise<Object>} - Object with program statistics
+ */
+export const getResearchTotalFundsPerProgram = async () => {
+  try {
+    console.log('🔵 Starting to fetch research total funds per program statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-total-funds-per-program`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Research Total Funds Per Program API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched research total funds per program statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching research total funds per program:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch research per status
+ * @returns {Promise<Object>} - Object with status statistics
+ */
+export const getResearchPerStatus = async () => {
+  try {
+    console.log('🔵 Starting to fetch research per status statistics...');
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-per-status`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Research Per Status API Response received:', response.data);
+
+    if (response.data && response.data.data) {
+      console.log('✅ Successfully fetched research per status statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return {};
+  } catch (error) {
+    console.error('❌ Error fetching research per status:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch single COSTECH funded project detail by ID from API
+ * @param {number|string} id - Project ID
+ * @returns {Promise<Object>} - Project detail object
+ */
+export const getCostechFundedProjectDetail = async (id) => {
+  try {
+    console.log(`🔵 Starting to fetch COSTECH funded project ${id} from API...`);
+    
+    const response = await axios.post(`${PROJECTS_API_BASE_URL}/project/show/${id}`, {}, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 COSTECH Funded Project Detail API Response received:', response.data);
+
+    if (response.data && response.data.id) {
+      console.log('✅ Successfully fetched project detail from API');
+      return response.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return null;
+  } catch (error) {
+    console.error('❌ Error fetching COSTECH funded project detail:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);

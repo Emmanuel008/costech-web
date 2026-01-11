@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import '../styles/pages/FinancialAuditPage.css';
 import { getFinancialReports } from '../services/api';
 
@@ -6,26 +9,20 @@ import { getFinancialReports } from '../services/api';
 const fallbackStatements = [
   {
     id: 1,
-    year: '2023',
     title: 'COSTECH Audited Financial Statement for the Year Ended 30th June 2023',
-    file: 'costech-audited-financial-statement-2023.pdf',
-    previewUrl: '#',
+    date: '2023-06-30',
     downloadUrl: '#'
   },
   {
     id: 2,
-    year: '2024',
     title: 'COSTECH Audited Financial Statement for the Year Ended 30th June 2024',
-    file: 'costech-audited-financial-statement-2024.pdf',
-    previewUrl: '#',
+    date: '2024-06-30',
     downloadUrl: '#'
   },
   {
     id: 3,
-    year: '2025',
     title: 'COSTECH Audited Financial Statement for the Year Ended 30th June 2025',
-    file: 'costech-audited-financial-statement-2025.pdf',
-    previewUrl: '#',
+    date: '2025-06-30',
     downloadUrl: '#'
   }
 ];
@@ -53,21 +50,13 @@ const FinancialAuditPage = () => {
           
           // Map API data to component structure
           const mappedReports = apiReports.map((item) => {
-            // Extract year from title if possible (e.g., "financial year 2026")
-            const yearMatch = item.title.match(/\d{4}/);
-            const year = yearMatch ? yearMatch[0] : new Date().getFullYear().toString();
-            
             // Extract filename from document URL
             const documentUrl = item.document || '';
-            const fileName = documentUrl.split('/').pop() || `financial-report-${year}.pdf`;
             
             return {
               id: item.id,
-              year: year,
-              title: item.title || `COSTECH Audited Financial Statement for the Year Ended 30th June ${year}`,
-              description: item.description || '',
-              file: fileName,
-              previewUrl: documentUrl || '#',
+              title: item.title || 'Financial Report',
+              date: item.date || item.created_at || new Date().toISOString().split('T')[0],
               downloadUrl: documentUrl || '#'
             };
           });
@@ -109,6 +98,10 @@ const FinancialAuditPage = () => {
     }
   };
 
+  const handleCardClick = (statement) => {
+    handleDownload(statement);
+  };
+
   return (
     <section className="financial-audit-page">
       <div className="financial-audit-hero">
@@ -131,30 +124,52 @@ const FinancialAuditPage = () => {
             <p>Unable to load financial reports. Please try again later.</p>
           </div>
         ) : (
-          <div className="financial-statements-grid">
-            {financialStatements.map((statement) => (
-              <div key={statement.id} className="financial-statement-card">
-                <div className="statement-header">
-                  <h3 className="statement-year">Year Ended 30th June {statement.year}</h3>
-                  <p className="statement-title">{statement.title}</p>
-                  {statement.description && (
-                    <p className="statement-description">{statement.description}</p>
-                  )}
-                </div>
-                <div className="statement-actions">
-                  <button
-                    className="action-btn download-btn"
-                    onClick={() => handleDownload(statement)}
-                    aria-label="Download"
-                    title="Download"
+          <div className="financial-carousel-wrapper">
+            <Slider
+              dots={false}
+              infinite={true}
+              speed={500}
+              slidesToShow={3}
+              slidesToScroll={1}
+              autoplay={true}
+              autoplaySpeed={5000}
+              pauseOnHover={true}
+              arrows={false}
+              responsive={[
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 640,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                  }
+                }
+              ]}
+            >
+              {financialStatements.map((statement) => (
+                <div key={statement.id} className="financial-card-wrapper">
+                  <div 
+                    className="financial-statement-card"
+                    onClick={() => handleCardClick(statement)}
                   >
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-                    </svg>
-                  </button>
+                    <div className="statement-content">
+                      <h3 className="statement-title">{statement.title}</h3>
+                      <div className="statement-download-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </Slider>
           </div>
         )}
       </div>

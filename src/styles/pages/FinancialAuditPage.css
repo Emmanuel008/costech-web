@@ -56,108 +56,111 @@
   padding: 60px 40px;
 }
 
-.financial-statements-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+/* Carousel Styles */
+.financial-carousel-wrapper {
+  margin: 0 -10px;
+  padding: 0 10px 20px 10px;
+}
+
+.financial-carousel-wrapper .slick-slider {
+  position: relative;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: visible;
+}
+
+.financial-carousel-wrapper .slick-list {
+  margin: 0 -30px;
+  padding: 20px 0;
+  overflow: visible;
+}
+
+.financial-carousel-wrapper .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.financial-carousel-wrapper .slick-slide {
+  padding: 0 30px;
+  height: auto;
+}
+
+.financial-carousel-wrapper .slick-slide > div {
+  height: 100%;
+  display: flex;
+}
+
+.financial-card-wrapper {
+  height: 100%;
+  padding: 0;
+  display: flex;
 }
 
 .financial-statement-card {
   background: white;
   border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  padding: 1.25rem;
+  box-shadow: none;
+  border: 1px solid #e5e7eb;
+  transition: none;
+  position: relative;
+  overflow: visible;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 200px;
+  cursor: pointer;
 }
 
 .financial-statement-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+  transform: none;
+  box-shadow: none;
+  border-color: #d1d5db;
 }
 
-.statement-header {
-  margin-bottom: 24px;
+/* Carousel Navigation Styles - Hidden */
+.financial-carousel-wrapper .slick-prev,
+.financial-carousel-wrapper .slick-next {
+  display: none !important;
 }
 
-.statement-year {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1e40af;
-  margin-bottom: 12px;
+.financial-carousel-wrapper .slick-dots {
+  display: none !important;
+}
+
+.statement-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .statement-title {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #475569;
-  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  flex-grow: 1;
 }
 
-.statement-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  padding-top: 20px;
-  border-top: 1px solid #e2e8f0;
-}
-
-.action-btn {
-  width: 44px;
-  height: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  max-width: 44px;
-  max-height: 44px;
-  border-radius: 8px;
-  border: none;
+.statement-download-icon {
   display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background: transparent !important;
+  justify-content: flex-end;
+  margin-top: auto;
   color: #b97c07;
-  padding: 0;
-  box-sizing: border-box;
+  transition: transform 0.2s ease;
 }
 
-.action-btn:hover {
-  background: transparent !important;
-  transform: scale(1.05);
+.financial-statement-card:hover .statement-download-icon {
+  transform: translateY(-2px);
 }
 
-.preview-btn {
-  background: transparent !important;
-}
-
-.preview-btn:hover {
-  background: transparent !important;
-  color: #1e40af;
-}
-
-.download-btn {
-  background: transparent !important;
-  color: #b97c07 !important;
-}
-
-.download-btn:hover {
-  background: transparent !important;
-  color: #a06d06;
-}
-
-.action-btn svg {
+.statement-download-icon svg {
   width: 24px;
   height: 24px;
-  min-width: 24px;
-  min-height: 24px;
-  max-width: 24px;
-  max-height: 24px;
-  display: block;
-  flex-shrink: 0;
 }
 
 /* Responsive Design */
@@ -172,11 +175,6 @@
 
   .financial-audit-body {
     padding: 50px 24px;
-  }
-
-  .financial-statements-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
   }
 }
 
@@ -198,31 +196,15 @@
     padding: 40px 20px;
   }
 
-  .financial-statements-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
   .financial-statement-card {
     padding: 24px;
   }
 
-  .statement-year {
-    font-size: 1.3rem;
-  }
-
   .statement-title {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 }
 
-.statement-description {
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #64748b;
-  margin: 12px 0 0 0;
-  font-style: italic;
-}
 
 .financial-loading,
 .financial-error {

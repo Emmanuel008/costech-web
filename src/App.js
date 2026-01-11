@@ -47,6 +47,8 @@ import JournalsPage from './pages/JournalsPage';
 import NewsletterPage from './pages/NewsletterPage';
 import StatementPage from './pages/StatementPage';
 import PressReleasePage from './pages/PressReleasePage';
+import CostechFundedProjectsPage from './pages/CostechFundedProjectsPage';
+import CostechFundedProjectDetailPage from './pages/CostechFundedProjectDetailPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import './styles/App.css';
@@ -125,6 +127,8 @@ function App() {
             <Route path="/media/costech-videos" element={<PublicationVideoPage />} />
             {/* Projects Route */}
             <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/costech-funded" element={<CostechFundedProjectsPage />} />
+            <Route path="/projects/costech-funded/:id" element={<CostechFundedProjectDetailPage />} />
             {/* Financial Audit Route */}
             <Route path="/financial-audit" element={<FinancialAuditPage />} />
           </Routes>
