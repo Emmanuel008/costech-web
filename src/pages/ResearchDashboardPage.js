@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
 import '../styles/pages/ResearchDashboardPage.css';
 import {
   getResearchPerGender,
@@ -9,14 +6,6 @@ import {
   getResearchTotalFundsPerProgram,
   getResearchPerStatus,
 } from '../services/api';
-
-// Fix for default marker icon in React-Leaflet
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
-  iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
-  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-});
 
 const ResearchDashboardPage = () => {
   const [activeReport, setActiveReport] = useState('gender');
@@ -284,7 +273,7 @@ const ResearchDashboardPage = () => {
                                     }}
                                   >
                                       <span className="bar-chart-bar-value">{item.count} ({percentage}%)</span>
-                                    </div>
+                                  </div>
                                 </div>
                                 <div className="bar-chart-x-label">{label}</div>
                               </div>

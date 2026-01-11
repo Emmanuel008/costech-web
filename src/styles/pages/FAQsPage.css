@@ -23,7 +23,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('../../../public/assets/img/hero2.jpeg') center/cover;
+  background: url('../../../public/assets/img/hero2.jpeg') center/cover no-repeat;
+  background-size: cover;
+  background-position: center center;
   opacity: 0.15;
   z-index: 1;
 }
@@ -57,91 +59,6 @@
   padding: 1.5rem 2rem 2rem;
 }
 
-.faqs-tabs-container {
-  margin-bottom: 1.25rem;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  padding: 1rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
-  border: 1px solid #e2e8f0;
-}
-
-.faqs-tabs {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(30, 64, 175, 0.3) transparent;
-  padding: 0.25rem;
-}
-
-.faqs-tabs::-webkit-scrollbar {
-  height: 6px;
-}
-
-.faqs-tabs::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.faqs-tabs::-webkit-scrollbar-thumb {
-  background: rgba(30, 64, 175, 0.3);
-  border-radius: 3px;
-}
-
-.faqs-tabs::-webkit-scrollbar-thumb:hover {
-  background: rgba(30, 64, 175, 0.5);
-}
-
-.faqs-tab {
-  padding: 0.625rem 1.25rem;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-  border: 2px solid #e2e8f0;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #475569;
-  cursor: pointer;
-  white-space: nowrap;
-  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
-
-.faqs-tab::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg, #1e40af 0%, #3b82f6 100%);
-  transform: scaleY(0);
-  transition: transform 0.3s ease;
-}
-
-.faqs-tab:hover {
-  color: #1e40af;
-  background: linear-gradient(135deg, #f0f9ff 0%, #eff6ff 100%);
-  border-color: #3b82f6;
-  box-shadow: 0 4px 8px rgba(30, 64, 175, 0.12);
-}
-
-.faqs-tab:hover::before {
-  transform: scaleY(1);
-}
-
-.faqs-tab.active {
-  color: #1e40af;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-  border-color: #1e40af;
-  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.15), 0 2px 4px rgba(30, 64, 175, 0.1);
-}
-
-.faqs-tab.active::before {
-  transform: scaleY(1);
-  width: 5px;
-}
 
 .faqs-content {
   background: transparent;
@@ -235,6 +152,22 @@
   color: #1f2937;
   line-height: 1.5;
   transition: color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.faqs-section-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e40af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.faqs-question-number {
+  font-weight: 600;
+  color: #1f2937;
 }
 
 .faqs-question-toggle {
@@ -276,8 +209,9 @@
 .faqs-answer p {
   margin: 0;
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.8;
   color: #475569;
+  white-space: pre-line;
 }
 
 .faqs-answer p:not(:last-child) {
@@ -313,21 +247,9 @@
     padding: 1.5rem 1.5rem 2rem;
   }
 
-  .faqs-tabs-container {
-    margin-bottom: 1.25rem;
-  }
-
   .faqs-content {
     padding: 0 12px;
     max-width: 100%;
-  }
-
-  .faqs-department-header {
-    padding: 20px 24px;
-  }
-
-  .faqs-department-name {
-    font-size: 1.3rem;
   }
 
   .faqs-questions {
@@ -358,42 +280,9 @@
     padding: 1.25rem 1rem 1.5rem;
   }
 
-  .faqs-tabs-container {
-    margin-bottom: 1rem;
-    padding: 0.75rem;
-  }
-
-  .faqs-tab {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-  }
-
   .faqs-content {
     padding: 0 8px;
     max-width: 100%;
-  }
-
-  .faqs-container {
-    gap: 16px;
-  }
-
-  .faqs-department-header {
-    padding: 16px 20px;
-    gap: 12px;
-  }
-
-  .faqs-department-icon {
-    font-size: 1.5rem;
-  }
-
-  .faqs-department-name {
-    font-size: 1.1rem;
-  }
-
-  .faqs-department-toggle {
-    font-size: 1.25rem;
-    width: 28px;
-    height: 28px;
   }
 
   .faqs-questions {

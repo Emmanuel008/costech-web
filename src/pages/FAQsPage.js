@@ -2,129 +2,225 @@ import React, { useState } from 'react';
 import '../styles/pages/FAQsPage.css';
 
 const FAQsPage = () => {
-  const [openDepartment, setOpenDepartment] = useState('drcp');
   const [openQuestion, setOpenQuestion] = useState(null);
 
-  const faqsByDepartment = {
-    drcp: {
-      name: 'Directorate of Research Coordination and Promotion (DRCP)',
-      questions: [
-        {
-          id: 'drcp-1',
-          question: 'How to Apply for a Research Permit?',
-          answer: 'Prepare your research proposal required supporting documents in English language. Register and submit your application to COSTECH via ',
-          answerLink: {
-            text: 'https://rclearance.costech.or.tz/auth/login',
-            url: 'https://rclearance.costech.or.tz/auth/login'
-          },
-          answerAfter: '. Pay required application fees. Undergo review and approval processes. Pay required research permit fees. Permit issuance.'
-        },
-        {
-          id: 'drcp-2',
-          question: 'Who needs a research permit?',
-          answer: 'Any person or organization intending to conduct research on the mainland of Tanzania, including Tanzanian and Non-Tanzanian citizens including Tanzanians studying abroad who return to Tanzania to conduct research as part of their degree or project.'
-        },
-        {
-          id: 'drcp-3',
-          question: 'How long does it take to get a permit?',
-          answer: 'Eight (8) weeks from the date of submission of a complete application for normal application procedure and Two (2) weeks for fast track procedure.'
-        },
-        {
-          id: 'drcp-4',
-          question: 'What is ethical clearance?',
-          answer: 'Ethical clearance is an official approval confirming that a research study has been reviewed and found to comply with accepted ethical principles and standards for conducting research.'
-        },
-        {
-          id: 'drcp-5',
-          question: 'How do I apply for ethical clearance?',
-          answer: 'Identify and apply to a recognized Research Ethics Committee (REC) or Institutional Review Board (IRB) relevant to your field, such as TARI, NIMR, TAWIRI, TAFORI, TAFIRI etc.'
-        },
-        {
-          id: 'drcp-6',
-          question: 'What are the penalties for non-compliance?',
-          answer: 'Suspension or cancellation of the research permit, Immediate stoppage of the research activity, Rejection of current or future research applications, Confiscation of research data or materials obtained unlawfully, Legal or administrative action under applicable laws and regulations, Immigration sanctions for foreign researchers, including fines, visa cancellation, or deportation, Reputational damage and loss of professional credibility.'
-        },
-        {
-          id: 'drcp-7',
-          question: 'How do foreign researchers collaborate with local institutions?',
-          answer: 'Foreign researchers collaborate with local institutions through structured, legally recognized arrangements that ensure compliance, knowledge sharing, and local participation.'
-        },
-        {
-          id: 'drcp-8',
-          question: 'Registration of Researchers',
-          answer: 'Researcher registration is the formal process through which individuals intending to conduct research in researchers are registered with the Tanzania Commission for Science and Technology (COSTECH).'
-        },
-        {
-          id: 'drcp-9',
-          question: 'Registration of R&D Institutions',
-          answer: 'Registration is the formal process by which research and development institutions, organizations, and centers are officially recognized and recorded by the Tanzania Commission for Science and Technology (COSTECH).'
-        },
-        {
-          id: 'drcp-10',
-          question: 'What is the Physical Sciences Section?',
-          answer: 'Physical Sciences Section is a section under the directorate of research coordination and promotion that deals with non-living systems and phenomena, focusing on the physical world. These involve issues such as water, industry, energy, and infrastructure.'
-        },
-        {
-          id: 'drcp-11',
-          question: 'What is the Life Sciences Section?',
-          answer: 'Life Sciences Section refers to the specialized division within DRCP that focuses on the biological and living systems. This section covers a wide range of scientific disciplines related to life and living processes.'
-        },
-        {
-          id: 'drcp-12',
-          question: 'What is the Social Sciences Section?',
-          answer: 'Refers to a specialized division within DRCP that focuses on human society and social relationships. It encompasses disciplines that explore social behavior, structures, cultural norms, economic systems, governance, and human interactions such as sociology, anthropology, economics, political science, psychology, education and human geography.'
-        }
-      ]
+  const faqs = [
+    {
+      id: 'research-1',
+      section: 'A. Research Permit',
+      question: '1. What is a Research Permit?',
+      answer: 'A Research Permit is an official authorization issued by the Tanzania Commission for Science and Technology (COSTECH) that allows researchers to conduct research activities in the United Republic of Tanzania.'
     },
-    cdtt: {
-      name: 'Centre for Development and Transfer of Technology (CDTT)',
-      questions: [
-        {
-          id: 'cdtt-1',
-          question: 'What is the role of CDTT within COSTECH?',
-          answer: 'CDTT is the principal organ of COSTECH responsible for technology development, innovation, and technology transfer.'
-        },
-        {
-          id: 'cdtt-2',
-          question: 'Who can engage with CDTT?',
-          answer: 'Innovators, startups, higher learning institutions, R&D institutions, industry, MDAs, and development partners.'
-        },
-        {
-          id: 'cdtt-3',
-          question: 'Does CDTT fund innovations or spin-off companies?',
-          answer: 'CDTT provides technical guidance, coordination, and facilitation. Funding support is accessed through specific programmes, incubators, and partnerships.'
-        },
-        {
-          id: 'cdtt-4',
-          question: 'How does CDTT support spin-off company formation?',
-          answer: 'By guiding technology selection, IP assignment mechanisms, business plan and business model development, and linkages to incubation, investment, and markets.'
-        },
-        {
-          id: 'cdtt-5',
-          question: 'How are Technology Transfer Agreements registered?',
-          answer: 'Technology Transfer Agreements are registered and monitored by CDTT in accordance with the National Framework and Tools for Technology Transfer and Management, which provide procedures, assessment criteria, and compliance requirements.'
-        },
-        {
-          id: 'cdtt-6',
-          question: 'What programmes are offered under Buni Innovation Hub?',
-          answer: 'Buni Innovation Hub, coordinated by CDTT, offers incubation and acceleration programmes that support innovators and startups through capacity building, mentorship, access to technology, market linkages, and investment readiness, with a focus on youth, women, and technology-driven enterprises.'
-        },
-        {
-          id: 'cdtt-7',
-          question: 'How does CDTT support the development of indigenous technologies?',
-          answer: 'CDTT supports indigenous technologies by identifying national technological needs, facilitating technology development and piloting, guiding value-chain development, and supporting commercialisation and technology transfer in line with national policies and frameworks.'
-        }
-      ]
+    {
+      id: 'research-2',
+      section: 'A. Research Permit',
+      question: '2. Who is required to obtain a Research Permit from COSTECH?',
+      answer: 'All researchers intending to conduct research in Tanzania must obtain a Research Permit from COSTECH, including:\n• Foreign researchers\n• Local researchers affiliated with institutions\n• Independent researchers\n• Visiting scholars and students conducting academic research'
+    },
+    {
+      id: 'research-3',
+      section: 'A. Research Permit',
+      question: '3. Are Tanzanian citizens required to apply for a Research Permit?',
+      answer: 'Yes. Tanzanian researchers are required to register their research projects with COSTECH and obtain a Research Permit, particularly for nationally coordinated, funded, or published research.'
+    },
+    {
+      id: 'research-4',
+      section: 'A. Research Permit',
+      question: '4. How do I apply for a Research Permit?',
+      answer: 'Applications are submitted online through the COSTECH Research Permit System. Applicants must complete the application form and upload all required documents before submission.'
+    },
+    {
+      id: 'research-5',
+      section: 'A. Research Permit',
+      question: '5. What documents are required for a Research Permit application?',
+      answer: 'Commonly required documents include:\n• Detailed research proposal\n• Curriculum Vitae (CV) of the principal researcher\n• Introduction or support letter from host institution (for foreign researchers)\n• Ethical clearance (where applicable)\n• Passport copy (for foreign researchers)\n• Payment proof of applicable fees'
+    },
+    {
+      id: 'research-6',
+      section: 'A. Research Permit',
+      question: '6. How long does it take to process a Research Permit?',
+      answer: 'Processing time normally takes up to 14 working days after receipt of a complete application and payment. Delays may occur if additional clarification or documentation is required.'
+    },
+    {
+      id: 'research-7',
+      section: 'A. Research Permit',
+      question: '7. How much does a Research Permit cost?',
+      answer: 'Research Permit fees vary depending on the applicant category (local or foreign researcher) and the duration of the research. Current fees are published on the COSTECH website and the online application system.'
+    },
+    {
+      id: 'research-8',
+      section: 'A. Research Permit',
+      question: '8. Is ethical clearance required?',
+      answer: 'Yes, ethical clearance is required for research involving:\n• Human subjects\n• Animals\n• Biological materials\n• Applicants must obtain clearance from a recognized ethics committee before submitting their application to COSTECH.'
+    },
+    {
+      id: 'research-9',
+      section: 'A. Research Permit',
+      question: '9. Can a Research Permit be extended?',
+      answer: 'Yes. Researchers may apply for an extension before the expiry of the current permit by submitting justification and updated research progress through the system.'
+    },
+    {
+      id: 'research-10',
+      section: 'A. Research Permit',
+      question: '10. Does a Research Permit allow me to work or be employed in Tanzania?',
+      answer: 'No. A Research Permit does not replace a work permit or residence permit. Foreign researchers must also comply with immigration requirements issued by relevant authorities.'
+    },
+    {
+      id: 'research-11',
+      section: 'A. Research Permit',
+      question: '11. Can students apply for Research Permits?',
+      answer: 'Yes. Undergraduate, Master\'s, and PhD students conducting research in Tanzania must apply for a Research Permit through COSTECH, supported by their academic institution.'
+    },
+    {
+      id: 'research-12',
+      section: 'A. Research Permit',
+      question: '12. What happens if I conduct research without a Research Permit?',
+      answer: 'Conducting research without a valid permit is a violation of national regulations and may result in:\n• Termination of the research\n• Legal action\n• Denial of future research approvals'
+    },
+    {
+      id: 'research-13',
+      section: 'A. Research Permit',
+      question: '13. Am I required to submit research reports to COSTECH?',
+      answer: 'Yes. All researchers are required to submit:\n• Progress reports (if requested)\n• A final research report upon completion\nThis supports national research coordination and knowledge management.'
+    },
+    {
+      id: 'research-14',
+      section: 'A. Research Permit',
+      question: '14. Can COSTECH assist with ethical clearance from other institutions?',
+      answer: 'Yes. COSTECH coordinates with relevant Ministries, Departments, Agencies (MDAs), and research institutions and may issue introduction letters where necessary.'
+    },
+    {
+      id: 'research-15',
+      section: 'A. Research Permit',
+      question: '15. Who can I contact for support or clarification?',
+      answer: 'For assistance, contact:\n• Email and phone contacts as provided on the COSTECH website'
+    },
+    {
+      id: 'nfast-1',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '1. What is NFAST?',
+      answer: 'The National Fund for Advancement of Science and Technology (NFAST) is a Government fund established to support and promote research, innovation, and technology development in Tanzania in line with national development priorities.'
+    },
+    {
+      id: 'nfast-2',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '2. What is the main objective of NFAST?',
+      answer: 'The main objective of NFAST is to finance high-quality research and innovation projects that contribute to:\n• Socio-economic development\n• Industrialization and value addition\n• Scientific and technological advancement\n• Evidence-based policy and decision-making'
+    },
+    {
+      id: 'nfast-3',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '3. Who manages NFAST?',
+      answer: 'NFAST is administered and managed by the Tanzania Commission for Science and Technology (COSTECH) on behalf of the Government of the United Republic of Tanzania.'
+    },
+    {
+      id: 'nfast-4',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '4. Who is eligible to apply for NFAST funding?',
+      answer: 'Eligibility depends on the specific call, but generally includes:\n• Tanzanian researchers\n• Research institutions and universities\n• Public and private research organizations\n• Innovators and technology developers\n• Multi-disciplinary and collaborative research teams\nSpecific eligibility criteria are provided in each funding call.'
+    },
+    {
+      id: 'nfast-5',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '5. What kind of support does NFAST offer?',
+      answer: 'NFAST supports projects such as:\n• Scientific research and experimental development\n• Technology development and adaptation\n• Innovation and commercialization initiatives\n• Proof-of-concept and pilot studies\n• Capacity building in science, technology, and innovation (STI)'
+    },
+    {
+      id: 'nfast-6',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '6. How can one apply for NFAST funding?',
+      answer: 'Applications are submitted online through the COSTECH grant management portal avaailable officially once calls for proposals are announced. Applicants must follow the guidelines provided in each call.'
+    },
+    {
+      id: 'nfast-7',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '7. When are Calls for Proposals announced?',
+      answer: 'Calls for Proposals are announced periodically and published through:\n• COSTECH website\n• Official Government communication channels\n• Media announcements\n• Applicants are encouraged to regularly check COSTECH platforms for updates.'
+    },
+    {
+      id: 'nfast-8',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '8. What are the support approaches through NFAST?',
+      answer: 'NFAST supports competitive and non-competitive research and innovation projects.'
+    },
+    {
+      id: 'nfast-9',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '9. What is the review and selection process?',
+      answer: 'Proposals undergo:\n• Technical and administrative screening\n• Independent peer review\n• Final approval is made by the Commission in accordance with Research and Innovation Grant Manual.'
+    },
+    {
+      id: 'nfast-10',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '10. Are collaborative and multi-institutional projects encouraged?',
+      answer: 'Yes. NFAST encourages collaborative projects involving:\n• Multiple institutions\n• Industry–academia partnerships\n• Public–private sector collaboration\nSuch projects enhance impact, sustainability, and knowledge transfer.'
+    },
+    {
+      id: 'nfast-11',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '11. Is co-funding or counterpart contribution required?',
+      answer: 'Some Calls for Proposals may require or encourage co-funding or in-kind contributions. This requirement will be clearly stated in the respective call guidelines.'
+    },
+    {
+      id: 'nfast-12',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '12. How are funds disbursed?',
+      answer: 'Approved funds are disbursed in installment as per:\n• Signed funding agreement\n• Approved project milestones\n• Submission of satisfactory technical and financial reports\n• The funds are disbursed through host institutions'
+    },
+    {
+      id: 'nfast-13',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '13. What are Host Institutions?',
+      answer: 'These are designated Institutions responsible for administering technical and /or inancial project obligations. These are approved upon successful due dilligence.'
+    },
+    {
+      id: 'nfast-14',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '14. What reporting obligations do funded projects have?',
+      answer: 'Beneficiaries are required to submit:\n• Periodic technical progress reports biannually\n• Financial accountability reports biannually\n• Final project report upon completion\n• Failure to comply may affect future funding eligibility.'
+    },
+    {
+      id: 'nfast-15',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '15. Who owns the intellectual property (IP) resulting from NFAST-funded projects?',
+      answer: 'Intellectual property ownership is governed by:\n• Host Institution Laws and Policies\n• Terms and conditions of the funding agreement\nBeneficiaries are encouraged to protect and commercialize results for national benefit.'
+    },
+    {
+      id: 'nfast-16',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '16. Can NFAST-funded research be published?',
+      answer: 'Yes. Researchers are encouraged to publish results in reputable outlets, while acknowledging NFAST and COSTECH support, and complying with IP and confidentiality provisions.'
+    },
+    {
+      id: 'nfast-17',
+      section: 'B. What is the National Fund for Advancement of Science and Technology (NFAST)',
+      question: '17. Where can I get more information or assistance?',
+      answer: 'For more information, contact:\n• nfast@costech.or.tz\n• Official contacts provided on the COSTECH website'
     }
-  };
-
-  const toggleDepartment = (departmentKey) => {
-    setOpenDepartment(openDepartment === departmentKey ? null : departmentKey);
-    setOpenQuestion(null);
-  };
+  ];
 
   const toggleQuestion = (questionId) => {
     setOpenQuestion(openQuestion === questionId ? null : questionId);
+  };
+
+  // Format answer text to handle bullet points
+  const formatAnswer = (answer) => {
+    return answer.split('\n').map((line, index) => {
+      if (line.trim().startsWith('•')) {
+        return (
+          <React.Fragment key={index}>
+            {index > 0 && <br />}
+            {line}
+          </React.Fragment>
+        );
+      }
+      return (
+        <React.Fragment key={index}>
+          {index > 0 && <br />}
+          {line}
+        </React.Fragment>
+      );
+    });
   };
 
   return (
@@ -132,71 +228,34 @@ const FAQsPage = () => {
       <div className="faqs-hero">
         <div className="faqs-hero-overlay" />
         <div className="faqs-hero-content">
-          <h1>Frequently Asked Questions</h1>
-          <p>
-            Find answers to common questions about COSTECH's services, programs, and procedures. 
-            Select a directorate below to view relevant FAQs.
-          </p>
+          <h1>Frequently Asked Questions (FAQs)</h1>
         </div>
       </div>
       <div className="faqs-body">
-        <div className="faqs-tabs-container">
-          <div className="faqs-tabs">
-            {Object.entries(faqsByDepartment).map(([key, department]) => (
-              <button
-                key={key}
-                className={`faqs-tab ${openDepartment === key ? 'active' : ''}`}
-                onClick={() => toggleDepartment(key)}
-              >
-                {department.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <div className="faqs-content">
-          {Object.entries(faqsByDepartment).map(([key, department]) => (
-            openDepartment === key && (
-              <div key={key} className="faqs-department-content">
                 <div className="faqs-questions">
-                  {department.questions.map((faq) => (
+            {faqs.map((faq) => (
                     <div key={faq.id} className="faqs-question-item">
                       <button
                         className={`faqs-question-header ${openQuestion === faq.id ? 'active' : ''}`}
                         onClick={() => toggleQuestion(faq.id)}
                       >
-                        <span className="faqs-question-text">{faq.question}</span>
+                  <span className="faqs-question-text">
+                    <span className="faqs-section-label">{faq.section}</span>
+                    <span className="faqs-question-number">{faq.question}</span>
+                  </span>
                         <span className="faqs-question-toggle">
                           {openQuestion === faq.id ? '−' : '+'}
                         </span>
                       </button>
                       {openQuestion === faq.id && (
                         <div className="faqs-answer">
-                          <p>
-                            {faq.answer}
-                            {faq.answerLink && (
-                              <>
-                                {' '}
-                                <a 
-                                  href={faq.answerLink.url} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="faqs-link"
-                                >
-                                  {faq.answerLink.text}
-                                </a>
-                              </>
-                            )}
-                            {faq.answerAfter}
-                          </p>
+                    <p>{formatAnswer(faq.answer)}</p>
                         </div>
                       )}
                     </div>
                   ))}
                 </div>
-              </div>
-            )
-          ))}
         </div>
       </div>
     </section>
@@ -204,4 +263,3 @@ const FAQsPage = () => {
 };
 
 export default FAQsPage;
-

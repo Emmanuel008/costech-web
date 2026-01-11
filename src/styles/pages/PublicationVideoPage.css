@@ -9,6 +9,8 @@
   width: 100%;
   min-height: 300px;
   background: url('../../../public/assets/img/hero2.jpeg') center/cover no-repeat;
+  background-size: cover;
+  background-position: center center;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -40,21 +40,30 @@ const CostechFundedProjectsPage = () => {
         
         setFunders(fundersData);
         
-        // Filter programs to only show "Research and Innovation" (case-insensitive match)
+        // Filter programs to only show "Research Program" and "Innovation Program"
+        // The user wants "Research and Innovation" which means both programs should be available
         const researchProgram = programsData.filter(program => {
           if (!program.name) return false;
           const nameLower = program.name.toLowerCase();
-          return nameLower.includes('research') && nameLower.includes('innovation');
+          return nameLower === 'research program' || nameLower === 'innovation program';
         });
         setPrograms(researchProgram);
         
-        // Filter statuses to only show "Pending" and "Active" (case-insensitive match)
+        // Filter statuses to only show "Completed" and "Pending"
+        // Note: API returns "On Going" instead of "Pending", so we include "On Going" and map it
         const filteredStatuses = statusesData.filter(status => {
           if (!status.name) return false;
           const nameLower = status.name.toLowerCase();
-          return nameLower === 'pending' || nameLower === 'active';
+          return nameLower === 'completed' || nameLower === 'on going';
         });
-        setStatuses(filteredStatuses);
+        // Map "On Going" to display as "Pending" for user
+        const mappedStatuses = filteredStatuses.map(status => {
+          if (status.name.toLowerCase() === 'on going') {
+            return { ...status, name: 'Pending' };
+          }
+          return status;
+        });
+        setStatuses(mappedStatuses);
         
         // Filter genders to only show "Male" and "Female" (case-insensitive match)
         const filteredGenders = gendersData.filter(gender => {
@@ -333,6 +342,10 @@ const CostechFundedProjectsPage = () => {
                         <span className="sort-icon">↕</span>
                       </th>
                       <th className="projects-table-head-cell sortable">
+                        Status
+                        <span className="sort-icon">↕</span>
+                      </th>
+                      <th className="projects-table-head-cell sortable">
                         Actions
                         <span className="sort-icon">↕</span>
                       </th>
@@ -341,29 +354,38 @@ const CostechFundedProjectsPage = () => {
                   <tbody className="projects-table-body">
                     {paginatedProjects.length === 0 ? (
                       <tr className="projects-table-row">
-                        <td colSpan="3" className="projects-table-cell projects-empty-cell">
+                        <td colSpan="4" className="projects-table-cell projects-empty-cell">
                           No projects found matching your criteria.
                         </td>
                       </tr>
                     ) : (
-                      paginatedProjects.map((project) => (
-                        <tr key={project.id} className="projects-table-row">
-                          <td className="projects-table-cell projects-table-cell--grantee">
-                            {project.researcher?.name || 'N/A'}
-                          </td>
-                          <td className="projects-table-cell projects-table-cell--title">
-                            {project.research_title || 'Untitled Project'}
-                          </td>
-                          <td className="projects-table-cell projects-table-cell--actions">
-                            <Link
-                              to={`/projects/costech-funded/${project.id}`}
-                              className="preview-button"
-                            >
-                              Preview
-                            </Link>
-                          </td>
-                        </tr>
-                      ))
+                      paginatedProjects.map((project) => {
+                        // Map "On Going" to "Ongoing" for display
+                        const statusName = project.status?.name || 'N/A';
+                        const displayStatus = statusName.toLowerCase() === 'on going' ? 'Ongoing' : statusName;
+                        
+                        return (
+                          <tr key={project.id} className="projects-table-row">
+                            <td className="projects-table-cell projects-table-cell--grantee">
+                              {project.researcher?.name || 'N/A'}
+                            </td>
+                            <td className="projects-table-cell projects-table-cell--title">
+                              {project.research_title || 'Untitled Project'}
+                            </td>
+                            <td className="projects-table-cell projects-table-cell--status">
+                              {displayStatus}
+                            </td>
+                            <td className="projects-table-cell projects-table-cell--actions">
+                              <Link
+                                to={`/projects/costech-funded/${project.id}`}
+                                className="preview-button"
+                              >
+                                Preview
+                              </Link>
+                            </td>
+                          </tr>
+                        );
+                      })
                     )}
                   </tbody>
                 </table>

@@ -283,7 +283,7 @@ const Navbar = () => {
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
     { text: 'Online Services', hasDropdown: true, href: '#', dropdownItems: onlineServicesItems },
-    { text: 'Dashboard', hasDropdown: false, href: '/dashboard' },
+    { text: 'Info Portal', hasDropdown: false, href: '/dashboard' },
     { text: 'Publication & Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
     { text: 'Projects & Program', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },

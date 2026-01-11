@@ -190,7 +190,12 @@ const Hero = () => {
     return (
       <section className="hero">
         <div className="hero-carousel">
-          <div className="hero-slide active" style={{ backgroundImage: `url('${defaultSlides[0].image}')` }}>
+          <div className="hero-slide active" style={{ 
+            backgroundImage: `url('${defaultSlides[0].image}')`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat'
+          }}>
             <div className="hero-content">
               <div className="hero-content-card">
                 <h1 className="hero-title">Loading...</h1>
@@ -209,6 +214,9 @@ const Hero = () => {
           const imageUrl = getImageUrl(slide);
           const slideStyle = {
             backgroundImage: `url('${imageUrl}')`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
           };
 
           return (
