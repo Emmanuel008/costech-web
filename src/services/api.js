@@ -6,6 +6,9 @@ const API_BASE_URL = 'https://costech.kingdomsolutions.co.tz/api';
 // Base URL for the new projects API
 const PROJECTS_API_BASE_URL = 'http://102.208.184.49/api/v1/nfast';
 
+// Base URL for RIMS statistics API
+const RIMS_API_BASE_URL = 'https://rclearance.costech.or.tz/api/v1/rims/statistics';
+
 // Create axios instance with default config
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -1494,6 +1497,96 @@ export const getResearchPerStatus = async () => {
     return {};
   } catch (error) {
     console.error('❌ Error fetching research per status:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch permit statistics per gender
+ * @returns {Promise<Array>} - Array of gender statistics
+ */
+export const getPermitPerGender = async () => {
+  try {
+    console.log('🔵 Starting to fetch permit per gender statistics...');
+    
+    const response = await axios.get(`${RIMS_API_BASE_URL}/permit-per-gender`, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Permit Per Gender API Response received:', response.data);
+
+    if (response.data && response.data.code === 200 && response.data.data) {
+      console.log('✅ Successfully fetched permit per gender statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching permit per gender:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch permit statistics per country
+ * @returns {Promise<Array>} - Array of country statistics
+ */
+export const getPermitPerCountry = async () => {
+  try {
+    console.log('🔵 Starting to fetch permit per country statistics...');
+    
+    const response = await axios.get(`${RIMS_API_BASE_URL}/permit-per-country`, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Permit Per Country API Response received:', response.data);
+
+    if (response.data && response.data.code === 200 && response.data.data) {
+      console.log('✅ Successfully fetched permit per country statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching permit per country:', error);
+    throw error;
+  }
+};
+
+/**
+ * Fetch permit statistics per sector
+ * @returns {Promise<Array>} - Array of sector statistics
+ */
+export const getPermitPerSector = async () => {
+  try {
+    console.log('🔵 Starting to fetch permit per sector statistics...');
+    
+    const response = await axios.get(`${RIMS_API_BASE_URL}/permit-per-sector`, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Permit Per Sector API Response received:', response.data);
+
+    if (response.data && response.data.code === 200 && response.data.data) {
+      console.log('✅ Successfully fetched permit per sector statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching permit per sector:', error);
     throw error;
   }
 };

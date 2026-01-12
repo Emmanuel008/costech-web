@@ -64,10 +64,12 @@ const InnovationDashboardPage = () => {
       title: 'Total Funds per Funder',
       description: 'Total funding distribution by funder',
       data: stats.funder
-        ? Object.entries(stats.funder).map(([funder, amount]) => ({
-            funder,
-            amount: parseFloat(amount) || 0,
-          }))
+        ? Object.entries(stats.funder)
+            .map(([funder, amount]) => ({
+              funder,
+              amount: parseFloat(amount) || 0,
+            }))
+            .filter((item) => item.amount > 0)
         : [],
     },
     program: {
@@ -98,6 +100,13 @@ const InnovationDashboardPage = () => {
       currency: 'TZS',
       minimumFractionDigits: 0
     }).format(amount);
+  };
+
+  const formatFunderName = (name) => {
+    if (name === 'GOT') {
+      return 'GOT(Government of Tanzania)';
+    }
+    return name;
   };
 
   return (
@@ -147,7 +156,7 @@ const InnovationDashboardPage = () => {
                       {report.data.map((item, index) => (
                         <div key={index} className="funded-project-card">
                           <div className="funded-project-header">
-                            <h3 className="funded-project-name">{item.funder || item.program}</h3>
+                            <h3 className="funded-project-name">{formatFunderName(item.funder || item.program)}</h3>
                           </div>
                           <div className="funded-project-amount">
                             {formatCurrency(item.amount)}
