@@ -17,12 +17,10 @@ const NewsDetailPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 NewsDetailPage: Starting to fetch news from API...');
         
         // First, fetch all news to find the item and get related news
         const apiNews = await getNewsList();
         
-        console.log('📊 NewsDetailPage: Received news from API:', apiNews);
         
         if (apiNews && apiNews.length > 0) {
             // Map API data to component structure for finding the item
@@ -53,14 +51,11 @@ const NewsDetailPage = () => {
           const foundItem = mappedNews.find((item) => item.slug === slug || String(item.id) === slug);
           
           if (foundItem) {
-            console.log('✅ NewsDetailPage: Found news item, fetching full details...');
             
             // Try to fetch full details with content by ID
             try {
-              console.log(`🔍 NewsDetailPage: Attempting to fetch full details for news ID: ${foundItem.id}`);
               const fullDetails = await getNewsById(foundItem.id);
               
-              console.log('📄 NewsDetailPage: Full details response:', fullDetails);
               
               if (fullDetails) {
                 // Check for content in various possible fields (try multiple field names)
@@ -74,7 +69,6 @@ const NewsDetailPage = () => {
                                    fullDetails.fullContent ||
                                    null;
                 
-                console.log('📝 NewsDetailPage: Extracted content:', fullContent ? (typeof fullContent === 'string' ? fullContent.substring(0, 100) + '...' : 'Array/Other') : 'null');
                 
                 if (fullContent) {
                   // Use the full details with content
@@ -111,25 +105,21 @@ const NewsDetailPage = () => {
                     date: formatDate(fullDetails.created_at || fullDetails.date || fullDetails.createdAt || foundItem.date),
                   };
                   
-                  console.log('✅ NewsDetailPage: Using full details with content, content length:', contentArray.length);
                   setNewsItem(newsItemWithContent);
                 } else {
                   // Check if content exists in the list item
                   if (foundItem.content && foundItem.content.length > 0) {
-                    console.log('✅ NewsDetailPage: Using content from list item');
                     setNewsItem(foundItem);
                   } else {
-                    console.log('⚠️ NewsDetailPage: No content found in detail or list item');
                     setNewsItem(foundItem);
                   }
                 }
               } else {
                 // Use the item from list if detail endpoint returns null
-                console.log('⚠️ NewsDetailPage: Detail endpoint returned null, using list item');
                 setNewsItem(foundItem);
               }
             } catch (detailErr) {
-              console.warn('⚠️ NewsDetailPage: Could not fetch detail, using list item:', detailErr);
+              console.warn('NewsDetailPage: Could not fetch detail, using list item:', detailErr);
               console.warn('Error details:', detailErr.message);
               // Use the item from list if detail fetch fails
               setNewsItem(foundItem);
@@ -141,7 +131,7 @@ const NewsDetailPage = () => {
               .slice(0, 4);
             setRelatedNews(related);
           } else {
-            console.warn('⚠️ NewsDetailPage: News item not found in API data, trying static data');
+            console.warn('NewsDetailPage: News item not found in API data, trying static data');
             // Fallback to static data
             const staticItem = newsItems.find((item) => item.slug === slug || String(item.id) === slug);
             if (staticItem) {
@@ -155,7 +145,7 @@ const NewsDetailPage = () => {
             }
           }
         } else {
-          console.warn('⚠️ NewsDetailPage: API returned empty array, using static data');
+          console.warn('NewsDetailPage: API returned empty array, using static data');
           // Fallback to static data
           const staticItem = newsItems.find((item) => item.slug === slug || String(item.id) === slug);
           if (staticItem) {
@@ -169,7 +159,7 @@ const NewsDetailPage = () => {
           }
         }
       } catch (err) {
-        console.error('❌ NewsDetailPage: Error fetching news:', err);
+        console.error('NewsDetailPage: Error fetching news:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -179,7 +169,7 @@ const NewsDetailPage = () => {
         setError(err.message);
         
         // Fallback to static data on error
-        console.warn('⚠️ NewsDetailPage: Falling back to static data due to error');
+        console.warn('NewsDetailPage: Falling back to static data due to error');
         const staticItem = newsItems.find((item) => item.slug === slug || String(item.id) === slug);
         if (staticItem) {
           setNewsItem(staticItem);

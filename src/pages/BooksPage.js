@@ -168,15 +168,12 @@ const BooksPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 BooksPage: Starting to fetch books from API...');
         
         // Fetch books from API
         const apiBooks = await getBooks();
         
-        console.log('📊 BooksPage: Received books from API:', apiBooks);
         
         if (apiBooks && apiBooks.length > 0) {
-          console.log(`✅ BooksPage: Using ${apiBooks.length} books from API`);
           
           // Map API data to component structure
           const mappedBooks = apiBooks.map((item) => ({
@@ -186,15 +183,14 @@ const BooksPage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 BooksPage: Mapped books:', mappedBooks);
           setBooks(mappedBooks);
         } else {
-          console.warn('⚠️ BooksPage: API returned empty array, using static data');
+          console.warn('BooksPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setBooks(fallbackBooks);
         }
       } catch (err) {
-        console.error('❌ BooksPage: Error fetching books:', err);
+        console.error('BooksPage: Error fetching books:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -203,7 +199,7 @@ const BooksPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ BooksPage: Falling back to static data due to error');
+        console.warn('BooksPage: Falling back to static data due to error');
         setBooks(fallbackBooks);
       } finally {
         setLoading(false);

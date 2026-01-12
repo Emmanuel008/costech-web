@@ -192,15 +192,12 @@ const ResearchInnovationMagazinePage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 ResearchInnovationMagazinePage: Starting to fetch magazines from API...');
         
         // Fetch magazines from API
         const apiMagazines = await getMagazines();
         
-        console.log('📊 ResearchInnovationMagazinePage: Received magazines from API:', apiMagazines);
         
         if (apiMagazines && apiMagazines.length > 0) {
-          console.log(`✅ ResearchInnovationMagazinePage: Using ${apiMagazines.length} magazines from API`);
           
           // Map API data to component structure
           const mappedMagazines = apiMagazines.map((item) => ({
@@ -210,15 +207,14 @@ const ResearchInnovationMagazinePage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 ResearchInnovationMagazinePage: Mapped magazines:', mappedMagazines);
           setMagazines(mappedMagazines);
         } else {
-          console.warn('⚠️ ResearchInnovationMagazinePage: API returned empty array, using static data');
+          console.warn('ResearchInnovationMagazinePage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setMagazines(fallbackMagazines);
         }
       } catch (err) {
-        console.error('❌ ResearchInnovationMagazinePage: Error fetching magazines:', err);
+        console.error('ResearchInnovationMagazinePage: Error fetching magazines:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -227,7 +223,7 @@ const ResearchInnovationMagazinePage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ ResearchInnovationMagazinePage: Falling back to static data due to error');
+        console.warn('ResearchInnovationMagazinePage: Falling back to static data due to error');
         setMagazines(fallbackMagazines);
       } finally {
         setLoading(false);

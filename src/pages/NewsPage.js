@@ -17,15 +17,12 @@ const NewsPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 NewsPage: Starting to fetch news from API...');
         
         // Fetch news from API
         const apiNews = await getNewsList();
         
-        console.log('📊 NewsPage: Received news from API:', apiNews);
         
         if (apiNews && apiNews.length > 0) {
-          console.log(`✅ NewsPage: Using ${apiNews.length} items from API`);
           
           // Map API data to component structure (show all items, not just 4)
           const mappedNews = apiNews.map((item) => {
@@ -48,15 +45,14 @@ const NewsPage = () => {
             };
           });
           
-          console.log('📝 NewsPage: Mapped news items:', mappedNews);
           setAllNews(mappedNews);
         } else {
-          console.warn('⚠️ NewsPage: API returned empty array, using static data');
+          console.warn('NewsPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setAllNews(newsItems);
         }
       } catch (err) {
-        console.error('❌ NewsPage: Error fetching news:', err);
+        console.error('NewsPage: Error fetching news:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -65,7 +61,7 @@ const NewsPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ NewsPage: Falling back to static data due to error');
+        console.warn('NewsPage: Falling back to static data due to error');
         setAllNews(newsItems);
       } finally {
         setLoading(false);

@@ -136,13 +136,6 @@ const HomepageStats = () => {
           }),
         ]);
 
-        console.log('HomepageStats - Setting stats:', {
-          permitRegion: permitRegionData,
-          permitRegionType: typeof permitRegionData,
-          isArray: Array.isArray(permitRegionData),
-          length: permitRegionData?.length,
-        });
-
         setStats({
           innovationGender: innovationGenderData,
           totalFundPerProgram: innovationProgramData,
@@ -578,7 +571,7 @@ const HomepageStats = () => {
   };
 
   const settings = {
-    dots: true,
+    dots: false,
     arrows: true,
     infinite: true,
     speed: 500,

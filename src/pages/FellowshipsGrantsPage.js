@@ -2,77 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import '../styles/pages/FellowshipsGrantsPage.css';
 import { getFellowshipGrants } from '../services/api';
 
-// Fallback static programs
-const fallbackPrograms = [
-  {
-    id: 1,
-    status: 'open',
-    statusText: 'Open',
-    title: 'Horizon Europe - Funding Programmes and Open Calls',
-    description: 'Horizon Europe is the EU\'s key funding programme for research and innovation. It tackles climate change, helps to achieve the UN\'s Sustainable Development Goals and boosts the EU\'s competitiveness and growth.',
-    url: 'https://research-and-innovation.ec.europa.eu/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe_en'
-  },
-  {
-    id: 2,
-    status: 'open',
-    statusText: 'Open',
-    title: 'ICGEB Fellowship Programme',
-    description: 'The ICGEB Fellowship Programme offers long-term fellowships for research in Life Sciences at ICGEB Component laboratories in Trieste (Italy), New Delhi (India) and Cape Town (South Africa).',
-    url: 'https://www.icgeb.org/fellowship/?utm_source=brevo&utm_campaign=nome-campagna&utm_medium=email'
-  },
-  {
-    id: 3,
-    status: 'open',
-    statusText: 'Open',
-    title: 'ICGEB Grants Programme',
-    description: 'The ICGEB Grants Programme supports research projects in basic science, human healthcare, industrial and agricultural biotechnology and bioenergy. Grants are awarded to researchers in ICGEB Member States.',
-    url: 'https://www.icgeb.org/grants/?utm_source=brevo&utm_campaign=nome-campagna&utm_medium=email'
-  },
-  {
-    id: 4,
-    status: 'open',
-    statusText: 'Open',
-    title: 'ICGEB Meetings and Courses',
-    description: 'ICGEB organizes scientific meetings, courses and workshops to promote scientific exchange and capacity building in biotechnology and related fields.',
-    url: 'https://www.icgeb.org/meeting-and-courses/'
-  },
-  {
-    id: 5,
-    status: 'open',
-    statusText: 'Open',
-    title: 'ICGEB Call for Proposal - Meetings and Courses',
-    description: 'ICGEB offers support for organizing scientific meetings, courses and workshops. Apply to host events that contribute to scientific knowledge exchange and capacity building.',
-    url: 'https://www.icgeb.org/meeting-and-courses/call-for-proposal-meeting-and-courses/'
-  },
-  {
-    id: 6,
-    status: 'open',
-    statusText: 'Open',
-    title: 'EDCTP Calls for Proposals',
-    description: 'The European & Developing Countries Clinical Trials Partnership (EDCTP) funds collaborative research projects that accelerate the development of new or improved interventions against poverty-related diseases in sub-Saharan Africa.',
-    url: 'https://www.edctp.org/funding/calls-for-proposals-2/'
-  },
-  {
-    id: 7,
-    status: 'open',
-    statusText: 'Open',
-    title: 'SGCI Africa Funding Opportunities',
-    description: 'The Science Granting Councils Initiative in Sub-Saharan Africa (SGCI) provides funding opportunities to support research and innovation across African countries.',
-    url: 'https://sgciafrica.org/funding/'
-  },
-  {
-    id: 8,
-    status: 'open',
-    statusText: 'Open',
-    title: 'Wellcome Research Funding',
-    description: 'Wellcome supports discovery research into life, health and wellbeing, and we\'re taking on three worldwide health challenges: mental health, infectious disease and climate and health.',
-    url: 'https://wellcome.org/research-funding'
-  }
-];
-
 const FellowshipsGrantsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [programs, setPrograms] = useState(fallbackPrograms);
+  const [programs, setPrograms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -82,15 +14,12 @@ const FellowshipsGrantsPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 FellowshipsGrantsPage: Starting to fetch fellowship grants from API...');
         
         // Fetch fellowship grants from API
         const apiGrants = await getFellowshipGrants();
         
-        console.log('📊 FellowshipsGrantsPage: Received grants from API:', apiGrants);
         
         if (apiGrants && apiGrants.length > 0) {
-          console.log(`✅ FellowshipsGrantsPage: Using ${apiGrants.length} grants from API`);
           
           // Map API response to component structure
           const mappedPrograms = apiGrants.map((grant, index) => {
@@ -132,11 +61,10 @@ const FellowshipsGrantsPage = () => {
           
           setPrograms(mappedPrograms);
         } else {
-          console.warn('⚠️ FellowshipsGrantsPage: API returned empty array, using fallback');
-          setPrograms(fallbackPrograms);
+          setPrograms([]);
         }
       } catch (err) {
-        console.error('❌ FellowshipsGrantsPage: Error fetching fellowship grants:', err);
+        console.error('FellowshipsGrantsPage: Error fetching fellowship grants:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -144,7 +72,7 @@ const FellowshipsGrantsPage = () => {
           stack: err.stack
         });
         setError(err.message);
-        setPrograms(fallbackPrograms);
+        setPrograms([]);
       } finally {
         setLoading(false);
       }

@@ -168,15 +168,12 @@ const ActsAndLegalPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 ActsAndLegalPage: Starting to fetch acts and legal documents from API...');
         
         // Fetch acts and legal documents from API
         const apiActsAndLegal = await getActsAndLegal();
         
-        console.log('📊 ActsAndLegalPage: Received acts and legal documents from API:', apiActsAndLegal);
         
         if (apiActsAndLegal && apiActsAndLegal.length > 0) {
-          console.log(`✅ ActsAndLegalPage: Using ${apiActsAndLegal.length} acts and legal documents from API`);
           
           // Map API data to component structure
           const mappedActsAndLegal = apiActsAndLegal.map((item) => ({
@@ -186,15 +183,14 @@ const ActsAndLegalPage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 ActsAndLegalPage: Mapped acts and legal documents:', mappedActsAndLegal);
           setActsAndLegal(mappedActsAndLegal);
         } else {
-          console.warn('⚠️ ActsAndLegalPage: API returned empty array, using static data');
+          console.warn('ActsAndLegalPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setActsAndLegal(fallbackActsAndLegal);
         }
       } catch (err) {
-        console.error('❌ ActsAndLegalPage: Error fetching acts and legal documents:', err);
+        console.error('ActsAndLegalPage: Error fetching acts and legal documents:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -203,7 +199,7 @@ const ActsAndLegalPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ ActsAndLegalPage: Falling back to static data due to error');
+        console.warn('ActsAndLegalPage: Falling back to static data due to error');
         setActsAndLegal(fallbackActsAndLegal);
       } finally {
         setLoading(false);

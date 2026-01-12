@@ -35,7 +35,6 @@ const DirectoratesPage = () => {
   const handleDownload = (file) => {
     // In a real application, this would trigger a download
     // For now, we'll just log it or open in a new tab
-    console.log('Downloading:', file);
     // You can implement actual download logic here
   };
 

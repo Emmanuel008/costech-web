@@ -31,11 +31,9 @@ const CostechFundedProjectDetailPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log(`🔄 CostechFundedProjectDetailPage: Fetching project ${id}...`);
         
         const projectDetail = await getCostechFundedProjectDetail(id);
         
-        console.log('📊 CostechFundedProjectDetailPage: Received project detail:', projectDetail);
         
         if (projectDetail) {
           setProject(projectDetail);
@@ -43,7 +41,7 @@ const CostechFundedProjectDetailPage = () => {
           setError('Project not found');
         }
       } catch (err) {
-        console.error('❌ CostechFundedProjectDetailPage: Error fetching project detail:', err);
+        console.error('CostechFundedProjectDetailPage: Error fetching project detail:', err);
         setError(err.message || 'Failed to load project details');
       } finally {
         setLoading(false);

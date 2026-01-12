@@ -59,22 +59,19 @@ const PublicationVideoPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 PublicationVideoPage: Starting to fetch videos from API...');
         
         // Fetch videos from API
         const apiVideos = await getCostechVideos();
         
-        console.log('📊 PublicationVideoPage: Received videos from API:', apiVideos);
         
         if (apiVideos && apiVideos.length > 0) {
-          console.log(`✅ PublicationVideoPage: Using ${apiVideos.length} videos from API`);
           setVideos(apiVideos);
         } else {
-          console.warn('⚠️ PublicationVideoPage: API returned empty array, using static data');
+          console.warn('PublicationVideoPage: API returned empty array, using static data');
           setVideos(fallbackVideos);
         }
       } catch (err) {
-        console.error('❌ PublicationVideoPage: Error fetching videos:', err);
+        console.error('PublicationVideoPage: Error fetching videos:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -82,7 +79,7 @@ const PublicationVideoPage = () => {
           stack: err.stack
         });
         setError(err.message);
-        console.warn('⚠️ PublicationVideoPage: Falling back to static data due to error');
+        console.warn('PublicationVideoPage: Falling back to static data due to error');
         setVideos(fallbackVideos);
       } finally {
         setLoading(false);

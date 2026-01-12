@@ -119,15 +119,12 @@ const ProjectsPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 ProjectsPage: Starting to fetch ongoing projects from API...');
         
         // Fetch ongoing projects from API
         const apiProjects = await getOngoingProjects();
         
-        console.log('📊 ProjectsPage: Received projects from API:', apiProjects);
         
         if (apiProjects && apiProjects.length > 0) {
-          console.log(`✅ ProjectsPage: Using ${apiProjects.length} projects from API`);
           
           // Map API response to component structure
           const mappedProjects = apiProjects.map((project, index) => {
@@ -168,11 +165,11 @@ const ProjectsPage = () => {
           
           setOngoingProjects(mappedProjects);
         } else {
-          console.warn('⚠️ ProjectsPage: API returned empty array, using fallback');
+          console.warn('ProjectsPage: API returned empty array, using fallback');
           setOngoingProjects(fallbackProjects);
         }
       } catch (err) {
-        console.error('❌ ProjectsPage: Error fetching ongoing projects:', err);
+        console.error('ProjectsPage: Error fetching ongoing projects:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -195,15 +192,12 @@ const ProjectsPage = () => {
         setPartnershipLoading(true);
         setPartnershipError(null);
         
-        console.log('🔄 ProjectsPage: Starting to fetch partnership areas from API...');
         
         // Fetch partnership areas from API
         const apiAreas = await getPartnershipAreas();
         
-        console.log('📊 ProjectsPage: Received partnership areas from API:', apiAreas);
         
         if (apiAreas && apiAreas.length > 0) {
-          console.log(`✅ ProjectsPage: Using ${apiAreas.length} partnership areas from API`);
           
           // Map API response to component structure
           const mappedAreas = apiAreas.map((area, index) => {
@@ -219,11 +213,11 @@ const ProjectsPage = () => {
           
           setPartnershipAreas(mappedAreas);
         } else {
-          console.warn('⚠️ ProjectsPage: API returned empty array, using fallback');
+          console.warn('ProjectsPage: API returned empty array, using fallback');
           setPartnershipAreas(fallbackPartnershipAreas);
         }
       } catch (err) {
-        console.error('❌ ProjectsPage: Error fetching partnership areas:', err);
+        console.error('ProjectsPage: Error fetching partnership areas:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,

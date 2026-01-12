@@ -5,7 +5,7 @@
   min-height: 65vh;
   height: 65vh;
   overflow: hidden;
-  margin-top: 0;
+  margin-top: 35px;
   padding-top: 0px;
   box-sizing: border-box;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
@@ -154,7 +154,7 @@
 }
 
 .hero-title {
-  font-size: 2.25rem;
+  font-size: 1.875rem;
   font-weight: 800;
   line-height: 1.2;
   margin: 0 0 28px 0;
@@ -309,7 +309,7 @@
   }
   
   .hero-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   
   .hero-image-container {
@@ -355,7 +355,7 @@
   }
   
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
   
   .hero-description {
@@ -388,7 +388,7 @@
   }
   
   .hero-title {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   
   .hero-description {
@@ -441,7 +441,7 @@
   }
   
   .hero-title {
-    font-size: 1.125rem;
+    font-size: 1rem;
     margin-bottom: 20px;
   }
   

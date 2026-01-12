@@ -27,24 +27,21 @@ const PressReleasePage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 PressReleasePage: Starting to fetch press releases from API...');
         
         // Fetch press releases from API
         const apiPressReleases = await getPressReleases();
         
-        console.log('📊 PressReleasePage: Received press releases from API:', apiPressReleases);
         
         if (apiPressReleases && apiPressReleases.length > 0) {
-          console.log(`✅ PressReleasePage: Using ${apiPressReleases.length} press releases from API`);
           setPressReleases(apiPressReleases);
         } else {
-          console.warn('⚠️ PressReleasePage: API returned empty array, using static data');
+          console.warn('PressReleasePage: API returned empty array, using static data');
           setPressReleases(fallbackPressReleases);
         }
       } catch (err) {
-        console.error('❌ PressReleasePage: Error fetching press releases:', err);
+        console.error('PressReleasePage: Error fetching press releases:', err);
         setError(err.message);
-        console.warn('⚠️ PressReleasePage: Falling back to static data due to error');
+        console.warn('PressReleasePage: Falling back to static data due to error');
         setPressReleases(fallbackPressReleases);
       } finally {
         setLoading(false);

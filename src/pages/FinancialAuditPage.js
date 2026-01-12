@@ -38,15 +38,12 @@ const FinancialAuditPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 FinancialAuditPage: Starting to fetch financial reports from API...');
         
         // Fetch financial reports from API
         const apiReports = await getFinancialReports();
         
-        console.log('📊 FinancialAuditPage: Received financial reports from API:', apiReports);
         
         if (apiReports && apiReports.length > 0) {
-          console.log(`✅ FinancialAuditPage: Using ${apiReports.length} reports from API`);
           
           // Map API data to component structure
           const mappedReports = apiReports.map((item) => {
@@ -61,15 +58,14 @@ const FinancialAuditPage = () => {
             };
           });
           
-          console.log('📝 FinancialAuditPage: Mapped financial reports:', mappedReports);
           setFinancialStatements(mappedReports);
         } else {
-          console.warn('⚠️ FinancialAuditPage: API returned empty array, using static data');
+          console.warn('FinancialAuditPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setFinancialStatements(fallbackStatements);
         }
       } catch (err) {
-        console.error('❌ FinancialAuditPage: Error fetching financial reports:', err);
+        console.error('FinancialAuditPage: Error fetching financial reports:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -78,7 +74,7 @@ const FinancialAuditPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ FinancialAuditPage: Falling back to static data due to error');
+        console.warn('FinancialAuditPage: Falling back to static data due to error');
         setFinancialStatements(fallbackStatements);
       } finally {
         setLoading(false);

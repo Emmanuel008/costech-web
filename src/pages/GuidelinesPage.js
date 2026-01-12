@@ -192,15 +192,12 @@ const GuidelinesPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 GuidelinesPage: Starting to fetch guideline documents from API...');
         
         // Fetch guideline documents from API
         const apiGuidelines = await getGuidelineDocuments();
         
-        console.log('📊 GuidelinesPage: Received guideline documents from API:', apiGuidelines);
         
         if (apiGuidelines && apiGuidelines.length > 0) {
-          console.log(`✅ GuidelinesPage: Using ${apiGuidelines.length} guideline documents from API`);
           
           // Map API data to component structure
           const mappedGuidelines = apiGuidelines.map((item) => ({
@@ -210,15 +207,14 @@ const GuidelinesPage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 GuidelinesPage: Mapped guideline documents:', mappedGuidelines);
           setGuidelines(mappedGuidelines);
         } else {
-          console.warn('⚠️ GuidelinesPage: API returned empty array, using static data');
+          console.warn('GuidelinesPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setGuidelines(fallbackGuidelines);
         }
       } catch (err) {
-        console.error('❌ GuidelinesPage: Error fetching guideline documents:', err);
+        console.error('GuidelinesPage: Error fetching guideline documents:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -227,7 +223,7 @@ const GuidelinesPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ GuidelinesPage: Falling back to static data due to error');
+        console.warn('GuidelinesPage: Falling back to static data due to error');
         setGuidelines(fallbackGuidelines);
       } finally {
         setLoading(false);

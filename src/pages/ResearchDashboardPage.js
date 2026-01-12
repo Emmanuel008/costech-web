@@ -158,15 +158,6 @@ const ResearchDashboardPage = () => {
           }),
         ]);
 
-        console.log('Permit statistics data:', {
-          permitGender: permitGenderData,
-          permitCountry: permitCountryData,
-          permitSector: permitSectorData,
-          permitRegion: permitRegionData,
-        });
-
-        console.log('ResearchDashboard - permitRegion data type:', typeof permitRegionData, Array.isArray(permitRegionData), permitRegionData);
-
         setStats({
           gender: genderData,
           funder: funderData,

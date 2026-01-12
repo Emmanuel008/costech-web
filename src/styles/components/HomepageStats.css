@@ -296,7 +296,7 @@
 }
 
 .homepage-stats-container .slick-dots {
-  bottom: -50px;
+  display: none !important;
 }
 
 .homepage-stats-container .slick-dots li button:before {
@@ -320,9 +320,57 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 968px) {
   .homepage-stats-section {
     padding: 30px 20px;
+  }
+
+  .homepage-stat-card-wrapper {
+    padding: 0 8px;
+  }
+
+  .homepage-stat-card {
+    padding: 20px;
+    height: 300px;
+  }
+
+  .stat-card-title {
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+
+  .stat-chart {
+    max-width: 180px;
+    margin-bottom: 16px;
+  }
+
+  .stat-legend {
+    gap: 8px;
+    padding-top: 6px;
+  }
+
+  .legend-item {
+    font-size: 0.8rem;
+    padding: 5px 6px;
+  }
+
+  .legend-label {
+    font-size: 0.85rem;
+  }
+
+  .legend-details {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage-stats-section {
+    padding: 25px 15px;
+  }
+
+  .homepage-stat-card-wrapper {
+    padding: 0 6px;
   }
 
   .homepage-stats-container .slick-prev,
@@ -331,11 +379,175 @@
   }
 
   .homepage-stat-card {
-    height: 280px;
+    height: auto;
+    min-height: 260px;
+    padding: 18px;
+  }
+
+  .stat-card-title {
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .stat-card-content {
+    min-height: 180px;
+  }
+
+  .stat-chart {
+    max-width: 160px;
+    margin-bottom: 14px;
+  }
+
+  .stat-legend {
+    gap: 6px;
+    padding-top: 4px;
+  }
+
+  .legend-item {
+    font-size: 0.75rem;
+    padding: 4px 5px;
+    gap: 8px;
+  }
+
+  .legend-color {
+    width: 12px;
+    height: 12px;
+  }
+
+  .legend-label {
+    font-size: 0.8rem;
+  }
+
+  .legend-details {
+    font-size: 0.7rem;
+  }
+
+  .stat-list {
+    gap: 10px;
+  }
+
+  .stat-list-item {
+    padding: 10px;
+  }
+
+  .stat-list-label,
+  .stat-list-value {
+    font-size: 0.85rem;
+  }
+
+  .stat-map {
+    height: 180px;
   }
 
   .stat-value-number {
     font-size: 2rem;
+  }
+
+  .stat-value-label {
+    font-size: 0.85rem;
+  }
+
+  .stat-card-click-hint {
+    font-size: 0.7rem;
+    bottom: 10px;
+    width: calc(100% - 36px);
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-stats-section {
+    padding: 20px 10px;
+  }
+
+  .homepage-stat-card-wrapper {
+    padding: 0 4px;
+  }
+
+  .homepage-stat-card {
+    min-height: 240px;
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .stat-card-title {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    line-height: 1.25;
+  }
+
+  .stat-card-content {
+    min-height: 160px;
+  }
+
+  .stat-chart {
+    max-width: 140px;
+    margin-bottom: 12px;
+  }
+
+  .stat-legend {
+    gap: 5px;
+    padding-top: 3px;
+  }
+
+  .legend-item {
+    font-size: 0.7rem;
+    padding: 3px 4px;
+    gap: 6px;
+  }
+
+  .legend-color {
+    width: 10px;
+    height: 10px;
+    margin-top: 1px;
+  }
+
+  .legend-label {
+    font-size: 0.75rem;
+  }
+
+  .legend-details {
+    font-size: 0.65rem;
+  }
+
+  .stat-list {
+    gap: 8px;
+  }
+
+  .stat-list-item {
+    padding: 8px;
+    border-radius: 6px;
+  }
+
+  .stat-list-label,
+  .stat-list-value {
+    font-size: 0.8rem;
+  }
+
+  .stat-map {
+    height: 160px;
+  }
+
+  .stat-value-number {
+    font-size: 1.75rem;
+  }
+
+  .stat-value-label {
+    font-size: 0.8rem;
+  }
+
+  .stat-card-click-hint {
+    font-size: 0.65rem;
+    bottom: 8px;
+    width: calc(100% - 32px);
+  }
+
+  .stat-loading,
+  .stat-no-data {
+    font-size: 0.85rem;
+    padding: 15px;
   }
 }
 

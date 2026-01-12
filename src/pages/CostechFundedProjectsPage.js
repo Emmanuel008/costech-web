@@ -73,7 +73,7 @@ const CostechFundedProjectsPage = () => {
         });
         setGenders(filteredGenders);
       } catch (err) {
-        console.error('❌ Error fetching filter options:', err);
+        console.error('Error fetching filter options:', err);
       } finally {
         setLoadingFilters(false);
       }
@@ -89,7 +89,6 @@ const CostechFundedProjectsPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 CostechFundedProjectsPage: Starting to fetch projects from API...');
         
         const filters = {
           page_no: currentPage,
@@ -102,21 +101,19 @@ const CostechFundedProjectsPage = () => {
         
         const result = await getCostechFundedProjects(filters);
         
-        console.log('📊 CostechFundedProjectsPage: Received projects from API:', result);
         
         if (result && result.projects && Array.isArray(result.projects)) {
-          console.log(`✅ CostechFundedProjectsPage: Using ${result.projects.length} projects from API`);
           setProjects(result.projects);
           setTotalProjects(result.pagination?.total || result.projects.length);
           setTotalPages(result.pagination?.total_pages || 1);
         } else {
-          console.warn('⚠️ CostechFundedProjectsPage: API returned empty array');
+          console.warn('CostechFundedProjectsPage: API returned empty array');
           setProjects([]);
           setTotalProjects(0);
           setTotalPages(1);
         }
       } catch (err) {
-        console.error('❌ CostechFundedProjectsPage: Error fetching projects:', err);
+        console.error('CostechFundedProjectsPage: Error fetching projects:', err);
         setError(err.message);
         setProjects([]);
         setTotalProjects(0);

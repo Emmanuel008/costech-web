@@ -4,7 +4,7 @@ import axios from 'axios';
 const API_BASE_URL = 'https://costech.kingdomsolutions.co.tz/api';
 
 // Base URL for the new projects API
-const PROJECTS_API_BASE_URL = 'http://102.208.184.49/api/v1/nfast';
+const PROJECTS_API_BASE_URL = 'https://rclearance.costech.or.tz/api/v1/nfast';
 
 // Base URL for RIMS statistics API
 const RIMS_API_BASE_URL = 'https://rclearance.costech.or.tz/api/v1/rims/statistics';
@@ -29,13 +29,11 @@ let authToken = null;
  */
 export const login = async (email = 'admin@admin.com', password = 'admin') => {
   try {
-    console.log('🔐 Attempting to login...');
     const response = await apiClient.post('/auth/login', {
       email,
       password,
     });
 
-    console.log('🔐 Login response received:', response.data);
 
     // Check multiple possible locations for the access token
     let token = null;
@@ -61,15 +59,14 @@ export const login = async (email = 'admin@admin.com', password = 'admin') => {
 
     if (token) {
       authToken = token;
-      console.log('✅ Login successful, token stored');
       return authToken;
     }
 
     // Log the full response structure for debugging
-    console.error('❌ Token not found in response. Full response structure:', JSON.stringify(response.data, null, 2));
+    console.error('Token not found in response. Full response structure:', JSON.stringify(response.data, null, 2));
     throw new Error('No access token received');
   } catch (error) {
-    console.error('❌ Login error:', error);
+    console.error('Login error:', error);
     if (error.response) {
       console.error('Login response status:', error.response.status);
       console.error('Login response data:', error.response.data);
@@ -100,11 +97,9 @@ const getAuthToken = async () => {
  */
 export const getNewsList = async () => {
   try {
-    console.log('🔵 Starting to fetch news from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/news/ilist', {
@@ -113,18 +108,16 @@ export const getNewsList = async () => {
       },
     });
 
-    console.log('📥 API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const newsItems = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${newsItems.length} news items from API`);
       return newsItems;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching news:', error);
+    console.error('Error fetching news:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -144,11 +137,9 @@ export const getNewsList = async () => {
  */
 export const getNewsById = async (id) => {
   try {
-    console.log(`🔵 Starting to fetch news item ${id} from API...`);
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request - try different possible endpoints
     let response;
@@ -177,18 +168,16 @@ export const getNewsById = async (id) => {
       }
     }
 
-    console.log('📥 News Detail API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK') {
       const newsItem = response.data.returnData || response.data.data || response.data;
-      console.log('✅ Successfully fetched news item from API');
       return newsItem;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return null;
   } catch (error) {
-    console.error('❌ Error fetching news item:', error);
+    console.error('Error fetching news item:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -253,11 +242,9 @@ export const formatDate = (dateString) => {
  */
 export const getFinancialReports = async () => {
   try {
-    console.log('🔵 Starting to fetch financial reports from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/financialReport/ilist', {
@@ -266,18 +253,16 @@ export const getFinancialReports = async () => {
       },
     });
 
-    console.log('📥 Financial Reports API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const reports = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${reports.length} financial reports from API`);
       return reports;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching financial reports:', error);
+    console.error('Error fetching financial reports:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -296,11 +281,9 @@ export const getFinancialReports = async () => {
  */
 export const getMagazines = async () => {
   try {
-    console.log('🔵 Starting to fetch magazines from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/magazine/ilist', {
@@ -309,18 +292,16 @@ export const getMagazines = async () => {
       },
     });
 
-    console.log('📥 Magazines API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const magazines = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${magazines.length} magazines from API`);
       return magazines;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching magazines:', error);
+    console.error('Error fetching magazines:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -339,11 +320,9 @@ export const getMagazines = async () => {
  */
 export const getBooks = async () => {
   try {
-    console.log('🔵 Starting to fetch books from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/books/ilist', {
@@ -352,18 +331,16 @@ export const getBooks = async () => {
       },
     });
 
-    console.log('📥 Books API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const books = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${books.length} books from API`);
       return books;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching books:', error);
+    console.error('Error fetching books:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -382,11 +359,9 @@ export const getBooks = async () => {
  */
 export const getNewsletters = async () => {
   try {
-    console.log('🔵 Starting to fetch newsletters from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/newsLetter/ilist', {
@@ -395,18 +370,16 @@ export const getNewsletters = async () => {
       },
     });
 
-    console.log('📥 Newsletters API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const newsletters = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${newsletters.length} newsletters from API`);
       return newsletters;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching newsletters:', error);
+    console.error('Error fetching newsletters:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -425,11 +398,9 @@ export const getNewsletters = async () => {
  */
 export const getStatements = async () => {
   try {
-    console.log('🔵 Starting to fetch statements from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/statement/ilist', {
@@ -438,18 +409,16 @@ export const getStatements = async () => {
       },
     });
 
-    console.log('📥 Statements API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const statements = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${statements.length} statements from API`);
       return statements;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching statements:', error);
+    console.error('Error fetching statements:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -468,11 +437,9 @@ export const getStatements = async () => {
  */
 export const getPressReleases = async () => {
   try {
-    console.log('🔵 Starting to fetch press releases from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/pressRelease/ilist', {
@@ -481,18 +448,16 @@ export const getPressReleases = async () => {
       },
     });
 
-    console.log('📥 Press Releases API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const pressReleases = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${pressReleases.length} press releases from API`);
       return pressReleases;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching press releases:', error);
+    console.error('Error fetching press releases:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -511,11 +476,9 @@ export const getPressReleases = async () => {
  */
 export const getCostechVideos = async () => {
   try {
-    console.log('🔵 Starting to fetch COSTECH videos from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/costechVideo/ilist', {
@@ -524,18 +487,16 @@ export const getCostechVideos = async () => {
       },
     });
 
-    console.log('📥 COSTECH Videos API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const videos = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${videos.length} COSTECH videos from API`);
       return videos;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching COSTECH videos:', error);
+    console.error('Error fetching COSTECH videos:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -554,11 +515,9 @@ export const getCostechVideos = async () => {
  */
 export const getReports = async () => {
   try {
-    console.log('🔵 Starting to fetch reports from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/reports/ilist', {
@@ -567,18 +526,16 @@ export const getReports = async () => {
       },
     });
 
-    console.log('📥 Reports API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const reports = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${reports.length} reports from API`);
       return reports;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching reports:', error);
+    console.error('Error fetching reports:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -597,11 +554,9 @@ export const getReports = async () => {
  */
 export const getActsAndLegal = async () => {
   try {
-    console.log('🔵 Starting to fetch acts and legal documents from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/actsandlegal/ilist', {
@@ -610,18 +565,16 @@ export const getActsAndLegal = async () => {
       },
     });
 
-    console.log('📥 Acts and Legal API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const actsAndLegal = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${actsAndLegal.length} acts and legal documents from API`);
       return actsAndLegal;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching acts and legal documents:', error);
+    console.error('Error fetching acts and legal documents:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -640,11 +593,9 @@ export const getActsAndLegal = async () => {
  */
 export const getPolicies = async () => {
   try {
-    console.log('🔵 Starting to fetch policies from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/policies/ilist', {
@@ -653,18 +604,16 @@ export const getPolicies = async () => {
       },
     });
 
-    console.log('📥 Policies API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const policies = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${policies.length} policies from API`);
       return policies;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching policies:', error);
+    console.error('Error fetching policies:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -683,11 +632,9 @@ export const getPolicies = async () => {
  */
 export const getStrategicPlans = async () => {
   try {
-    console.log('🔵 Starting to fetch strategic plans from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/strategicPlan/ilist', {
@@ -696,18 +643,16 @@ export const getStrategicPlans = async () => {
       },
     });
 
-    console.log('📥 Strategic Plans API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const strategicPlans = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${strategicPlans.length} strategic plans from API`);
       return strategicPlans;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching strategic plans:', error);
+    console.error('Error fetching strategic plans:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -726,11 +671,9 @@ export const getStrategicPlans = async () => {
  */
 export const getGuidelineDocuments = async () => {
   try {
-    console.log('🔵 Starting to fetch guideline documents from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/guidelineDocuments/ilist', {
@@ -739,18 +682,16 @@ export const getGuidelineDocuments = async () => {
       },
     });
 
-    console.log('📥 Guideline Documents API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const guidelineDocuments = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${guidelineDocuments.length} guideline documents from API`);
       return guidelineDocuments;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching guideline documents:', error);
+    console.error('Error fetching guideline documents:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -769,11 +710,9 @@ export const getGuidelineDocuments = async () => {
  */
 export const getConferences = async () => {
   try {
-    console.log('🔵 Starting to fetch conferences from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/conference/ilist', {
@@ -782,18 +721,16 @@ export const getConferences = async () => {
       },
     });
 
-    console.log('📥 Conferences API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const conferences = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${conferences.length} conferences from API`);
       return conferences;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching conferences:', error);
+    console.error('Error fetching conferences:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -812,11 +749,9 @@ export const getConferences = async () => {
  */
 export const getExhibitions = async () => {
   try {
-    console.log('🔵 Starting to fetch exhibitions from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/exhibition/ilist', {
@@ -825,18 +760,16 @@ export const getExhibitions = async () => {
       },
     });
 
-    console.log('📥 Exhibitions API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const exhibitions = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${exhibitions.length} exhibitions from API`);
       return exhibitions;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching exhibitions:', error);
+    console.error('Error fetching exhibitions:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -855,11 +788,9 @@ export const getExhibitions = async () => {
  */
 export const getOngoingProjects = async () => {
   try {
-    console.log('🔵 Starting to fetch ongoing projects from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/ongoingProject/ilist', {
@@ -868,18 +799,16 @@ export const getOngoingProjects = async () => {
       },
     });
 
-    console.log('📥 Ongoing Projects API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const projects = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${projects.length} ongoing projects from API`);
       return projects;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching ongoing projects:', error);
+    console.error('Error fetching ongoing projects:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -898,11 +827,9 @@ export const getOngoingProjects = async () => {
  */
 export const getPartnershipAreas = async () => {
   try {
-    console.log('🔵 Starting to fetch partnership areas from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/areaOfPartnership/ilist', {
@@ -911,18 +838,16 @@ export const getPartnershipAreas = async () => {
       },
     });
 
-    console.log('📥 Partnership Areas API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const areas = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${areas.length} partnership areas from API`);
       return areas;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching partnership areas:', error);
+    console.error('Error fetching partnership areas:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -941,11 +866,9 @@ export const getPartnershipAreas = async () => {
  */
 export const getFellowshipGrants = async () => {
   try {
-    console.log('🔵 Starting to fetch fellowship grants from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/fellowshipGrants/ilist', {
@@ -954,18 +877,16 @@ export const getFellowshipGrants = async () => {
       },
     });
 
-    console.log('📥 Fellowship Grants API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const grants = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${grants.length} fellowship grants from API`);
       return grants;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching fellowship grants:', error);
+    console.error('Error fetching fellowship grants:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -984,11 +905,9 @@ export const getFellowshipGrants = async () => {
  */
 export const getOnlineServices = async () => {
   try {
-    console.log('🔵 Starting to fetch online services from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/onlineService/ilist', {
@@ -997,18 +916,16 @@ export const getOnlineServices = async () => {
       },
     });
 
-    console.log('📥 Online Services API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const services = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${services.length} online services from API`);
       return services;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching online services:', error);
+    console.error('Error fetching online services:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -1027,11 +944,9 @@ export const getOnlineServices = async () => {
  */
 export const getHero = async () => {
   try {
-    console.log('🔵 Starting to fetch hero items from API...');
     
     // Get authentication token
     const token = await getAuthToken();
-    console.log('✅ Authentication successful, token received');
 
     // Make authenticated request
     const response = await apiClient.get('/hero/ilist', {
@@ -1040,18 +955,16 @@ export const getHero = async () => {
       },
     });
 
-    console.log('📥 Hero API Response received:', response.data);
 
     if (response.data && response.data.status === 'OK' && response.data.returnData) {
       const heroItems = response.data.returnData.list_of_item || [];
-      console.log(`✅ Successfully fetched ${heroItems.length} hero items from API`);
       return heroItems;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching hero items:', error);
+    console.error('Error fetching hero items:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -1071,7 +984,6 @@ export const getHero = async () => {
  */
 export const getCostechFundedProjects = async (filters = {}) => {
   try {
-    console.log('🔵 Starting to fetch COSTECH funded projects from API...', filters);
     
     const payload = {
       page_no: filters.page_no || 1,
@@ -1089,13 +1001,11 @@ export const getCostechFundedProjects = async (filters = {}) => {
       },
     });
 
-    console.log('📥 COSTECH Funded Projects API Response received:', response.data);
 
     // Handle paginated response structure
     if (response.data && response.data.data && Array.isArray(response.data.data)) {
       const projects = response.data.data;
       const meta = response.data.meta || {};
-      console.log(`✅ Successfully fetched ${projects.length} projects from API`);
       return {
         projects,
         pagination: {
@@ -1109,7 +1019,6 @@ export const getCostechFundedProjects = async (filters = {}) => {
     
     // Fallback: handle direct array response
     if (response.data && Array.isArray(response.data)) {
-      console.log(`✅ Successfully fetched ${response.data.length} projects from API`);
       return {
         projects: response.data,
         pagination: {
@@ -1121,10 +1030,10 @@ export const getCostechFundedProjects = async (filters = {}) => {
       };
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return { projects: [], pagination: { current_page: 1, total: 0, page_size: 10, total_pages: 0 } };
   } catch (error) {
-    console.error('❌ Error fetching COSTECH funded projects:', error);
+    console.error('Error fetching COSTECH funded projects:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);
@@ -1143,7 +1052,6 @@ export const getCostechFundedProjects = async (filters = {}) => {
  */
 export const getFunders = async () => {
   try {
-    console.log('🔵 Starting to fetch funders from API...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/funder/list`, {}, {
       timeout: 15000,
@@ -1152,18 +1060,16 @@ export const getFunders = async () => {
       },
     });
 
-    console.log('📥 Funders API Response received:', response.data);
 
     if (response.data && response.data.data && Array.isArray(response.data.data)) {
       const funders = response.data.data;
-      console.log(`✅ Successfully fetched ${funders.length} funders from API`);
       return funders;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching funders:', error);
+    console.error('Error fetching funders:', error);
     throw error;
   }
 };
@@ -1174,7 +1080,6 @@ export const getFunders = async () => {
  */
 export const getPrograms = async () => {
   try {
-    console.log('🔵 Starting to fetch programs from API...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/program/list`, {}, {
       timeout: 15000,
@@ -1183,18 +1088,16 @@ export const getPrograms = async () => {
       },
     });
 
-    console.log('📥 Programs API Response received:', response.data);
 
     if (response.data && response.data.data && Array.isArray(response.data.data)) {
       const programs = response.data.data;
-      console.log(`✅ Successfully fetched ${programs.length} programs from API`);
       return programs;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching programs:', error);
+    console.error('Error fetching programs:', error);
     throw error;
   }
 };
@@ -1205,7 +1108,6 @@ export const getPrograms = async () => {
  */
 export const getProjectStatuses = async () => {
   try {
-    console.log('🔵 Starting to fetch project statuses from API...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/project-status/list`, {}, {
       timeout: 15000,
@@ -1214,18 +1116,16 @@ export const getProjectStatuses = async () => {
       },
     });
 
-    console.log('📥 Project Statuses API Response received:', response.data);
 
     if (response.data && response.data.data && Array.isArray(response.data.data)) {
       const statuses = response.data.data;
-      console.log(`✅ Successfully fetched ${statuses.length} statuses from API`);
       return statuses;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching project statuses:', error);
+    console.error('Error fetching project statuses:', error);
     throw error;
   }
 };
@@ -1236,7 +1136,6 @@ export const getProjectStatuses = async () => {
  */
 export const getGenders = async () => {
   try {
-    console.log('🔵 Starting to fetch genders from API...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/gender/list`, {}, {
       timeout: 15000,
@@ -1245,18 +1144,16 @@ export const getGenders = async () => {
       },
     });
 
-    console.log('📥 Genders API Response received:', response.data);
 
     if (response.data && response.data.data && Array.isArray(response.data.data)) {
       const genders = response.data.data;
-      console.log(`✅ Successfully fetched ${genders.length} genders from API`);
       return genders;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching genders:', error);
+    console.error('Error fetching genders:', error);
     throw error;
   }
 };
@@ -1267,7 +1164,6 @@ export const getGenders = async () => {
  */
 export const getInnovationPerGender = async () => {
   try {
-    console.log('🔵 Starting to fetch innovation per gender statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-per-gender`, {}, {
       timeout: 15000,
@@ -1276,17 +1172,15 @@ export const getInnovationPerGender = async () => {
       },
     });
 
-    console.log('📥 Innovation Per Gender API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched innovation per gender statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching innovation per gender:', error);
+    console.error('Error fetching innovation per gender:', error);
     throw error;
   }
 };
@@ -1297,7 +1191,6 @@ export const getInnovationPerGender = async () => {
  */
 export const getInnovationTotalFundsPerFunder = async () => {
   try {
-    console.log('🔵 Starting to fetch innovation total funds per funder statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-total-funds-per-funder`, {}, {
       timeout: 15000,
@@ -1306,17 +1199,15 @@ export const getInnovationTotalFundsPerFunder = async () => {
       },
     });
 
-    console.log('📥 Innovation Total Funds Per Funder API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched innovation total funds per funder statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching innovation total funds per funder:', error);
+    console.error('Error fetching innovation total funds per funder:', error);
     throw error;
   }
 };
@@ -1327,7 +1218,6 @@ export const getInnovationTotalFundsPerFunder = async () => {
  */
 export const getInnovationTotalFundsPerProgram = async () => {
   try {
-    console.log('🔵 Starting to fetch innovation total funds per program statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-total-funds-per-program`, {}, {
       timeout: 15000,
@@ -1336,17 +1226,15 @@ export const getInnovationTotalFundsPerProgram = async () => {
       },
     });
 
-    console.log('📥 Innovation Total Funds Per Program API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched innovation total funds per program statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching innovation total funds per program:', error);
+    console.error('Error fetching innovation total funds per program:', error);
     throw error;
   }
 };
@@ -1357,7 +1245,6 @@ export const getInnovationTotalFundsPerProgram = async () => {
  */
 export const getInnovationPerStatus = async () => {
   try {
-    console.log('🔵 Starting to fetch innovation per status statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/innovation-per-status`, {}, {
       timeout: 15000,
@@ -1366,17 +1253,15 @@ export const getInnovationPerStatus = async () => {
       },
     });
 
-    console.log('📥 Innovation Per Status API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched innovation per status statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching innovation per status:', error);
+    console.error('Error fetching innovation per status:', error);
     throw error;
   }
 };
@@ -1387,7 +1272,6 @@ export const getInnovationPerStatus = async () => {
  */
 export const getResearchPerGender = async () => {
   try {
-    console.log('🔵 Starting to fetch research per gender statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-per-gender`, {}, {
       timeout: 15000,
@@ -1396,17 +1280,15 @@ export const getResearchPerGender = async () => {
       },
     });
 
-    console.log('📥 Research Per Gender API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched research per gender statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching research per gender:', error);
+    console.error('Error fetching research per gender:', error);
     throw error;
   }
 };
@@ -1417,7 +1299,6 @@ export const getResearchPerGender = async () => {
  */
 export const getResearchTotalFundsPerFunder = async () => {
   try {
-    console.log('🔵 Starting to fetch research total funds per funder statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-total-funds-per-funder`, {}, {
       timeout: 15000,
@@ -1426,17 +1307,15 @@ export const getResearchTotalFundsPerFunder = async () => {
       },
     });
 
-    console.log('📥 Research Total Funds Per Funder API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched research total funds per funder statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching research total funds per funder:', error);
+    console.error('Error fetching research total funds per funder:', error);
     throw error;
   }
 };
@@ -1447,7 +1326,6 @@ export const getResearchTotalFundsPerFunder = async () => {
  */
 export const getResearchTotalFundsPerProgram = async () => {
   try {
-    console.log('🔵 Starting to fetch research total funds per program statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-total-funds-per-program`, {}, {
       timeout: 15000,
@@ -1456,17 +1334,15 @@ export const getResearchTotalFundsPerProgram = async () => {
       },
     });
 
-    console.log('📥 Research Total Funds Per Program API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched research total funds per program statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching research total funds per program:', error);
+    console.error('Error fetching research total funds per program:', error);
     throw error;
   }
 };
@@ -1477,7 +1353,6 @@ export const getResearchTotalFundsPerProgram = async () => {
  */
 export const getResearchPerStatus = async () => {
   try {
-    console.log('🔵 Starting to fetch research per status statistics...');
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/statistics/research-per-status`, {}, {
       timeout: 15000,
@@ -1486,17 +1361,15 @@ export const getResearchPerStatus = async () => {
       },
     });
 
-    console.log('📥 Research Per Status API Response received:', response.data);
 
     if (response.data && response.data.data) {
-      console.log('✅ Successfully fetched research per status statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return {};
   } catch (error) {
-    console.error('❌ Error fetching research per status:', error);
+    console.error('Error fetching research per status:', error);
     throw error;
   }
 };
@@ -1507,7 +1380,6 @@ export const getResearchPerStatus = async () => {
  */
 export const getPermitPerGender = async () => {
   try {
-    console.log('🔵 Starting to fetch permit per gender statistics...');
     
     const response = await axios.get(`${RIMS_API_BASE_URL}/permit-per-gender`, {
       timeout: 15000,
@@ -1516,17 +1388,15 @@ export const getPermitPerGender = async () => {
       },
     });
 
-    console.log('📥 Permit Per Gender API Response received:', response.data);
 
     if (response.data && response.data.code === 200 && response.data.data) {
-      console.log('✅ Successfully fetched permit per gender statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching permit per gender:', error);
+    console.error('Error fetching permit per gender:', error);
     throw error;
   }
 };
@@ -1537,7 +1407,6 @@ export const getPermitPerGender = async () => {
  */
 export const getPermitPerCountry = async () => {
   try {
-    console.log('🔵 Starting to fetch permit per country statistics...');
     
     const response = await axios.get(`${RIMS_API_BASE_URL}/permit-per-country`, {
       timeout: 15000,
@@ -1546,17 +1415,15 @@ export const getPermitPerCountry = async () => {
       },
     });
 
-    console.log('📥 Permit Per Country API Response received:', response.data);
 
     if (response.data && response.data.code === 200 && response.data.data) {
-      console.log('✅ Successfully fetched permit per country statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching permit per country:', error);
+    console.error('Error fetching permit per country:', error);
     throw error;
   }
 };
@@ -1567,7 +1434,6 @@ export const getPermitPerCountry = async () => {
  */
 export const getPermitPerSector = async () => {
   try {
-    console.log('🔵 Starting to fetch permit per sector statistics...');
     
     const response = await axios.get(`${RIMS_API_BASE_URL}/permit-per-sector`, {
       timeout: 15000,
@@ -1576,17 +1442,15 @@ export const getPermitPerSector = async () => {
       },
     });
 
-    console.log('📥 Permit Per Sector API Response received:', response.data);
 
     if (response.data && response.data.code === 200 && response.data.data) {
-      console.log('✅ Successfully fetched permit per sector statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching permit per sector:', error);
+    console.error('Error fetching permit per sector:', error);
     throw error;
   }
 };
@@ -1597,7 +1461,6 @@ export const getPermitPerSector = async () => {
  */
 export const getPermitPerRegion = async () => {
   try {
-    console.log('🔵 Starting to fetch permit per region statistics...');
     
     const response = await axios.get(`${RIMS_API_BASE_URL}/permit-research-location`, {
       timeout: 15000,
@@ -1606,17 +1469,15 @@ export const getPermitPerRegion = async () => {
       },
     });
 
-    console.log('📥 Permit Per Region API Response received:', response.data);
 
     if (response.data && response.data.code === 200 && response.data.data) {
-      console.log('✅ Successfully fetched permit per region statistics');
       return response.data.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return [];
   } catch (error) {
-    console.error('❌ Error fetching permit per region:', error);
+    console.error('Error fetching permit per region:', error);
     throw error;
   }
 };
@@ -1628,7 +1489,6 @@ export const getPermitPerRegion = async () => {
  */
 export const getCostechFundedProjectDetail = async (id) => {
   try {
-    console.log(`🔵 Starting to fetch COSTECH funded project ${id} from API...`);
     
     const response = await axios.post(`${PROJECTS_API_BASE_URL}/project/show/${id}`, {}, {
       timeout: 15000,
@@ -1637,17 +1497,15 @@ export const getCostechFundedProjectDetail = async (id) => {
       },
     });
 
-    console.log('📥 COSTECH Funded Project Detail API Response received:', response.data);
 
     if (response.data && response.data.id) {
-      console.log('✅ Successfully fetched project detail from API');
       return response.data;
     }
 
-    console.warn('⚠️ API returned empty or invalid response');
+    console.warn('API returned empty or invalid response');
     return null;
   } catch (error) {
-    console.error('❌ Error fetching COSTECH funded project detail:', error);
+    console.error('Error fetching COSTECH funded project detail:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);

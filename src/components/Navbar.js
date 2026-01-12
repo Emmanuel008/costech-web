@@ -233,15 +233,12 @@ const Navbar = () => {
   useEffect(() => {
     const fetchOnlineServices = async () => {
       try {
-        console.log('🔄 Navbar: Starting to fetch online services from API...');
         
         // Fetch online services from API
         const apiServices = await getOnlineServices();
         
-        console.log('📊 Navbar: Received online services from API:', apiServices);
         
         if (apiServices && apiServices.length > 0) {
-          console.log(`✅ Navbar: Using ${apiServices.length} online services from API`);
           
           // Map API response to component structure
           const mappedServices = apiServices.map((service) => {
@@ -260,11 +257,11 @@ const Navbar = () => {
           
           setOnlineServicesItems(mappedServices);
         } else {
-          console.warn('⚠️ Navbar: API returned empty array, using fallback');
+          console.warn('Navbar: API returned empty array, using fallback');
           setOnlineServicesItems(fallbackOnlineServicesItems);
         }
       } catch (err) {
-        console.error('❌ Navbar: Error fetching online services:', err);
+        console.error('Navbar: Error fetching online services:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,

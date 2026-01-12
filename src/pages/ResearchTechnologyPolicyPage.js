@@ -180,15 +180,12 @@ const ResearchTechnologyPolicyPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 ResearchTechnologyPolicyPage: Starting to fetch policies from API...');
         
         // Fetch policies from API
         const apiPolicies = await getPolicies();
         
-        console.log('📊 ResearchTechnologyPolicyPage: Received policies from API:', apiPolicies);
         
         if (apiPolicies && apiPolicies.length > 0) {
-          console.log(`✅ ResearchTechnologyPolicyPage: Using ${apiPolicies.length} policies from API`);
           
           // Map API data to component structure
           const mappedPolicies = apiPolicies.map((item) => ({
@@ -198,15 +195,14 @@ const ResearchTechnologyPolicyPage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 ResearchTechnologyPolicyPage: Mapped policies:', mappedPolicies);
           setPolicies(mappedPolicies);
         } else {
-          console.warn('⚠️ ResearchTechnologyPolicyPage: API returned empty array, using static data');
+          console.warn('ResearchTechnologyPolicyPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setPolicies(fallbackPolicies);
         }
       } catch (err) {
-        console.error('❌ ResearchTechnologyPolicyPage: Error fetching policies:', err);
+        console.error('ResearchTechnologyPolicyPage: Error fetching policies:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -215,7 +211,7 @@ const ResearchTechnologyPolicyPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ ResearchTechnologyPolicyPage: Falling back to static data due to error');
+        console.warn('ResearchTechnologyPolicyPage: Falling back to static data due to error');
         setPolicies(fallbackPolicies);
       } finally {
         setLoading(false);

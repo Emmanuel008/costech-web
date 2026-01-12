@@ -174,15 +174,12 @@ const StrategicPlanPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 StrategicPlanPage: Starting to fetch strategic plans from API...');
         
         // Fetch strategic plans from API
         const apiStrategicPlans = await getStrategicPlans();
         
-        console.log('📊 StrategicPlanPage: Received strategic plans from API:', apiStrategicPlans);
         
         if (apiStrategicPlans && apiStrategicPlans.length > 0) {
-          console.log(`✅ StrategicPlanPage: Using ${apiStrategicPlans.length} strategic plans from API`);
           
           // Map API data to component structure
           const mappedPlans = apiStrategicPlans.map((item) => ({
@@ -192,15 +189,14 @@ const StrategicPlanPage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 StrategicPlanPage: Mapped strategic plans:', mappedPlans);
           setStrategicPlans(mappedPlans);
         } else {
-          console.warn('⚠️ StrategicPlanPage: API returned empty array, using static data');
+          console.warn('StrategicPlanPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setStrategicPlans(fallbackStrategicPlans);
         }
       } catch (err) {
-        console.error('❌ StrategicPlanPage: Error fetching strategic plans:', err);
+        console.error('StrategicPlanPage: Error fetching strategic plans:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -209,7 +205,7 @@ const StrategicPlanPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ StrategicPlanPage: Falling back to static data due to error');
+        console.warn('StrategicPlanPage: Falling back to static data due to error');
         setStrategicPlans(fallbackStrategicPlans);
       } finally {
         setLoading(false);

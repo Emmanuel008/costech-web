@@ -11,28 +11,6 @@ const Hero = () => {
   const [heroItems, setHeroItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Default hero slides as fallback
-  const defaultSlides = [
-    {
-      id: 1,
-      title: "Advancing Innovation and Technology for Tanzania's Future",
-      description: "COSTECH is committed to coordinate, promote and facilitate science, technology and innovation in the country by meeting legal and customer requirements and even exceeding customer expectations.",
-      badge: "COSTECH",
-      image: `${process.env.PUBLIC_URL}/assets/img/hero.jpg`,
-      rotatingWords: ['Innovation', 'Science', 'Research'],
-      showRotatingText: true
-    },
-    {
-      id: 2,
-      title: "COSTECH Yasisitiza Ulinzi wa Bunifu Kabla ya Kubiasharisha",
-      description: "COSTECH emphasizes the protection of innovation before commercialization to ensure intellectual property rights and support sustainable development.",
-      badge: null,
-      image: `${process.env.PUBLIC_URL}/assets/img/ubunifu.jpeg`,
-      rotatingWords: null,
-      showRotatingText: false
-    }
-  ];
-
   // Fetch hero data from API
   useEffect(() => {
     const fetchHeroData = async () => {
@@ -42,13 +20,11 @@ const Hero = () => {
         if (data && data.length > 0) {
           setHeroItems(data);
         } else {
-          // Use default slides if API returns empty
-          setHeroItems(defaultSlides);
+          setHeroItems([]);
         }
       } catch (error) {
         console.error('Error fetching hero data:', error);
-        // Use default slides on error
-        setHeroItems(defaultSlides);
+        setHeroItems([]);
       } finally {
         setLoading(false);
       }
@@ -58,8 +34,8 @@ const Hero = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Use API data or fallback to default slides
-  const slides = heroItems.length > 0 ? heroItems : defaultSlides;
+  // Use API data only
+  const slides = heroItems;
   const totalSlides = slides.length;
 
   // Preload images
@@ -93,7 +69,7 @@ const Hero = () => {
     if (slide.image_url) return slide.image_url;
     if (slide.image) return slide.image;
     if (slide.background_image) return slide.background_image;
-    return `${process.env.PUBLIC_URL}/assets/img/hero.jpg`; // Default fallback
+    return '';
   };
 
   // Get title from hero item
@@ -199,18 +175,15 @@ const Hero = () => {
                   <h1 className="hero-title">Loading...</h1>
                 </div>
               </div>
-              <div className="hero-image-container">
-                <img 
-                  src={defaultSlides[0].image} 
-                  alt="Loading"
-                  className="hero-image"
-                />
-              </div>
             </div>
           </div>
         </div>
       </section>
     );
+  }
+
+  if (slides.length === 0) {
+    return null;
   }
 
   return (

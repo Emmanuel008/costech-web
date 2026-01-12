@@ -27,24 +27,21 @@ const StatementPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 StatementPage: Starting to fetch statements from API...');
         
         // Fetch statements from API
         const apiStatements = await getStatements();
         
-        console.log('📊 StatementPage: Received statements from API:', apiStatements);
         
         if (apiStatements && apiStatements.length > 0) {
-          console.log(`✅ StatementPage: Using ${apiStatements.length} statements from API`);
           setStatements(apiStatements);
         } else {
-          console.warn('⚠️ StatementPage: API returned empty array, using static data');
+          console.warn('StatementPage: API returned empty array, using static data');
           setStatements(fallbackStatements);
         }
       } catch (err) {
-        console.error('❌ StatementPage: Error fetching statements:', err);
+        console.error('StatementPage: Error fetching statements:', err);
         setError(err.message);
-        console.warn('⚠️ StatementPage: Falling back to static data due to error');
+        console.warn('StatementPage: Falling back to static data due to error');
         setStatements(fallbackStatements);
       } finally {
         setLoading(false);

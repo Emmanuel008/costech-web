@@ -174,15 +174,12 @@ const ReportsPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 ReportsPage: Starting to fetch reports from API...');
         
         // Fetch reports from API
         const apiReports = await getReports();
         
-        console.log('📊 ReportsPage: Received reports from API:', apiReports);
         
         if (apiReports && apiReports.length > 0) {
-          console.log(`✅ ReportsPage: Using ${apiReports.length} reports from API`);
           
           // Map API data to component structure
           const mappedReports = apiReports.map((item) => ({
@@ -192,15 +189,14 @@ const ReportsPage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 ReportsPage: Mapped reports:', mappedReports);
           setReports(mappedReports);
         } else {
-          console.warn('⚠️ ReportsPage: API returned empty array, using static data');
+          console.warn('ReportsPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setReports(fallbackReports);
         }
       } catch (err) {
-        console.error('❌ ReportsPage: Error fetching reports:', err);
+        console.error('ReportsPage: Error fetching reports:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -209,7 +205,7 @@ const ReportsPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ ReportsPage: Falling back to static data due to error');
+        console.warn('ReportsPage: Falling back to static data due to error');
         setReports(fallbackReports);
       } finally {
         setLoading(false);

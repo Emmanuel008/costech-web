@@ -168,15 +168,12 @@ const NewsletterPage = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 NewsletterPage: Starting to fetch newsletters from API...');
         
         // Fetch newsletters from API
         const apiNewsletters = await getNewsletters();
         
-        console.log('📊 NewsletterPage: Received newsletters from API:', apiNewsletters);
         
         if (apiNewsletters && apiNewsletters.length > 0) {
-          console.log(`✅ NewsletterPage: Using ${apiNewsletters.length} newsletters from API`);
           
           // Map API data to component structure
           const mappedNewsletters = apiNewsletters.map((item) => ({
@@ -186,15 +183,14 @@ const NewsletterPage = () => {
             downloadUrl: item.document || '#',
           }));
           
-          console.log('📝 NewsletterPage: Mapped newsletters:', mappedNewsletters);
           setNewsletters(mappedNewsletters);
         } else {
-          console.warn('⚠️ NewsletterPage: API returned empty array, using static data');
+          console.warn('NewsletterPage: API returned empty array, using static data');
           // Fallback to static data if API returns empty
           setNewsletters(fallbackNewsletters);
         }
       } catch (err) {
-        console.error('❌ NewsletterPage: Error fetching newsletters:', err);
+        console.error('NewsletterPage: Error fetching newsletters:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -203,7 +199,7 @@ const NewsletterPage = () => {
         });
         setError(err.message);
         // Fallback to static data on error
-        console.warn('⚠️ NewsletterPage: Falling back to static data due to error');
+        console.warn('NewsletterPage: Falling back to static data due to error');
         setNewsletters(fallbackNewsletters);
       } finally {
         setLoading(false);

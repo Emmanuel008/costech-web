@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/components/News.css';
-import { newsItems } from '../data/newsItems';
 import { getNewsList, generateSlug, formatDate } from '../services/api';
 
 const News = () => {
@@ -15,20 +14,17 @@ const News = () => {
         setLoading(true);
         setError(null);
         
-        console.log('🔄 News component: Starting to fetch news from API...');
         
         // Fetch news from API
         const apiNews = await getNewsList();
         
-        console.log('📊 News component: Received news from API:', apiNews);
         
         if (apiNews && apiNews.length > 0) {
-          console.log(`✅ News component: Using ${apiNews.length} items from API`);
           
           // Map API data to component structure
           const mappedNews = apiNews.slice(0, 4).map((item) => {
             // Handle image URL - if relative, prepend base URL
-            let imageUrl = item.image || '/assets/img/miradi.jpg';
+            let imageUrl = item.image || '';
             if (item.image && !item.image.startsWith('http') && !item.image.startsWith('/')) {
               imageUrl = `https://costech.kingdomsolutions.co.tz/${item.image}`;
             } else if (item.image && item.image.startsWith('http')) {
@@ -46,15 +42,12 @@ const News = () => {
             };
           });
           
-          console.log('📝 News component: Mapped news items:', mappedNews);
           setFeaturedNews(mappedNews);
         } else {
-          console.warn('⚠️ News component: API returned empty array, using static data');
-          // Fallback to static data if API returns empty
-          setFeaturedNews(newsItems.slice(0, 4));
+          setFeaturedNews([]);
         }
       } catch (err) {
-        console.error('❌ News component: Error fetching news:', err);
+        console.error('News component: Error fetching news:', err);
         console.error('Error details:', {
           message: err.message,
           response: err.response?.data,
@@ -62,9 +55,7 @@ const News = () => {
           stack: err.stack
         });
         setError(err.message);
-        // Fallback to static data on error
-        console.warn('⚠️ News component: Falling back to static data due to error');
-        setFeaturedNews(newsItems.slice(0, 4));
+        setFeaturedNews([]);
       } finally {
         setLoading(false);
       }
@@ -108,7 +99,7 @@ const News = () => {
                       className="news-image"
                       loading="lazy"
                       onError={(e) => {
-                        e.target.src = '/assets/img/miradi.jpg';
+                        e.target.style.display = 'none';
                       }}
                     />
                   </div>
