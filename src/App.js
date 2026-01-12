@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import CardCarousel from './components/CardCarousel';
+import HomepageStats from './components/HomepageStats';
 import News from './components/News';
 import SectionDivider from './components/SectionDivider';
 import Partners from './components/Partners';
@@ -57,7 +57,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <CardCarousel />
+      <HomepageStats />
       <News />
       <SectionDivider />
       <Partners />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import '../styles/pages/InnovationDashboardPage.css';
 import {
   getInnovationPerGender,
@@ -8,7 +9,9 @@ import {
 } from '../services/api';
 
 const InnovationDashboardPage = () => {
-  const [activeReport, setActiveReport] = useState('gender');
+  const [searchParams] = useSearchParams();
+  const reportParam = searchParams.get('report');
+  const [activeReport, setActiveReport] = useState(reportParam || 'gender');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [stats, setStats] = useState({
@@ -48,11 +51,18 @@ const InnovationDashboardPage = () => {
     fetchStatistics();
   }, []);
 
+  // Update active report when query parameter changes
+  useEffect(() => {
+    if (reportParam && ['gender', 'funder', 'program', 'status'].includes(reportParam)) {
+      setActiveReport(reportParam);
+    }
+  }, [reportParam]);
+
   // Transform API data to chart format
   const reports = {
     gender: {
-      title: 'Innovation per Gender',
-      description: 'Innovation participation by gender distribution',
+      title: 'Gender composition for innovation projects’ lead innovators',
+      description: 'Gender Profile of lead innovators for the supported innovation projects through the National Fund for Advancement of Science and Technology since 2017',
       data: stats.gender
         ? [
             { gender: 'Male', count: stats.gender.male || 0 },
@@ -61,8 +71,8 @@ const InnovationDashboardPage = () => {
         : [],
     },
     funder: {
-      title: 'Total Funds per Funder',
-      description: 'Total funding distribution by funder',
+      title: ' Innovation investment profile',
+      description: 'Composition of Innovation Funds in the National Fund for Advancement of Science and Technology mobilized from the government, development partners and other stakeholders since 2017',
       data: stats.funder
         ? Object.entries(stats.funder)
             .map(([funder, amount]) => ({
@@ -73,8 +83,8 @@ const InnovationDashboardPage = () => {
         : [],
     },
     program: {
-      title: 'Total Funds per Program',
-      description: 'Total funding distribution by program',
+      title: 'Research and Innovation funding allocation',
+      description: 'Allocation of NFAST funding across research and innovation programmes since 2011 ',
       data: stats.program
         ? Object.entries(stats.program).map(([program, amount]) => ({
             program,
@@ -83,8 +93,8 @@ const InnovationDashboardPage = () => {
         : [],
     },
     status: {
-      title: 'Innovation Project by Status',
-      description: 'Distribution of innovation projects by completion status',
+      title: 'Composition of ongoing and completed supported innovation projects',
+      description: ' Proportion of ongoing and completed innovation projects funded through the National Fund for Advancement of Science and Technology since 2017',
       data: stats.status
         ? Object.entries(stats.status).map(([status, count]) => ({
             status,
@@ -221,14 +231,14 @@ const InnovationDashboardPage = () => {
                             const percentage = total > 0 ? ((item.count / total) * 100).toFixed(1) : 0;
                             const label = key === 'gender' ? item.gender : item.status;
                             return (
-                              <div key={index} className="pie-chart-legend-item">
-                                <div
-                                  className="pie-chart-legend-color"
+                          <div key={index} className="pie-chart-legend-item">
+                            <div
+                              className="pie-chart-legend-color"
                                   style={{ backgroundColor: colors[index % colors.length] }}
-                                ></div>
+                            ></div>
                                 <span className="pie-chart-legend-label">{label}</span>
                                 <span className="pie-chart-legend-value">{item.count} ({percentage}%)</span>
-                              </div>
+                          </div>
                             );
                           });
                         })()}
@@ -271,22 +281,22 @@ const InnovationDashboardPage = () => {
                               const containerHeight = 320;
                               const barHeightPx = (item.count / maxCount) * containerHeight;
                               const percentage = total > 0 ? ((item.count / total) * 100).toFixed(1) : 0;
-                              return (
-                                <div key={index} className="bar-chart-bar-item">
-                                  <div className="bar-chart-bar-wrapper">
-                                    <div
-                                      className="bar-chart-bar"
-                                      style={{
-                                        height: `${barHeightPx}px`,
+                            return (
+                              <div key={index} className="bar-chart-bar-item">
+                                <div className="bar-chart-bar-wrapper">
+                                  <div
+                                    className="bar-chart-bar"
+                                    style={{
+                                      height: `${barHeightPx}px`,
                                         background: barColor
-                                      }}
-                                    >
+                                    }}
+                                  >
                                       <span className="bar-chart-bar-value">{item.count} ({percentage}%)</span>
                                     </div>
                                   </div>
                                   <div className="bar-chart-x-label">{label}</div>
-                                </div>
-                              );
+                              </div>
+                            );
                             });
                           })()}
                         </div>

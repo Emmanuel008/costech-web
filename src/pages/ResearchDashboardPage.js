@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -11,6 +12,7 @@ import {
   getPermitPerGender,
   getPermitPerCountry,
   getPermitPerSector,
+  getPermitPerRegion,
 } from '../services/api';
 
 // Fix for default marker icon in React-Leaflet
@@ -22,7 +24,9 @@ L.Icon.Default.mergeOptions({
 });
 
 const ResearchDashboardPage = () => {
-  const [activeReport, setActiveReport] = useState('gender');
+  const [searchParams] = useSearchParams();
+  const reportParam = searchParams.get('report');
+  const [activeReport, setActiveReport] = useState(reportParam || 'gender');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showOtherSectors, setShowOtherSectors] = useState(false);
@@ -35,6 +39,7 @@ const ResearchDashboardPage = () => {
     permitGender: null,
     permitCountry: null,
     permitSector: null,
+    permitRegion: null, // TODO: Add API integration for permit per region
   });
 
   // Country coordinates mapping
@@ -89,13 +94,48 @@ const ResearchDashboardPage = () => {
     return '#b97c07'; // Golden for lower counts
   };
 
+  // Tanzania region coordinates for permit per region
+  const tanzaniaRegionCoordinates = {
+    'Dar es Salaam': [-6.7924, 39.2083],
+    'Arusha': [-3.3869, 36.6830],
+    'Dodoma': [-6.1630, 35.7516],
+    'Mwanza': [-2.5164, 32.9176],
+    'Mbeya': [-8.9000, 33.4500],
+    'Morogoro': [-6.8167, 37.6667],
+    'Tanga': [-5.0667, 39.1000],
+    'Zanzibar': [-6.1650, 39.1997],
+    'Kilimanjaro': [-3.0667, 37.3500],
+    'Iringa': [-7.7667, 35.7000],
+    'Tabora': [-5.0167, 32.8000],
+    'Mtwara': [-10.2667, 40.1833],
+    'Lindi': [-9.9967, 39.7167],
+    'Rukwa': [-8.0167, 31.6167],
+    'Ruvuma': [-10.6833, 35.6500],
+    'Shinyanga': [-3.6667, 33.4167],
+    'Singida': [-4.8167, 34.7500],
+    'Kagera': [-1.3333, 31.8000],
+    'Mara': [-1.5000, 33.8000],
+    'Manyara': [-4.3167, 36.6833],
+    'Njombe': [-9.3333, 34.7667],
+    'Geita': [-2.8667, 32.1667],
+    'Katavi': [-6.3333, 31.1333],
+    'Simiyu': [-2.6333, 33.9833],
+    'Songwe': [-9.3333, 33.9833],
+    'Pemba North': [-5.0333, 39.7667],
+    'Pemba South': [-5.3167, 39.7000],
+    'Unguja North': [-5.8333, 39.3000],
+    'Unguja South': [-6.1667, 39.3500],
+    'Pwani': [-7.7667, 39.1833], // Coastal region
+    'Kigoma': [-4.8769, 29.6267], // Added from API response
+  };
+
   useEffect(() => {
     const fetchStatistics = async () => {
       try {
         setLoading(true);
         setError(null);
 
-        const [genderData, funderData, programData, statusData, permitGenderData, permitCountryData, permitSectorData] = await Promise.all([
+        const [genderData, funderData, programData, statusData, permitGenderData, permitCountryData, permitSectorData, permitRegionData] = await Promise.all([
           getResearchPerGender(),
           getResearchTotalFundsPerFunder(),
           getResearchTotalFundsPerProgram(),
@@ -112,13 +152,20 @@ const ResearchDashboardPage = () => {
             console.error('Error fetching permit per sector:', err);
             return [];
           }),
+          getPermitPerRegion().catch(err => {
+            console.error('Error fetching permit per region:', err);
+            return [];
+          }),
         ]);
 
         console.log('Permit statistics data:', {
           permitGender: permitGenderData,
           permitCountry: permitCountryData,
           permitSector: permitSectorData,
+          permitRegion: permitRegionData,
         });
+
+        console.log('ResearchDashboard - permitRegion data type:', typeof permitRegionData, Array.isArray(permitRegionData), permitRegionData);
 
         setStats({
           gender: genderData,
@@ -128,6 +175,7 @@ const ResearchDashboardPage = () => {
           permitGender: permitGenderData,
           permitCountry: permitCountryData,
           permitSector: permitSectorData,
+          permitRegion: permitRegionData,
         });
       } catch (err) {
         console.error('Error fetching research statistics:', err);
@@ -139,6 +187,13 @@ const ResearchDashboardPage = () => {
 
     fetchStatistics();
   }, []);
+
+  // Update active report when query parameter changes
+  useEffect(() => {
+    if (reportParam && ['gender', 'funder', 'program', 'status', 'permitGender', 'permitCountry', 'permitSector', 'permitRegion'].includes(reportParam)) {
+      setActiveReport(reportParam);
+    }
+  }, [reportParam]);
 
   // Extract other sectors from permitSector data for modal display
   useEffect(() => {
@@ -163,8 +218,8 @@ const ResearchDashboardPage = () => {
   // Transform API data to chart format
   const reports = {
     gender: {
-      title: 'Research per Gender',
-      description: 'Research distribution by gender',
+      title: 'Gender composition for research projects’ principal investigators',
+      description: 'Gender Profile of Principal Investigators for the supported research projects through the National Fund for Advancement of Science and Technology since 2011',
       data: stats.gender
         ? [
             { gender: 'Male', count: stats.gender.male || 0 },
@@ -173,8 +228,8 @@ const ResearchDashboardPage = () => {
         : [],
     },
     funder: {
-      title: 'Total Funds per Funder',
-      description: 'Total funding distribution by funder',
+      title: 'Research investment profile',
+      description: 'Composition of research funds in the National Fund for Advancement of Science and Technology mobilized from the government, development partners and other stakeholders since 2011',
       data: stats.funder
         ? Object.entries(stats.funder)
             .map(([funder, amount]) => ({
@@ -185,8 +240,8 @@ const ResearchDashboardPage = () => {
         : [],
     },
     program: {
-      title: 'Total Funds per Program',
-      description: 'Total funding distribution by program',
+      title: 'Research and Innovation funding allocation',
+      description: ' Allocation of NFAST funding across research and innovation programmes since 2011',
       data: stats.program
         ? Object.entries(stats.program).map(([program, amount]) => ({
             program,
@@ -195,8 +250,8 @@ const ResearchDashboardPage = () => {
         : [],
     },
     status: {
-      title: 'Research per Status',
-      description: 'Distribution of research projects by completion status',
+      title: 'Composition of ongoing and completed supported research projects',
+      description: 'Proportion of ongoing and completed research projects funded through the National Fund for Advancement of Science and Technology since 2011.',
       data: stats.status
         ? Object.entries(stats.status).map(([status, count]) => ({
             status,
@@ -205,8 +260,8 @@ const ResearchDashboardPage = () => {
         : [],
     },
     permitGender: {
-      title: 'Permit per Gender',
-      description: 'Distribution of research permits by gender',
+      title: 'Gender composition for the granted Research Permits',
+      description: 'Gender Profile of researchers granted research permits since September 2023',
       data: stats.permitGender
         ? stats.permitGender.map(item => {
             const gender = Object.keys(item)[0];
@@ -219,8 +274,8 @@ const ResearchDashboardPage = () => {
         : [],
     },
     permitCountry: {
-      title: 'Permit per Country',
-      description: 'Distribution of research permits by country',
+      title: 'Research permits granted to Tanzanians and Foreign researchers',
+      description: 'Composition of research permits granted to Tanzanians and international researchers since September 2023',
       data: stats.permitCountry
         ? stats.permitCountry
             .map(item => {
@@ -235,8 +290,8 @@ const ResearchDashboardPage = () => {
         : [],
     },
     permitSector: {
-      title: 'Permit per Sector',
-      description: 'Distribution of research permits by sector',
+      title: 'Sectoral distribution for the granted Research Permits',
+      description: 'Sectoral composition for granted research permits Issued in Tanzania since September 2023',
       data: stats.permitSector
         ? (() => {
             const sectors = stats.permitSector
@@ -262,6 +317,24 @@ const ResearchDashboardPage = () => {
             }
             return mainSectors;
           })()
+        : [],
+    },
+    permitRegion: {
+      title: 'Distribution of research permits across Tanzania Regions',
+      description: 'Regional analysis for the granted research permits since September 2023',
+      data: stats.permitRegion
+        ? stats.permitRegion
+            .map(item => {
+              const region = Object.keys(item)[0];
+              const count = Object.values(item)[0];
+              return {
+                region,
+                count: parseInt(count) || 0,
+                coordinates: tanzaniaRegionCoordinates[region] || null,
+              };
+            })
+            .filter(item => item.coordinates && item.count > 0)
+            .sort((a, b) => b.count - a.count)
         : [],
     },
   };
@@ -384,6 +457,57 @@ const ResearchDashboardPage = () => {
                           })}
                       </MapContainer>
                     </div>
+                  ) : key === 'permitRegion' ? (
+                    <div className="map-container-wrapper">
+                      <MapContainer
+                        center={[-6.3690, 34.8888]}
+                        zoom={6}
+                        style={{ height: '500px', width: '100%' }}
+                        scrollWheelZoom={true}
+                      >
+                        <TileLayer
+                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {report.data
+                          .filter(item => item.coordinates)
+                          .map((item, index) => {
+                            const getRegionColor = (count) => {
+                              if (count >= 70) return '#1e40af'; // Blue for 70+
+                              return '#b97c07'; // Golden for below 70
+                            };
+                            const color = getRegionColor(item.count);
+                            const maxCount = Math.max(...report.data.map(i => i.count), 1);
+                            const radius = 6 + (item.count / maxCount) * 10;
+                            return (
+                              <CircleMarker
+                                key={index}
+                                center={item.coordinates}
+                                radius={radius}
+                                pathOptions={{
+                                  color,
+                                  fillColor: color,
+                                  fillOpacity: 0.85,
+                                  weight: 1.5,
+                                }}
+                              >
+                                <Tooltip
+                                  direction="top"
+                                  offset={[0, -4]}
+                                  opacity={1}
+                                  permanent={false}
+                                >
+                                  <div style={{ textAlign: 'center' }}>
+                                    <strong>{item.region}</strong>
+                                    <br />
+                                    <span>{item.count} {item.count === 1 ? 'permit' : 'permits'}</span>
+                                  </div>
+                                </Tooltip>
+                              </CircleMarker>
+                            );
+                          })}
+                      </MapContainer>
+                    </div>
                   ) : key === 'status' || key === 'gender' || key === 'permitGender' || key === 'permitSector' ? (
                     <div className="pie-chart-container">
                       <div className="pie-chart-wrapper">
@@ -458,7 +582,7 @@ const ResearchDashboardPage = () => {
                             ></div>
                                 <span className="pie-chart-legend-label">{label}</span>
                                 <span className="pie-chart-legend-value">{item.count} ({percentage}%)</span>
-                              </div>
+                          </div>
                             );
                           });
                         })()}
@@ -476,7 +600,7 @@ const ResearchDashboardPage = () => {
                               >
                                 ×
                               </button>
-                            </div>
+                    </div>
                             <div className="other-sectors-list">
                               {otherSectorsList
                                 .sort((a, b) => b.count - a.count)
@@ -484,9 +608,9 @@ const ResearchDashboardPage = () => {
                                   <div key={idx} className="other-sectors-item">
                                     <span className="other-sectors-name">{sector.sector}</span>
                                     <span className="other-sectors-count">{sector.count} {sector.count === 1 ? 'permit' : 'permits'}</span>
-                                  </div>
+                              </div>
                                 ))}
-                            </div>
+                          </div>
                           </div>
                         </div>
                       )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -13,7 +13,6 @@ L.Icon.Default.mergeOptions({
 });
 
 const ConnectivityDashboardPage = () => {
-  const [activeGraph, setActiveGraph] = useState('institutions');
 
   // Placeholder data - these should be replaced with actual API data
   const institutionStats = {
@@ -53,24 +52,7 @@ const ConnectivityDashboardPage = () => {
     { region: 'Zanzibar', count: 0, coordinates: regionCoordinates['Zanzibar'] },
   ];
 
-  const popByRegion = [
-    { region: 'Dar es Salaam', count: 0, coordinates: regionCoordinates['Dar es Salaam'] },
-    { region: 'Arusha', count: 0, coordinates: regionCoordinates['Arusha'] },
-    { region: 'Dodoma', count: 0, coordinates: regionCoordinates['Dodoma'] },
-    { region: 'Mwanza', count: 0, coordinates: regionCoordinates['Mwanza'] },
-    { region: 'Mbeya', count: 0, coordinates: regionCoordinates['Mbeya'] },
-    { region: 'Morogoro', count: 0, coordinates: regionCoordinates['Morogoro'] },
-    { region: 'Tanga', count: 0, coordinates: regionCoordinates['Tanga'] },
-    { region: 'Zanzibar', count: 0, coordinates: regionCoordinates['Zanzibar'] },
-  ];
-
-  const getPOPColor = (count) => {
-    if (count >= 5) return '#1e40af'; // Blue for higher counts
-    return '#b97c07'; // Golden for lower counts
-  };
-
   const maxInstitutions = Math.max(...connectedInstitutionsByRegion.map(r => r.count), 1);
-  const maxPOP = Math.max(...popByRegion.map(r => r.count), 1);
 
   return (
     <section className="connectivity-dashboard-page">
@@ -174,125 +156,55 @@ const ConnectivityDashboardPage = () => {
 
               {/* Graphs Section */}
               <div className="statistics-graphs">
-                {/* Graph Tabs */}
-                <div className="graph-tabs">
-                  <button
-                    className={`graph-tab ${activeGraph === 'institutions' ? 'active' : ''}`}
-                    onClick={() => setActiveGraph('institutions')}
-                  >
-                    List of Connected Institutions
-                  </button>
-                  <button
-                    className={`graph-tab ${activeGraph === 'pop' ? 'active' : ''}`}
-                    onClick={() => setActiveGraph('pop')}
-                  >
-                    Point Of Presence per region
-                  </button>
-                </div>
-
                 {/* Connected Institutions by Region Map */}
-                {activeGraph === 'institutions' && (
-                  <div className="graph-container">
-                    <h3 className="graph-title">List of Connected Institutions: Graph of Regions showing number of Institutions in each Region</h3>
-                    <div className="map-container-wrapper">
-                      <MapContainer
-                        center={[-6.3690, 34.8888]}
-                        zoom={6}
-                        style={{ height: '500px', width: '100%', borderRadius: '8px' }}
-                        scrollWheelZoom={true}
-                        dragging={true}
-                        touchZoom={true}
-                        doubleClickZoom={true}
-                        zoomControl={true}
-                      >
-                        <TileLayer
-                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                        {connectedInstitutionsByRegion.map((region) => {
-                          if (!region.coordinates) return null;
-                          const color = getInstitutionColor(region.count);
-                          const radius = maxInstitutions > 0 ? 8 + (region.count / maxInstitutions) * 15 : 8;
-                          return (
-                            <CircleMarker
-                              key={region.region}
-                              center={region.coordinates}
-                              radius={radius}
-                              pathOptions={{
-                                color,
-                                fillColor: color,
-                                fillOpacity: 0.85,
-                                weight: 2,
-                              }}
+                <div className="graph-container">
+                  <h3 className="graph-title">HERIN Connectivity Footprint by Region</h3>
+                  <div className="map-container-wrapper">
+                    <MapContainer
+                      center={[-6.3690, 34.8888]}
+                      zoom={6}
+                      style={{ height: '500px', width: '100%', borderRadius: '8px' }}
+                      scrollWheelZoom={true}
+                      dragging={true}
+                      touchZoom={true}
+                      doubleClickZoom={true}
+                      zoomControl={true}
+                    >
+                      <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      />
+                      {connectedInstitutionsByRegion.map((region) => {
+                        if (!region.coordinates) return null;
+                        const color = getInstitutionColor(region.count);
+                        const radius = maxInstitutions > 0 ? 8 + (region.count / maxInstitutions) * 15 : 8;
+                        return (
+                          <CircleMarker
+                            key={region.region}
+                            center={region.coordinates}
+                            radius={radius}
+                            pathOptions={{
+                              color,
+                              fillColor: color,
+                              fillOpacity: 0.85,
+                              weight: 2,
+                            }}
+                          >
+                            <Tooltip
+                              direction="top"
+                              offset={[0, -4]}
+                              opacity={1}
+                              permanent
+                              className="map-badge"
                             >
-                              <Tooltip
-                                direction="top"
-                                offset={[0, -4]}
-                                opacity={1}
-                                permanent
-                                className="map-badge"
-                              >
-                                <span style={{ color, fontWeight: 'bold' }}>{region.count}</span>
-                              </Tooltip>
-                            </CircleMarker>
-                          );
-                        })}
-                      </MapContainer>
-                    </div>
+                              <span style={{ color, fontWeight: 'bold' }}>{region.count}</span>
+                            </Tooltip>
+                          </CircleMarker>
+                        );
+                      })}
+                    </MapContainer>
                   </div>
-                )}
-
-                {/* POP by Region Map */}
-                {activeGraph === 'pop' && (
-                  <div className="graph-container">
-                    <h3 className="graph-title">List of Point of Presence: Graph of POP per region</h3>
-                    <div className="map-container-wrapper">
-                      <MapContainer
-                        center={[-6.3690, 34.8888]}
-                        zoom={6}
-                        style={{ height: '500px', width: '100%', borderRadius: '8px' }}
-                        scrollWheelZoom={true}
-                        dragging={true}
-                        touchZoom={true}
-                        doubleClickZoom={true}
-                        zoomControl={true}
-                      >
-                        <TileLayer
-                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        />
-                        {popByRegion.map((region) => {
-                          if (!region.coordinates) return null;
-                          const color = getPOPColor(region.count);
-                          const radius = maxPOP > 0 ? 8 + (region.count / maxPOP) * 15 : 8;
-                          return (
-                            <CircleMarker
-                              key={region.region}
-                              center={region.coordinates}
-                              radius={radius}
-                              pathOptions={{
-                                color,
-                                fillColor: color,
-                                fillOpacity: 0.85,
-                                weight: 2,
-                              }}
-                            >
-                              <Tooltip
-                                direction="top"
-                                offset={[0, -4]}
-                                opacity={1}
-                                permanent
-                                className="map-badge"
-                              >
-                                <span style={{ color, fontWeight: 'bold' }}>{region.count}</span>
-                              </Tooltip>
-                            </CircleMarker>
-                          );
-                        })}
-                      </MapContainer>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </div>

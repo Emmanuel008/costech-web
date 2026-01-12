@@ -1592,6 +1592,36 @@ export const getPermitPerSector = async () => {
 };
 
 /**
+ * Fetch permit statistics per research location (region)
+ * @returns {Promise<Array>} - Array of region statistics
+ */
+export const getPermitPerRegion = async () => {
+  try {
+    console.log('🔵 Starting to fetch permit per region statistics...');
+    
+    const response = await axios.get(`${RIMS_API_BASE_URL}/permit-research-location`, {
+      timeout: 15000,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('📥 Permit Per Region API Response received:', response.data);
+
+    if (response.data && response.data.code === 200 && response.data.data) {
+      console.log('✅ Successfully fetched permit per region statistics');
+      return response.data.data;
+    }
+
+    console.warn('⚠️ API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('❌ Error fetching permit per region:', error);
+    throw error;
+  }
+};
+
+/**
  * Fetch single COSTECH funded project detail by ID from API
  * @param {number|string} id - Project ID
  * @returns {Promise<Object>} - Project detail object
