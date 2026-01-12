@@ -285,26 +285,26 @@ const FAQsPage = () => {
                 <span className="faqs-category-name">{category.name}</span>
               </button>
             ))}
-          </div>
+        </div>
 
           {/* FAQs List */}
-          <div className="faqs-questions">
+                <div className="faqs-questions">
             {currentFAQs.length > 0 ? (
               currentFAQs.map((faq) => (
-                <div key={faq.id} className="faqs-question-item">
-                  <button
-                    className={`faqs-question-header ${openQuestion === faq.id ? 'active' : ''}`}
-                    onClick={() => toggleQuestion(faq.id)}
-                  >
+                    <div key={faq.id} className="faqs-question-item">
+                      <button
+                        className={`faqs-question-header ${openQuestion === faq.id ? 'active' : ''}`}
+                        onClick={() => toggleQuestion(faq.id)}
+                      >
                     <span className="faqs-question-text">
                       <span className="faqs-question-number">{faq.question}</span>
                     </span>
-                    <span className="faqs-question-toggle">
-                      {openQuestion === faq.id ? '−' : '+'}
-                    </span>
-                  </button>
-                  {openQuestion === faq.id && (
-                    <div className="faqs-answer">
+                        <span className="faqs-question-toggle">
+                          {openQuestion === faq.id ? '−' : '+'}
+                        </span>
+                      </button>
+                      {openQuestion === faq.id && (
+                        <div className="faqs-answer">
                       <p>{formatAnswer(faq.answer)}</p>
                     </div>
                   )}

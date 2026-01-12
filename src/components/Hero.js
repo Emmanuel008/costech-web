@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/components/Hero.css';
 import BlurText from './BlurText';
 import RotatingText from './RotatingText';
 import { getHero } from '../services/api';
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [heroItems, setHeroItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -190,15 +192,19 @@ const Hero = () => {
     return (
       <section className="hero">
         <div className="hero-carousel">
-          <div className="hero-slide active" style={{ 
-            backgroundImage: `url('${defaultSlides[0].image}')`,
-            backgroundSize: 'contain',
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat'
-          }}>
-            <div className="hero-content">
-              <div className="hero-content-card">
-                <h1 className="hero-title">Loading...</h1>
+          <div className="hero-slide active">
+            <div className="hero-container">
+              <div className="hero-content">
+                <div className="hero-content-card">
+                  <h1 className="hero-title">Loading...</h1>
+                </div>
+              </div>
+              <div className="hero-image-container">
+                <img 
+                  src={defaultSlides[0].image} 
+                  alt="Loading"
+                  className="hero-image"
+                />
               </div>
             </div>
           </div>
@@ -212,34 +218,52 @@ const Hero = () => {
       <div className="hero-carousel">
         {slides.map((slide, index) => {
           const imageUrl = getImageUrl(slide);
-          const slideStyle = {
-            backgroundImage: `url('${imageUrl}')`,
-            backgroundSize: 'contain',
-            backgroundPosition: 'center center',
-            backgroundRepeat: 'no-repeat',
-          };
 
           return (
             <div
               key={slide.id || slide.hero_id || index}
               className={`hero-slide ${currentSlide === index ? 'active' : ''}`}
-              style={slideStyle}
             >
-              <div className="hero-content">
-                <div className="hero-content-card">
-                  {getBadge(slide) && (
-                    <div className="hero-badge-tag">{getBadge(slide)}</div>
-                  )}
-                  {renderTitle(slide, index)}
-                  <p className="hero-description">{getDescription(slide)}</p>
-                  <div className="hero-cta-buttons">
-                    {slide.button_text && (
-                      <button className="hero-btn-primary">{slide.button_text}</button>
+              <div className="hero-container">
+                <div className="hero-content">
+                  <div className="hero-content-card">
+                    {getBadge(slide) && (
+                      <div className="hero-badge-tag">{getBadge(slide)}</div>
                     )}
-                    {!slide.button_text && (
-                      <button className="hero-btn-primary">Learn More</button>
-                    )}
+                    {renderTitle(slide, index)}
+                    <p className="hero-description">{getDescription(slide)}</p>
+                    <div className="hero-cta-buttons">
+                      {slide.button_text && (
+                        <button 
+                          className="hero-btn-primary"
+                          onClick={() => {
+                            // Use index for navigation to ensure consistent routing
+                            navigate(`/hero/${index}`);
+                          }}
+                        >
+                          {slide.button_text}
+                        </button>
+                      )}
+                      {!slide.button_text && (
+                        <button 
+                          className="hero-btn-primary"
+                          onClick={() => {
+                            // Use index for navigation to ensure consistent routing
+                            navigate(`/hero/${index}`);
+                          }}
+                        >
+                          Learn More
+                        </button>
+                      )}
+                    </div>
                   </div>
+                </div>
+                <div className="hero-image-container">
+                  <img 
+                    src={imageUrl} 
+                    alt={getTitle(slide)}
+                    className="hero-image"
+                  />
                 </div>
               </div>
             </div>

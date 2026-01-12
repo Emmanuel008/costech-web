@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -13,17 +13,17 @@ L.Icon.Default.mergeOptions({
 });
 
 const ConnectivityDashboardPage = () => {
+  const [selectedRegion, setSelectedRegion] = useState(null);
 
-  // Placeholder data - these should be replaced with actual API data
+  // Institution statistics by category
   const institutionStats = {
-    hli: 20, // Number of Higher Learning Institutions
-    tvet: 30, // Number of TVET institutions
-    ttcs: 25, // Number of Teachers Training Colleges
-    regulators: 10, // Number of Regulators
-    rd: 22, // Number of R&D institutions
+    hli: 4, // Number of Higher Learning Institutions
+    tvet: 2, // Number of TVET institutions
+    ttcs: 15, // Number of Teachers Training Colleges
+    regulators: 3, // Number of Regulators
+    rd: 1, // Number of R&D institutions
   };
 
-  // Placeholder data for graphs - should be replaced with actual API data
   // Map coordinates for Tanzania regions
   const regionCoordinates = {
     'Dar es Salaam': [-6.7924, 39.2083],
@@ -33,24 +33,39 @@ const ConnectivityDashboardPage = () => {
     'Mbeya': [-8.9000, 33.4500],
     'Morogoro': [-6.8167, 37.6667],
     'Tanga': [-5.0667, 39.1000],
-    'Zanzibar': [-6.1650, 39.1997],
+    'Iringa': [-7.7667, 35.7000],
+    'Tabora': [-5.0167, 32.8000],
+    'Mtwara': [-10.2667, 40.1833],
+    'Kigoma': [-4.8769, 29.6267],
+    'Manyara': [-4.3167, 36.6833],
+    'Mara': [-1.5000, 33.8000],
+    'Pwani': [-7.7667, 39.1833], // Coastal region
+    'Coast': [-7.7667, 39.1833], // Alternative name for Pwani
   };
 
   const getInstitutionColor = (count) => {
-    if (count >= 10) return '#1e40af'; // Blue for higher counts
+    if (count >= 5) return '#1e40af'; // Blue for higher counts
+    if (count >= 2) return '#3b82f6'; // Medium blue
     return '#b97c07'; // Golden for lower counts
   };
 
+  // HERIN Connectivity Footprint by Region - Actual data
   const connectedInstitutionsByRegion = [
-    { region: 'Dar es Salaam', count: 0, coordinates: regionCoordinates['Dar es Salaam'] },
-    { region: 'Arusha', count: 0, coordinates: regionCoordinates['Arusha'] },
-    { region: 'Dodoma', count: 0, coordinates: regionCoordinates['Dodoma'] },
-    { region: 'Mwanza', count: 0, coordinates: regionCoordinates['Mwanza'] },
-    { region: 'Mbeya', count: 0, coordinates: regionCoordinates['Mbeya'] },
-    { region: 'Morogoro', count: 0, coordinates: regionCoordinates['Morogoro'] },
-    { region: 'Tanga', count: 0, coordinates: regionCoordinates['Tanga'] },
-    { region: 'Zanzibar', count: 0, coordinates: regionCoordinates['Zanzibar'] },
-  ];
+    { region: 'Dar es Salaam', count: 9, coordinates: regionCoordinates['Dar es Salaam'] },
+    { region: 'Dodoma', count: 3, coordinates: regionCoordinates['Dodoma'] },
+    { region: 'Mtwara', count: 2, coordinates: regionCoordinates['Mtwara'] },
+    { region: 'Arusha', count: 1, coordinates: regionCoordinates['Arusha'] },
+    { region: 'Iringa', count: 1, coordinates: regionCoordinates['Iringa'] },
+    { region: 'Kigoma', count: 1, coordinates: regionCoordinates['Kigoma'] },
+    { region: 'Manyara', count: 1, coordinates: regionCoordinates['Manyara'] },
+    { region: 'Mara', count: 1, coordinates: regionCoordinates['Mara'] },
+    { region: 'Mbeya', count: 1, coordinates: regionCoordinates['Mbeya'] },
+    { region: 'Morogoro', count: 1, coordinates: regionCoordinates['Morogoro'] },
+    { region: 'Mwanza', count: 1, coordinates: regionCoordinates['Mwanza'] },
+    { region: 'Pwani', count: 1, coordinates: regionCoordinates['Pwani'] },
+    { region: 'Tabora', count: 1, coordinates: regionCoordinates['Tabora'] },
+    { region: 'Tanga', count: 1, coordinates: regionCoordinates['Tanga'] },
+  ].filter(region => region.coordinates); // Only include regions with coordinates
 
   const maxInstitutions = Math.max(...connectedInstitutionsByRegion.map(r => r.count), 1);
 
@@ -189,15 +204,24 @@ const ConnectivityDashboardPage = () => {
                               fillOpacity: 0.85,
                               weight: 2,
                             }}
+                            eventHandlers={{
+                              click: () => {
+                                setSelectedRegion(region);
+                              },
+                            }}
+                            style={{ cursor: 'pointer' }}
                           >
                             <Tooltip
                               direction="top"
-                              offset={[0, -4]}
+                              offset={[0, -8]}
                               opacity={1}
                               permanent
-                              className="map-badge"
+                              className="herin-map-tooltip"
                             >
-                              <span style={{ color, fontWeight: 'bold' }}>{region.count}</span>
+                              <div className="herin-tooltip-content">
+                                <div className="herin-tooltip-region">{region.region}</div>
+                                <div className="herin-tooltip-count">{region.count} {region.count === 1 ? 'institution' : 'institutions'}</div>
+                              </div>
                             </Tooltip>
                           </CircleMarker>
                         );
@@ -210,6 +234,37 @@ const ConnectivityDashboardPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Region Detail Modal */}
+      {selectedRegion && (
+        <div className="herin-region-modal-overlay" onClick={() => setSelectedRegion(null)}>
+          <div className="herin-region-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="herin-region-modal-header">
+              <h3 className="herin-region-modal-title">{selectedRegion.region}</h3>
+              <button 
+                className="herin-region-modal-close"
+                onClick={() => setSelectedRegion(null)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <div className="herin-region-modal-body">
+              <div className="herin-region-stat">
+                <span className="herin-region-stat-label">Number of Institutions:</span>
+                <span className="herin-region-stat-value">{selectedRegion.count}</span>
+              </div>
+              <div className="herin-region-details">
+                <p>
+                  This region has <strong>{selectedRegion.count}</strong> {selectedRegion.count === 1 ? 'institution' : 'institutions'} 
+                  connected to the HERIN network, providing high-speed connectivity and access to shared digital services 
+                  for higher education and research activities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
