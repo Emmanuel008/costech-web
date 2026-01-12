@@ -34,7 +34,7 @@
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e2e8f0;
+  border: 2px solid #e2e8f0;
   transition: all 0.3s ease;
   height: 320px;
   display: flex;
@@ -42,6 +42,8 @@
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  outline: none;
 }
 
 .homepage-stat-card::before {
@@ -56,26 +58,52 @@
   transition: transform 0.3s ease;
 }
 
-.homepage-stat-card:hover {
+.homepage-stat-card:hover,
+.homepage-stat-card:focus {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(185, 124, 7, 0.15);
+  box-shadow: 0 8px 24px rgba(185, 124, 7, 0.2);
   border-color: #b97c07;
 }
 
-.homepage-stat-card:hover::before {
+.homepage-stat-card:hover::before,
+.homepage-stat-card:focus::before {
   transform: scaleX(1);
 }
 
+.homepage-stat-card:active {
+  transform: translateY(-2px);
+}
+
 .stat-card-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: #0f172a;
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: -0.01em;
   text-align: center;
   padding-bottom: 12px;
   border-bottom: 2px solid #f1f5f9;
+  line-height: 1.4;
+}
+
+.stat-card-click-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: #b97c07;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-align: center;
+  width: calc(100% - 48px);
+}
+
+.homepage-stat-card:hover .stat-card-click-hint,
+.homepage-stat-card:focus .stat-card-click-hint {
+  opacity: 1;
 }
 
 .stat-card-content {

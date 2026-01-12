@@ -176,11 +176,11 @@ const HomepageStats = () => {
     navigate(path);
   };
 
-  // Prepare data for cards
+  // Prepare data for cards - titles match dashboard page titles
   const cards = [
     {
       id: 1,
-      title: 'Innovation per Gender',
+      title: "Gender composition for innovation projects' lead innovators",
       type: 'pie',
       data: stats.innovationGender
         ? [
@@ -189,12 +189,10 @@ const HomepageStats = () => {
           ]
         : [],
       onClick: () => handleCardClick('/dashboard/innovation', 'gender'),
-      dashboardPath: '/dashboard/innovation',
-      reportKey: 'gender',
     },
     {
       id: 2,
-      title: 'Total Fund per Program',
+      title: 'Research and Innovation funding allocation',
       type: 'list',
       data: stats.totalFundPerProgram
         ? Object.entries(stats.totalFundPerProgram)
@@ -207,12 +205,10 @@ const HomepageStats = () => {
             .slice(0, 3) // Show top 3
         : [],
       onClick: () => handleCardClick('/dashboard/innovation', 'program'),
-      dashboardPath: '/dashboard/innovation',
-      reportKey: 'program',
     },
     {
       id: 3,
-      title: 'Permit per Sector',
+      title: 'Sectoral distribution for the granted Research Permits',
       type: 'pie',
       data: stats.permitSector
         ? (() => {
@@ -241,12 +237,10 @@ const HomepageStats = () => {
           })()
         : [],
       onClick: () => handleCardClick('/dashboard/research', 'permitSector'),
-      dashboardPath: '/dashboard/research',
-      reportKey: 'permitSector',
     },
     {
       id: 4,
-      title: 'Permit per Gender',
+      title: 'Gender composition for the granted Research Permits',
       type: 'pie',
       data: stats.permitGender
         ? stats.permitGender.map((item) => {
@@ -260,12 +254,10 @@ const HomepageStats = () => {
           })
         : [],
       onClick: () => handleCardClick('/dashboard/research', 'permitGender'),
-      dashboardPath: '/dashboard/research',
-      reportKey: 'permitGender',
     },
     {
       id: 5,
-      title: 'Permit per Country',
+      title: 'Research permits granted to Tanzanians and Foreign researchers',
       type: 'map',
       data: stats.permitCountry
         ? stats.permitCountry
@@ -283,12 +275,10 @@ const HomepageStats = () => {
             .slice(0, 10) // Show top 10
         : [],
       onClick: () => handleCardClick('/dashboard/research', 'permitCountry'),
-      dashboardPath: '/dashboard/research',
-      reportKey: 'permitCountry',
     },
     {
       id: 6,
-      title: 'Permit per Region',
+      title: 'Distribution of research permits across Tanzania Regions',
       type: 'tanzaniaMap',
       data: stats.permitRegion
         ? stats.permitRegion
@@ -305,12 +295,10 @@ const HomepageStats = () => {
             .sort((a, b) => b.count - a.count)
         : [],
       onClick: () => handleCardClick('/dashboard/research', 'permitRegion'),
-      dashboardPath: '/dashboard/research',
-      reportKey: 'permitRegion',
     },
     {
       id: 7,
-      title: 'Researcher per Gender',
+      title: "Gender composition for research projects' principal investigators",
       type: 'pie',
       data: stats.researcherGender
         ? [
@@ -319,12 +307,10 @@ const HomepageStats = () => {
           ]
         : [],
       onClick: () => handleCardClick('/dashboard/research', 'gender'),
-      dashboardPath: '/dashboard/research',
-      reportKey: 'gender',
     },
     {
       id: 8,
-      title: 'List of Connected Institutions',
+      title: 'HERIN Connectivity Footprint by Region',
       type: 'tanzaniaMap',
       data: [
         { region: 'Dar es Salaam', count: 15, coordinates: tanzaniaRegionCoordinates['Dar es Salaam'] },
@@ -358,7 +344,6 @@ const HomepageStats = () => {
         { region: 'Unguja South', count: 1, coordinates: tanzaniaRegionCoordinates['Unguja South'] },
       ],
       onClick: () => handleCardClick('/dashboard/connectivity'),
-      dashboardPath: '/dashboard/connectivity',
     },
   ];
 
@@ -466,7 +451,7 @@ const HomepageStats = () => {
           <div className="stat-list">
             {card.data.map((item, index) => (
               <div key={index} className="stat-list-item">
-                <span className="stat-list-label">{item.program}</span>
+                <span className="stat-list-label">{item.program.replace(' Program', '')}</span>
                 <span className="stat-list-value">{formatCurrency(item.amount)}</span>
               </div>
             ))}
@@ -636,10 +621,19 @@ const HomepageStats = () => {
               <div
                 className="homepage-stat-card"
                 onClick={card.onClick}
-                style={{ cursor: 'pointer' }}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.onClick();
+                  }
+                }}
+                aria-label={`Click to view ${card.title} in dashboard`}
               >
                 <h3 className="stat-card-title">{card.title}</h3>
                 <div className="stat-card-content">{renderCardContent(card)}</div>
+                <div className="stat-card-click-hint">Click to view details →</div>
               </div>
             </div>
           ))}
