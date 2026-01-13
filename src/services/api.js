@@ -1518,5 +1518,73 @@ export const getCostechFundedProjectDetail = async (id) => {
   }
 };
 
+/**
+ * Fetch HERIN statistics by region
+ * @returns {Promise<Array>} - Array of region statistics
+ */
+export const getHerinStatsByRegion = async () => {
+  try {
+    const token = await getAuthToken();
+    
+    const response = await apiClient.get('/herin/istatsByRegion', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData) {
+      return response.data.returnData;
+    }
+
+    console.warn('API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('Error fetching HERIN stats by region:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch HERIN statistics by category
+ * @returns {Promise<Array>} - Array of category statistics
+ */
+export const getHerinStatsByCategory = async () => {
+  try {
+    const token = await getAuthToken();
+    
+    const response = await apiClient.get('/herin/istatsByCategory', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData) {
+      return response.data.returnData;
+    }
+
+    console.warn('API returned empty or invalid response');
+    return [];
+  } catch (error) {
+    console.error('Error fetching HERIN stats by category:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
 export default apiClient;
 

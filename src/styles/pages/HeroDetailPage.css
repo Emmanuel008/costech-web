@@ -5,8 +5,17 @@
 }
 
 .hero-detail-container {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 32px;
+}
+
+.hero-detail-main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .hero-detail-card {
@@ -54,7 +63,8 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  border: 2px solid #000000;
+  border: 3px solid #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .hero-detail-image {
@@ -141,7 +151,102 @@
   box-shadow: 0 30px 80px rgba(15, 23, 42, 0.08);
 }
 
+.hero-detail-sidebar {
+  position: sticky;
+  top: 140px;
+  height: fit-content;
+}
+
+.hero-related-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.hero-related-card h2 {
+  font-size: 1.4rem;
+  margin: 0 0 18px 0;
+  color: #1f1f1f;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 700;
+}
+
+.hero-related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-related-item {
+  margin: 0;
+}
+
+.hero-related-link {
+  display: flex;
+  gap: 12px;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 16px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.hero-related-link:hover {
+  background: rgba(185, 124, 7, 0.08);
+  transform: translateY(-2px);
+  border-color: rgba(185, 124, 7, 0.2);
+}
+
+.hero-related-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #f1f5f9;
+}
+
+.hero-related-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-related-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-related-info h3 {
+  font-size: 0.85rem;
+  color: #1f1f1f;
+  margin: 0;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: calc(1.35em * 2);
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 600;
+}
+
 /* Responsive Design */
+@media (max-width: 1100px) {
+  .hero-detail-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-detail-sidebar {
+    position: static;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-detail-section {
     padding: 40px 20px 60px;

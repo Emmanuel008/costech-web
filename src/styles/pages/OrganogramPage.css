@@ -13,8 +13,8 @@
 
 .organogram-header {
   background: linear-gradient(135deg, #b97c07 0%, #8b6914 50%, #a06d06 100%);
-  padding: 50px 40px;
-  padding-top: 180px;
+  padding: 30px 40px;
+  padding-top: 120px;
   color: #ffffff;
   text-align: center;
   position: relative;
@@ -204,8 +204,8 @@
 /* Responsive Design */
 @media (max-width: 1200px) {
   .organogram-header {
-    padding: 45px 32px;
-    padding-top: 180px;
+    padding: 28px 32px;
+    padding-top: 120px;
   }
   
   .organogram-tree {
@@ -223,8 +223,8 @@
 
 @media (max-width: 968px) {
   .organogram-header {
-    padding: 40px 24px;
-    padding-top: 200px;
+    padding: 25px 24px;
+    padding-top: 140px;
   }
   
   .organogram-header h1 {
@@ -273,8 +273,8 @@
 
 @media (max-width: 640px) {
   .organogram-header {
-    padding: 35px 20px;
-    padding-top: 200px;
+    padding: 20px 20px;
+    padding-top: 140px;
   }
   
   .organogram-header h1 {

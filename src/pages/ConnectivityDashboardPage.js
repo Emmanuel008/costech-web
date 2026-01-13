@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import '../styles/pages/ConnectivityDashboardPage.css';
+import { getHerinStatsByCategory, getHerinStatsByRegion } from '../services/api';
 
 // Fix for default marker icon in React-Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -14,15 +15,16 @@ L.Icon.Default.mergeOptions({
 
 const ConnectivityDashboardPage = () => {
   const [selectedRegion, setSelectedRegion] = useState(null);
-
-  // Institution statistics by category
-  const institutionStats = {
-    hli: 4, // Number of Higher Learning Institutions
-    tvet: 2, // Number of TVET institutions
-    ttcs: 15, // Number of Teachers Training Colleges
-    regulators: 3, // Number of Regulators
-    rd: 1, // Number of R&D institutions
-  };
+  const [institutionStats, setInstitutionStats] = useState({
+    hli: 0,
+    tvet: 0,
+    ttcs: 0,
+    regulators: 0,
+    rd: 0,
+  });
+  const [connectedInstitutionsByRegion, setConnectedInstitutionsByRegion] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Map coordinates for Tanzania regions
   const regionCoordinates = {
@@ -40,32 +42,87 @@ const ConnectivityDashboardPage = () => {
     'Manyara': [-4.3167, 36.6833],
     'Mara': [-1.5000, 33.8000],
     'Pwani': [-7.7667, 39.1833], // Coastal region
+    'Pwani (Coast)': [-7.7667, 39.1833], // API returns this format
     'Coast': [-7.7667, 39.1833], // Alternative name for Pwani
   };
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const [categoryData, regionData] = await Promise.all([
+          getHerinStatsByCategory(),
+          getHerinStatsByRegion(),
+        ]);
+
+        // Map category data to institutionStats
+        if (categoryData && categoryData.length > 0) {
+          const stats = {
+            hli: 0,
+            tvet: 0,
+            ttcs: 0,
+            regulators: 0,
+            rd: 0,
+          };
+
+          categoryData.forEach((item) => {
+            const category = item.category?.toUpperCase() || '';
+            const count = parseInt(item.count) || 0;
+
+            if (category === 'HLI') {
+              stats.hli = count;
+            } else if (category === 'TVET') {
+              stats.tvet = count;
+            } else if (category === 'TTC') {
+              stats.ttcs = count;
+            } else if (category === 'REGULATOR') {
+              stats.regulators = count;
+            } else if (category === 'R&D') {
+              stats.rd = count;
+            }
+          });
+
+          setInstitutionStats(stats);
+        }
+
+        // Map region data to connectedInstitutionsByRegion
+        if (regionData && regionData.length > 0) {
+          const regions = regionData
+            .map((item) => {
+              const regionName = item.region || '';
+              const count = parseInt(item.count) || 0;
+              const coordinates = regionCoordinates[regionName] || regionCoordinates[regionName.replace(' (Coast)', '')];
+
+              return {
+                region: regionName,
+                count,
+                coordinates,
+              };
+            })
+            .filter((region) => region.coordinates); // Only include regions with coordinates
+
+          setConnectedInstitutionsByRegion(regions);
+        }
+      } catch (err) {
+        console.error('Error fetching connectivity data:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getInstitutionColor = (count) => {
     if (count >= 5) return '#1e40af'; // Blue for higher counts
     if (count >= 2) return '#3b82f6'; // Medium blue
     return '#b97c07'; // Golden for lower counts
   };
-
-  // HERIN Connectivity Footprint by Region - Actual data
-  const connectedInstitutionsByRegion = [
-    { region: 'Dar es Salaam', count: 9, coordinates: regionCoordinates['Dar es Salaam'] },
-    { region: 'Dodoma', count: 3, coordinates: regionCoordinates['Dodoma'] },
-    { region: 'Mtwara', count: 2, coordinates: regionCoordinates['Mtwara'] },
-    { region: 'Arusha', count: 1, coordinates: regionCoordinates['Arusha'] },
-    { region: 'Iringa', count: 1, coordinates: regionCoordinates['Iringa'] },
-    { region: 'Kigoma', count: 1, coordinates: regionCoordinates['Kigoma'] },
-    { region: 'Manyara', count: 1, coordinates: regionCoordinates['Manyara'] },
-    { region: 'Mara', count: 1, coordinates: regionCoordinates['Mara'] },
-    { region: 'Mbeya', count: 1, coordinates: regionCoordinates['Mbeya'] },
-    { region: 'Morogoro', count: 1, coordinates: regionCoordinates['Morogoro'] },
-    { region: 'Mwanza', count: 1, coordinates: regionCoordinates['Mwanza'] },
-    { region: 'Pwani', count: 1, coordinates: regionCoordinates['Pwani'] },
-    { region: 'Tabora', count: 1, coordinates: regionCoordinates['Tabora'] },
-    { region: 'Tanga', count: 1, coordinates: regionCoordinates['Tanga'] },
-  ].filter(region => region.coordinates); // Only include regions with coordinates
 
   const maxInstitutions = Math.max(...connectedInstitutionsByRegion.map(r => r.count), 1);
 
@@ -145,28 +202,38 @@ const ConnectivityDashboardPage = () => {
               {/* Number of Institutions by Category */}
               <div className="statistics-subsection">
                 <h3 className="statistics-subtitle">Number of Institutions (Category)</h3>
-                <div className="statistics-cards-grid">
-                  <div className="statistics-card">
-                    <div className="statistics-card-label">HLI</div>
-                    <div className="statistics-card-value">{institutionStats.hli}</div>
+                {loading ? (
+                  <div className="statistics-loading">
+                    <p>Loading statistics...</p>
                   </div>
-                  <div className="statistics-card">
-                    <div className="statistics-card-label">TVET</div>
-                    <div className="statistics-card-value">{institutionStats.tvet}</div>
+                ) : error ? (
+                  <div className="statistics-error">
+                    <p>Unable to load statistics. Please try again later.</p>
                   </div>
-                  <div className="statistics-card">
-                    <div className="statistics-card-label">TTCs</div>
-                    <div className="statistics-card-value">{institutionStats.ttcs}</div>
+                ) : (
+                  <div className="statistics-cards-grid">
+                    <div className="statistics-card">
+                      <div className="statistics-card-label">HLI</div>
+                      <div className="statistics-card-value">{institutionStats.hli}</div>
+                    </div>
+                    <div className="statistics-card">
+                      <div className="statistics-card-label">TVET</div>
+                      <div className="statistics-card-value">{institutionStats.tvet}</div>
+                    </div>
+                    <div className="statistics-card">
+                      <div className="statistics-card-label">TTCs</div>
+                      <div className="statistics-card-value">{institutionStats.ttcs}</div>
+                    </div>
+                    <div className="statistics-card">
+                      <div className="statistics-card-label">Regulators</div>
+                      <div className="statistics-card-value">{institutionStats.regulators}</div>
+                    </div>
+                    <div className="statistics-card">
+                      <div className="statistics-card-label">R&D</div>
+                      <div className="statistics-card-value">{institutionStats.rd}</div>
+                    </div>
                   </div>
-                  <div className="statistics-card">
-                    <div className="statistics-card-label">Regulators</div>
-                    <div className="statistics-card-value">{institutionStats.regulators}</div>
-                  </div>
-                  <div className="statistics-card">
-                    <div className="statistics-card-label">R&D</div>
-                    <div className="statistics-card-value">{institutionStats.rd}</div>
-                  </div>
-                </div>
+                )}
               </div>
 
               {/* Graphs Section */}
@@ -174,60 +241,74 @@ const ConnectivityDashboardPage = () => {
                 {/* Connected Institutions by Region Map */}
                 <div className="graph-container">
                   <h3 className="graph-title">HERIN Connectivity Footprint by Region</h3>
-                  <div className="map-container-wrapper">
-                    <MapContainer
-                      center={[-6.3690, 34.8888]}
-                      zoom={6}
-                      style={{ height: '500px', width: '100%', borderRadius: '8px' }}
-                      scrollWheelZoom={true}
-                      dragging={true}
-                      touchZoom={true}
-                      doubleClickZoom={true}
-                      zoomControl={true}
-                    >
-                      <TileLayer
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      />
-                      {connectedInstitutionsByRegion.map((region) => {
-                        if (!region.coordinates) return null;
-                        const color = getInstitutionColor(region.count);
-                        const radius = maxInstitutions > 0 ? 8 + (region.count / maxInstitutions) * 15 : 8;
-                        return (
-                          <CircleMarker
-                            key={region.region}
-                            center={region.coordinates}
-                            radius={radius}
-                            pathOptions={{
-                              color,
-                              fillColor: color,
-                              fillOpacity: 0.85,
-                              weight: 2,
-                            }}
-                            eventHandlers={{
-                              click: () => {
-                                setSelectedRegion(region);
-                              },
-                            }}
-                            style={{ cursor: 'pointer' }}
-                          >
-                            <Tooltip
-                              direction="top"
-                              offset={[0, -8]}
-                              opacity={1}
-                              permanent
-                              className="herin-map-tooltip"
+                  {loading ? (
+                    <div className="map-loading">
+                      <p>Loading map data...</p>
+                    </div>
+                  ) : error ? (
+                    <div className="map-error">
+                      <p>Unable to load map data. Please try again later.</p>
+                    </div>
+                  ) : connectedInstitutionsByRegion.length === 0 ? (
+                    <div className="map-empty">
+                      <p>No region data available.</p>
+                    </div>
+                  ) : (
+                    <div className="map-container-wrapper">
+                      <MapContainer
+                        center={[-6.3690, 34.8888]}
+                        zoom={6}
+                        style={{ height: '500px', width: '100%', borderRadius: '8px' }}
+                        scrollWheelZoom={true}
+                        dragging={true}
+                        touchZoom={true}
+                        doubleClickZoom={true}
+                        zoomControl={true}
+                      >
+                        <TileLayer
+                          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {connectedInstitutionsByRegion.map((region) => {
+                          if (!region.coordinates) return null;
+                          const color = getInstitutionColor(region.count);
+                          const radius = maxInstitutions > 0 ? 8 + (region.count / maxInstitutions) * 15 : 8;
+                          return (
+                            <CircleMarker
+                              key={region.region}
+                              center={region.coordinates}
+                              radius={radius}
+                              pathOptions={{
+                                color,
+                                fillColor: color,
+                                fillOpacity: 0.85,
+                                weight: 2,
+                              }}
+                              eventHandlers={{
+                                click: () => {
+                                  setSelectedRegion(region);
+                                },
+                              }}
+                              style={{ cursor: 'pointer' }}
                             >
-                              <div className="herin-tooltip-content">
-                                <div className="herin-tooltip-region">{region.region}</div>
-                                <div className="herin-tooltip-count">{region.count} {region.count === 1 ? 'institution' : 'institutions'}</div>
-                              </div>
-                            </Tooltip>
-                          </CircleMarker>
-                        );
-                      })}
-                    </MapContainer>
-                  </div>
+                              <Tooltip
+                                direction="top"
+                                offset={[0, -8]}
+                                opacity={1}
+                                permanent
+                                className="herin-map-tooltip"
+                              >
+                                <div className="herin-tooltip-content">
+                                  <div className="herin-tooltip-region">{region.region}</div>
+                                  <div className="herin-tooltip-count">{region.count} {region.count === 1 ? 'institution' : 'institutions'}</div>
+                                </div>
+                              </Tooltip>
+                            </CircleMarker>
+                          );
+                        })}
+                      </MapContainer>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

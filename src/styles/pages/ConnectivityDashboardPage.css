@@ -249,6 +249,40 @@
   text-align: left;
 }
 
+.statistics-loading,
+.statistics-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.statistics-error {
+  color: #dc2626;
+}
+
+.map-loading,
+.map-error,
+.map-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 1rem;
+  font-family: "Aeonik Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 2px dashed #e2e8f0;
+}
+
+.map-error {
+  color: #dc2626;
+}
+
 /* Graphs Section */
 .statistics-graphs {
   display: flex;

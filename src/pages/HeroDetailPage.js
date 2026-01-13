@@ -6,6 +6,7 @@ import { getHero } from '../services/api';
 const HeroDetailPage = () => {
   const { id } = useParams();
   const [heroItem, setHeroItem] = useState(null);
+  const [relatedHeroItems, setRelatedHeroItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -15,41 +16,11 @@ const HeroDetailPage = () => {
         setLoading(true);
         setError(null);
         
-        // Default hero slides as fallback
-        const defaultSlides = [
-          {
-            id: 1,
-            title: "Advancing Innovation and Technology for Tanzania's Future",
-            description: "COSTECH is committed to coordinate, promote and facilitate science, technology and innovation in the country by meeting legal and customer requirements and even exceeding customer expectations.",
-            badge: "COSTECH",
-            image: `${process.env.PUBLIC_URL}/assets/img/hero.jpg`,
-            rotatingWords: ['Innovation', 'Science', 'Research'],
-            showRotatingText: true
-          },
-          {
-            id: 2,
-            title: "COSTECH Yasisitiza Ulinzi wa Bunifu Kabla ya Kubiasharisha",
-            description: "COSTECH emphasizes the protection of innovation before commercialization to ensure intellectual property rights and support sustainable development.",
-            badge: null,
-            image: `${process.env.PUBLIC_URL}/assets/img/ubunifu.jpeg`,
-            rotatingWords: null,
-            showRotatingText: false
-          }
-        ];
+        const heroData = await getHero();
         
-        let heroData = [];
-        try {
-          heroData = await getHero();
-        } catch (err) {
-          console.warn('Failed to fetch hero from API, using default slides:', err);
-        }
-        
-        // Use API data if available, otherwise use default slides
-        const allHeroData = heroData && heroData.length > 0 ? heroData : defaultSlides;
-        
-        if (allHeroData && allHeroData.length > 0) {
+        if (heroData && heroData.length > 0) {
           // Try to find by ID first
-          let item = allHeroData.find(h => 
+          let item = heroData.find(h => 
             (h.id && h.id.toString() === id) || 
             (h.hero_id && h.hero_id.toString() === id)
           );
@@ -57,13 +28,36 @@ const HeroDetailPage = () => {
           // If not found by ID, try by index (for index-based navigation like /hero/0)
           if (!item && !isNaN(id)) {
             const index = parseInt(id, 10);
-            if (index >= 0 && index < allHeroData.length) {
-              item = allHeroData[index];
+            if (index >= 0 && index < heroData.length) {
+              item = heroData[index];
             }
           }
           
           if (item) {
             setHeroItem(item);
+            
+            // Get related hero items (exclude current item)
+            // Use index if navigation was by index, otherwise use ID
+            let currentIndex = -1;
+            if (!isNaN(id)) {
+              currentIndex = parseInt(id, 10);
+            } else {
+              currentIndex = heroData.findIndex(h => 
+                (h.id && h.id.toString() === id) || 
+                (h.hero_id && h.hero_id.toString() === id)
+              );
+            }
+            
+            const related = heroData
+              .filter((h, index) => index !== currentIndex)
+              .slice(0, 4)
+              .map((h, index) => ({
+                id: h.id || h.hero_id || index,
+                title: h.title || h.heading || h.name || 'Untitled',
+                image: h.image_url || h.image || h.background_image || '',
+                slug: h.id || h.hero_id || index,
+              }));
+            setRelatedHeroItems(related);
           } else {
             setError('Hero item not found');
           }
@@ -88,7 +82,7 @@ const HeroDetailPage = () => {
     if (item?.image_url) return item.image_url;
     if (item?.image) return item.image;
     if (item?.background_image) return item.background_image;
-    return `${process.env.PUBLIC_URL}/assets/img/hero.jpg`;
+    return '';
   };
 
   // Get title from hero item
@@ -96,45 +90,9 @@ const HeroDetailPage = () => {
     return item?.title || item?.heading || item?.name || 'Hero Information';
   };
 
-  // Get description from hero item
-  const getDescription = (item) => {
-    return item?.description || item?.desc || item?.text || '';
-  };
-
-  // Get date from hero item
-  const getDate = (item) => {
-    if (item?.date) {
-      // If date is already a string, return it
-      if (typeof item.date === 'string') {
-        return item.date;
-      }
-      // If it's a Date object, format it
-      const date = new Date(item.date);
-      return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      });
-    }
-    if (item?.created_at) {
-      const date = new Date(item.created_at);
-      return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      });
-    }
-    const date = new Date();
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-  };
-
   // Get content from hero item (full content)
   const getContent = (item) => {
-    return item?.content || item?.full_content || item?.body || getDescription(item);
+    return item?.content || item?.full_content || item?.body || '';
   };
 
   if (loading) {
@@ -162,58 +120,81 @@ const HeroDetailPage = () => {
 
   const imageUrl = getImageUrl(heroItem);
   const title = getTitle(heroItem);
-  const description = getDescription(heroItem);
-  const date = getDate(heroItem);
   const content = getContent(heroItem);
 
   return (
     <section className="hero-detail-section">
       <div className="hero-detail-container">
-        <div className="hero-detail-card">
-          <div className="hero-detail-meta">
-            <span className="hero-detail-date">{typeof date === 'string' ? date.toUpperCase() : date}</span>
-          </div>
-          
-          <h1 className="hero-detail-title">{title}</h1>
-          
-          {imageUrl && (
-            <div className="hero-detail-image-container">
-              <img
-                src={imageUrl}
-                alt={title}
-                className="hero-detail-image"
-                loading="lazy"
-                onError={(e) => {
-                  e.target.src = `${process.env.PUBLIC_URL}/assets/img/hero.jpg`;
-                }}
-              />
-            </div>
-          )}
-          
-          <div className="hero-detail-content">
-            {description && (
-              <p className="hero-detail-description">{description}</p>
-            )}
+        <div className="hero-detail-main">
+          <article className="hero-detail-card">
+            <h1 className="hero-detail-title">{title}</h1>
             
-            {content && content !== description && (
-              <div className="hero-detail-body">
-                {typeof content === 'string' ? (
-                  <p>{content}</p>
-                ) : Array.isArray(content) ? (
-                  content.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))
-                ) : (
-                  <p>{String(content)}</p>
-                )}
+            {imageUrl && (
+              <div className="hero-detail-image-container">
+                <img
+                  src={imageUrl}
+                  alt={title}
+                  className="hero-detail-image"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
               </div>
             )}
-          </div>
-          
-          <div className="hero-detail-actions">
-            <Link to="/" className="hero-detail-back-btn">← Back to Home</Link>
-          </div>
+            
+            <div className="hero-detail-content">
+              {content && (
+                <div className="hero-detail-body">
+                  {typeof content === 'string' ? (
+                    <div dangerouslySetInnerHTML={{ __html: content }} />
+                  ) : Array.isArray(content) ? (
+                    content.map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
+                    ))
+                  ) : (
+                    <p>{String(content)}</p>
+                  )}
+                </div>
+              )}
+            </div>
+            
+            <div className="hero-detail-actions">
+              <Link to="/" className="hero-detail-back-btn">← Back to Home</Link>
+            </div>
+          </article>
         </div>
+        
+        {relatedHeroItems.length > 0 && (
+          <aside className="hero-detail-sidebar">
+            <div className="hero-related-card">
+              <h2>Related</h2>
+              <ul className="hero-related-list">
+                {relatedHeroItems.map((item) => (
+                  <li key={item.id} className="hero-related-item">
+                    <Link to={`/hero/${item.slug}`} className="hero-related-link">
+                      {item.image && (
+                        <div className="hero-related-thumb">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            loading="lazy"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                            }}
+                          />
+                        </div>
+                      )}
+                      <div className="hero-related-info">
+                        <h3>{item.title}</h3>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+        )}
       </div>
     </section>
   );
