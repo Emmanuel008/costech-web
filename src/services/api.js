@@ -1586,5 +1586,107 @@ export const getHerinStatsByCategory = async () => {
   }
 };
 
+/**
+ * Fetch public FAQs
+ * @returns {Promise<Array>} - Array of FAQ categories with their FAQs
+ */
+export const getFAQs = async () => {
+  try {
+    const token = await getAuthToken();
+    
+    const response = await apiClient.get('/faq/ilistPublic', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for FAQs');
+    return [];
+  } catch (error) {
+    console.error('Error fetching FAQs:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch directorates list
+ * @returns {Promise<Array>} - Array of directorates
+ */
+export const getDirectorates = async () => {
+  try {
+    const token = await getAuthToken();
+    
+    const response = await apiClient.get('/directorate/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for directorates');
+    return [];
+  } catch (error) {
+    console.error('Error fetching directorates:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch partners list
+ * @returns {Promise<Array>} - Array of partners
+ */
+export const getPartners = async () => {
+  try {
+    const token = await getAuthToken();
+    
+    const response = await apiClient.get('/partners/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for partners');
+    return [];
+  } catch (error) {
+    console.error('Error fetching partners:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
 export default apiClient;
 

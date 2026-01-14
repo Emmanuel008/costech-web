@@ -241,3 +241,21 @@
     padding: 4px;
   }
 }
+
+/* Loading and Error States */
+.partners-loading,
+.partners-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.partners-error {
+  color: #ef4444;
+}
+
+.partners-loading p,
+.partners-error p {
+  margin: 0;
+}

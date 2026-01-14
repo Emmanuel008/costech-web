@@ -962,3 +962,23 @@
   }
 }
 
+/* Loading, Error, and Empty States */
+.directorates-loading,
+.directorates-error,
+.directorates-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.directorates-error {
+  color: #ef4444;
+}
+
+.directorates-loading p,
+.directorates-error p,
+.directorates-empty p {
+  margin: 0;
+}
+

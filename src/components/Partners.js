@@ -1,29 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { getPartners } from '../services/api';
 import '../styles/components/Partners.css';
 
 const Partners = () => {
-  const partners = [
-    { id: 1, logo: '/assets/img/bankword.jpeg', name: 'World Bank', alt: 'World Bank' },
-    { id: 2, logo: '/assets/img/commeo.jpeg', name: 'COMESA', alt: 'COMESA' },
-    { id: 3, logo: '/assets/img/eu.jpeg', name: 'European Union', alt: 'European Union' },
-    { id: 4, logo: '/assets/img/sgci.png', name: 'SGCI', alt: 'Science Granting Councils Initiative' },
-    { id: 5, logo: '/assets/img/edctp.jpeg', name: 'EDCTP', alt: 'European & Developing Countries Clinical Trials Partnership' },
-    { id: 6, logo: '/assets/img/biotech.jpeg', name: 'Biotech', alt: 'Biotech' },
-    { id: 7, logo: '/assets/img/isc.png', name: 'ISC', alt: 'International Science Council' },
-    { id: 8, logo: '/assets/img/giz.jpeg', name: 'GIZ', alt: 'GIZ' },
-    { id: 9, logo: '/assets/img/idrc.jpeg', name: 'IDRC', alt: 'IDRC' },
-    { id: 10, logo: '/assets/img/iita.jpeg', name: 'IITA', alt: 'IITA' },
-    { id: 12, logo: '/assets/img/norad.jpeg', name: 'NORAD', alt: 'NORAD' },
-    { id: 13, logo: '/assets/img/nrf.png', name: 'NRF', alt: 'NRF' },
-    { id: 14, logo: '/assets/img/sida.png', name: 'SIDA', alt: 'SIDA' },
-    { id: 15, logo: '/assets/img/uncdf.jpeg', name: 'UNCDF', alt: 'UNCDF' },
-    { id: 16, logo: '/assets/img/undp.jpeg', name: 'UNDP', alt: 'UNDP' },
-    { id: 17, logo: '/assets/img/wfp.jpeg', name: 'WFP', alt: 'WFP' },
-    { id: 18, logo: '/assets/img/global research .jpeg', name: 'Global Research', alt: 'Global Research' },
-  ];
+  const [partners, setPartners] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const apiData = await getPartners();
+
+        if (apiData && apiData.length > 0) {
+          // Transform API data to match component structure
+          const transformedPartners = apiData.map((item) => ({
+            id: item.id || item.uuid || Math.random(),
+            logo: item.logo || '',
+            name: item.name || 'Partner',
+            alt: item.name || 'Partner',
+          }));
+
+          setPartners(transformedPartners);
+        } else {
+          setPartners([]);
+        }
+      } catch (err) {
+        console.error('Error fetching partners:', err);
+        setError('Failed to load partners');
+        setPartners([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPartners();
+  }, []);
 
   const settings = {
     dots: false,
@@ -63,6 +81,40 @@ const Partners = () => {
     ]
   };
 
+  if (loading) {
+    return (
+      <section className="partners-section">
+        <div className="partners-container">
+          <div className="partners-header">
+            <h2 className="partners-title">Partners</h2>
+          </div>
+          <div className="partners-loading">
+            <p>Loading partners...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="partners-section">
+        <div className="partners-container">
+          <div className="partners-header">
+            <h2 className="partners-title">Partners</h2>
+          </div>
+          <div className="partners-error">
+            <p>{error}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (partners.length === 0) {
+    return null; // Don't show section if no partners
+  }
+
   return (
     <section className="partners-section">
       <div className="partners-container">
@@ -77,19 +129,12 @@ const Partners = () => {
                 <div className="partner-card">
                   <div className="partner-card-inner">
                   <img 
-                      src={partner.logo.replace(/ /g, '%20')} 
+                      src={partner.logo || ''} 
                     alt={partner.alt || partner.name} 
                     className="partner-logo-img" 
                     loading="lazy"
                     onError={(e) => {
-                        const attemptedPath = e.target.src;
-                        console.error(`Failed to load image for ${partner.name}:`, {
-                          originalPath: partner.logo,
-                          attemptedPath: attemptedPath,
-                          partnerId: partner.id
-                        });
-                        e.target.style.opacity = '0.3';
-                        e.target.alt = `Failed to load: ${partner.name}`;
+                        e.target.style.display = 'none';
                     }}
                   />
                 </div>

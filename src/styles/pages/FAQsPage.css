@@ -376,3 +376,20 @@
   }
 }
 
+/* Loading and Error States */
+.faqs-loading,
+.faqs-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.faqs-error {
+  color: #ef4444;
+}
+
+.faqs-loading p,
+.faqs-error p {
+  margin: 0;
+}
