@@ -185,7 +185,6 @@ const Navbar = () => {
       type: 'section',
       title: 'Publications',
       items: [
-        { text: 'Financial Report', href: '/financial-audit' },
         { text: 'Journals', href: '/publications/journals' },
         { text: 'Magazine', href: '/publications/magazine' },
         { text: 'Books', href: '/publications/books' },

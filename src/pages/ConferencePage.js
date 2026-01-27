@@ -1,46 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/pages/ConferencePage.css';
+import { getConferences } from '../services/api';
 
 const ConferencePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortDirection, setSortDirection] = useState('asc');
+  const [conferences, setConferences] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const itemsPerPage = 10;
 
+  useEffect(() => {
+    const fetchConferences = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const apiConferences = await getConferences();
+        
+        // Map API data to component structure
+        const mappedConferences = apiConferences.map((item) => ({
+          id: item.id,
+          name: item.name || item.title || '-',
+          abbreviation: item.abbreviation || '-',
+          host: item.host || item.organizer || '-',
+          theme: item.theme || item.focus || '-',
+          startDate: item.start_date || item.startDate || item.tentative_start_date || item.dates || '-',
+          endDate: item.end_date || item.endDate || item.tentative_end_date || '-',
+          location: item.location || '-',
+          link: item.link || item.url || ''
+        }));
+        
+        setConferences(mappedConferences);
+      } catch (err) {
+        console.error('Error fetching conferences:', err);
+        setError(err.message || 'Failed to load conferences');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchConferences();
+  }, []);
+
   // Conference data
-  const conferencesData = [
-    {
-      id: 1,
-      name: 'Science, Technology and Innovation Conference and Exhibitions',
-      abbreviation: 'STICE',
-      host: 'COSTECH',
-      theme: 'From Legacy…..',
-      dates: '3-4 September 2026',
-      location: 'Dar es Salaam',
-      link: 'https://stice.costech.or.tz'
-    },
-    {
-      id: 3,
-      name: 'Tanzania Society of Animal Production Annual Scientific Conference',
-      abbreviation: 'TSAP Conf',
-      host: 'TSAP',
-      theme: 'Animal & Livestock Science',
-      dates: 'October 2026 (projected)',
-      location: 'Arusha',
-      link: 'https://tsap.or.tz'
-    },
-    {
-      id: 4,
-      name: 'International Conference on Education Policy & Curricular Reforms',
-      abbreviation: '–',
-      host: 'University of Dar es Salaam',
-      theme: 'Education & Policy',
-      dates: 'March 2026 (projected)',
-      location: 'Dar es Salaam',
-      link: 'http://ww.udsm.ac.tz'
-    }
-  ];
+  const conferencesData = conferences;
 
   const handleSort = (column) => {
     if (sortColumn === column) {
@@ -76,6 +81,44 @@ const ConferencePage = () => {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  if (loading) {
+    return (
+      <section className="conference-page">
+        <div className="conference-hero">
+          <div className="conference-hero-overlay" />
+          <div className="conference-hero-content">
+            <h1>Conferences</h1>
+            <p>Conference and Exhibitions in Tanzania December from January 2026 to December 2026</p>
+          </div>
+        </div>
+        <div className="conference-body">
+          <div className="conference-loading">
+            <p>Loading conferences...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="conference-page">
+        <div className="conference-hero">
+          <div className="conference-hero-overlay" />
+          <div className="conference-hero-content">
+            <h1>Conferences</h1>
+            <p>Conference and Exhibitions in Tanzania December from January 2026 to December 2026</p>
+          </div>
+        </div>
+        <div className="conference-body">
+          <div className="conference-error">
+            <p>Unable to load conferences. Please try again later.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="conference-page">
@@ -119,8 +162,11 @@ const ConferencePage = () => {
                   <th className="sortable" onClick={() => handleSort('theme')}>
                     Theme / Focus {sortColumn === 'theme' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
-                  <th className="sortable" onClick={() => handleSort('dates')}>
-                    Tentative Dates {sortColumn === 'dates' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  <th className="sortable" onClick={() => handleSort('startDate')}>
+                    Start Date {sortColumn === 'startDate' && (sortDirection === 'asc' ? '↑' : '↓')}
+                  </th>
+                  <th className="sortable" onClick={() => handleSort('endDate')}>
+                    End Date {sortColumn === 'endDate' && (sortDirection === 'asc' ? '↑' : '↓')}
                   </th>
                   <th className="sortable" onClick={() => handleSort('location')}>
                     Location {sortColumn === 'location' && (sortDirection === 'asc' ? '↑' : '↓')}
@@ -139,10 +185,11 @@ const ConferencePage = () => {
                       <td>{item.abbreviation}</td>
                       <td>{item.host}</td>
                       <td>{item.theme}</td>
-                      <td>{item.dates}</td>
+                      <td>{item.startDate}</td>
+                      <td>{item.endDate}</td>
                       <td>{item.location}</td>
                       <td>
-                        {item.link ? (
+                        {item.link && item.link !== '-' ? (
                           <a href={item.link} target="_blank" rel="noopener noreferrer" className="conference-link">
                             {item.link.length > 40 ? item.link.substring(0, 40) + '...' : item.link}
                           </a>
@@ -154,7 +201,7 @@ const ConferencePage = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="8" className="no-data">
+                    <td colSpan="9" className="no-data">
                       No conferences found matching your search criteria.
                     </td>
                   </tr>

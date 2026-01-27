@@ -36,7 +36,6 @@ import FAQsPage from './pages/FAQsPage';
 import DashboardPage from './pages/DashboardPage';
 import InnovationDashboardPage from './pages/InnovationDashboardPage';
 import ResearchDashboardPage from './pages/ResearchDashboardPage';
-import FinancialAuditPage from './pages/FinancialAuditPage';
 import ConnectivityDashboardPage from './pages/ConnectivityDashboardPage';
 import DisseminationDashboardPage from './pages/DisseminationDashboardPage';
 import DirectoratesPage from './pages/DirectoratesPage';
@@ -260,8 +259,6 @@ function App() {
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/costech-funded" element={<CostechFundedProjectsPage />} />
             <Route path="/projects/costech-funded/:id" element={<CostechFundedProjectDetailPage />} />
-            {/* Financial Audit Route */}
-            <Route path="/financial-audit" element={<FinancialAuditPage />} />
           </Routes>
         </main>
         <Footer />

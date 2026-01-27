@@ -109,6 +109,7 @@ const FAQsPage = () => {
           <div className="faqs-hero-overlay" />
           <div className="faqs-hero-content">
             <h1>Frequently Asked Questions (FAQs)</h1>
+            <p>The COSTECH FAQs page offers quick answers to common questions about COSTECH services, including research permits, innovation support, funding, and registration, helping users easily understand processes and requirements.</p>
           </div>
         </div>
         <div className="faqs-body">
@@ -129,6 +130,7 @@ const FAQsPage = () => {
           <div className="faqs-hero-overlay" />
           <div className="faqs-hero-content">
             <h1>Frequently Asked Questions (FAQs)</h1>
+            <p>The COSTECH FAQs page offers quick answers to common questions about COSTECH services, including research permits, innovation support, funding, and registration, helping users easily understand processes and requirements.</p>
           </div>
         </div>
         <div className="faqs-body">
@@ -148,6 +150,7 @@ const FAQsPage = () => {
         <div className="faqs-hero-overlay" />
         <div className="faqs-hero-content">
           <h1>Frequently Asked Questions (FAQs)</h1>
+          <p>The COSTECH FAQs page offers quick answers to common questions about COSTECH services, including research permits, innovation support, funding, and registration, helping users easily understand processes and requirements.</p>
         </div>
       </div>
       <div className="faqs-body">

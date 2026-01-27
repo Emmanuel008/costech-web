@@ -196,44 +196,44 @@
 }
 
 .journals-table td:nth-child(2) {
-  width: 8%;
+  width: 12%;
 }
 
 .journals-table td:nth-child(3) {
-  width: 18%;
+  width: 16%;
   font-weight: 500;
 }
 
 .journals-table td:nth-child(4) {
-  width: 12%;
+  width: 10%;
 }
 
 .journals-table td:nth-child(5) {
-  width: 10%;
-}
-
-.journals-table td:nth-child(6) {
-  width: 10%;
-}
-
-.journals-table td:nth-child(7) {
-  width: 15%;
-}
-
-.journals-table td:nth-child(8) {
   width: 8%;
 }
 
+.journals-table td:nth-child(6) {
+  width: 8%;
+}
+
+.journals-table td:nth-child(7) {
+  width: 12%;
+}
+
+.journals-table td:nth-child(8) {
+  width: 20%;
+}
+
 .journals-table td:nth-child(9) {
-  width: 9%;
+  width: 7%;
 }
 
 .journals-table td:nth-child(10) {
-  width: 5%;
+  width: 4%;
 }
 
 .journals-table td:nth-child(11) {
-  width: 3%;
+  width: 2%;
 }
 
 .url-link {
@@ -360,3 +360,20 @@
   }
 }
 
+/* Loading and Error States */
+.journals-loading,
+.journals-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.journals-error {
+  color: #ef4444;
+}
+
+.journals-loading p,
+.journals-error p {
+  margin: 0;
+}

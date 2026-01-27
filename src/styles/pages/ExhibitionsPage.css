@@ -197,32 +197,36 @@
 }
 
 .exhibitions-table td:nth-child(2) {
-  width: 20%;
+  width: 16%;
   font-weight: 500;
 }
 
 .exhibitions-table td:nth-child(3) {
-  width: 9%;
+  width: 7%;
 }
 
 .exhibitions-table td:nth-child(4) {
-  width: 13%;
-}
-
-.exhibitions-table td:nth-child(5) {
-  width: 16%;
-}
-
-.exhibitions-table td:nth-child(6) {
-  width: 12%;
-}
-
-.exhibitions-table td:nth-child(7) {
   width: 10%;
 }
 
+.exhibitions-table td:nth-child(5) {
+  width: 12%;
+}
+
+.exhibitions-table td:nth-child(6) {
+  width: 9%;
+}
+
+.exhibitions-table td:nth-child(7) {
+  width: 8%;
+}
+
 .exhibitions-table td:nth-child(8) {
-  width: 16%;
+  width: 8%;
+}
+
+.exhibitions-table td:nth-child(9) {
+  width: 30%;
 }
 
 .exhibition-link {
@@ -347,4 +351,22 @@
   .exhibitions-hero-content h1 {
     font-size: 1.5rem;
   }
+}
+
+/* Loading and Error States */
+.exhibitions-loading,
+.exhibitions-error {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.exhibitions-error {
+  color: #ef4444;
+}
+
+.exhibitions-loading p,
+.exhibitions-error p {
+  margin: 0;
 }

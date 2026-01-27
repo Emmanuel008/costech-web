@@ -315,6 +315,42 @@ export const getMagazines = async () => {
 };
 
 /**
+ * Fetch journals list from API
+ * @returns {Promise<Array>} - Array of journal items
+ */
+export const getJournals = async () => {
+  try {
+    // Get authentication token
+    const token = await getAuthToken();
+
+    // Make authenticated request
+    const response = await apiClient.get('/journal/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for journals');
+    return [];
+  } catch (error) {
+    console.error('Error fetching journals:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
  * Fetch books list from API
  * @returns {Promise<Array>} - Array of book items
  */
@@ -770,6 +806,150 @@ export const getExhibitions = async () => {
     return [];
   } catch (error) {
     console.error('Error fetching exhibitions:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch social media platforms list from API
+ * @returns {Promise<Array>} - Array of social media platform items
+ */
+export const getSocialMediaPlatforms = async () => {
+  try {
+    // Get authentication token
+    const token = await getAuthToken();
+
+    // Make authenticated request
+    const response = await apiClient.get('/socialMediaPlatform/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for social media platforms');
+    return [];
+  } catch (error) {
+    console.error('Error fetching social media platforms:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch footer e-resources list from API
+ * @returns {Promise<Array>} - Array of e-resource items
+ */
+export const getFooterEresources = async () => {
+  try {
+    // Get authentication token
+    const token = await getAuthToken();
+
+    // Make authenticated request
+    const response = await apiClient.get('/footerEresource/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for footer e-resources');
+    return [];
+  } catch (error) {
+    console.error('Error fetching footer e-resources:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch footer contact us information from API
+ * @returns {Promise<Array>} - Array of contact items
+ */
+export const getFooterContactUs = async () => {
+  try {
+    // Get authentication token
+    const token = await getAuthToken();
+
+    // Make authenticated request
+    const response = await apiClient.get('/footerContactUs/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for footer contact us');
+    return [];
+  } catch (error) {
+    console.error('Error fetching footer contact us:', error);
+    if (error.response) {
+      console.error('Response status:', error.response.status);
+      console.error('Response data:', error.response.data);
+    } else if (error.request) {
+      console.error('No response received:', error.request);
+    } else {
+      console.error('Error setting up request:', error.message);
+    }
+    throw error;
+  }
+};
+
+/**
+ * Fetch footer quick links list from API
+ * @returns {Promise<Array>} - Array of quick link items
+ */
+export const getFooterQuickLinks = async () => {
+  try {
+    // Get authentication token
+    const token = await getAuthToken();
+
+    // Make authenticated request
+    const response = await apiClient.get('/footerQuickLink/ilist', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.data && response.data.status === 'OK' && response.data.returnData && response.data.returnData.list_of_item) {
+      return response.data.returnData.list_of_item;
+    }
+
+    console.warn('API returned empty or invalid response for footer quick links');
+    return [];
+  } catch (error) {
+    console.error('Error fetching footer quick links:', error);
     if (error.response) {
       console.error('Response status:', error.response.status);
       console.error('Response data:', error.response.data);

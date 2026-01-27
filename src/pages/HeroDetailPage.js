@@ -127,41 +127,41 @@ const HeroDetailPage = () => {
       <div className="hero-detail-container">
         <div className="hero-detail-main">
           <article className="hero-detail-card">
-            <h1 className="hero-detail-title">{title}</h1>
-            
-            {imageUrl && (
-              <div className="hero-detail-image-container">
-                <img
-                  src={imageUrl}
-                  alt={title}
-                  className="hero-detail-image"
-                  loading="lazy"
-                  onError={(e) => {
+          <h1 className="hero-detail-title">{title}</h1>
+          
+          {imageUrl && (
+            <div className="hero-detail-image-container">
+              <img
+                src={imageUrl}
+                alt={title}
+                className="hero-detail-image"
+                loading="lazy"
+                onError={(e) => {
                     e.target.style.display = 'none';
-                  }}
-                />
+                }}
+              />
+            </div>
+          )}
+          
+          <div className="hero-detail-content">
+              {content && (
+              <div className="hero-detail-body">
+                {typeof content === 'string' ? (
+                    <div dangerouslySetInnerHTML={{ __html: content }} />
+                ) : Array.isArray(content) ? (
+                  content.map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))
+                ) : (
+                  <p>{String(content)}</p>
+                )}
               </div>
             )}
-            
-            <div className="hero-detail-content">
-              {content && (
-                <div className="hero-detail-body">
-                  {typeof content === 'string' ? (
-                    <div dangerouslySetInnerHTML={{ __html: content }} />
-                  ) : Array.isArray(content) ? (
-                    content.map((paragraph, index) => (
-                      <p key={index}>{paragraph}</p>
-                    ))
-                  ) : (
-                    <p>{String(content)}</p>
-                  )}
-                </div>
-              )}
-            </div>
-            
-            <div className="hero-detail-actions">
-              <Link to="/" className="hero-detail-back-btn">← Back to Home</Link>
-            </div>
+          </div>
+          
+          <div className="hero-detail-actions">
+            <Link to="/" className="hero-detail-back-btn">← Back to Home</Link>
+          </div>
           </article>
         </div>
         
