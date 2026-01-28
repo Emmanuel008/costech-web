@@ -7,6 +7,32 @@ import {
   getFooterQuickLinks 
 } from '../services/api';
 
+// Component to handle social media icon with image fallback
+const SocialIcon = ({ url, iconUrl, platformName, svgIcon, ariaLabel }) => {
+  const [imageError, setImageError] = useState(false);
+
+  return (
+    <a
+      href={url}
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="social-icon" 
+      aria-label={ariaLabel}
+    >
+      {iconUrl && !imageError ? (
+        <img 
+          src={iconUrl} 
+          alt={ariaLabel} 
+          className="social-icon-img"
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        svgIcon
+      )}
+    </a>
+  );
+};
+
 const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [socialMedia, setSocialMedia] = useState([]);
@@ -84,8 +110,16 @@ const Footer = () => {
                     const platformName = (platform.name || platform.platform_name || '').toLowerCase();
                     const url = platform.url || platform.link || '#';
                     
-                    // Get icon based on platform name
-                    const getIcon = () => {
+                    // Check for icon/image from API (could be icon, image, icon_url, image_url, logo, attachment, etc.)
+                    let iconUrl = platform.icon || platform.image || platform.icon_url || platform.image_url || platform.logo || platform.attachment || null;
+                    
+                    // If icon URL is relative, prepend base URL
+                    if (iconUrl && !iconUrl.startsWith('http') && !iconUrl.startsWith('/')) {
+                      iconUrl = `https://costech.kingdomsolutions.co.tz/${iconUrl}`;
+                    }
+                    
+                    // Get SVG icon based on platform name (fallback)
+                    const getSvgIcon = () => {
                       if (platformName.includes('twitter') || platformName.includes('x')) {
                         return (
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -108,9 +142,9 @@ const Footer = () => {
                         );
                       } else if (platformName.includes('youtube')) {
                         return (
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                          </svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
                         );
                       } else if (platformName.includes('linkedin')) {
                         return (
@@ -128,16 +162,14 @@ const Footer = () => {
                     };
 
                     return (
-                      <a
+                      <SocialIcon
                         key={platform.id}
-                        href={url}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="social-icon" 
-                        aria-label={platform.name || platform.platform_name || 'Social Media'}
-                >
-                        {getIcon()}
-                </a>
+                        url={url}
+                        iconUrl={iconUrl}
+                        platformName={platformName}
+                        svgIcon={getSvgIcon()}
+                        ariaLabel={platform.name || platform.platform_name || 'Social Media'}
+                      />
                     );
                   })
                 ) : null}
