@@ -201,7 +201,7 @@ const Navbar = () => {
       items: [
         { text: 'Conference', href: '/events/conferences' },
         { text: 'Exhibitions', href: '/events/exhibitions' },
-        { text: 'Community Engagements', href: '/events/community-engagements' },
+        { text: 'STI Marathon (STIthon)', href: '/events/community-engagements' },
       ],
     },
   ];
