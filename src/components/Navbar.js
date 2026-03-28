@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import '../styles/components/Navbar.css';
+import { useLocation } from 'react-router-dom';
 import { getOnlineServices } from '../services/api';
+import '../styles/components/Navbar.css';
 
 const MegaMenuItem = ({ item, onClose, level = 0 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -129,6 +130,7 @@ const fallbackOnlineServicesItems = [
 ];
 
 const Navbar = () => {
+  const location = useLocation();
   const [activeSecondDropdown, setActiveSecondDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -147,6 +149,24 @@ const Navbar = () => {
     document.addEventListener('click', handleDocumentClick);
     return () => document.removeEventListener('click', handleDocumentClick);
   }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return undefined;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setActiveSecondDropdown(null);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -342,6 +362,9 @@ const Navbar = () => {
                     className="second-nav-link second-nav-link--button"
                     onClick={(event) => {
                       event.stopPropagation();
+                      if (window.innerWidth <= 768) {
+                        setIsMobileMenuOpen(true);
+                      }
                       handleDropdownToggle(index);
                     }}
                   >

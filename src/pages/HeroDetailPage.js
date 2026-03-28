@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../styles/pages/HeroDetailPage.css';
-import { getHero } from '../services/api';
+import { getHero, sortHeroItemsLatestFirst } from '../services/api';
 
 const HeroDetailPage = () => {
   const { id } = useParams();
@@ -16,8 +16,9 @@ const HeroDetailPage = () => {
         setLoading(true);
         setError(null);
         
-        const heroData = await getHero();
-        
+        const rawHero = await getHero();
+        const heroData = sortHeroItemsLatestFirst(rawHero);
+
         if (heroData && heroData.length > 0) {
           // Try to find by ID first
           let item = heroData.find(h => 

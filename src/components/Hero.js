@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/components/Hero.css';
 import BlurText from './BlurText';
 import RotatingText from './RotatingText';
-import { getHero } from '../services/api';
+import { getHero, sortHeroItemsLatestFirst, HERO_CAROUSEL_LIMIT } from '../services/api';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -18,7 +18,8 @@ const Hero = () => {
         setLoading(true);
         const data = await getHero();
         if (data && data.length > 0) {
-          setHeroItems(data);
+          const latest = sortHeroItemsLatestFirst(data).slice(0, HERO_CAROUSEL_LIMIT);
+          setHeroItems(latest);
         } else {
           setHeroItems([]);
         }

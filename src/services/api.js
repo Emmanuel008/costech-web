@@ -1157,6 +1157,49 @@ export const getHero = async () => {
   }
 };
 
+/** Max slides shown on the homepage hero carousel */
+export const HERO_CAROUSEL_LIMIT = 5;
+
+/**
+ * Sort hero items newest first (by common API date fields, then by id).
+ * @param {Array} items - Raw hero list from API
+ * @returns {Array}
+ */
+export const sortHeroItemsLatestFirst = (items) => {
+  if (!Array.isArray(items) || items.length === 0) {
+    return [];
+  }
+
+  const timestamp = (item) => {
+    const raw =
+      item.created_at ||
+      item.updated_at ||
+      item.date ||
+      item.createdAt ||
+      item.uploaded_at ||
+      item.timestamp;
+    if (raw == null || raw === '') {
+      return 0;
+    }
+    const t = new Date(raw).getTime();
+    return Number.isFinite(t) ? t : 0;
+  };
+
+  const numericId = (item) => {
+    const id = item.id ?? item.hero_id;
+    const n = Number(id);
+    return Number.isFinite(n) ? n : 0;
+  };
+
+  return [...items].sort((a, b) => {
+    const diff = timestamp(b) - timestamp(a);
+    if (diff !== 0) {
+      return diff;
+    }
+    return numericId(b) - numericId(a);
+  });
+};
+
 /**
  * Fetch COSTECH funded projects list from API with filters
  * @param {Object} filters - Filter parameters (page_no, page_size, program_id, gender_id, status_id, funder_id)
