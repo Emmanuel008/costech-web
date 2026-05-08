@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import VisitorCounter from './VisitorCounter';
 import '../styles/components/Footer.css';
 import { 
   getSocialMediaPlatforms, 
@@ -284,6 +285,9 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
+          {/* Visitor Counter */}
+          <VisitorCounter />
 
           {/* Copyright */}
           <div className="footer-copyright">
