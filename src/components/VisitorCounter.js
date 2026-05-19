@@ -12,6 +12,7 @@ const VisitorCounter = () => {
     today: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [counterUnavailable, setCounterUnavailable] = useState(false);
   const counterRef = useRef(null);
   const isInView = useInView(counterRef, { once: true, margin: '-50px' });
 
@@ -28,71 +29,77 @@ const VisitorCounter = () => {
       };
     };
 
-    const getFallbackCount = (storageKey, sessionKey) => {
-      const stored = parseInt(localStorage.getItem(storageKey) || '0', 10);
-      const alreadyCounted = sessionStorage.getItem(sessionKey);
-
-      if (alreadyCounted) {
-        return stored;
-      }
-
-      const newCount = stored + 1;
-      localStorage.setItem(storageKey, newCount);
-      sessionStorage.setItem(sessionKey, 'true');
-      return newCount;
+    const getCachedCount = (storageKey) => {
+      const stored = parseInt(localStorage.getItem(storageKey) || '', 10);
+      return Number.isNaN(stored) ? null : stored;
     };
 
     const fetchAndIncrement = async () => {
       const namespace = 'costech-or-tz';
+      const counterApiBaseUrl = 'https://api.counterapi.dev/v1';
       const periods = getPeriodKeys();
       const visitorPeriods = [
         {
           id: 'month',
           countKey: `website-visits-month-${periods.month}`,
-          sessionKey: `costech_visitor_counted_month_${periods.month}`,
-          storageKey: `costech_visitor_count_month_${periods.month}`,
+          sessionKey: `costech_counterapi_visitor_counted_month_${periods.month}`,
+          storageKey: `costech_counterapi_count_month_${periods.month}`,
         },
         {
           id: 'today',
           countKey: `website-visits-day-${periods.today}`,
-          sessionKey: `costech_visitor_counted_day_${periods.today}`,
-          storageKey: `costech_visitor_count_day_${periods.today}`,
+          sessionKey: `costech_counterapi_visitor_counted_day_${periods.today}`,
+          storageKey: `costech_counterapi_count_day_${periods.today}`,
         },
       ];
 
       try {
-        const nextCounts = await visitorPeriods.reduce(async (pendingCounts, period) => {
-          const resolvedCounts = await pendingCounts;
-          const alreadyCounted = sessionStorage.getItem(period.sessionKey);
-          const method = alreadyCounted ? 'get' : 'hit';
-          const response = await fetch(
-            `https://api.countapi.xyz/${method}/${namespace}/${period.countKey}`
-          );
+        const periodCounts = await Promise.all(
+          visitorPeriods.map(async (period) => {
+            const alreadyCounted = sessionStorage.getItem(period.sessionKey);
+            const action = alreadyCounted ? '/' : '/up';
+            const response = await fetch(
+              `${counterApiBaseUrl}/${namespace}/${period.countKey}${action}`
+            );
 
-          if (!response.ok) {
-            throw new Error('CountAPI unavailable');
-          }
+            if (!response.ok) {
+              throw new Error('CounterAPI unavailable');
+            }
 
-          const data = await response.json();
-          localStorage.setItem(period.storageKey, data.value);
+            const data = await response.json();
+            const count = data.count;
 
-          if (!alreadyCounted) {
-            sessionStorage.setItem(period.sessionKey, 'true');
-          }
+            if (typeof count !== 'number') {
+              throw new Error('CounterAPI returned an invalid count');
+            }
 
-          return {
-            ...resolvedCounts,
-            [period.id]: data.value,
-          };
-        }, Promise.resolve({}));
+            localStorage.setItem(period.storageKey, count);
 
+            if (!alreadyCounted) {
+              sessionStorage.setItem(period.sessionKey, 'true');
+            }
+
+            return {
+              id: period.id,
+              count,
+            };
+          })
+        );
+
+        const nextCounts = periodCounts.reduce((resolvedCounts, period) => ({
+          ...resolvedCounts,
+          [period.id]: period.count,
+        }), {});
+
+        setCounterUnavailable(false);
         setCounts(nextCounts);
       } catch (error) {
-        console.warn('Visitor counter fallback to localStorage:', error.message);
+        console.warn('Visitor counter unavailable:', error.message);
+        setCounterUnavailable(true);
         setCounts(
           visitorPeriods.reduce((nextCounts, period) => ({
             ...nextCounts,
-            [period.id]: getFallbackCount(period.storageKey, period.sessionKey),
+            [period.id]: getCachedCount(period.storageKey),
           }), {})
         );
       } finally {
@@ -181,6 +188,8 @@ const VisitorCounter = () => {
                 <span className="visitor-dot"></span>
                 <span className="visitor-dot"></span>
               </span>
+            ) : counterUnavailable && counts.month === null && counts.today === null ? (
+              <span className="visitor-counter-unavailable">Temporarily unavailable</span>
             ) : (
               <>
                 <div className="visitor-counter-stat">
