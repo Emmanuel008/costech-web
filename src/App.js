@@ -49,6 +49,7 @@ import PressReleasePage from './pages/PressReleasePage';
 import CostechFundedProjectsPage from './pages/CostechFundedProjectsPage';
 import CostechFundedProjectDetailPage from './pages/CostechFundedProjectDetailPage';
 import HeroDetailPage from './pages/HeroDetailPage';
+import FeedbackPage from './pages/FeedbackPage';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 import './styles/App.css';
@@ -237,6 +238,8 @@ function App() {
             <Route path="/events/community-engagements" element={<CommunityEngagementsPage />} />
             <Route path="/research/edctp" element={<EDCTPPage />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/feedback" element={<FeedbackPage />} />
+            <Route path="/customer-survey" element={<FeedbackPage />} />
             <Route path="/faqs" element={<FAQsPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/dashboard/innovation" element={<InnovationDashboardPage />} />

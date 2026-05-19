@@ -126,7 +126,7 @@ const fallbackOnlineServicesItems = [
   { text: 'TanBIF', href: '/tanbif' },
   { text: 'National Interlinked Research Repository', href: '/research-repository' },
   { text: 'Research Funding', href: '/research-funding' },
-  { text: 'Customer Survey Form', href: '/customer-survey' },
+  { text: 'Feedback Form', href: '/customer-survey' },
 ];
 
 const Navbar = () => {
@@ -196,6 +196,7 @@ const Navbar = () => {
     { text: 'Board of Commission', href: '/about/commission-members' },
     { text: 'Directorates', href: '/directorates' },
     { text: 'Our Services', href: '/what-we-offer' },
+    { text: 'Feedback', href: '/feedback' },
     { text: 'Contact Us', href: '/contact' },
   ];
 
@@ -457,4 +458,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
