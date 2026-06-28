@@ -11,9 +11,9 @@ const MegaMenuItem = ({ item, onClose, level = 0 }) => {
       <div className={`mega-menu-item ${level > 0 ? 'mega-menu-item-nested' : ''}`}>
         <div className="mega-menu-item-header">
           {item.href ? (
-            <a 
-              href={item.href} 
-              className="mega-menu-item-link" 
+            <a
+              href={item.href}
+              className="mega-menu-item-link"
               onClick={onClose}
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
@@ -47,9 +47,9 @@ const MegaMenuItem = ({ item, onClose, level = 0 }) => {
   return (
     <div className={`mega-menu-item ${level > 0 ? 'mega-menu-item-nested' : ''}`}>
       {item.href ? (
-        <a 
-          href={item.href} 
-          className="mega-menu-item-link" 
+        <a
+          href={item.href}
+          className="mega-menu-item-link"
           onClick={onClose}
           target={item.external ? '_blank' : undefined}
           rel={item.external ? 'noopener noreferrer' : undefined}
@@ -71,9 +71,9 @@ const DropdownMenuItem = ({ item, onClose, level = 0 }) => {
       <div className={`dropdown-item-wrapper ${level > 0 ? 'dropdown-item-nested' : ''}`}>
         <div className="dropdown-item-header">
           {item.href ? (
-            <a 
-              href={item.href} 
-              className="dropdown-item" 
+            <a
+              href={item.href}
+              className="dropdown-item"
               onClick={onClose}
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
@@ -173,7 +173,7 @@ const Navbar = () => {
       const scrollPosition = window.scrollY;
       const scrolled = scrollPosition > 50;
       setIsScrolled(scrolled);
-      
+
       // Add/remove class to body for CSS adjustments
       if (scrolled) {
         document.body.classList.add('navbar-scrolled');
@@ -253,28 +253,28 @@ const Navbar = () => {
   useEffect(() => {
     const fetchOnlineServices = async () => {
       try {
-        
+
         // Fetch online services from API
         const apiServices = await getOnlineServices();
-        
-        
+
+
         if (apiServices && apiServices.length > 0) {
-          
+
           // Map API response to component structure
           const mappedServices = apiServices.map((service) => {
             // Handle URL - could be in url, link, website, or external_url field
             const url = service.url || service.link || service.website || service.external_url || service.href || '#';
-            
+
             // Check if URL is external (starts with http:// or https://)
             const isExternal = url.startsWith('http://') || url.startsWith('https://');
-            
+
             return {
               text: service.title || service.name || service.text || 'Untitled Service',
               href: url,
               external: isExternal
             };
           });
-          
+
           setOnlineServicesItems(mappedServices);
         } else {
           console.warn('Navbar: API returned empty array, using fallback');
@@ -300,7 +300,8 @@ const Navbar = () => {
     { text: 'Home', hasDropdown: false, href: '/' },
     { text: 'About us', hasDropdown: true, href: '/about', dropdownItems: aboutUsDropdownItems },
     { text: 'Online Services', hasDropdown: true, href: '#', dropdownItems: onlineServicesItems },
-    { text: 'Info Portal', hasDropdown: false, href: '/dashboard' },
+    { text: 'R&D Statistics', hasDropdown: false, href: 'https://nissti.costech.or.tz/information-portal', external: true},
+    // { text: 'R&D Statistics', hasDropdown: false, href: '/dashboard' },
     { text: 'Publication & Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
     { text: 'Projects & Program', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
@@ -315,13 +316,13 @@ const Navbar = () => {
       <div className={`top-header ${isScrolled ? 'top-header--hidden' : ''}`}>
         <div className="header-container">
           <div className="header-left">
-            <img 
-              src="/assets/img/emblem.webp" 
-              alt="Tanzania Emblem" 
+            <img
+              src="/assets/img/emblem.webp"
+              alt="Tanzania Emblem"
               className="emblem-logo"
             />
           </div>
-          
+
           <div className="header-center">
             <div className="header-text">
               TANZANIA COMMISSION FOR SCIENCE AND TECHNOLOGY
@@ -329,11 +330,11 @@ const Navbar = () => {
               (COSTECH)
             </div>
           </div>
-          
+
           <div className="header-right">
-            <img 
-              src="/assets/img/costechlogonew.png" 
-              alt="COSTECH Logo" 
+            <img
+              src="/assets/img/costechlogonew.png"
+              alt="COSTECH Logo"
               className="costech-logo"
             />
           </div>
@@ -343,7 +344,7 @@ const Navbar = () => {
       {/* Second Navbar - English Menu */}
       <nav className={`second-navbar ${isScrolled ? 'second-navbar--scrolled' : ''}`}>
         <div className="second-navbar-container">
-          <button 
+          <button
             className="mobile-menu-toggle"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
@@ -373,8 +374,8 @@ const Navbar = () => {
                     <span className="dropdown-chevron">▼</span>
                   </button>
                 ) : (
-                  <a 
-                    href={item.href} 
+                  <a
+                    href={item.href}
                     className="second-nav-link"
                     onClick={() => setIsMobileMenuOpen(false)}
                     target={item.external ? '_blank' : undefined}

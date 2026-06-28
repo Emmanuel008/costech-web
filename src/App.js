@@ -58,7 +58,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <HomepageStats />
+      {/*<HomepageStats />*/}
       <News />
       <SectionDivider />
       <Partners />
@@ -88,7 +88,7 @@ function App() {
       },
       debug: false
     };
-    
+
     // Function to initialize widget
     function initRafikiWidget() {
       // Check if RafikiChat is already available (script already loaded)
@@ -101,7 +101,7 @@ function App() {
         }
         return;
       }
-      
+
       // Check if script is already being loaded
       const existingScript = document.querySelector('script[src*="chat-widget.js"]');
       if (existingScript) {
@@ -116,25 +116,25 @@ function App() {
             }
           }
         }, 100);
-        
+
         // Stop checking after 10 seconds
         setTimeout(function() {
           clearInterval(checkInterval);
         }, 10000);
         return;
       }
-      
+
       // Script not loaded yet, load it now
       const script = document.createElement('script');
       var cacheBuster = Date.now();
       script.src = 'https://rafikiaicompany.com/widget/chat-widget.js?v=latest&t=' + cacheBuster;
       script.async = true;
       script.defer = true;
-      
+
       // Retry counter
       let retryCount = 0;
       const maxRetries = 10;
-      
+
       function tryInit() {
         if (window.RafikiChat && typeof window.RafikiChat.init === 'function') {
           try {
@@ -150,12 +150,12 @@ function App() {
           console.error('Please ensure the embed code is added to a SHARED template (header/footer) that loads on every page.');
         }
       }
-      
+
       script.onload = function() {
         // Wait a bit for RafikiChat to be available
         setTimeout(tryInit, 100);
       };
-      
+
       script.onerror = function() {
         console.error('Rafiki Chat Widget: Failed to load script from https://rafikiaicompany.com/widget/chat-widget.js');
         console.error('Please check:');
@@ -164,7 +164,7 @@ function App() {
         console.error('3. There are no CORS or network errors');
         console.error('4. The embed code is added to a SHARED template (header/footer) that loads on every page');
       };
-      
+
       // Append to head or body
       if (document.head) {
         document.head.appendChild(script);
@@ -181,7 +181,7 @@ function App() {
         });
       }
     }
-    
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initRafikiWidget);
@@ -189,7 +189,7 @@ function App() {
       // DOM is already ready
       initRafikiWidget();
     }
-    
+
     // Cleanup function to remove script when component unmounts (optional)
     return () => {
       // The widget script will remain loaded, but we could clean up if needed
