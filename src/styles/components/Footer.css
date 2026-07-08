@@ -336,6 +336,32 @@
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
+.costech40-chat-badge {
+  position: fixed;
+  right: 112px;
+  bottom: 28px;
+  width: 128px;
+  min-height: 72px;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(185, 124, 7, 0.18);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.costech40-chat-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 64px;
+  object-fit: contain;
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
   .footer {
@@ -393,6 +419,14 @@
     bottom: 20px;
     right: 20px;
   }
+
+  .costech40-chat-badge {
+    right: 88px;
+    bottom: 18px;
+    width: 112px;
+    min-height: 62px;
+    padding: 7px;
+  }
   
   .scroll-to-top svg {
     width: 22px;
@@ -446,10 +480,18 @@
     bottom: 15px;
     right: 15px;
   }
+
+  .costech40-chat-badge {
+    right: 74px;
+    bottom: 14px;
+    width: 94px;
+    min-height: 52px;
+    padding: 6px;
+    border-radius: 12px;
+  }
   
   .scroll-to-top svg {
     width: 20px;
     height: 20px;
   }
 }
-

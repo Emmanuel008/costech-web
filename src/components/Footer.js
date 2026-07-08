@@ -308,9 +308,15 @@ const Footer = () => {
           </svg>
         </button>
       )}
+      <div className="costech40-chat-badge" aria-label="COSTECH at 40">
+        <img
+          src="/assets/img/costech40.jpeg"
+          alt="COSTECH at 40"
+          className="costech40-chat-logo"
+        />
+      </div>
     </>
   );
 };
 
 export default Footer;
-
