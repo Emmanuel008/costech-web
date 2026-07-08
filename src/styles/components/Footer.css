@@ -336,9 +336,9 @@
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.costech40-chat-badge {
+.costech40-floating-badge {
   position: fixed;
-  right: 112px;
+  left: 30px;
   bottom: 28px;
   width: 128px;
   min-height: 72px;
@@ -354,7 +354,7 @@
   backdrop-filter: blur(10px);
 }
 
-.costech40-chat-logo {
+.costech40-floating-logo {
   display: block;
   width: 100%;
   height: auto;
@@ -380,7 +380,7 @@
   .footer-logo-container {
     max-width: 200px;
   }
-  
+
   .footer-heading {
     font-size: 1rem;
   }
@@ -420,8 +420,8 @@
     right: 20px;
   }
 
-  .costech40-chat-badge {
-    right: 88px;
+  .costech40-floating-badge {
+    left: 20px;
     bottom: 18px;
     width: 112px;
     min-height: 62px;
@@ -481,8 +481,8 @@
     right: 15px;
   }
 
-  .costech40-chat-badge {
-    right: 74px;
+  .costech40-floating-badge {
+    left: 15px;
     bottom: 14px;
     width: 94px;
     min-height: 52px;
