@@ -296,7 +296,8 @@
 }
 
 .reports-loading,
-.reports-error {
+.reports-error,
+.reports-empty {
   text-align: center;
   padding: 60px 20px;
   font-size: 1.1rem;
@@ -316,6 +317,10 @@
   color: #dc2626;
 }
 
+.reports-empty {
+  color: #64748b;
+}
+
 @keyframes dots {
   0%, 20% {
     content: '.';
@@ -327,4 +332,3 @@
     content: '...';
   }
 }
-

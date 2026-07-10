@@ -242,11 +242,6 @@ const Navbar = () => {
     { text: 'Area for Partnership', href: '/projects#partnership' },
   ];
 
-  const incubationItems = [
-    { text: 'Buni Hub', href: 'https://bunihub.or.tz/', external: true },
-    { text: 'DTBi', href: 'https://teknohama.or.tz/', external: true },
-  ];
-
   const [onlineServicesItems, setOnlineServicesItems] = useState(fallbackOnlineServicesItems);
 
   // Fetch online services from API
@@ -305,7 +300,7 @@ const Navbar = () => {
     { text: 'Publication & Events', hasDropdown: true, href: '/publications', dropdownItems: publicationsEventsItems, isMegaMenu: true },
     { text: 'Media Centre', hasDropdown: true, href: '/media', dropdownItems: mediaCentreItems },
     { text: 'Projects & Program', hasDropdown: true, href: '/projects', dropdownItems: projectsItems },
-    { text: 'Incubation', hasDropdown: true, href: '#', dropdownItems: incubationItems },
+    { text: 'Audited Reports', hasDropdown: false, href: '/publications/audited-reports' },
       { text: 'Funding Opportunities', hasDropdown: false, href: '/fellowships-grants' },
     { text: 'FAQs', hasDropdown: false, href: '/faqs' },
   ];

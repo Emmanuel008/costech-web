@@ -19,6 +19,7 @@ import EstablishmentPage from './pages/EstablishmentPage';
 import FundingPage from './pages/FundingPage';
 import ClusterInitiativePage from './pages/ClusterInitiativePage';
 import IncubationPage from './pages/IncubationPage';
+import AuditedReportsPage from './pages/AuditedReportsPage';
 import ReportsPage from './pages/ReportsPage';
 import GuidelinesPage from './pages/GuidelinesPage';
 import StrategicPlanPage from './pages/StrategicPlanPage';
@@ -219,6 +220,7 @@ function App() {
             <Route path="/technology/incubation" element={<IncubationPage />} />
             {/* Publications Routes */}
             <Route path="/publication/reports" element={<ReportsPage />} />
+            <Route path="/publication/audited-reports" element={<AuditedReportsPage />} />
             <Route path="/publication/guidelines" element={<GuidelinesPage />} />
             <Route path="/publication/strategic-plans" element={<StrategicPlanPage />} />
             <Route path="/publication/policy" element={<ResearchTechnologyPolicyPage />} />
@@ -227,6 +229,7 @@ function App() {
             <Route path="/publications/magazine" element={<ResearchInnovationMagazinePage />} />
             <Route path="/publications/books" element={<BooksPage />} />
             <Route path="/publications/reports" element={<ReportsPage />} />
+            <Route path="/publications/audited-reports" element={<AuditedReportsPage />} />
             <Route path="/publications/acts-legal" element={<ActsAndLegalPage />} />
             <Route path="/publications/policies" element={<ResearchTechnologyPolicyPage />} />
             <Route path="/publications/strategic-plan" element={<StrategicPlanPage />} />
