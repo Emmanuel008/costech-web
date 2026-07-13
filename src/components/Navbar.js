@@ -195,6 +195,8 @@ const Navbar = () => {
     { text: 'Management Team', href: '/about/top-management' },
     { text: 'Board of Commission', href: '/about/commission-members' },
     { text: 'Directorates', href: '/directorates' },
+    { text: 'Buni Hub', href: 'https://bunihub.or.tz/', external: true },
+    { text: 'DTBi', href: 'https://teknohama.or.tz/', external: true },
     { text: 'Our Services', href: '/what-we-offer' },
     { text: 'Feedback', href: '/feedback' },
     { text: 'Contact Us', href: '/contact' },
