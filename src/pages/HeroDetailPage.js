@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import '../styles/pages/HeroDetailPage.css';
 import { getHero, sortHeroItemsLatestFirst } from '../services/api';
+import { linkifyHtml, linkifyText } from '../utils/linkUtils';
 
 const HeroDetailPage = () => {
   const { id } = useParams();
@@ -93,7 +94,7 @@ const HeroDetailPage = () => {
 
   // Get content from hero item (full content)
   const getContent = (item) => {
-    return item?.content || item?.full_content || item?.body || '';
+    return item?.content || item?.full_content || item?.body || item?.description || '';
   };
 
   if (loading) {
@@ -148,10 +149,16 @@ const HeroDetailPage = () => {
               {content && (
               <div className="hero-detail-body">
                 {typeof content === 'string' ? (
-                    <div dangerouslySetInnerHTML={{ __html: content }} />
+                    content.includes('<') ? (
+                      <div dangerouslySetInnerHTML={{ __html: linkifyHtml(content) }} />
+                    ) : (
+                      <p>{linkifyText(content, `hero-detail-${heroItem.id || id}`)}</p>
+                    )
                 ) : Array.isArray(content) ? (
                   content.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
+                    <p key={index}>
+                      {linkifyText(paragraph, `hero-detail-${heroItem.id || id}-${index}`)}
+                    </p>
                   ))
                 ) : (
                   <p>{String(content)}</p>
@@ -202,4 +209,3 @@ const HeroDetailPage = () => {
 };
 
 export default HeroDetailPage;
-

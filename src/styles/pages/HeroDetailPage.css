@@ -111,6 +111,18 @@
   margin-bottom: 18px;
 }
 
+.hero-detail-body a {
+  color: #b97c07;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.hero-detail-body a:hover {
+  color: #8f5f05;
+}
+
 .hero-detail-actions {
   margin-top: 40px;
   padding-top: 30px;
@@ -287,4 +299,3 @@
     font-size: 0.8rem;
   }
 }
-

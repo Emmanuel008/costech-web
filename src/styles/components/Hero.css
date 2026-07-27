@@ -192,6 +192,18 @@
   font-weight: 400;
 }
 
+.hero-description a {
+  color: #b97c07;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.hero-description a:hover {
+  color: #8f5f05;
+}
+
 .hero-cta-buttons {
   display: flex;
   gap: 16px;

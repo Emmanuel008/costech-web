@@ -4,6 +4,7 @@ import '../styles/components/Hero.css';
 import BlurText from './BlurText';
 import RotatingText from './RotatingText';
 import { getHero, sortHeroItemsLatestFirst, HERO_CAROUSEL_LIMIT } from '../services/api';
+import { linkifyText } from '../utils/linkUtils';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -205,7 +206,9 @@ const Hero = () => {
                       <div className="hero-badge-tag">{getBadge(slide)}</div>
                     )}
                     {renderTitle(slide, index)}
-                    <p className="hero-description">{getDescription(slide)}</p>
+                    <p className="hero-description">
+                      {linkifyText(getDescription(slide), `hero-description-${slide.id || index}`)}
+                    </p>
                     <div className="hero-cta-buttons">
                       {slide.button_text && (
                         <button 
